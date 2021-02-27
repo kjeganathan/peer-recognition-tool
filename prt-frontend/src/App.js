@@ -1,19 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/Login";
+import Header from "./components/Header"
 
 class App extends Component {
-  render() {
+  render(){
     return (
-      <Router>
-        <div className="container">
-          <h2>Peer Recognition</h2>
+        <div>
+          <Header/>
+          <Login/>
         </div>
-      </Router>
     );
   }
 }
+
 
 export default App;
