@@ -1,9 +1,22 @@
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const PORT = 3001
 
-// TODO: Add app endpoints here
+app.use(cors());
+app.use(bodyParser.json());
+app.post("/home", (req, res) => {
+    console.log(req.body)
+    res.send(req.body);
+});
 
-// Export our app so server.js can use it
+
+app.listen(PORT, () => console.log("Backend server live on " + PORT));
+
+
+console.log(app.get('http://localhost:3001/?'))
+
+
 module.exports = app
