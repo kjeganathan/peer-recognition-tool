@@ -1,0 +1,2 @@
+frontend: npm run --prefix prt-frontend start
+backend:  npm run --prefix prt-backend  start
