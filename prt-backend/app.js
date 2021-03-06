@@ -3,14 +3,13 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const PORT = 3001
 
 //get request to '/employee' using res.send inside
 var recognitions = {
-    recognizer: null,
-    recognizee: null,
-    core: null,
-    message: null,
+  recognizer: null,
+  recognizee: null,
+  core: null,
+  message: null,
 }
 
 
@@ -21,11 +20,5 @@ app.post("/home", (req, res) => {
     res.send(req.body);
 });
 
-
-app.listen(PORT, () => console.log("Backend server live on " + PORT));
-
-
-console.log(app.get('http://localhost:3001/?'))
-
-
+// The call to app.listen(PORT, ...) is in server.js
 module.exports = app
