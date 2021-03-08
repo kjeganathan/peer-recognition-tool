@@ -42,7 +42,7 @@ export default class Notifications extends Component{
             <Dropdown.Divider/>
             <Dropdown.Item href="#/mention">You have been recognized by: Jane Doe!<p>3 days ago</p> </Dropdown.Item>
             <Dropdown.Divider/>
-            <Dropdown.Item href="#/mention">Tiffany commented on your post<p>5 days ago</p> </Dropdown.Item>
+            <Dropdown.Item href="#/mention">Tiffany commented on your recognition<p>5 days ago</p> </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item href="#/mention">Steve liked your recognition<p>6 days ago</p> </Dropdown.Item>
             </Dropdown.Menu>

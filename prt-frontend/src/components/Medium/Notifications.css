@@ -11,17 +11,14 @@
 
     
 }
-.dropdown-toggle::after{
-    content: none;
-}
+
 .dropdown-header{
 
     color: black;
     font-size: 25px;
     font-weight:bold;
 }
-.dropdown-header:after
-{
+.dropdown-header:after{
     content:' ';
     display:block;
     border:1px solid black;

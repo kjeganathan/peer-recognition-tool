@@ -11,7 +11,7 @@ class Header extends Component{
         const path = this.props.location.pathname.slice(1);
         let notificationsButton = null;
         let logoutButton = null;
-        if(path != "login"){
+        if(path !== "login"){
             notificationsButton =  <Notifications/>;
             logoutButton = 
             <button class = "logout" style={{margin:'20px',float: 'right'}} onClick={()=>this.props.history.push('/login')}>
