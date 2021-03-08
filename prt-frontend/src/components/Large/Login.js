@@ -1,24 +1,26 @@
 
-import React, { Component } from "react";
+import React, { Component} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Login.css";
 
 export default class Login extends Component{
-    state = this.state
-    contructor(props){
-      this.state = {
+    constructor(props){
+        super(props);
+        this.state = {
           username: "",
           password: ""
       }
+
     }
-    state = this.state
+
     handleSubmit(event){
         event.preventDefault();
         console.log(this.state)
         axios.post('http://localhost:3001/home', this.state)
-            .then(res => this.changeStuff(res));
+            .then(res => this.changeStuff(res)); 
+        this.props.history.push('/home')
     }
 
     changeStuff(res){
@@ -38,7 +40,7 @@ export default class Login extends Component{
                         type="Username"
                         placeholder = "Username"
                         value={this.username}
-                        onChange={ event => this.setState({username: event.target.value})}
+                        onChange={(user) => this.setState({username: user})}
                     />
                     </Form.Group>
                     <Form.Group size="lg" controlId="password">
@@ -49,10 +51,10 @@ export default class Login extends Component{
                         onChange={(pass) => this.setState({password: pass})}
                     />
                     </Form.Group>
-                    <Button block size="lg" type="submit"  bsClass='custom-button'>
-                    Login
-                    </Button>
-                </Form>
+                        <Button block size="lg" type="submit"  bsClass='custom-button'>
+                        Login
+                        </Button>
+                    </Form>
             </div>
       );
     }
