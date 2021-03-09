@@ -4,12 +4,12 @@
     bottom: 0;
     width: 100%;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: #005857;
   }
 
   .Login-Footer {
     background-color: #CEE0D7;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     text-align: center;
     width: 100%
