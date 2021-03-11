@@ -1,0 +1,56 @@
+.todoListMain .header input{
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFF;
+    width: 165 px;
+}
+
+.todoListMain .header button {
+    padding: 10 px;
+    font-size: 16px;
+    margin-right: 0px;
+    background-color: #CEE0D7;
+    color: #005857;
+    border: 2px solid #CEE0D7;
+
+    margin: 0;
+    position: fixed;
+    top: 100%;
+    left: 100%;
+    -ms-transform: translate(-100, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
+    transform: translate(-100%, -100%);
+}
+.todoListMain .header button:hover {
+    color: #2CD5C4;
+    cursor: pointer;
+}
+
+.todoListMain .thisList li { /* common bar */
+    color: #333; /* color text*/
+    background-color: rgba(38, 109, 53, 0.5);
+    padding: 15px; /*rectangles height */
+    margin-bottom: 15px; /*space between each rectangles*/
+    border-radius: 10px; /*round edge*/
+    list-style: none; /*hide the bullet points come from the flag <li>*/
+
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(50%, 50%);
+}
+ul.thisList{
+    width: 50%; /* set the flag <ul> common bar to half of the screen */
+    padding: 0;
+}
+
+.todoListMain .header textarea{
+    vertical-align: top;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    margin-left: 50%;
+
+    top: 50%;
+
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 

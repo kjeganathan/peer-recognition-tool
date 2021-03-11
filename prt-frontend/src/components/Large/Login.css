@@ -2,14 +2,13 @@
     
   .Login {
     background-color: white;
-
     position: fixed;
     width: 350px;
     height: 100;
-
     left: 50%;
     margin-top: 50px;
     margin-left: -175px;
+    
   }
   h1{
     text-align: center;
