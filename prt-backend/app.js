@@ -1,22 +1,24 @@
 
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const express = require('express');
 
-//get request to '/employee' using res.send inside
-// var recognitions = {
-//   recognizer: null,
-//   recognizee: null,
-//   core: null,
-//   message: null,
-// }
+const mongoose = require('mongoose');
+const config = require("../config.json");
 
-app.use(express.static(__dirname + "/../prt-frontend/public/"));
+const username = config.username;
+const password = config.password;
+const database = config.database;
 
-app.get("/", function(request, response){
-  console.log("Index requested.");
-})
+const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const URI = "mongodb+srv://"
+  + username + ":" + password
+  + "@cluster0.val9t.mongodb.net/"
+  + database
+  + "?retryWrites=true&w=majority";
+
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
 app.use(bodyParser.json());
