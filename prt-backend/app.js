@@ -76,5 +76,10 @@ app.post("/home", (req, res) => {
   res.send(req.body);
 });
 
+app.post('/logout', (req, res) => {
+  req.logout();
+  // res.redirect('/');
+});
+
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
