@@ -17,16 +17,16 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(this.state)
+        console.log(this.state);
         axios.post('http://localhost:3001/home', this.state)
-            .then(res => this.changeStuff(res)); 
-        this.props.history.push('/home')
+            .then(res => this.displayResponse(res));
+        this.props.history.push('/home');
     }
 
-    changeStuff(res){
-        var text = document.getElementsByTagName("p1")
-        console.log(res)
-        text[0].innerHTML = res.data.username
+    displayResponse(res){
+        var text = document.getElementsByTagName("p1");
+        console.log(res);
+        text[0].innerHTML = res.data.username;
     }
 
     render(){
