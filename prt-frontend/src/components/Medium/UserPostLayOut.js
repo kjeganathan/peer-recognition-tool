@@ -8,6 +8,7 @@
 import React, {Component} from "react";
 import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
+import AwardsButton from "./AwardsButton";
 import profilePic from "./genericProfilePicture.jpeg";
 
 export default class UserPostLayOut extends Component{
@@ -50,10 +51,16 @@ export default class UserPostLayOut extends Component{
     createTasks(item){
         
         return<li key = {item.key}>
+            
              <p className = "postHeader" style = {{color: "black", backgroundColor: "rgba(38, 109, 53, 0.5)"}}>
                  <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
                  : <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
-                 <strong> {item.recognized}</strong></p>
+                 <strong> {item.recognized}</strong>
+                 <AwardsButton></AwardsButton>
+            </p>
+            
+           
+           
              {item.text}</li>
         
     }

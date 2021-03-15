@@ -1,0 +1,13 @@
+.Awards-Button {
+    
+    size: 50%;
+}
+
+.Dropdown-Menu {
+    size: 50%;
+    max-height: fit-content;
+    margin-left: 89%;
+    margin-bottom: 1%;
+    color: black;
+    display: inline-flex;
+}
