@@ -64,7 +64,7 @@ textarea.recognitionFor{
     border-radius: 50%;
 
 }
-p{
+p.postHeader{
     border: 1px solid green;
     border-radius: 5px;
 }

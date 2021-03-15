@@ -49,7 +49,7 @@ export default class UserPostLayOut extends Component{
     createTasks(item){
         
         return<li key = {item.key}>
-             <p style = {{color: "black", backgroundColor: "rgba(38, 109, 53, 0.5)"}}>
+             <p className = "postHeader" style = {{color: "black", backgroundColor: "rgba(38, 109, 53, 0.5)"}}>
                  <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
                  : <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
                  <strong> {item.recognized}</strong></p>
@@ -69,9 +69,6 @@ export default class UserPostLayOut extends Component{
                     <textarea className = "recognition" ref={(a) => this._recognition = a} 
                             placeholder = "recognition">
                         </textarea>
-
-                        
-
                         <button type = "submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
