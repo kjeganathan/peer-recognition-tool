@@ -25,6 +25,12 @@ export default class Login extends Component{
     }
 
     successfulLogin(res){
+        this.props.history.push({
+            pathname: 'home',
+            state: {
+                username: this.state.username
+            }
+        })
         this.props.history.push('/home')
     }
     failedLogin(res){
@@ -62,7 +68,10 @@ export default class Login extends Component{
                         Login
                         </Button>
                     </Form>
+            
             </div>
+            
+            
       );
     }
 
