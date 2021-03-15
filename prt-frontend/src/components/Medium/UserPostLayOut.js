@@ -26,13 +26,13 @@ export default class UserPostLayOut extends Component{
     componentDidMount(){
         console.log("here");
         axios.get('http://localhost:3001/recogs')
-            .then((res) => console.log(res));
+            .then((res) => this.updateFeed(res));
     }
 
     updateFeed(res){
-        console.log(res.val);
-        res.data.recogs.forEach(recognition => {
-            this._inputElement.value=recognition.message;
+        console.log(res);
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            this._inputElement.value=res.data[i].message;
             if(this._inputElement.value !== ""){
                 var newItem = {
                     text: this._inputElement.value,
@@ -49,9 +49,8 @@ export default class UserPostLayOut extends Component{
             this._inputElement.value = "";
     
             console.log(this.state.items);
-    
-        });
-    }
+        }
+    };
 
     addItem(e){ //enter value will add them into the items array 
         if(this._inputElement.value !== ""){
@@ -62,7 +61,7 @@ export default class UserPostLayOut extends Component{
 
             this.setState((prevState) => {
                 return {
-                    items: prevState.items.concat(newItem)
+                    items: [newItem].concat(prevState.items)
                 };
             });
         }

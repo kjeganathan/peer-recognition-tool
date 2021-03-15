@@ -42,12 +42,13 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser(function(user, done) {
   // TODO: Use database and return user ID
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
-  // TODO: Use database and lookup by given user ID
-  done(null, user);
+passport.deserializeUser(function(userid, done) {
+  User.findById(userid, function(err, user) {
+    done(err, user);
+  });
 });
 
 //get request to '/employee' using res.send inside
@@ -108,10 +109,16 @@ try {
     var dbo = client.db("Test-Database");
     console.log(companyID);
     dbo.collection("TestRecognitions").find({companyID: companyID}, function(err, result) {
-      allRecogs = result
+      allRecogs = result;
     });
-    await allRecogs.forEach(doc => console.log(doc));
-    res.send(allRecogs);
+    var count = 0;
+    recogsIndexed = {};
+    await allRecogs.forEach(doc => indexRecogs(doc));
+    function indexRecogs(doc){
+      recogsIndexed[count] = doc;
+      count++;
+    }
+    res.send(recogsIndexed);
   }
 finally {
   await client.close();
