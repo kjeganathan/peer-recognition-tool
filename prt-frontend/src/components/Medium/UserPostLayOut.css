@@ -1,56 +1,83 @@
-.todoListMain .header input{
+.todoListMain .recognition input{
     padding: 10px;
     font-size: 16px;
     border: 2px solid #FFF;
     width: 165 px;
+    top: 20px;
 }
 
-.todoListMain .header button {
+.todoListMain .recognition button {
     padding: 10 px;
     font-size: 16px;
     margin-right: 0px;
     background-color: #CEE0D7;
     color: #005857;
     border: 2px solid #CEE0D7;
-
+    
     margin: 0;
     position: fixed;
     top: 100%;
     left: 100%;
-    -ms-transform: translate(-100, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
+    -ms-transform: translate(-100%, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
     transform: translate(-100%, -100%);
 }
-.todoListMain .header button:hover {
+.todoListMain .recognition button:hover {
     color: #2CD5C4;
     cursor: pointer;
+}
+.todoListMain .header .profilePictures{
+    width: 5px;
+    height: auto;
 }
 
 .todoListMain .thisList li { /* common bar */
     color: #333; /* color text*/
-    background-color: rgba(38, 109, 53, 0.5);
-    padding: 15px; /*rectangles height */
+    background-color: #f9f9f9;
+    padding: 5px; /*rectangles height */
     margin-bottom: 15px; /*space between each rectangles*/
     border-radius: 10px; /*round edge*/
+    border: 1px solid gray; 
     list-style: none; /*hide the bullet points come from the flag <li>*/
 
     -ms-transform: translate(-50%, -50%);
     transform: translate(50%, 50%);
 }
+.todoListMain .recognition .post{
+    height: 50px
+}
 ul.thisList{
+    margin-top: 50px;
     width: 50%; /* set the flag <ul> common bar to half of the screen */
-    padding: 0;
+}
+textarea{
+    display: block;
+    width: 100%;
+}
+textarea.recognitionFor{
+    height: 30px;
 }
 
-.todoListMain .header textarea{
-    vertical-align: top;
-    height:80px;
+.profilePictures{
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+}
+p.postHeader{
+    border: 1px solid green;
+    border-radius: 5px;
+}
+.todoListMain .recognition .post{
+    
+    height:30px;
     width: 400px;
     resize:none;
-    display: inline-block;
     margin-left: 50%;
 
-    top: 50%;
+    top: 100px;
 
-    -ms-transform: translate(-50%, 50%);
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 30%);
+
+
 } 
