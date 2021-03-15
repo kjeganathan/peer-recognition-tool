@@ -8,6 +8,7 @@ const cors = require('cors')
 const session = require("express-session")
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const { default: UserPostLayOut } = require('../prt-frontend/src/components/Medium/UserPostLayOut')
 
 const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 
@@ -36,12 +37,13 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser(function(user, done) {
   // TODO: Use database and return user ID
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function(id, done) {
   // TODO: Use database and lookup by given user ID
-  done(null, user);
+  
+  done(null, id);
 });
 
 //get request to '/employee' using res.send inside
