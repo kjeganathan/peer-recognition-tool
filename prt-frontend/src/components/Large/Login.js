@@ -19,19 +19,20 @@ export default class Login extends Component{
     handleSubmit(event){
         event.preventDefault();
         axios.post('http://localhost:3001/login', this.state)
-            .then((res) => this.successfulLogin(res))
-            .catch((res)=> this.failedLogin(res)); 
+            .then((res) => this.loginAttempt(res));
         
     }
 
-    successfulLogin(res){
-        this.props.history.push('/home')
-    }
-    failedLogin(res){
-        var text = document.getElementsByTagName("p1");
-        text[0].innerHTML = "Incorrect username or password";
-        ReactDOM.findDOMNode(this.loginForm).reset();
-
+    loginAttempt(res){
+        console.log(res.data)
+        if(res.data.suc){
+            this.props.history.push('/home')
+        }
+        else{
+            var text = document.getElementsByTagName("p1");
+            text[0].innerHTML = "Incorrect username or password";
+            ReactDOM.findDOMNode(this.loginForm).reset();
+        }
     }
 
     render(){
