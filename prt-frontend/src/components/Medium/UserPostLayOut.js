@@ -8,6 +8,9 @@
 import React, {Component} from "react";
 import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+
 
 export default class UserPostLayOut extends Component{
     constructor(props){
@@ -19,6 +22,35 @@ export default class UserPostLayOut extends Component{
 
         this.addItem = this.addItem.bind(this);
     }
+    
+    componentDidMount(){
+        console.log("here");
+        axios.get('http://localhost:3001/recogs')
+            .then((res) => this.updateFeed(res));
+    }
+
+    updateFeed(res){
+        console.log(res);
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            this._inputElement.value=res.data[i].message;
+            if(this._inputElement.value !== ""){
+                var newItem = {
+                    text: this._inputElement.value,
+                    key: Date.now() //a time value for the unique perpos
+                };
+    
+                this.setState((prevState) => {
+                    return {
+                        items: prevState.items.concat(newItem)
+                    };
+                });
+            }
+    
+            this._inputElement.value = "";
+    
+            console.log(this.state.items);
+        }
+    };
 
     addItem(e){ //enter value will add them into the items array 
         if(this._inputElement.value !== ""){
@@ -29,7 +61,7 @@ export default class UserPostLayOut extends Component{
 
             this.setState((prevState) => {
                 return {
-                    items: prevState.items.concat(newItem)
+                    items: [newItem].concat(prevState.items)
                 };
             });
         }

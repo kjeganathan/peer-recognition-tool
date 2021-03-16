@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Login.css";
+import ReactDOM from 'react-dom';
 
 export default class Login extends Component{
     constructor(props){
@@ -17,16 +18,21 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(this.state)
-        axios.post('http://localhost:3001/home', this.state)
-            .then(res => this.changeStuff(res)); 
-        this.props.history.push('/home')
+        axios.post('http://localhost:3001/login', this.state)
+            .then((res) => this.loginAttempt(res));
+        
     }
 
-    changeStuff(res){
-        var text = document.getElementsByTagName("p1")
-        console.log(res)
-        text[0].innerHTML = res.data.username
+    loginAttempt(res){
+        console.log(res.data)
+        if(res.data.suc){
+            this.props.history.push('/home')
+        }
+        else{
+            var text = document.getElementsByTagName("p1");
+            text[0].innerHTML = "Incorrect username or password";
+            ReactDOM.findDOMNode(this.loginForm).reset();
+        }
     }
 
     render(){
@@ -34,13 +40,15 @@ export default class Login extends Component{
             <div className="Login">
                 <h1>Login</h1>
                 <p1></p1>
-                <Form onSubmit={this.handleSubmit.bind(this)}>
+                <Form id='login'
+                    ref={ login => this.loginForm = login }
+                    onSubmit={this.handleSubmit.bind(this)}>
                     <Form.Group size="lg" controlId="username">
                     <Form.Control
                         type="Username"
                         placeholder = "Username"
-                        value={this.username}
-                        onChange={(user) => this.setState({username: user})}
+                        value = {this.username}
+                        onChange={(user) => this.setState({username: user.target.value})}
                     />
                     </Form.Group>
                     <Form.Group size="lg" controlId="password">
@@ -48,7 +56,7 @@ export default class Login extends Component{
                         type="Password"
                         placeholder = "Password"
                         value={this.password}
-                        onChange={(pass) => this.setState({password: pass})}
+                        onChange={(pass) => this.setState({password: pass.target.value})}
                     />
                     </Form.Group>
                         <Button block size="lg" type="submit"  bsClass='custom-button'>
