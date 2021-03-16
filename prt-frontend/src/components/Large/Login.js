@@ -18,21 +18,21 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:3001/login', this.state)
-            .then((res) => this.loginAttempt(res));
+        axios.post('http://localhost:3001/login', this.state, {withCredentials: true})
+            .then((res) => this.correctLogin(res))
+            .catch((err) => this.failedLogin(err));
         
     }
 
-    loginAttempt(res){
+    correctLogin(res){
         console.log(res.data)
-        if(res.data.suc){
-            this.props.history.push('/home')
-        }
-        else{
-            var text = document.getElementsByTagName("p1");
-            text[0].innerHTML = "Incorrect username or password";
-            ReactDOM.findDOMNode(this.loginForm).reset();
-        }
+        this.props.history.push('/home')
+    }
+
+    failedLogin(err){
+        var text = document.getElementsByTagName("p1");
+        text[0].innerHTML = "Incorrect username or password";
+        ReactDOM.findDOMNode(this.loginForm).reset();
     }
 
     render(){

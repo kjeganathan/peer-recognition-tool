@@ -25,13 +25,14 @@ export default class UserPostLayOut extends Component{
     
     componentDidMount(){
         console.log("here");
-        axios.get('http://localhost:3001/recogs')
+        axios.get('http://localhost:3001/recogs', {withCredentials: true})
             .then((res) => this.updateFeed(res));
     }
 
     updateFeed(res){
         console.log(res);
         for(var i=0;i<Object.keys(res.data).length;i++){
+
             this._inputElement.value=res.data[i].message;
             if(this._inputElement.value !== ""){
                 var newItem = {
@@ -51,6 +52,10 @@ export default class UserPostLayOut extends Component{
             console.log(this.state.items);
         }
     };
+
+    formatRecog(){
+
+    }
 
     addItem(e){ //enter value will add them into the items array 
         if(this._inputElement.value !== ""){
