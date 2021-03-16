@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -8,18 +7,12 @@ const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/Test
 
 var companyID = -1;
 
-
-
 // Authentication Setup
 const session = require("express-session")
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-<<<<<<< HEAD
 const { default: UserPostLayOut } = require('../prt-frontend/src/components/Medium/UserPostLayOut')
-
-=======
 const { response } = require('express')
->>>>>>> b528e255860b7813c3695c4d7d000197924d7717
 const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 
 // Calling passport.use tells Passport to run this code to match a username and
@@ -50,17 +43,12 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-<<<<<<< HEAD
 passport.deserializeUser(function(id, done) {
   // TODO: Use database and lookup by given user ID
-  
   done(null, id);
-=======
-passport.deserializeUser(function(userid, done) {
   User.findById(userid, function(err, user) {
     done(err, user);
   });
->>>>>>> b528e255860b7813c3695c4d7d000197924d7717
 });
 
 //get request to '/employee' using res.send inside
@@ -112,12 +100,11 @@ app.get("/recogs", (req, res) => {
   getRecogs(req, res);
 });
 
-<<<<<<< HEAD
 app.post('/logout', (req, res) => {
   req.logout();
   // res.redirect('/');
 });
-=======
+
 async function getRecogs(req, res) {
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(URI);
@@ -142,10 +129,6 @@ finally {
   await client.close();
 }
 }
-
-
-
->>>>>>> b528e255860b7813c3695c4d7d000197924d7717
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
