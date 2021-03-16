@@ -10,6 +10,7 @@ export default class Notifications extends Component{
         this.state = {
           newNotifications: 4
         };
+        console.log(this.props)
     }
 
     CustomToggle = React.forwardRef(({ children, onClick }, ref) => (

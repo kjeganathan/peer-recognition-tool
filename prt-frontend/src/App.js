@@ -7,7 +7,16 @@ import Header from "./components/Medium/Header"
 import Home from "./components/Large/Home"
 import Footer from"./components/Medium/Footer"
 
+
+
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      username: '',
+    }
+  } 
+
   render(){
     return (
       <Router>

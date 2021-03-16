@@ -19,13 +19,18 @@ export default class Login extends Component{
     handleSubmit(event){
         event.preventDefault();
         axios.post('http://localhost:3001/login', this.state, {withCredentials: true})
-            .then((res) => this.correctLogin(res))
+            .then((res) => this.successfulLogin(res))
             .catch((err) => this.failedLogin(err));
         
     }
 
-    correctLogin(res){
-        console.log(res.data)
+    successfulLogin(res){
+        this.props.history.push({
+            pathname: 'home',
+            state: {
+                username: res.data.user.firstName+" "+res.data.user.lastName
+            }
+        })
         this.props.history.push('/home')
     }
 
@@ -63,7 +68,10 @@ export default class Login extends Component{
                         Login
                         </Button>
                     </Form>
+            
             </div>
+            
+            
       );
     }
 

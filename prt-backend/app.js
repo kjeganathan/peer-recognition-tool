@@ -18,6 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(bodyParser.json());
+app.options('*', cors())
 
 //recognitiom and employee structure
 var recognitions = {
@@ -81,6 +82,7 @@ passport.use(new LocalStrategy(
     }
 ));
 
+
 passport.serializeUser(function(user, done) {
   // TODO: Use database and return user ID
   done(null, user);
@@ -90,14 +92,12 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-
 app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
 
 
-
-//Server calls for different functions
+app.options('*', cors())
 app.get("/recogs", (req, res) => {
   if (!req.isAuthenticated()){
     res.status(401).send({ message: 'You are not logged in' });    
@@ -108,31 +108,69 @@ app.get("/recogs", (req, res) => {
 });
 
 async function getRecogs(req, res) {
-const client = new MongoClient(URI);
-var allRecogs;
+  const client = new MongoClient(URI);
   try {
+    var allRecogs;
     await client.connect();
     var dbo = client.db("Test-Database");
-    console.log(req);
     dbo.collection("TestRecognitions").find({companyID: req.user.companyId}, function(err, result) {
       allRecogs = result;
     });
+    
     var count = 0;
     recogsIndexed = {};
     await allRecogs.forEach(doc => indexRecogs(doc));
     function indexRecogs(doc){
-      recogsIndexed[count] = doc;
-      count++;
+        var recoObject = {
+          reco: doc,
+          giver: null,
+          receiver: null
+        };
+        recogsIndexed[count] = recoObject;
+        count++;
     }
     res.send(recogsIndexed);
   }
-finally {
-  await client.close();
+  finally {
+    await client.close();
+  }
 }
+
+
+app.options('*', cors())
+app.post("/lookupUser", (req, res) => {
+  if (!req.isAuthenticated()){
+    res.status(401).send({ message: 'You are not logged in' });    
+  }
+  else{
+    getUser(req, res);
+  }
+});
+
+async function getUser(req, res) {
+  const client = new MongoClient(URI);
+  try {
+    await client.connect();
+    var dbo = client.db("Test-Database");
+    dbo.collection("TestEmployees").findOne({companyId: req.body.id}, function(err, result) {
+      console.log(result);
+      res.send(result)
+    });
+  }
+  finally {
+    await client.close();
+  }
 }
 
-
-
+/*
+dbo.collection("TestEmployees").findOne({employeeId: doc.giverID}, function(err, result) {
+  console.log(result);
+  recoObject.giver = result;
+}.bind(this));
+dbo.collection("TestEmployees").findOne({employeeId: doc.receiverID}, function(err, result) {
+  recoObject.receiver = result;
+}.bind(this));
+*/
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
