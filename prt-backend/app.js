@@ -40,15 +40,21 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser(function(user, done) {
   // TODO: Use database and return user ID
-  done(null, user.id);
+  done(null, user.employeeId);
 });
 
 passport.deserializeUser(function(id, done) {
   // TODO: Use database and lookup by given user ID
-  done(null, id);
-  User.findById(userid, function(err, user) {
-    done(err, user);
-  });
+  mongodb.collection('TestEmployees').findOne(
+    {_id: new ObjectId(id)},
+      (err, doc) => {
+        if(err){
+          return done(err);
+        } else {
+          return done(null, doc);
+        }
+      }
+  );
 });
 
 //get request to '/employee' using res.send inside
