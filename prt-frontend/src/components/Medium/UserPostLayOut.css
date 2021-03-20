@@ -1,18 +1,19 @@
-.todoListMain .recognition input{
+/* .todoListMain .recognition input{
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #FFF;
+    border: 2px solid rgb(238, 0, 0);
     width: 165 px;
     top: 20px;
-}
+} */
+
 
 .todoListMain .recognition button {
     padding: 10 px;
     font-size: 16px;
-    margin-right: 0px;
-    background-color: #CEE0D7;
+    /* margin-right: 0px; */
+    background-color: rgb(210, 252, 255);
     color: #005857;
-    border: 2px solid #CEE0D7;
+    border: 2px solid rgb(210, 252, 255);
     
     margin: 0;
     position: fixed;
@@ -20,85 +21,129 @@
     left: 100%;
     -ms-transform: translate(-100%, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
     transform: translate(-100%, -100%);
+    border-radius: 10px;
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
 }
 .todoListMain .recognition button:hover {
     color: #2CD5C4;
-    cursor: pointer;
+    cursor: pointer; 
 }
 .todoListMain .header .profilePictures{
     width: 5px;
     height: auto;
 }
 
+.todoListMain .header textarea{
+    vertical-align: top;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    /* margin-left: 50%; */
+    position: absolute;
+    left: 50%;
+    /* top: 100%; */
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 
+
+
 .todoListMain .thisList li { /* common bar */
     color: #333; /* color text*/
-    background-color: #f9f9f9;
+    background-color : #fffaf4; 
     padding: 5px; /*rectangles height */
     margin-bottom: 15px; /*space between each rectangles*/
     border-radius: 10px; /*round edge*/
-    border: 1px solid gray; 
+    /* border: 5px solid rgb(210, 252, 255);  */
     list-style: none; /*hide the bullet points come from the flag <li>*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
     -ms-transform: translate(-50%, -50%);
-    transform: translate(50%, 50%);
-}
-.todoListMain .recognition .post{
-    height: 50px
+    transform: translate(50%, 40%);
 }
 ul.thisList{
-    margin-top: 50px;
-    width: 50%; /* set the flag <ul> common bar to half of the screen */
+    width: 50%; 
 }
 textarea{
     display: block;
     width: 100%;
+    height: 100px;
+    /* border-color: rgb(255, 245, 210); */
+    background-color : #fffaf4; 
+
+    border-radius: 10px;
+    border-width: initial;
+    text-indent: 5px;
+    font-size: 17px;
+    outline-offset: 0px !important;
+    outline: none !important;
 }
-textarea.recognitionFor{
+
+input.recognitionFor{
+    width: 100%;
     height: 30px;
+    border: none;
+
+    font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    line-height: normal;
+    /* background-color: rgb(255, 245, 210); */
+    /* background-color: #CEE0D7; */
+    background-color:rgb(210, 252, 255); /**********************************************************/
+    
+    border-radius: 10px;
+    color: #282828;
+    outline: none;
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out, 0.1s padding ease-in-out;
+    -webkit-appearance: none;
+    text-indent: 8px;
 }
 
 .profilePictures{
-
     padding: 5px;
-
     border-radius: 50%;
-
 }
+
 p.postHeader{
-    border: 1px solid green;
+    border: 1px solid rgb(255, 245, 210);
     border-radius: 5px;
 }
-.todoListMain .recognition .post{
-    
-    height:30px;
-    width: 400px;
+
+.recognition{
+    margin-top: 20px;
+    /* background-color: #CEE0D7; */
+    background-color: rgb(210, 252, 255);
+    border-radius: 10px; /*round edge*/
+    height:172px;
+    width: 620px;
     resize:none;
     margin-left: 50%;
+    transform: translate(-50%, 5%); 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 
-    top: 100px;
-
-    transform: translate(-50%, 30%);
-
-
+.recognition .post{
+    height:30px;
+    width: 600px;
+    resize:none;
+    margin-left: 50%;
+    transform: translate(-50%, 50%);  
 } 
 
-.postCommentButton{
-    font-size: 16px;
-    /* margin-right: 0px; */
-    background-color: #CEE0D7;
-    color: #005857;
-    border: 2px solid #CEE0D7;
-    position: absolute;
-    top: 100%;
-    left: 100%;
-    -ms-transform: translate(-100, -100%); 
-    transform: translate(-100%, -100%);
-    /* height: auto; 
-    width: auto;  */
-    max-width: 100px; 
-    max-height: 100px;
+.recognition .box{
+    margin-top: 10px;
+    height:100px;
+    width: 600px;
+    /* background-color: #CEE0D7; */
+    background-color: rgb(210, 252, 255);
+    border-color: rgb(210, 252, 255);
 }
-.postCommentButton:hover{
-    color: #2CD5C4;
-    cursor: pointer; 
+
+.recognition .line{
+    width: 600px;
+    height: 5px;
+    border-bottom: 1px solid rgb(175, 170, 146);
+    position: absolute;
 }
