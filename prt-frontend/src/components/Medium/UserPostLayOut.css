@@ -1,12 +1,3 @@
-/* .todoListMain .recognition input{
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid rgb(238, 0, 0);
-    width: 165 px;
-    top: 20px;
-} */
-
-
 .todoListMain .recognition button {
     padding: 10 px;
     font-size: 16px;
@@ -77,6 +68,7 @@ textarea{
     font-size: 17px;
     outline-offset: 0px !important;
     outline: none !important;
+    resize: none;
 }
 
 input.recognitionFor{
@@ -147,3 +139,4 @@ p.postHeader{
     border-bottom: 1px solid rgb(175, 170, 146);
     position: absolute;
 }
+    
