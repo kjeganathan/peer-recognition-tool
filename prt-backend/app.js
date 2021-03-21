@@ -2,15 +2,6 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-<<<<<<< HEAD
-=======
-const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/TestDatabase"
-  + "?retryWrites=true&w=majority";
-
-var companyID = -1;
-
-// Authentication Setup
->>>>>>> preston-branch
 const session = require("express-session")
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
@@ -94,29 +85,11 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser(function(user, done) {
   // TODO: Use database and return user ID
-<<<<<<< HEAD
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
   done(null, user);
-=======
-  done(null, user.employeeId);
-});
-
-passport.deserializeUser(function(id, done) {
-  // TODO: Use database and lookup by given user ID
-  mongodb.collection('TestEmployees').findOne(
-    {_id: new ObjectId(id)},
-      (err, doc) => {
-        if(err){
-          return done(err);
-        } else {
-          return done(null, doc);
-        }
-      }
-  );
->>>>>>> preston-branch
 });
 
 app.post('/login', passport.authenticate('local'), (req, res) => {
@@ -168,7 +141,6 @@ async function getRecogs(req, res) {
   }
 }
 
-<<<<<<< HEAD
 
 app.options('*', cors())
 app.post("/lookupUser", (req, res) => {
@@ -205,7 +177,5 @@ dbo.collection("TestEmployees").findOne({employeeId: doc.receiverID}, function(e
 }.bind(this));
 */
 
-=======
->>>>>>> preston-branch
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
