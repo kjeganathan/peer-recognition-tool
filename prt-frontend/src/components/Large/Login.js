@@ -1,4 +1,3 @@
-
 import React, { Component} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -64,10 +63,11 @@ export default class Login extends Component{
                         onChange={(pass) => this.setState({password: pass.target.value})}
                     />
                     </Form.Group>
-                        <Button block size="lg" type="submit"  bsClass='custom-button'>
-                        Login
-                        </Button>
-                    </Form>
+                    
+                    <Button block size="lg" type="submit"  bsClass='custom-button'>
+                    Login
+                    </Button>
+                </Form>
             
             </div>
             
