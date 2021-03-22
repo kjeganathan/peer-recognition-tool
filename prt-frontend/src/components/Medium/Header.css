@@ -1,6 +1,7 @@
 .header {
   
-    background-color: #CEE0D7;
+    /* background-color: #CEE0D7; */
+    background-color: rgb(228, 236, 218);
     font-size: calc(2px + 2vmin);
     color: white;
     display: flex;
@@ -8,42 +9,35 @@
     max-height: 80px;
     
   }
-.header-buttons{
-  height: 10px;
-  width:10px;
-}
+
 .logout{
+  border-radius: 50%;
   color: white;
   background: #008264;
   position: relative;
   float: right;
   margin-top: 50px;
   margin-right: 20px;
-  border-radius: 50%;
-  border-color: #008264;
   padding: 5px;
 }
+
 
 .profileButton{
   color: white;
   background-image:url('genericProfilePicture.jpeg');
   background-size:cover;
+  border-radius: 50%;
   position: relative;
   float: right;
   margin-top: 50px;
-
-  border-radius: 50%;
-  padding: 5px;
 }
 .homeButton{
   color: white;
   background: #008264;
   position: relative;
-  float: right;
   margin-top: 50px;
-  margin-right: 20px;
-  border-radius: 50%;
   border-color: #008264;
   padding: 5px;
+  border-radius: 50%;
 
 }

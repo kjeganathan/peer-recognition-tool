@@ -9,6 +9,7 @@ import Footer from"./components/Medium/Footer"
 import Profile from"./components/Medium/ProfilePage"
 
 
+
 class App extends Component {
   constructor(props){
     super(props);

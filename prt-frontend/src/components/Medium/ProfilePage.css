@@ -1,4 +1,5 @@
 .profile{
+    background-color:white;
     position:relative;
     top: -130px;
     left: 100px;
@@ -7,6 +8,7 @@
 
 }
 .entireProfile{
+    
     margin-top: 5rem;
     margin-left: 15%;
     position:relative;
@@ -22,7 +24,7 @@
     text-shadow: 1px 1px 1px black;
     font-size: 3rem;
     color: white;
-    margin-left: 20px;
+    margin-left: 30px;
     text-align: left;
 }
 .profileHeader{
