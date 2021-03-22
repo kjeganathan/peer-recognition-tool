@@ -19,8 +19,10 @@ export default class UserPostLayOut extends Component{
     constructor(props){
         super(props);
 
+        // localStorage.setItem('username', props.user.username)
         this.state = {
-            username: props.user.username,
+            // username: props.user.username,
+            username: localStorage.getItem("username"),
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };
@@ -53,15 +55,14 @@ export default class UserPostLayOut extends Component{
 
     createTasks(item){  
         return<li key = {item.key}>
-                <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
-                    <AwardsButton></AwardsButton>
-                    
+                <p className = "postHeader">
+                    <AwardsButton></AwardsButton>  
                     <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
                     : <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
                     <strong> {item.recognized}</strong>
-                    <CommentButton></CommentButton>
                 </p>
-             {item.text}
+                {item.text}
+                <CommentButton></CommentButton>
              </li>
     }
 
@@ -83,7 +84,6 @@ export default class UserPostLayOut extends Component{
                         <button type = "submit">
                              <SquirrelIcon size={25}/>
                         </button>
-
                     </form>
                 </div>
     }

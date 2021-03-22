@@ -8,36 +8,11 @@ export default class CommentButton extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCommentClick = this.handleCommentClick.bind(this);
+      // this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
 
     handleCommentClick () {
       this.setState({...this.state, showForm: true});
-    }
-
-    render() {
-      return (
-        <div>
-          <button onClick={this.handleCommentClick}>
-            Comment
-          </button> 
-          {this.state.showForm && (
-          <>
-              <h3>Leave your Comments Below</h3>
-              <Comments items={this.state.items} />
-              <textarea className = "comment"
-                id="new-todo"
-                onChange={this.handleChange}
-                value={this.state.text}
-              />
-              <form onSubmit={this.handleSubmit}>
-                <button>
-                  Post
-                </button>
-              </form>
-            </>
-          )} 
-        </div>
-      );
     }
   
     handleChange(e) {
@@ -57,6 +32,32 @@ export default class CommentButton extends Component {
         items: state.items.concat(newItem),
         text: ''
       }));
+    }
+
+    render() {
+      return (
+        <div>
+          <button onClick={this.handleCommentClick}>
+            Comment
+          </button> 
+          {this.state.showForm && (
+          <>
+              <h3>Leave your Comments Below</h3>
+              <textarea className = "comment"
+                id="new-todo"
+                onChange={this.handleChange}
+                value={this.state.text}
+              />
+              <form onSubmit={this.handleSubmit}>
+                <button>
+                  Post
+                </button>
+              </form>
+              <Comments items={this.state.items} />
+            </>
+          )} 
+        </div>
+      );
     }
   }
   
