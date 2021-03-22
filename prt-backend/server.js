@@ -1,4 +1,5 @@
 const app = require('./app')
+require('./docs')
 
 const PORT = 3001
 

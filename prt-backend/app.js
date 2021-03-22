@@ -92,6 +92,28 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+/**
+ * @openapi
+ * /login:
+ *   post:
+ *     description: Log in with a given username and password
+ *     parameters:
+ *       -
+ *          name: credentials
+ *          in: body
+ *          description: Username and password
+ *          required: true
+ *          schema:
+ *              type: object
+ *              required:
+ *                - username
+ *                - password
+ *              properties:
+ *                username:
+ *                  type: string
+ *                password:
+ *                  type: string
+ */
 app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
@@ -99,10 +121,10 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 app.options('*', cors())
 app.get("/recogs", (req, res) => {
-  if (!req.isAuthenticated()){
-    res.status(401).send({ message: 'You are not logged in' });    
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
   }
-  else{
+  else {
     getRecogs(req, res);
   }
 });
