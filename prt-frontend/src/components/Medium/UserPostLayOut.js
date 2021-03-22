@@ -14,6 +14,7 @@ import {PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 
 
+
 export default class UserPostLayOut extends Component{
     constructor(props){
         super(props);
@@ -96,7 +97,7 @@ export default class UserPostLayOut extends Component{
                 <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
                     <AwardsButton></AwardsButton>
                     <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
-            
+
                     <strong> {item.recognized}</strong>
                 </p>
              {item.text}
