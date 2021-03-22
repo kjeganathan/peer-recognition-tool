@@ -7,7 +7,7 @@ import "./Login.css";
 import ReactDOM from 'react-dom';
 
 export default class Login extends Component{
-    constructor(props){
+    constructor(props){ {/* assign initial state */}
         super(props);
         this.state = {
           username: "",
@@ -18,7 +18,7 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:3001/login', this.state)
+        axios.post('http://localhost:3001/login', this.state) //post login request to /login
             .then((res) => this.successfulLogin(res))
             .catch((res)=> this.failedLogin(res)); 
         
@@ -27,6 +27,7 @@ export default class Login extends Component{
     successfulLogin(res){
         this.props.history.push('/home')
     }
+    
     failedLogin(res){
         var text = document.getElementsByTagName("p1");
         text[0].innerHTML = "Incorrect username or password";

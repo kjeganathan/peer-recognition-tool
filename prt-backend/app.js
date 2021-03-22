@@ -1,88 +1,47 @@
-const config = require("./config.json");
+// Source: https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c
+// Source: https://github.com/FBosler/fb-tutorial-social-login/tree/steps/3_backend_1
 
 const express = require('express');
-const mongoose = require('mongoose');
-const session = require("express-session")
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const config = require("./config.json");
 
-const databaseUsername = config.username;
-const databasePassword = config.password;
-const databaseName = config.database;
+const session = require("express-session");
+const mongoose = require("mongoose");
 
+const passport = require("./passport.js");
 
-// mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
+const databaseURI = config.URI;
+
+mongoose
+  .connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(console.log("Connected to MongoDB database."))
+  .catch(error => console.log(error));
 
 const app = express();
-const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
-
-const URI = "mongodb+srv://"
-  + databaseUsername + ":" + databasePassword
-  + "@cluster0.val9t.mongodb.net/"
-  + databaseName
-  + "?retryWrites=true&w=majority";
-
-console.log("URI: " + URI);
-
-// Calling passport.use tells Passport to run this code to match a username and
-// password to a user.
-//    See http://www.passportjs.org/docs/configure/
-passport.use(new LocalStrategy(
-  {
-    usernameField: 'username',
-    passwordField: 'password'
-  },
-  function(username, password, done) {
-    // TODO: When connected with database, actually look up a user.
-    if (username === 'username' && password === 'password') {
-      // We would want to return a user from the database here
-      const dummyUserObject = { userId: 0 };
-      return done(null, dummyUserObject);
-    }
-
-    // Returning done with false indicates that the credentials were incorrect
-    return done(null, false, {
-      message: 'WIP, use username = "username" and password = "password"'
-    });
-  }
-));
-
-passport.serializeUser(function(user, done) {
-  // TODO: Use database and return user ID
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  // TODO: Use database and lookup by given user ID
-  done(null, user);
-});
-
-//get request to '/employee' using res.send inside
-var recognitions = {
-  recognizer: null,
-  recognizee: null,
-  core: null,
-  message: null,
-}
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(session({ secret: 'compsci320', maxAge: SESSION_LENGTH }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send({ message: 'Logged in successfully', user: req.user });
-});
-
-app.get('/testlogin', (req, res) => {
-  // Check if the user is logged in by calling req.isAuthenticated().
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  } else {
-    res.send({ message: 'Congratulations, you are logged in', user: req.user });
+app.post("/login",
+  passport.authenticate("local"),
+  (req, res) => { //called only on success
+    console.log("Logging in.");
+    res.send({ user: req.user });
   }
-});
+);
+
+// app.get('/testlogin', (req, res) => {
+//   // Check if the user is logged in by calling req.isAuthenticated().
+//   if (!req.isAuthenticated()) {
+//     res.status(401).send({ message: 'You are not logged in' });
+//   } else {
+//     res.send({ message: 'Congratulations, you are logged in', user: req.user });
+//   }
+// });
 
 app.post("/home", (req, res) => {
   console.log(req.body)
