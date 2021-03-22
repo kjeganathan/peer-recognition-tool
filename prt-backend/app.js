@@ -1,34 +1,20 @@
-const express = require('express');
-
-const mongoose = require('mongoose');
 const config = require("./config.json");
 
-const { Schema } = mongoose;
-
-const employeeSchema = new Schema({
-  firstName:            String,
-  lastName:             String,
-  companyId:            Number,
-  password:             String,
-  positionTitle:        String,
-  isManager:            Boolean,
-  employeeId:           Number,
-  managerId:            Number,
-  email:                String,
-  startDate:            String,
-  recognitionsGiven:    [mongoose.ObjectId],
-  recognitionsReceived: [mongoose.ObjectId]
-});
-
-const Employee = mongoose.model("Employee", employeeSchema);
+const express = require('express');
+const mongoose = require('mongoose');
+const session = require("express-session")
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
 
 const databaseUsername = config.username;
 const databasePassword = config.password;
 const databaseName = config.database;
 
+
+// mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 
 const URI = "mongodb+srv://"
   + databaseUsername + ":" + databasePassword
@@ -36,21 +22,71 @@ const URI = "mongodb+srv://"
   + databaseName
   + "?retryWrites=true&w=majority";
 
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
+console.log("URI: " + URI);
+
+// Calling passport.use tells Passport to run this code to match a username and
+// password to a user.
+//    See http://www.passportjs.org/docs/configure/
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'username',
+    passwordField: 'password'
+  },
+  function(username, password, done) {
+    // TODO: When connected with database, actually look up a user.
+    if (username === 'username' && password === 'password') {
+      // We would want to return a user from the database here
+      const dummyUserObject = { userId: 0 };
+      return done(null, dummyUserObject);
+    }
+
+    // Returning done with false indicates that the credentials were incorrect
+    return done(null, false, {
+      message: 'WIP, use username = "username" and password = "password"'
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  // TODO: Use database and return user ID
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  // TODO: Use database and lookup by given user ID
+  done(null, user);
+});
+
+//get request to '/employee' using res.send inside
+var recognitions = {
+  recognizer: null,
+  recognizee: null,
+  core: null,
+  message: null,
+}
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(session({ secret: 'compsci320', maxAge: SESSION_LENGTH }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.post("/home", (request, response) => {
-    console.log("Request: \n" + request.body);
-    console.log("Response: \n" + response.body);
-    // res.send(req.body);
-    if(!request.body.username || !request.body.password){
-      response.sendStatus(400); //Bad Request
-    }else{
-      const query = Employee.findOne({"email": databaseUsername, "password": databasePassword});
-      console.log(query);
-    }
+app.post('/login', passport.authenticate('local'), (req, res) => {
+  res.send({ message: 'Logged in successfully', user: req.user });
+});
+
+app.get('/testlogin', (req, res) => {
+  // Check if the user is logged in by calling req.isAuthenticated().
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  } else {
+    res.send({ message: 'Congratulations, you are logged in', user: req.user });
+  }
+});
+
+app.post("/home", (req, res) => {
+  console.log(req.body)
+  res.send(req.body);
 });
 
 // The call to app.listen(PORT, ...) is in server.js
