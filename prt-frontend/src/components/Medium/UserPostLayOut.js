@@ -17,7 +17,7 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            username: props.user.username,
+            username: "jim watson",//props.user.username,
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
             isActive: false,
@@ -72,7 +72,7 @@ export default class UserPostLayOut extends Component{
         console.log(this._recognized.value);
         if(this._recognition.value !== ""){
             var newItem = {
-                username:this.state.username,
+                username: this.state.username,
                 recognized: this._recognized.value,
                 text: this._recognition.value,
                 key: Date.now() //a time value for the unique perpos
