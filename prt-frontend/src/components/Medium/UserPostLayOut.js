@@ -9,6 +9,7 @@ import React, {Component} from "react";
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import AwardsButton from "./AwardsButton";
+import CommentButton from "../Small/CommentButton";
 import profilePic from "./genericProfilePicture.jpeg";
 import {PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
@@ -101,6 +102,7 @@ export default class UserPostLayOut extends Component{
                     <strong> {item.recognized}</strong>
                 </p>
              {item.text}
+             <CommentButton></CommentButton>
              </li>
     }
 
