@@ -9,12 +9,14 @@ const config = require("./config.json");
 const session = require("express-session");
 const mongoose = require("mongoose");
 
-const passport = require("./passport.js");
+const passport = require("./passport.js"); //Presentation note 1: all the code for
+                                           //authentication has been moved to passport.js
 
 const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 const databaseURI = config.URI;
 
-mongoose
+mongoose //Presentation note 2: we are now using Mongoose again, because we've reached the
+         //point where the extra complexity is worth it
   .connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log("Connected to MongoDB database."))
   .catch(error => console.log(error));
@@ -26,7 +28,8 @@ app.use(session({ secret: 'compsci320', maxAge: SESSION_LENGTH }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post("/login",
+app.post("/login", //Presentation note 3: use passport.js's authentication function when
+                   //we receive a post request from the login page
   passport.authenticate("local"),
   (req, res) => { //called only on success
     console.log("Logging in.");

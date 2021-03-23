@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); //Presentation note: the module we're using to
+                                      //interface with MongoDB database
 
 const EmployeeSchema = new mongoose.Schema(
     {
@@ -16,7 +17,7 @@ const EmployeeSchema = new mongoose.Schema(
         recognitionsGiven:      [mongoose.ObjectId],
         recognitionsReceived:   [mongoose.ObjectId]
     }, {
-        collection: "Employees"
+        collection: "Employees" //The collection that a Employee document belongs to
     }
 )
 
