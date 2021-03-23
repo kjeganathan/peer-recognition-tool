@@ -17,11 +17,9 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.history.push('/home')
-        /* UNCOMMENT 
         axios.post('http://localhost:3001/login', this.state, {withCredentials: true})
             .then((res) => this.successfulLogin(res))
-            .catch((err) => this.failedLogin(err)); */
+            .catch((err) => this.failedLogin(err));
         
     }
 

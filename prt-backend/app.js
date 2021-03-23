@@ -58,7 +58,7 @@ passport.use(new LocalStrategy(
       try {
           await client.connect();
           var dbo = client.db("Test-Database");
-          dbo.collection("TestEmployees").findOne({email: username}, function(err, result) {
+          dbo.collection("Employees").findOne({email: username}, function(err, result) {
           if( result ==null){
             return done(null, false, {
               message: 'WIP, use username = "username" and password = "password"'
@@ -174,10 +174,14 @@ async function getUser(req, res) {
   try {
     await client.connect();
     var dbo = client.db("Test-Database");
-    dbo.collection("TestEmployees").findOne({companyId: req.body.id}, function(err, result) {
-      console.log(result);
-      res.send(result)
-    });
+    var id1;
+    var id2;
+    dbo.collection("Employees").findOne({employeeId: req.body.id1}, function(err, result1) {
+      dbo.collection("Employees").findOne({employeeId: req.body.id2}, function(err, result2) {
+        console.log({1:result1, 2:res})
+        res.send({1:id1, 2:id2})
+    }.bind(this));
+  }.bind(this));
   }
   finally {
     await client.close();
