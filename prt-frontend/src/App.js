@@ -20,7 +20,7 @@ class App extends Component {
 
   render(){
     return (
-      <Router>
+      <Router> {/* Imported Router component */}
           <div>
             <Header/>
             <Redirect to="/login" />
