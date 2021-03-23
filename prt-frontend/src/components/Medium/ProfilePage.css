@@ -1,0 +1,57 @@
+.profile{
+    background-color:white;
+    position:relative;
+    top: -130px;
+    left: 100px;
+    border-radius: 10px;
+    z-index: 1;
+
+}
+.entireProfile{
+    
+    margin-top: 5rem;
+    margin-left: 15%;
+    position:relative;
+}
+.userInfo{
+    float:left;
+    margin-left: 10rem;
+    margin-top: 2rem;
+    text-align: left;
+
+}
+#name{
+    text-shadow: 1px 1px 1px black;
+    font-size: 3rem;
+    color: white;
+    margin-left: 30px;
+    text-align: left;
+}
+.profileHeader{
+    position:relative;
+    height:100%;
+    top: -40px;
+    left: -70px;
+    width: 710px;
+    padding-left: 10px;
+    border-radius: 5px;
+    margin-right: 2px;
+    background-color: gray;
+}
+.profilePicture{
+    
+    position: relative;
+    top: -10px;
+    left: 50px;
+
+    z-index: 2;
+    width: 10rem;
+    border: solid gray 3px;
+    border-radius: 50%;
+   
+}
+.info{
+    text-align: left;
+    margin-bottom: 2px;
+    margin-top: 15px;
+}
