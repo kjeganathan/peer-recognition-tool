@@ -42,22 +42,20 @@ export default class UserPostLayOut extends Component{
 
     formatName(res){
         console.log(res);
-        console.log(res.data.firstName+ " "+ res.data.lastName);
         return res.data.firstName+ " "+ res.data.lastName;
     }
 
     updateFeed(res){
         console.log(res.data[1]["reco"]);
-        var tempUsername = ""
         var tempRecognized = "";
         var messageValue = "";
 
         for(var i=0;i<Object.keys(res.data).length;i++){
-
+            tempRecognized= res.data[i]["reco"].giverID;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].giverID,
-                    recognized: res.data[i]["reco"].receiverID,
+                    username: res.data[i]["reco"].receiverID,
+                    recognized: tempRecognized,
                     text: messageValue,
                     key: Date.now() //a time value for the unique perpos
                 };
