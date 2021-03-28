@@ -10,9 +10,8 @@ export default class Login extends Component{
         super(props);
         this.state = {
           username: "",
-          password: ""
+          password: "",
       }
-
     }
 
     handleSubmit(event){
@@ -26,6 +25,7 @@ export default class Login extends Component{
     }
 
     successfulLogin(res){
+        // localStorage.setItem('username', this.state.username)
         this.props.history.push({
             pathname: 'home',
             state: {
@@ -48,7 +48,8 @@ export default class Login extends Component{
                 <p1></p1>
                 <Form id='login'
                     ref={ login => this.loginForm = login }
-                    onSubmit={this.handleSubmit.bind(this)}>
+                    onSubmit={this.handleSubmit.bind(this)}
+                    action = "UserPostLayOut.js">       
                     <Form.Group size="lg" controlId="username">
                     <Form.Control
                         type="Username"
