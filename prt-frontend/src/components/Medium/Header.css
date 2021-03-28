@@ -7,18 +7,36 @@
     display: flex;
     flex-direction: column;
     max-height: 80px;
-    
   }
 
 .logout{
-  border-radius: 50%;
-  color: white;
-  background: #008264;
   position: relative;
   float: right;
   margin-top: 50px;
   margin-right: 20px;
+
+  color: #005857;
+  background:rgb(193, 201, 183);
+  border-radius: 50%;
   padding: 5px;
+  border-width: 0;
+  margin: 1rem;
+}
+.logout.jelly :hover{
+  animation: jelly 0.5s;
+}
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+
+  75% {
+    transform: scale(0.95, 1.05);
+  }
 }
 
 

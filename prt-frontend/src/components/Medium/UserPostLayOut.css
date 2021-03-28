@@ -13,7 +13,7 @@
     left: 100%;
     -ms-transform: translate(-100%, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
     transform: translate(-100%, -100%);
-    border-radius: 10px;
+    border-radius: 20px;
     /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
 }
 .todoListMain .recognition button:hover {
@@ -24,6 +24,40 @@
     width: 5px;
     height: auto;
 }
+.todoListMain .header .profilePictures{
+    width: 5px;
+    height: auto;
+}
+
+.todoListMain .header textarea{
+    vertical-align: top;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    /* margin-left: 50%; */
+    position: absolute;
+    left: 50%;
+    /* top: 100%; */
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 
+
+
+.todoListMain .header textarea{
+    vertical-align: top;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    /* margin-left: 50%; */
+    position: absolute;
+    left: 50%;
+    /* top: 100%; */
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 
+
 
 .todoListMain .header textarea{
     vertical-align: top;
@@ -51,7 +85,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
    
-    /*DONE CHANGE ANYTHING BELOW!!!!!!!!!!!!!*/
+    /*DONT CHANGE ANYTHING BELOW!!!!!!!!!!!!!*/
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 0%);
     position: relative;

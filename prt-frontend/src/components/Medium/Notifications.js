@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import { BiBell } from 'react-icons/bi';
+import {SignOutIcon, BellIcon  } from '@primer/octicons-react'
 import './Notifications.css';
 
 export default class Notifications extends Component{
@@ -14,7 +15,7 @@ export default class Notifications extends Component{
     }
 
     CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <button class = "notificationButton"
+        <button class = "notificationButton jelly"
           ref={ref}
           onClick={(e) => {
             e.preventDefault();
@@ -25,6 +26,7 @@ export default class Notifications extends Component{
           {children}
         </button>
       ));
+      
     render() {
         let badge = null;
         if(this.state.newNotifications > 0){
@@ -34,6 +36,7 @@ export default class Notifications extends Component{
         <Dropdown>
             <Dropdown.Toggle as={this.CustomToggle}>
                 <BiBell size = {30}/>  
+                {/* <BellIcon size={30}/> */}
                 {badge}
             </Dropdown.Toggle>  
             
