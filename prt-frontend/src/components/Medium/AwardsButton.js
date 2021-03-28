@@ -23,22 +23,22 @@ export default class AwardsButton extends Component{
                 id="dropdown-menu-align-right">
 
 
-                    <Button>
+                    <Button className="Buttons">
                         <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
                         Carry
                     </Button>
                     
-                    <Button>
+                    <Button className="Buttons">
                         <img src="https://img.icons8.com/color/20/000000/pet.png"/>
                         Good Boy
                     </Button>
 
-                    <Button>
+                    <Button className="Buttons">
                         <img src="https://img.icons8.com/color/20/000000/pug.png"/>
-                        Pogger
+                        Poggers
                     </Button>
 
-                    <Button>
+                    <Button className="Buttons">
                         <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
                         Love
                     </Button>

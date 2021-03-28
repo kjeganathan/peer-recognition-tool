@@ -1,7 +1,7 @@
 @media all and (min-width: 480px) {
     
   .Login {
-    background-color: rgb(228, 236, 218);
+    background-color: #59D7C8;
     position: fixed;
     width: 350px;
     height: 100;
@@ -11,11 +11,12 @@
     
   }
   h1{
+    background-color: #59D7C8;
     text-align: center;
     margin: 50px;
   }
 
   .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited,.btn-primary:active:focus {
-    background-color: #008264 !important; 
+    background-color: #29C2DE !important; 
   }
 }

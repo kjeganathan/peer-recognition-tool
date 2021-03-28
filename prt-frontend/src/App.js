@@ -6,6 +6,7 @@ import Login from "./components/Large/Login";
 import Header from "./components/Medium/Header"
 import Home from "./components/Large/Home"
 import Footer from"./components/Medium/Footer"
+import Profile from"./components/Medium/ProfilePage"
 
 
 
@@ -25,7 +26,9 @@ class App extends Component {
             <Redirect to="/login" />
             <Route exact path="/login" component={Login}/>
             <Route exact path="/home" component={Home}/>
-            <Footer/>
+            <Route exact path="/profile" component={Profile}/>
+            
+ <Footer/>
           </div>
       </Router>
 

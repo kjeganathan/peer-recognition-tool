@@ -17,9 +17,11 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:3001/login', this.state)
+        this.props.history.push('/home')
+        /* UNCOMMENT 
+        axios.post('http://localhost:3001/login', this.state, {withCredentials: true})
             .then((res) => this.successfulLogin(res))
-            .catch((res)=> this.failedLogin(res)); 
+            .catch((err) => this.failedLogin(err)); */
         
     }
 
@@ -27,16 +29,16 @@ export default class Login extends Component{
         this.props.history.push({
             pathname: 'home',
             state: {
-                username: this.state.username
+                username: res.data.user.firstName+" "+res.data.user.lastName
             }
         })
         this.props.history.push('/home')
     }
-    failedLogin(res){
+
+    failedLogin(err){
         var text = document.getElementsByTagName("p1");
         text[0].innerHTML = "Incorrect username or password";
         ReactDOM.findDOMNode(this.loginForm).reset();
-
     }
 
     render(){

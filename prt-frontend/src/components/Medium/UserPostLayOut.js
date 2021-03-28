@@ -12,6 +12,7 @@ import AwardsButton from "./AwardsButton";
 import CommentButton from "../Small/CommentButton";
 import profilePic from "./genericProfilePicture.jpeg";
 import {PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
+import axios from 'axios';
 
 
 
@@ -20,7 +21,7 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            username: props.user.username,
+            username: "Jamel Spencer",// UNCOMMENT props.user.username, 
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };
@@ -28,12 +29,53 @@ export default class UserPostLayOut extends Component{
         this.addItem = this.addItem.bind(this);
 
     }
+    
+    componentDidMount(){
+        axios.get('http://localhost:3001/recogs', {withCredentials: true})
+            .then((res) => this.updateFeed(res));
+    }
+
+    getUserFromID(employeeId){
+        axios.post('http://localhost:3001/lookupUser', {id: employeeId}, {withCredentials: true})
+            .then((res) => this.formatName(res));
+    }
+
+    formatName(res){
+        console.log(res);
+        return res.data.firstName+ " "+ res.data.lastName;
+    }
+
+    updateFeed(res){
+        console.log(res.data[1]["reco"]);
+        var tempRecognized = "";
+        var messageValue = "";
+
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            tempRecognized= res.data[i]["reco"].giverID;
+            messageValue = res.data[i]["reco"].message;
+                var newItem = {
+                    username: res.data[i]["reco"].receiverID,
+                    recognized: tempRecognized,
+                    text: messageValue,
+                    key: Date.now() //a time value for the unique perpos
+                };
+    
+                this.setState((prevState) => {
+                    return {
+                        items: [newItem].concat(prevState.items)
+                    };
+                });
+
+        var tempRecognized = "";
+        var messageValue = "";
+        }
+    };
 
     addItem(e){ //enter value will add them into the items array 
         console.log(this._recognized.value);
         if(this._recognition.value !== ""){
             var newItem = {
-                username:this.state.username,
+                username: this.state.username,
                 recognized: this._recognized.value,
                 text: this._recognition.value,
                 key: Date.now() //a time value for the unique perpos
@@ -57,11 +99,12 @@ export default class UserPostLayOut extends Component{
                     <AwardsButton></AwardsButton>
                     
                     <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
-                    : <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
+
                     <strong> {item.recognized}</strong>
-                    <CommentButton></CommentButton>
+                    
                 </p>
              {item.text}
+             <CommentButton></CommentButton>
              </li>
     }
 
@@ -73,11 +116,11 @@ export default class UserPostLayOut extends Component{
         return <div className = "recognition">
                     <form className = "post" onSubmit = {this.addItem}>
                         <input className = "recognitionFor" ref={(a) => this._recognized = a} 
-                            placeholder = "who are you recognizing">
+                            placeholder = "Who are you recognizing">
                         </input>
                         <div className = 'line'></div>
                         <textarea className = "box" ref={(a) => this._recognition = a} 
-                            placeholder = "recognition">
+                            placeholder = "Recognition">
                         </textarea>
 
                         <button type = "submit">

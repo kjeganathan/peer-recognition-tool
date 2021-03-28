@@ -1,5 +1,6 @@
 .Awards-Button {
     size: 50%;
+    background-color: #59D7C8;
 }
 
 .Dropdown-Menu {
@@ -10,12 +11,20 @@
     /* position: fixed;
     display: inline-flex;
     top: 7.5px; */
+    color: #59D7C8;
     float: right;
     float: middle;
+    overflow: visible;
+
     /* position:relative;
     margin-top: 89%; */
 }
 
 .dropdown-toggle::after { /*hide the arrow for drop down button*/
     content: none; 
+    
 } 
+
+.buttons {
+    color: #59D7C8;
+}
