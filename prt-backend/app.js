@@ -58,7 +58,7 @@ passport.use(new LocalStrategy(
       try {
           await client.connect();
           var dbo = client.db("Test-Database");
-          dbo.collection("TestEmployees").findOne({email: username}, function(err, result) {
+          dbo.collection("Employees").findOne({email: username}, function(err, result) {
           if( result ==null){
             return done(null, false, {
               message: 'WIP, use username = "username" and password = "password"'
@@ -92,6 +92,28 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+/**
+ * @openapi
+ * /login:
+ *   post:
+ *     description: Log in with a given username and password
+ *     parameters:
+ *       -
+ *          name: credentials
+ *          in: body
+ *          description: Username and password
+ *          required: true
+ *          schema:
+ *              type: object
+ *              required:
+ *                - username
+ *                - password
+ *              properties:
+ *                username:
+ *                  type: string
+ *                password:
+ *                  type: string
+ */
 app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
@@ -99,10 +121,10 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 app.options('*', cors())
 app.get("/recogs", (req, res) => {
-  if (!req.isAuthenticated()){
-    res.status(401).send({ message: 'You are not logged in' });    
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
   }
-  else{
+  else {
     getRecogs(req, res);
   }
 });
@@ -152,10 +174,17 @@ async function getUser(req, res) {
   try {
     await client.connect();
     var dbo = client.db("Test-Database");
-    dbo.collection("TestEmployees").findOne({companyId: req.body.id}, function(err, result) {
-      console.log(result);
-      res.send(result)
+    var id1;
+    var id2;
+    dbo.collection("Employees").findOne({employeeId: req.body.id1}, function(err, result) {
+      
+      id1 = result
     });
+    dbo.collection("Employees").findOne({employeeId: req.body.id2}, function(err, result) {
+      id2 = result
+    });
+    console.log({1:id1, 2:id2})
+    res.send({1:id1, 2:id2})
   }
   finally {
     await client.close();

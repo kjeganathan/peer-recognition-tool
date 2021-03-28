@@ -97,12 +97,13 @@ export default class UserPostLayOut extends Component{
 
     createTasks(item){  
         return<li key = {item.key}>
-                <p className = "postHeader">
-                    <AwardsButton></AwardsButton>  
-                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
+                <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
+                    <AwardsButton></AwardsButton>
+                    {/* <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
+                    <strong> {item.recognized}</strong> */}
 
-                    <strong> {item.recognized}</strong>
-                    
+                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>was recognized by 
+                    <strong> {item.username}</strong>
                 </p>
              {item.text}
              <CommentButton></CommentButton>
