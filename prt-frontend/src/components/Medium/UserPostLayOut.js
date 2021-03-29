@@ -21,7 +21,7 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            username: "Jamel Spencer",// UNCOMMENT props.user.username, 
+            username: props.user.username, 
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };
@@ -46,7 +46,6 @@ export default class UserPostLayOut extends Component{
     }
 
     updateFeed(res){
-        console.log(res.data[1]["reco"]);
         var tempRecognized = "";
         var messageValue = "";
 
@@ -97,16 +96,16 @@ export default class UserPostLayOut extends Component{
         return<li key = {item.key}>
                 <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
                     <AwardsButton></AwardsButton>
-                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
+                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>was recognized by 
 
-                    <strong> {item.recognized}</strong>
+                    <strong> {item.username}</strong>
                 </p>
              {item.text}
              <CommentButton></CommentButton>
              </li>
     }
 
-    poatList(){
+    postList(){
         return this.state.items.map(this.createTasks)
     }
 
@@ -134,9 +133,11 @@ export default class UserPostLayOut extends Component{
             <div className = 'todoListMain'>
                 {this.postArea()}
                 <ul className = "thisList">
-                    {this.poatList()}
+                    {this.postList()}
                 </ul>
+                
             </div>
+
         )
     }
 }
