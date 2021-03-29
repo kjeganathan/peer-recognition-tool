@@ -36,7 +36,6 @@ class Header extends Component{
             <header className = "header">
                 <div class="header-butttons">
                     {logoutButton}
-                    {profileButton}
                     {notificationsButton}      
                     <img src={logo} className= "App-logo" alt = "logo" style={{margin: '10px 10px', width:'180px',height:'60px'}}></img>
                 </div>
