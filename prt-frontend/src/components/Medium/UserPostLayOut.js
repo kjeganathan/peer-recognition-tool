@@ -52,10 +52,10 @@ export default class UserPostLayOut extends Component{
         console.log(res.data[1])
         for(var i=0;i<Object.keys(res.data).length;i++){
             
-            tempRecognized= res.data[i]["reco"].giverName;
+            tempRecognized=res.data[i]["reco"].receiverName;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].receiverName,
+                    username: res.data[i]["reco"].giverName,
                     recognized: tempRecognized,
                     text: messageValue,
                     key: Date.now() //a time value for the unique perpos
@@ -99,7 +99,7 @@ export default class UserPostLayOut extends Component{
                 <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
                     <AwardsButton></AwardsButton>
 
-                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>was recognized by 
+                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
 
                     <strong> {item.username}</strong>
                 </p>
