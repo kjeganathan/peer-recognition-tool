@@ -14,8 +14,7 @@
     color: #59D7C8;
     float: right;
     float: middle;
-    overflow: visible;
-
+    
     /* position:relative;
     margin-top: 89%; */
 }
@@ -25,6 +24,7 @@
     
 } 
 
-.buttons {
+.Buttons {
     color: #59D7C8;
+    margin-right: 5px;
 }
