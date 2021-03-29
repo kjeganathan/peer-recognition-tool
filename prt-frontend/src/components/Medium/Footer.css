@@ -1,5 +1,5 @@
 .Login-Footer-Div {
-    background-color: white;
+    background-color: #29C2DE;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -8,7 +8,7 @@
   }
 
   .Login-Footer {
-    background-color: white;
+    background-color: #29C2DE;
     position: fixed;
     bottom: 0;
     text-align: center;

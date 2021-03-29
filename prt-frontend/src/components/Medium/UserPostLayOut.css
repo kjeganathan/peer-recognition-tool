@@ -98,7 +98,7 @@
 }
 ul.thisList{ /*this is where you change the common window size*/
     /* background-color : #d87e10;   testing purposse*/
-   
+    
     position: relative;
     width: 750px;
     top: 50px;
@@ -156,7 +156,7 @@ p.postHeader{
     border: 1px solid rgb(255, 245, 210);
     border-radius: 5px;
     color: black;
-    background-color:rgb(210, 252, 255);
+    background-color: #fff ;;
 }
 
 .recognition{
@@ -177,6 +177,7 @@ p.postHeader{
 .recognition .post{
     height:30px;
     width: 600px;
+    
     resize:none;
     margin-left: 50%;
     transform: translate(-50%, 50%);  
@@ -194,6 +195,7 @@ p.postHeader{
 .recognition .line{
     width: 600px;
     height: 5px;
+    
     border-bottom: 1px solid rgb(175, 170, 146);
     position: absolute;
 }
