@@ -32,7 +32,6 @@ class App extends Component {
             <Route exact path="/home" component={Home}/>
             <Route exact path="/profile" component={Profile}/>
             
- <Footer/>
           </div>
       </Router>
     );

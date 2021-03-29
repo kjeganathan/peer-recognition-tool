@@ -27,7 +27,11 @@ export default class Login extends Component{
         this.props.history.push({
             pathname: 'home',
             state: {
-                username: res.data.user.firstName+" "+res.data.user.lastName
+                username: res.data.user.firstName+" "+res.data.user.lastName,
+                position: res.data.user.positionTitle,
+                email: res.data.user.email,
+                company: res.data.user.companyName,
+                startData: res.data.user.startDate
             }
         })
         this.props.history.push('/home')
