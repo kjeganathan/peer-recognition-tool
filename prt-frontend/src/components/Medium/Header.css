@@ -1,7 +1,7 @@
 .header {
   
     /* background-color: #CEE0D7; */
-    background-color: rgb(228, 236, 218);
+    background-color: #29C2DE;
     font-size: calc(2px + 2vmin);
     color: white;
     display: flex;
@@ -11,6 +11,9 @@
 
   
 .logout{
+  border-radius: 50%;
+  color: white;
+  background: #29C2DE;
   position: relative;
   float: right;
   margin-top: 50px;
