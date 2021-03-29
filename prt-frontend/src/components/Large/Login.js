@@ -32,6 +32,13 @@ export default class Login extends Component{
                 startData: res.data.user.startDate
             }
         })
+        localStorage.setItem('username', this.state.username); //localstorage username
+        localStorage.setItem('fullName', res.data.user.firstName+" "+res.data.user.lastName);  //localstorage fullName
+        localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
+        localStorage.setItem('email', res.data.user.email);  //localstorage email
+        localStorage.setItem('company', res.data.user.companyName);  //localstorage company
+        localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
+
         this.props.history.push('/home')
     }
     

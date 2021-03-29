@@ -9,10 +9,15 @@ export default class ProfilePage extends Component {
   constructor(props){
     super(props);       
     this.state = {
-        username: props.user.username, 
-        email: props.user.email,
-        company: props.user.company,
-        position: props.user.position
+        // username: props.user.username, 
+        // email: props.user.email,
+        // company: props.user.company,
+        // position: props.user.position
+
+        username: localStorage.getItem('fullName'), 
+        email: localStorage.getItem('email'),
+        company: localStorage.getItem('company'),
+        position: localStorage.getItem('position')
     }
     console.log(this.props);
 

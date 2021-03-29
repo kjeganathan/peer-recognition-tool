@@ -20,9 +20,9 @@ export default class UserPostLayOut extends Component{
     constructor(props){
         super(props);
 
-        // localStorage.setItem('username', props.user.username)
         this.state = {
-            username: props.user.username, 
+            // username: props.user.username, 
+            username: localStorage.getItem('username'), //call username from localstorage
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };

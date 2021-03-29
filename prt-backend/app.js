@@ -134,7 +134,7 @@ async function getRecogs(req, res) {
     var allRecogs;
     await client.connect();
     var dbo = client.db("Test-Database");
-    dbo.collection("TestRecognitions").find({companyID: req.user.companyId}, function(err, result) {
+    dbo.collection("Recognitions").find({companyID: req.user.companyId}, function(err, result) {
       allRecogs = result;
     });
     
