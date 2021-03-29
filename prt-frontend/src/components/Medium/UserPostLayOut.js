@@ -49,12 +49,13 @@ export default class UserPostLayOut extends Component{
     updateFeed(res){
         var tempRecognized = "";
         var messageValue = "";
-
+        console.log(res.data[1])
         for(var i=0;i<Object.keys(res.data).length;i++){
-            tempRecognized= res.data[i]["reco"].giverID;
+            
+            tempRecognized= res.data[i]["reco"].giverName;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].receiverID,
+                    username: res.data[i]["reco"].receiverName,
                     recognized: tempRecognized,
                     text: messageValue,
                     key: Date.now() //a time value for the unique perpos
