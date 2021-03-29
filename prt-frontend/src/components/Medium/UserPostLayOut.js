@@ -36,17 +36,25 @@ export default class UserPostLayOut extends Component{
     }
 
     getUserFromID(employeeId){
+        var result;
         axios.post('http://localhost:3001/lookupUser', {id: employeeId}, {withCredentials: true})
-            .then((res) => this.formatName(res));
+            .then((result) => function(result){
+                console.log(result['1']);
+                return result['1'].data.firstName+ " "+ result['1'].data.lastName;
+            });
     }
+    updateUsers(res, callback){
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
+            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
 
-    formatName(res){
-        console.log(res);
-        return res.data.firstName+ " "+ res.data.lastName;
+            res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
+        }
+        console.log(res.data[1]["giver"])
     }
 
     updateFeed(res){
-        console.log(res.data[1]["reco"]);
+        console.log(res.data);
         var tempRecognized = "";
         var messageValue = "";
 
@@ -54,8 +62,8 @@ export default class UserPostLayOut extends Component{
             tempRecognized= res.data[i]["reco"].giverID;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].receiverID,
-                    recognized: tempRecognized,
+                    username: res.data[i]["reco"].giverName,
+                    recognized: res.data[i]["reco"].receiverName,
                     text: messageValue,
                     key: Date.now() //a time value for the unique perpos
                 };
@@ -75,17 +83,16 @@ export default class UserPostLayOut extends Component{
         console.log(this._recognized.value);
         if(this._recognition.value !== ""){
             var newItem = {
-                username: this.state.username,
-                recognized: this._recognized.value,
-                text: this._recognition.value,
-                key: Date.now() //a time value for the unique perpos
+                companyID: 1,
+                giverID: -1,
+                receiverID: -1,
+                value: [],
+                message: this._recognition.value,
+                giverName: this.state.username,
+                receiverName: this._recognized.value
             };
-
-            this.setState((prevState) => {
-                return {
-                    items: prevState.items.concat(newItem)
-                };
-            });
+            axios.post('http://localhost:3001/postRec', newItem, {withCredentials: true})
+            .then((res) => console.log(res.data));
         }
 
         this._recognized.value = "";

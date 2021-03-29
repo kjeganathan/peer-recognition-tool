@@ -1,4 +1,5 @@
-
+const recogs = require('./mongoCalls/recognitions.js')
+const user = require('./mongoCalls/user.js')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -8,17 +9,16 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const { response } = require('express')
 const MongoClient = require('mongodb').MongoClient;
-
 const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/TestDatabase"
   + "?retryWrites=true&w=majority";
-
 app.use(session({ secret: 'compsci320', maxAge: SESSION_LENGTH }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(bodyParser.json());
-app.options('*', cors())
+app.options('*', cors()) 
+
 
 //recognitiom and employee structure
 var recognitions = {
@@ -118,46 +118,36 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
 
-
-app.options('*', cors())
+/**
+ * @openapi
+ * /recogs:
+ *   post:
+ *     description: get Recogs
+ *     parameters:
+ *       -
+ *          name: credentials
+ *          in: body
+ *          description: Username and password
+ *          required: true
+ *          schema:
+ *              type: object
+ *              required:
+ *                - username
+ *                - password
+ *              properties:
+ *                username:
+ *                  type: string
+ *                password:
+ *                  type: string
+ */
 app.get("/recogs", (req, res) => {
   if (!req.isAuthenticated()) {
     res.status(401).send({ message: 'You are not logged in' });
   }
   else {
-    getRecogs(req, res);
+    recogs.getRecogs(req, res);
   }
 });
-
-async function getRecogs(req, res) {
-  const client = new MongoClient(URI);
-  try {
-    var allRecogs;
-    await client.connect();
-    var dbo = client.db("Test-Database");
-    dbo.collection("TestRecognitions").find({companyID: req.user.companyId}, function(err, result) {
-      allRecogs = result;
-    });
-    
-    var count = 0;
-    recogsIndexed = {};
-    await allRecogs.forEach(doc => indexRecogs(doc));
-    function indexRecogs(doc){
-        var recoObject = {
-          reco: doc,
-          giver: null,
-          receiver: null
-        };
-        recogsIndexed[count] = recoObject;
-        count++;
-    }
-    res.send(recogsIndexed);
-  }
-  finally {
-    await client.close();
-  }
-}
-
 
 app.options('*', cors())
 app.post("/lookupUser", (req, res) => {
@@ -165,41 +155,28 @@ app.post("/lookupUser", (req, res) => {
     res.status(401).send({ message: 'You are not logged in' });    
   }
   else{
-    getUser(req, res);
+    user.getUser(req, res);
   }
 });
 
-async function getUser(req, res) {
-  const client = new MongoClient(URI);
-  try {
-    await client.connect();
-    var dbo = client.db("Test-Database");
-    var id1;
-    var id2;
-    dbo.collection("Employees").findOne({employeeId: req.body.id1}, function(err, result) {
-      
-      id1 = result
-    });
-    dbo.collection("Employees").findOne({employeeId: req.body.id2}, function(err, result) {
-      id2 = result
-    });
-    console.log({1:id1, 2:id2})
-    res.send({1:id1, 2:id2})
+app.options('*', cors())
+app.get("/getCurrentUser", (req, res) => {
+  if (!req.isAuthenticated()){
+    res.status(401).send({ message: 'You are not logged in' });    
   }
-  finally {
-    await client.close();
+  else{
+    res.send(req.user);
   }
-}
+});
 
-/*
-dbo.collection("TestEmployees").findOne({employeeId: doc.giverID}, function(err, result) {
-  console.log(result);
-  recoObject.giver = result;
-}.bind(this));
-dbo.collection("TestEmployees").findOne({employeeId: doc.receiverID}, function(err, result) {
-  recoObject.receiver = result;
-}.bind(this));
-*/
+app.options('*', cors())
+app.post("/postRec", (req, res) => {
+  if (!req.isAuthenticated()){
+    res.status(401).send({ message: 'You are not logged in' });    
+  }
+  else{
+    recogs.postRec(req, res);
+  }
+});
 
-// The call to app.listen(PORT, ...) is in server.js
 module.exports = app
