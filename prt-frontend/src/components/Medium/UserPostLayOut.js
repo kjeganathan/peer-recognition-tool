@@ -21,7 +21,8 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            username: "Jamel Spencer",// UNCOMMENT props.user.username, 
+            // username: props.user.username, 
+            username: localStorage.getItem('username'), //call username from localstorage
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };
@@ -54,16 +55,16 @@ export default class UserPostLayOut extends Component{
     }
 
     updateFeed(res){
-        console.log(res.data);
         var tempRecognized = "";
         var messageValue = "";
-
+        console.log(res.data[1])
         for(var i=0;i<Object.keys(res.data).length;i++){
-            tempRecognized= res.data[i]["reco"].giverID;
+            
+            tempRecognized=res.data[i]["reco"].receiverName;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
                     username: res.data[i]["reco"].giverName,
-                    recognized: res.data[i]["reco"].receiverName,
+                    recognized: tempRecognized,
                     text: messageValue,
                     key: Date.now() //a time value for the unique perpos
                 };
@@ -104,16 +105,17 @@ export default class UserPostLayOut extends Component{
         return<li key = {item.key}>
                 <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
                     <AwardsButton></AwardsButton>
-                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.username} </strong>is recognizing 
 
-                    <strong> {item.recognized}</strong>
+                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
+
+                    <strong> {item.username}</strong>
                 </p>
              {item.text}
              <CommentButton></CommentButton>
              </li>
     }
 
-    poatList(){
+    postList(){
         return this.state.items.map(this.createTasks)
     }
 
@@ -141,9 +143,11 @@ export default class UserPostLayOut extends Component{
             <div className = 'todoListMain'>
                 {this.postArea()}
                 <ul className = "thisList">
-                    {this.poatList()}
+                    {this.postList()}
                 </ul>
+                
             </div>
+
         )
     }
 }

@@ -10,9 +10,8 @@ export default class Login extends Component{
         super(props);
         this.state = {
           username: "",
-          password: ""
+          password: "",
       }
-
     }
 
     handleSubmit(event){
@@ -27,9 +26,20 @@ export default class Login extends Component{
         this.props.history.push({
             pathname: 'home',
             state: {
-                username: res.data.user.firstName+" "+res.data.user.lastName
+                username: res.data.user.firstName+" "+res.data.user.lastName,
+                position: res.data.user.positionTitle,
+                email: res.data.user.email,
+                company: res.data.user.companyName,
+                startData: res.data.user.startDate
             }
         })
+        localStorage.setItem('username', this.state.username); //localstorage username
+        localStorage.setItem('fullName', res.data.user.firstName+" "+res.data.user.lastName);  //localstorage fullName
+        localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
+        localStorage.setItem('email', res.data.user.email);  //localstorage email
+        localStorage.setItem('company', res.data.user.companyName);  //localstorage company
+        localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
+
         this.props.history.push('/home')
     }
     

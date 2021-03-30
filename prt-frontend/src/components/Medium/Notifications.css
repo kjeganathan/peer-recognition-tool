@@ -1,17 +1,36 @@
-
 .notificationButton{
     position: relative;
     float: right;
     margin-top: 20px;
     margin-right: 5px;
-    color: white;
-    background: #008264;
+
+    background: rgb(193, 201, 183);
+
+    color: #005857;
     border-radius: 50%;
     padding: 5px;
+    border-width: 0;
+}
+.notificationButton :hover{
+    animation: jelly 0.5s;
+    border-radius: 50%;
+}
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+
+  75% {
+    transform: scale(0.95, 1.05);
+  }
 }
 
-.dropdown-header{
 
+.dropdown-header{
     color: black;
     font-size: 25px;
     font-weight:bold;

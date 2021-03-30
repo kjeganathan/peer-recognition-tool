@@ -13,12 +13,16 @@
     left: 100%;
     -ms-transform: translate(-100%, -100%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
     transform: translate(-100%, -100%);
-    border-radius: 10px;
+    border-radius: 20px;
     /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); */
 }
 .todoListMain .recognition button:hover {
     color: #2CD5C4;
     cursor: pointer; 
+}
+.todoListMain .header .profilePictures{
+    width: 5px;
+    height: auto;
 }
 .todoListMain .header .profilePictures{
     width: 5px;
@@ -40,9 +44,42 @@
 } 
 
 
+.todoListMain .header textarea{
+    vertical-align: top;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    /* margin-left: 50%; */
+    position: absolute;
+    left: 50%;
+    /* top: 100%; */
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 
+
+
+.todoListMain .header textarea{
+    vertical-align: top;
+    border: thin solid black;
+    border-collapse: initial;
+    height:80px;
+    width: 400px;
+    resize:none;
+    display: inline-block;
+    /* margin-left: 50%; */
+    position: absolute;
+    left: 50%;
+    /* top: 100%; */
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 0%);
+} 
+
+
 .todoListMain .thisList li { /* common bar */
     color: #333; /* color text*/
     background-color : #fffaf4; 
+    border: thin solid black;
     padding: 5px; /*rectangles height */
     margin-bottom: 15px; /*space between each rectangles*/
     border-radius: 10px; /*round edge*/
@@ -51,7 +88,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
    
-    /*DONE CHANGE ANYTHING BELOW!!!!!!!!!!!!!*/
+    /*DONT CHANGE ANYTHING BELOW!!!!!!!!!!!!!*/
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 0%);
     position: relative;
@@ -61,6 +98,7 @@
 }
 ul.thisList{ /*this is where you change the common window size*/
     /* background-color : #d87e10;   testing purposse*/
+    
     position: relative;
     width: 750px;
     top: 50px;
@@ -79,9 +117,9 @@ textarea{
     height: 100px;
     /* border-color: rgb(255, 245, 210); */
     background-color : #fffaf4; 
-
-    border-radius: 10px;
-    border-width: initial;
+    border: thin solid black;
+    border-collapse: initial;
+    
     text-indent: 5px;
     font-size: 17px;
     outline-offset: 0px !important;
@@ -93,13 +131,13 @@ input.recognitionFor{
     width: 100%;
     height: 30px;
     border: none;
-
+    
     font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
     font-size: 16px;
     font-weight: 400;
 
     line-height: normal;
-    background-color:rgb(210, 252, 255); 
+    background-color:rgb(210, 252, 255); /**********************************************************/
     
     border-radius: 10px;
     color: #282828;
@@ -118,7 +156,7 @@ p.postHeader{
     border: 1px solid rgb(255, 245, 210);
     border-radius: 5px;
     color: black;
-    background-color:rgb(210, 252, 255);
+    background-color: #fff ;;
 }
 
 .recognition{
@@ -126,6 +164,8 @@ p.postHeader{
     /* background-color: #CEE0D7; */
     background-color: rgb(210, 252, 255);
     border-radius: 10px; /*round edge*/
+    border: thin solid black;
+    border-collapse: initial;
     height:172px;
     width: 620px;
     resize:none;
@@ -137,6 +177,7 @@ p.postHeader{
 .recognition .post{
     height:30px;
     width: 600px;
+    
     resize:none;
     margin-left: 50%;
     transform: translate(-50%, 50%);  
@@ -154,6 +195,7 @@ p.postHeader{
 .recognition .line{
     width: 600px;
     height: 5px;
+    
     border-bottom: 1px solid rgb(175, 170, 146);
     position: absolute;
 }

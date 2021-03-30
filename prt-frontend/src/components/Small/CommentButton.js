@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./CommentButton.css"
+import { AiOutlineComment } from "react-icons/ai";
 
 export default class CommentButton extends Component {
     constructor(props) {
@@ -12,7 +13,11 @@ export default class CommentButton extends Component {
     }
 
     handleCommentClick () {
-      this.setState({...this.state, showForm: true});
+      if(!this.state.showForm) {
+        this.setState({...this.state, showForm: true});
+      } else {
+        this.setState({...this.state, showForm: false});
+      }
     }
   
     handleChange(e) {
@@ -37,9 +42,9 @@ export default class CommentButton extends Component {
     render() {
       return (
         <div>
-          <button onClick={this.handleCommentClick}>
-            Comment
-          </button> 
+          <Button onClick={this.handleCommentClick}>
+            <AiOutlineComment size = {24}/>
+          </Button> 
           {this.state.showForm && (
           <>
               <h3>Leave your Comments Below</h3>

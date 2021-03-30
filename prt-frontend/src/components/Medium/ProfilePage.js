@@ -8,45 +8,57 @@ import axios from 'axios';
 
 export default class ProfilePage extends Component {
   constructor(props){
-    super(props);
+    super(props);       
+    this.state = {
+        // username: props.user.username, 
+        // email: props.user.email,
+        // company: props.user.company,
+        // position: props.user.position
+
+        username: localStorage.getItem('fullName'), 
+        email: localStorage.getItem('email'),
+        company: localStorage.getItem('company'),
+        position: localStorage.getItem('position')
+    }
     console.log(this.props);
+
     console.log(this.props.state)
   } 
-  componentDidMount(){
-    axios.get('http://localhost:3001/getCurrentUser', {withCredentials: true})
-        .then((res) => this.updateProfile(res));
-  }
+  profile(){
+    return <div class = "relative"> <div class= "entireProfile">
 
-  updateProfile(res){
-    console.log("here")
-    document.getElementById("name").innerHTML = "<strong>"+ res.data.firstName +" "+ res.data.lastName+"</strong>";
-    document.getElementById("email").innerHTML = "<strong>Email: </strong><i>"+res.data.email+"</i> ";
-    document.getElementById("position").innerHTML = "<strong>Position:</strong> <i>"+res.data.positionTitle+"</i>";
-    document.getElementById("comments").innerHTML = "<strong>Number of Recs:</strong> <i>"+res.data.recognitionsReceived.length+"</i>";
+  <div class = "fade-in"> 
+   <div className= "profile">       
+           <div className = "userInfo">
+               <div className = "profileHeader">   
+               <p id= "name"><strong>{this.state.username}</strong></p>
+               </div>
+               <div className = "details">
+                 <p class = "info" ><strong>Email:</strong><i> {this.state.email}</i> </p>
+                 <p class = "info" ><strong>Company: </strong>{this.state.company} </p>
+                 <p class = "info"> <strong>Position: </strong>{this.state.position}</p>
+               </div>
+           </div>
+       </div>
+       </div>
+   </div>
+   </div>
   }
+  handleShow = ()=>{ //this is for the post button for open the textarea 
+        this.setState({
+            isActive: !this.state.isActive
+        })
+        
+        console.log(this.state.isActive)
+    }
   render(){
 
     return (
-        <div class= "entireProfile">
-            
-          <img class = "profilePicture" src={profilePic} alt="profilePic"/>
         
-        <div className= "profile" style= {{width:"50rem", height:"60vmin", border:"1px solid #000"}}>
-            <div >
-               
-                <div className = "userInfo">
-                    <div className = "profileHeader">
-                      <h2 class = "info" id = "name"></h2>
-                    </div>
-                    <h3 id = "company" class = "info" ></h3>
-                    <h3 id = "email" class = "info" ></h3>
-                    <h3 id = "position" class = "info"></h3>
-                    <h3 id = "comments" class = "info"></h3>
-                </div>
-            </div>
-            
-        </div>
-        </div>
+        <div>
+          {this.state.isActive && this.profile()}
+         <button class = "open" onClick = {this.handleShow}></button> 
+         </div>
     );
  }
 }
