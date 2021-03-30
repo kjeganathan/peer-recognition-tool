@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./CommentButton.css"
 import { AiOutlineComment } from "react-icons/ai";
+import Button from "react-bootstrap/Button";
 
 export default class CommentButton extends Component {
     constructor(props) {
