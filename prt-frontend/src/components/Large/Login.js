@@ -23,22 +23,30 @@ export default class Login extends Component{
     }
 
     successfulLogin(res){
-        this.props.history.push({
-            pathname: 'home',
-            state: {
-                username: res.data.user.firstName+" "+res.data.user.lastName,
-                position: res.data.user.positionTitle,
-                email: res.data.user.email,
-                company: res.data.user.companyName,
-                startData: res.data.user.startDate
-            }
-        })
+
         localStorage.setItem('username', this.state.username); //localstorage username
         localStorage.setItem('fullName', res.data.user.firstName+" "+res.data.user.lastName);  //localstorage fullName
         localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
         localStorage.setItem('email', res.data.user.email);  //localstorage email
         localStorage.setItem('company', res.data.user.companyName);  //localstorage company
         localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
+        localStorage.setItem('cid',res.data.user.companyId);
+
+        this.props.history.push({
+            pathname: 'home',
+            state: {
+                // username: res.data.user.firstName+" "+res.data.user.lastName,
+                // position: res.data.user.positionTitle,
+                // email: res.data.user.email,
+                // company: res.data.user.companyName,
+                // startData: res.data.user.startDate            
+                fullName: localStorage.getItem('fullName'),
+                position: localStorage.getItem('position'),
+                email: localStorage.getItem('email'),
+                company: localStorage.getItem('company'),
+                startData: localStorage.getItem('startData')           
+            }
+        })
 
         this.props.history.push('/home')
     }

@@ -21,11 +21,13 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            // username: props.user.username, 
             username: localStorage.getItem('username'), //call username from localstorage
+            fullName: localStorage.getItem('fullName'),
+            cid: localStorage.getItem('cid'),
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
         };
+        console.log(this.state.cid);
         console.log(props)
         this.addItem = this.addItem.bind(this);
 
@@ -40,8 +42,7 @@ export default class UserPostLayOut extends Component{
         var result;
         axios.post('http://localhost:3001/lookupUser', {id: employeeId}, {withCredentials: true})
             .then((result) => function(result){
-                console.log(result['1']);
-                return result['1'].data.firstName+ " "+ result['1'].data.lastName;
+                return result['1'].data.firstName+ " "+ result['1'].data.lastName; ////////////////////////////////////////////////////
             });
     }
     updateUsers(res, callback){
@@ -63,10 +64,10 @@ export default class UserPostLayOut extends Component{
             tempRecognized=res.data[i]["reco"].receiverName;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].giverName,
+                    // username: res.data[i]["reco"].giverName, ////////////////////////////////////////
+                    fullName: res.data[i]["reco"].giverName,
                     recognized: tempRecognized,
                     text: messageValue,
-                    key: Date.now() //a time value for the unique perpos
                 };
     
                 this.setState((prevState) => {
@@ -84,13 +85,13 @@ export default class UserPostLayOut extends Component{
         console.log(this._recognized.value);
         if(this._recognition.value !== ""){
             var newItem = {
-                companyID: 1,
+                companyID: parseInt(this.state.cid),
                 giverID: -1,
                 receiverID: -1,
                 value: [],
                 message: this._recognition.value,
-                giverName: this.state.username,
-                receiverName: this._recognized.value
+                giverName: this.state.fullName,
+                receiverName: this._recognized.value,
             };
             axios.post('http://localhost:3001/postRec', newItem, {withCredentials: true})
             .then((res) => console.log(res.data));
@@ -108,7 +109,7 @@ export default class UserPostLayOut extends Component{
 
                     <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
 
-                    <strong> {item.username}</strong>
+                    <strong> {item.fullName}</strong>
                 </p>
              {item.text}
              <CommentButton></CommentButton>
@@ -145,7 +146,6 @@ export default class UserPostLayOut extends Component{
                 <ul className = "thisList">
                     {this.postList()}
                 </ul>
-                
             </div>
 
         )
