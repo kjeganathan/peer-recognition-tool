@@ -56,23 +56,14 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeed(res) {
-        // var tempRecognized = "";
-        // var messageValue = "";
-        // console.log(res.data[1])
         for (var i = 0; i < Object.keys(res.data).length; i++) {
-
-            // tempRecognized=res.data[i]["reco"].receiverName;
-            const receiverName = res.data[i].receiverName;
-            // messageValue = res.data[i]["reco"].message;
-            const messageValue = res.data[i].message;
-            const giverName = res.data[i].giverName;
+            // const receiverName = res.data[i].receiverName;
+            // const messageValue = res.data[i].message;
+            // const giverName = res.data[i].giverName;
             var newItem = {
-                // username: res.data[i]["reco"].giverName, ////////////////////////////////////////
-                // fullName: res.data[i]["reco"].giverName,
-                fullName: giverName,
-                // recognized: tempRecognized,
-                recognized: receiverName,
-                text: messageValue,
+                fullName: res.data[i].giverName,
+                recognized: res.data[i].receiverName,
+                text: res.data[i].message,
             };
 
             this.setState((prevState) => {
@@ -80,9 +71,6 @@ export default class UserPostLayOut extends Component {
                     items: [newItem].concat(prevState.items)
                 };
             });
-
-            // var tempRecognized = "";
-            // var messageValue = "";
         }
     };
 

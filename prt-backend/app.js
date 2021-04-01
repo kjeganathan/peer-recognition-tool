@@ -181,7 +181,7 @@ app.post("/postRec", (req, res) => {
     res.status(401).send({ message: 'You are not logged in' });
   }
   else {
-    recogs.postRec(req, res);
+    recogs.postRecognition(req, res);
   }
 });
 
