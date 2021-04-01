@@ -24,7 +24,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
 app.options('*', cors())
 
-mongoose.connect(databaseURI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //recognitiom and employee structure
 var recognitions = {
@@ -61,51 +61,7 @@ passport.use(new LocalStrategy(
     usernameField: 'username',
     passwordField: 'password'
   },
-  // async function (username, password, done) {
-  //   const client = new MongoClient(databaseURI);
-  //   try {
-  //     await client.connect();
-  //     var dbo = client.db("Test-Database");
-  //     dbo.collection("Employees").findOne({ email: username }, function (err, result) {
-  //       if (result == null) {
-  //         return done(null, false, {
-  //           message: 'WIP, use username = "username" and password = "password"'
-  //         });
-  //       }
-  //       // TODO: When connected with database, actually look up a user.
-  //       if (username === result.email && password === result.password) {
-  //         // We would want to return a user from the database here
-  //         return done(null, result);
-  //       }
-
-  //       // Returning done with false indicates that the credentials were incorrect
-  //       return done(null, false, {
-  //         message: 'WIP, use username = "username" and password = "password"'
-  //       });
-  //     });
-  //   }
-  //   finally {
-  //     await client.close();
-  //   }
-  // }
   verify
-  // (username, password, done) => {
-  //   Employee.findOne({email: username}, (error, user) => {
-  //     if(error != null){
-  //       return done(error);
-  //     }
-
-  //     if(user == null){
-  //       return done(null, false, {message: "Invalid username."});
-  //     }
-
-  //     if(user.password !== password){
-  //       return done(null, false, {message: "Invalid password."});
-  //     }
-
-  //     return done(null, user);
-  //   });
-  // }
 ));
 
 function verify(username, password, done) {
@@ -132,13 +88,14 @@ function verifyHelper(error, user, password, done) {
   return done(null, user);
 }
 
-passport.serializeUser(function (user, done) {
-  // TODO: Use database and return user ID
-  done(null, user);
+passport.serializeUser((user, done) => {
+  done(null, user._id);
 });
 
-passport.deserializeUser(function (user, done) {
-  done(null, user);
+passport.deserializeUser((ID, done) => {
+  Employee.findById(ID, (error, user) => {
+    done(error, user);
+  });
 });
 
 /**
