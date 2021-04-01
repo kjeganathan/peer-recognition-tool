@@ -3,7 +3,7 @@ const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
 const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/TestDatabase"
   + "?retryWrites=true&w=majority";
 
-const Employee = require("../models/employee.mode.js");
+const Recognition = require("../models/recognition.model.js");
 
 async function getRecogs(req, res) {
   const client = new MongoClient(URI);
@@ -33,6 +33,14 @@ async function getRecogs(req, res) {
   }
 }
 
+// Watch out for the capitalization of companyID.
+async function getRecognitionsFromCompany(req, res) {
+  const companyID = req.user.companyId;
+  const recognitions = await Recognition.find({ companyID: companyID });
+  // console.log(recognitions);
+  res.send(recognitions);
+}
+
 async function postRec(req, res) {
   const client = new MongoClient(URI);
   try {
@@ -49,4 +57,4 @@ async function postRec(req, res) {
 
   }
 }
-module.exports = { getRecogs, postRec }
+module.exports = { getRecogs, postRec, getRecognitionsFromCompany }

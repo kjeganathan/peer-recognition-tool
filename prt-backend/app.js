@@ -11,6 +11,7 @@ const MongoClient = require('mongodb').MongoClient;
 const recogs = require('./mongoCalls/recognitions.js');
 const user = require('./mongoCalls/user.js');
 const Employee = require('./models/employee.model.js');
+// const Recognition = require("./models/recognition.model.js");
 
 const app = express();
 const { response } = require('express');
@@ -65,9 +66,7 @@ passport.use(new LocalStrategy(
 ));
 
 function verify(username, password, done) {
-  console.log("Verifying username " + username + " and password " + password + ".");
   Employee.findOne({ email: username }, (error, employee) => {
-    console.log("Found employee with username " + username + ".");
     return verifyHelper(error, employee, password, done);
   });
 }
@@ -151,7 +150,8 @@ app.get("/recogs", (req, res) => {
     res.status(401).send({ message: 'You are not logged in' });
   }
   else {
-    recogs.getRecogs(req, res);
+    // recogs.getRecogs(req, res);
+    recogs.getRecognitionsFromCompany(req, res);
   }
 });
 
