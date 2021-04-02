@@ -15,7 +15,7 @@ const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/Test
 app.use(session({ secret: 'compsci320', maxAge: SESSION_LENGTH }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'http://localhost:5000'}));
 app.use(bodyParser.json());
 app.options('*', cors()) 
 
@@ -178,6 +178,9 @@ app.post("/postRec", (req, res) => {
     recogs.postRec(req, res);
   }
 });
+
+// Use the notifications 
+app.use('/notifications', require('./notifications'))
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
