@@ -13,7 +13,7 @@ const recognitionSchema = new Schema(
     }, {
         collection: "Recognitions"
     }
-)
+);
 
 //mongoose.model(ModelName, schema, ModelCollection)
 const Recognition = mongoose.model("Recognition", recognitionSchema, "Recognitions");
