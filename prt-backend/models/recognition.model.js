@@ -9,7 +9,8 @@ const recognitionSchema = new Schema(
         giverID:                Number,
         receiverID:             Number,
         values:                 [String],
-        message:                String
+        message:                String,
+        creationTime:           Date
     }, {
         collection: "Recognitions"
     }
