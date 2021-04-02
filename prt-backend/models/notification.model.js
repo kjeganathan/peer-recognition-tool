@@ -5,7 +5,7 @@ const notificationSchema = new Schema(
     {
         message:        String,
         arrivalTime:    Date,
-        recognitionID:  [mongoose.ObjectId]
+        recognitionID:  mongoose.ObjectId
     }, {
         collection: "Notifications"
     }
