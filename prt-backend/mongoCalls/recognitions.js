@@ -1,8 +1,3 @@
-const MongoClient = require('mongodb').MongoClient;
-const SESSION_LENGTH = 1_800_000;  // = 30 minutes in ms
-const URI = "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/TestDatabase"
-  + "?retryWrites=true&w=majority";
-
 const Recognition = require("../models/recognition.model.js");
 
 // Watch out for the capitalization of companyID.

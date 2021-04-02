@@ -27,35 +27,9 @@ app.options('*', cors())
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-//recognitiom and employee structure
-var recognitions = {
-  recognizer: null,
-  recognizee: null,
-  core: null,
-  message: null,
-}
-
-var employee = {
-  _id: null,
-  firstName: null,
-  lastName: null,
-  companyId: null,
-  password: null,
-  positionTitle: null,
-  companyName: null,
-  isManager: null,
-  employeeId: null,
-  managerId: null,
-  email: null,
-  startDate: null,
-  recognitionsGiven: null,
-  recognitionsReceived: null
-}
-
 // Calling passport.use tells Passport to run this code to match a username and
 // password to a user.
 // See http://www.passportjs.org/docs/configure/
-
 
 passport.use(new LocalStrategy(
   {
@@ -155,7 +129,6 @@ app.get("/recogs", (req, res) => {
   }
 });
 
-app.options('*', cors())
 app.post("/lookupUser", (req, res) => {
   if (!req.isAuthenticated()) {
     res.status(401).send({ message: 'You are not logged in' });
@@ -165,7 +138,6 @@ app.post("/lookupUser", (req, res) => {
   }
 });
 
-app.options('*', cors())
 app.get("/getCurrentUser", (req, res) => {
   if (!req.isAuthenticated()) {
     res.status(401).send({ message: 'You are not logged in' });
