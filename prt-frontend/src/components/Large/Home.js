@@ -15,10 +15,9 @@ export default class Home extends Component {
     <Router>
        
         <div>
+          
          <Route render={() => <Profile user={this.props.location.state}/>} />
          <Route render={() => <UserPostLayOut user={this.props.location.state} />}/>
-         
-          
         </div>
     </Router>
     );

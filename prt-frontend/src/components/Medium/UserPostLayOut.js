@@ -10,9 +10,21 @@ import React, {Component} from "react";
 import "./UserPostLayOut.css";
 import AwardsButton from "./AwardsButton";
 import CommentButton from "../Small/CommentButton";
+import shrek from "../Other/shrek.jpeg";
+import p1 from "../Other/p1.jpg";
+import p2 from "../Other/p2.jpg";
+import p3 from "../Other/p3.jpg";
+import p4 from "../Other/p4.jpg";
+import marius from "../Other/marius.JPG";
+import gatsby from "../Other/gatsby.jpg";
 import profilePic from "./genericProfilePicture.jpeg";
 import {PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 
 
@@ -21,14 +33,19 @@ export default class UserPostLayOut extends Component{
         super(props);
 
         this.state = {
-            // username: props.user.username, 
             username: localStorage.getItem('username'), //call username from localstorage
+            fullName: localStorage.getItem('fullName'),
+            cid: localStorage.getItem('cid'),
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
+
+            pic:'',
+            recognizedName:'',
         };
+        console.log(this.state.cid);
         console.log(props)
         this.addItem = this.addItem.bind(this);
-
+        this.createTasks = this.createTasks.bind(this);
     }
     
     componentDidMount(){
@@ -37,13 +54,20 @@ export default class UserPostLayOut extends Component{
     }
 
     getUserFromID(employeeId){
+        var result;
         axios.post('http://localhost:3001/lookupUser', {id: employeeId}, {withCredentials: true})
-            .then((res) => this.formatName(res));
+            .then((result) => function(result){
+                return result['1'].data.firstName+ " "+ result['1'].data.lastName; ////////////////////////////////////////////////////
+            });
     }
+    updateUsers(res, callback){
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
+            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
 
-    formatName(res){
-        console.log(res);
-        return res.data.firstName+ " "+ res.data.lastName;
+            res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
+        }
+        console.log(res.data[1]["giver"])
     }
 
     updateFeed(res){
@@ -55,10 +79,10 @@ export default class UserPostLayOut extends Component{
             tempRecognized=res.data[i]["reco"].receiverName;
             messageValue = res.data[i]["reco"].message;
                 var newItem = {
-                    username: res.data[i]["reco"].giverName,
+                    // username: res.data[i]["reco"].giverName, ////////////////////////////////////////
+                    fullName: res.data[i]["reco"].giverName,
                     recognized: tempRecognized,
                     text: messageValue,
-                    key: Date.now() //a time value for the unique perpos
                 };
     
                 this.setState((prevState) => {
@@ -76,17 +100,16 @@ export default class UserPostLayOut extends Component{
         console.log(this._recognized.value);
         if(this._recognition.value !== ""){
             var newItem = {
-                username: this.state.username,
-                recognized: this._recognized.value,
-                text: this._recognition.value,
-                key: Date.now() //a time value for the unique perpos
+                companyID: parseInt(this.state.cid),
+                giverID: -1,
+                receiverID: -1,
+                value: [],
+                message: this._recognition.value,
+                giverName: this.state.fullName,
+                receiverName: this._recognized.value,
             };
-
-            this.setState((prevState) => {
-                return {
-                    items: prevState.items.concat(newItem)
-                };
-            });
+            axios.post('http://localhost:3001/postRec', newItem, {withCredentials: true})
+            .then((res) => console.log(res.data));
         }
 
         this._recognized.value = "";
@@ -94,18 +117,150 @@ export default class UserPostLayOut extends Component{
         e.preventDefault(); //prevent refreash page
     }
 
+    // profilePicture(){
+    //     if (this.state.profilePics === 0)
+    //         this.state.pic = <img class = "profilePictures" src={profilePic}/>
+    //     else if (this.state.profilePics === 1)
+    //         this.state.pic = <img class = "profilePictures" src={shrek}/>
+    //     else
+    //         this.state.pic = <img class = "profilePictures" src={gatsby}/>
+        
+    //     return  this.state.pic;
+    // }
+
     createTasks(item){  
-        return<li key = {item.key}>
-                <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
-                    <AwardsButton></AwardsButton>
+        var profilePics= Math.floor(Math.random() * 7);
+        console.log(profilePics);
+        this.state.recognizedName = item.recognized;
+        if (profilePics === 0){
+            this.state.pic = <img class = "profilePictures" src={marius}/>
+            this.state.recognizedName = "Marius";
+        }
+        else if (profilePics === 1){
+            this.state.pic = <img class = "profilePictures" src={shrek}/>
+            this.state.recognizedName = "Shrek";
+        }
+        else if (profilePics === 2)
+            this.state.pic = <img class = "profilePictures" src={p1}/>
+        else if (profilePics === 3)
+            this.state.pic = <img class = "profilePictures" src={p2}/>
+        else if (profilePics === 4)
+            this.state.pic = <img class = "profilePictures" src={p3}/>
+        else if (profilePics === 5)
+            this.state.pic = <img class = "profilePictures" src={p4}/>
 
-                    <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
+        return <li key = {item.key}>
+                    {/* <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
+                        <AwardsButton></AwardsButton>
 
-                    <strong> {item.username}</strong>
-                </p>
-             {item.text}
-             <CommentButton></CommentButton>
-             </li>
+                        <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
+
+                        <strong> {item.fullName}</strong>
+                    </p> 
+                     <div className = "postHeader">
+                        <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
+                    </div>
+                                 {item.text} 
+                    <CommentButton/>
+                    <AwardsButton/>*/}
+
+
+
+
+
+
+
+                    {/* <Container>
+                        <Row className = "postHeader">
+                            <right>
+                                {this.state.pic}
+
+                                <strong> {item.recognized} </strong>
+                                    received a recognition! 
+                                     &nbsp;
+                                
+                                <img src="https://img.icons8.com/color/30/000000/dancing-party.png"/>
+                                
+                            </right>                                              
+                        </Row>
+
+                        <div className = 'postLine'></div>
+
+                        <Card.Body>
+                            <Card.Subtitle className="mb-2 text-muted">
+                                <strong> {item.fullName}</strong>
+                            </Card.Subtitle>
+
+                            <Card.Text className = "commentArea">
+                                {item.text}
+                            </Card.Text>
+                        </Card.Body>
+
+                        <div className = 'postLine'></div>
+
+                        <div className = "social">
+                            <a><CommentButton/></a>
+                            <a><AwardsButton/></a>
+                        </div>                           
+                    </Container> */}
+
+
+
+                    <Container>
+                        <Row className = "postHeader" style ={{fontSize : "20px"}}>
+                            <right>
+                                {this.state.pic}
+
+                                <strong> {this.state.recognizedName} </strong>
+                                    received a recognition from
+                                <strong> {item.fullName}</strong>
+                                                                  
+                            </right>                                              
+                        </Row>
+
+                        <div className = 'postLineH'></div>
+
+                        <Card.Body>
+                            <Card.Subtitle className="mb-2 text-muted">
+                               
+                            </Card.Subtitle>
+
+                            <Card.Text className = "commentArea">
+                                {item.text}
+                            </Card.Text>
+                        </Card.Body>
+
+                        <div className = 'postLineH'></div>
+
+                        <div className = "postFooter">
+                            <Row >
+                                {/* <Col  >
+                                    <center>
+                                        <CommentButton/>
+                                    </center>
+                                </Col>
+                                    
+                                    <div className = 'postLineV'></div>
+
+                                <Col  >
+                                    <center>
+                                        <AwardsButton/>
+                                    </center>
+                                </Col> */}
+
+
+
+                                <AwardsButton/>
+                                &nbsp;
+                                <CommentButton/>
+                        
+
+                            </Row>     
+                        </div>                  
+                    </Container>
+
+
+                </li>   
     }
 
     postList(){
@@ -135,10 +290,11 @@ export default class UserPostLayOut extends Component{
         return(           
             <div className = 'todoListMain'>
                 {this.postArea()}
+                
                 <ul className = "thisList">
                     {this.postList()}
                 </ul>
-                
+               
             </div>
 
         )

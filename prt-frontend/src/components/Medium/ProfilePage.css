@@ -58,7 +58,7 @@
     border-radius: 50%;
 }
 
-.profilePicture{
+/* .profilePicture{
     left:35%;
     width: 30%;
     top:20px;
@@ -67,7 +67,7 @@
     border: solid #005151 3px;
     border-radius: 50%;
    
-}
+} */
 
 .profileHeader{
     position:relative;
@@ -75,7 +75,8 @@
     height:50px;
     width:100%;
     border: 5px;
-    background-color: rgba(0, 81, 81, 0.7);
+    background-image: url(https://www.kronos.com/sites/default/files/images/hero/UKG-generic-hero-landing-page-background.jpg);
+    background-size: 800px 200px;
 }
 .info{
     
