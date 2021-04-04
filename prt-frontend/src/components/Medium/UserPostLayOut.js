@@ -171,11 +171,11 @@ export default class UserPostLayOut extends Component{
 
 
                     {/* <Container>
-                        <Row className = "postHeader">
+                        <Row className = "postHeader" style ={{fontSize : "25px"}}>
                             <right>
                                 {this.state.pic}
 
-                                <strong> {item.recognized} </strong>
+                                <strong> {this.state.recognizedName} </strong>
                                     received a recognition! 
                                      &nbsp;
                                 
@@ -184,7 +184,7 @@ export default class UserPostLayOut extends Component{
                             </right>                                              
                         </Row>
 
-                        <div className = 'postLine'></div>
+                        <div className = 'postLineH'></div>
 
                         <Card.Body>
                             <Card.Subtitle className="mb-2 text-muted">
@@ -196,7 +196,7 @@ export default class UserPostLayOut extends Component{
                             </Card.Text>
                         </Card.Body>
 
-                        <div className = 'postLine'></div>
+                        <div className = 'postLineH'></div>
 
                         <div className = "social">
                             <a><CommentButton/></a>
@@ -234,27 +234,9 @@ export default class UserPostLayOut extends Component{
 
                         <div className = "postFooter">
                             <Row >
-                                {/* <Col  >
-                                    <center>
-                                        <CommentButton/>
-                                    </center>
-                                </Col>
-                                    
-                                    <div className = 'postLineV'></div>
-
-                                <Col  >
-                                    <center>
-                                        <AwardsButton/>
-                                    </center>
-                                </Col> */}
-
-
-
                                 <AwardsButton/>
                                 &nbsp;
                                 <CommentButton/>
-                        
-
                             </Row>     
                         </div>                  
                     </Container>
