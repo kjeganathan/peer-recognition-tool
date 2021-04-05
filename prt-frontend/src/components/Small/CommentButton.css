@@ -1,9 +1,5 @@
-.comment {
-    /* float: left;
-    margin-right: 2px;
-    margin-bottom: 1%; */
-}
 
-.button-margin {
-    margin-bottom: 10px;
+.comment {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

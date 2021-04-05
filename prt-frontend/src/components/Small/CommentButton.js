@@ -43,13 +43,13 @@ export default class CommentButton extends Component {
     render() {
       return (
         <div>
-          <Button onClick={this.handleCommentClick}>
+          <Button className = "comment" onClick={this.handleCommentClick}>
             <AiOutlineComment size = {16}/>
           </Button> 
           {this.state.showForm && (
           <>
               <h3>Leave your Comments Below</h3>
-              <textarea className = "comment"
+              <textarea 
                 id="new-todo"
                 onChange={this.handleChange}
                 value={this.state.text}
