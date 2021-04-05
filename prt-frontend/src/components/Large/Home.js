@@ -18,6 +18,7 @@ export default class Home extends Component {
     <Router>
        
         <div>
+          
          <Route render={() => <Profile user={this.props.location.state}/>} />
          <div class = "left">
             <Route render={() => <Rockstar user={this.props.location.state}/>} />
