@@ -182,5 +182,7 @@ app.post("/postRec", (req, res) => {
 // Use the notifications 
 app.use('/notifications', require('./notifications'))
 
+app.use('/awards', require('./awards'))
+
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
