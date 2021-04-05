@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./AwardsButton.css";
 import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 
 export default class AwardsButton extends Component{
 
@@ -13,23 +14,27 @@ export default class AwardsButton extends Component{
                 </svg> 
             </span>
             <Button className="buttons">
+                <badge className="badges" >5</badge>
                 <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
                 
             </Button>
             
             <Button className="buttons">
+                <badge className="badges" >9</badge>
                 <img src="https://img.icons8.com/color/20/000000/pet.png"/>
                 
             </Button>
 
             <Button className="buttons">
+                <badge className="badges" >5</badge>
                 <img src="https://img.icons8.com/color/20/000000/pug.png"/>
                 
             </Button >
 
             <Button className="buttons">
+                <badge className="badges" >3</badge>
                 <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
-            
+                
             </Button>
     </div>
             
