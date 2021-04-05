@@ -18,11 +18,7 @@ import p4 from "../Other/p4.jpg";
 import marius from "../Other/marius.JPG";
 import gatsby from "../Other/gatsby.jpg";
 import profilePic from "./genericProfilePicture.jpeg";
-<<<<<<< HEAD
-import { PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
-=======
-import {CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
->>>>>>> origin/frontend-branch
+import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container'
@@ -43,8 +39,8 @@ export default class UserPostLayOut extends Component {
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
 
-            pic:'',
-            recognizedName:'',
+            pic: '',
+            recognizedName: '',
         };
         console.log(this.state.cid);
         console.log(props)
@@ -114,20 +110,6 @@ export default class UserPostLayOut extends Component {
         e.preventDefault(); //prevent refreash page
     }
 
-<<<<<<< HEAD
-    createTasks(item) {
-        return <li key={item.key}>
-            <p className="postHeader" style={{ color: "black", backgroundColor: "rgb(210, 252, 255)" }}>
-                <AwardsButton></AwardsButton>
-
-                <img class="profilePictures" src={profilePic} alt="profilePic" width="8%" /><strong> {item.recognized} </strong>received a recognition from
-
-                    <strong> {item.fullName}</strong>
-            </p>
-            {item.text}
-            <CommentButton></CommentButton>
-        </li>
-=======
     // profilePicture(){
     //     if (this.state.profilePics === 0)
     //         this.state.pic = <img class = "profilePictures" src={profilePic}/>
@@ -135,33 +117,33 @@ export default class UserPostLayOut extends Component {
     //         this.state.pic = <img class = "profilePictures" src={shrek}/>
     //     else
     //         this.state.pic = <img class = "profilePictures" src={gatsby}/>
-        
+
     //     return  this.state.pic;
     // }
 
-    createTasks(item){  
-        var profilePics= Math.floor(Math.random() * 7);
+    createTasks(item) {
+        var profilePics = Math.floor(Math.random() * 7);
         console.log(profilePics);
         this.state.recognizedName = item.recognized;
-        if (profilePics === 0){
-            this.state.pic = <img class = "profilePictures" src={marius}/>
+        if (profilePics === 0) {
+            this.state.pic = <img class="profilePictures" src={marius} />
             this.state.recognizedName = "Marius";
         }
-        else if (profilePics === 1){
-            this.state.pic = <img class = "profilePictures" src={shrek}/>
+        else if (profilePics === 1) {
+            this.state.pic = <img class="profilePictures" src={shrek} />
             this.state.recognizedName = "Shrek";
         }
         else if (profilePics === 2)
-            this.state.pic = <img class = "profilePictures" src={p1}/>
+            this.state.pic = <img class="profilePictures" src={p1} />
         else if (profilePics === 3)
-            this.state.pic = <img class = "profilePictures" src={p2}/>
+            this.state.pic = <img class="profilePictures" src={p2} />
         else if (profilePics === 4)
-            this.state.pic = <img class = "profilePictures" src={p3}/>
+            this.state.pic = <img class="profilePictures" src={p3} />
         else if (profilePics === 5)
-            this.state.pic = <img class = "profilePictures" src={p4}/>
+            this.state.pic = <img class="profilePictures" src={p4} />
 
-        return <li key = {item.key}>
-                    {/* <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
+        return <li key={item.key}>
+            {/* <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
                         <AwardsButton></AwardsButton>
 
                         <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
@@ -181,7 +163,7 @@ export default class UserPostLayOut extends Component {
 
 
 
-                    {/* <Container>
+            {/* <Container>
                         <Row className = "postHeader" style ={{fontSize : "25px"}}>
                             <right>
                                 {this.state.pic}
@@ -217,54 +199,53 @@ export default class UserPostLayOut extends Component {
 
 
 
-                    <Container>
-                        <Row className = "postHeader" style ={{fontSize : "20px"}}>
-                            <right>
-                                {this.state.pic}
+            <Container>
+                <Row className="postHeader" style={{ fontSize: "20px" }}>
+                    <right>
+                        {this.state.pic}
 
-                                <strong> {this.state.recognizedName} </strong>
+                        <strong> {this.state.recognizedName} </strong>
                                     received a recognition from
                                 <strong> {item.fullName}</strong>
-                                                                  
-                            </right>                                              
-                        </Row>
 
-                        <div className = 'postLineH'></div>
+                    </right>
+                </Row>
 
-                        <Card.Body>
-                            <Card.Subtitle className="mb-2 text-muted">
-                               
-                            </Card.Subtitle>
+                <div className='postLineH'></div>
 
-                            <Card.Text className = "commentArea">
-                                {item.text}
-                            </Card.Text>
-                        </Card.Body>
+                <Card.Body>
+                    <Card.Subtitle className="mb-2 text-muted">
 
-                        <div className = 'postLineH'></div>
+                    </Card.Subtitle>
 
-                        <div className = "postFooter">
-                            <Row >
-                                
-                                &nbsp;
+                    <Card.Text className="commentArea">
+                        {item.text}
+                    </Card.Text>
+                </Card.Body>
+
+                <div className='postLineH'></div>
+
+                <div className="postFooter">
+                    <Row >
+
+                        &nbsp;
                                 <Col>
-                                    <CommentButton/>
-                                </Col>
-                                
-                                <Col className="floatright">
-                                <right>
-                                    <AwardsButton/>
-                                </right>
-                                </Col>
-                                
-                                
-                            </Row>     
-                        </div>                  
-                    </Container>
+                            <CommentButton />
+                        </Col>
+
+                        <Col className="floatright">
+                            <right>
+                                <AwardsButton />
+                            </right>
+                        </Col>
 
 
-                </li>   
->>>>>>> origin/frontend-branch
+                    </Row>
+                </div>
+            </Container>
+
+
+        </li>
     }
 
     postList() {
@@ -294,15 +275,11 @@ export default class UserPostLayOut extends Component {
         return (
             <div className='todoListMain'>
                 {this.postArea()}
-<<<<<<< HEAD
+
                 <ul className="thisList">
-=======
-                
-                <ul className = "thisList">
->>>>>>> origin/frontend-branch
                     {this.postList()}
                 </ul>
-               
+
             </div>
 
         )
