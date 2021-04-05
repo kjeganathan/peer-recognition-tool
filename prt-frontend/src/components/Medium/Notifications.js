@@ -5,13 +5,51 @@ import { BiBell } from 'react-icons/bi';
 import {SignOutIcon, BellIcon  } from '@primer/octicons-react'
 import './Notifications.css';
 
+import axios from 'axios';
+
+
 export default class Notifications extends Component{
     constructor(props){
         super(props);
         this.state = {
-          newNotifications: 4
+          newNotifications: 4,
+          elements: []
         };
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.updateNotifications = this.updateNotifications.bind(this);
         console.log(this.props)
+    }
+    
+    componentDidMount() {
+      axios.get('http://localhost:3001/notifications', { withCredentials: true })
+          .then((res) => this.updateNotifications(res));
+    }
+
+    updateNotifications(res) {
+      // res.body is [
+      //   {
+      //     message: "Jiachen ding was recognized by god",
+      //     arrivalTime: Date.now(),
+      //     recognitionID: "23dfvhaosdgaeorghafb"
+      //   },
+      // ]
+
+      // npm -v
+
+
+      // set this.state.newNotifications = length of res.body
+      // for each notification object in res.body
+      //    add a notification to the dropdown
+
+      this.setState({
+        newNotifications: res.body.length(),
+        elements: res.body.flatMap((notification) => {
+          return [
+            <Dropdown.Item href="#/mention">{notification.message}<p>{notification.arrivalTime}</p> </Dropdown.Item>,
+            <Dropdown.Divider/>
+          ];
+        })
+      });
     }
 
     CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -21,6 +59,7 @@ export default class Notifications extends Component{
             e.preventDefault();
             onClick(e);
             this.setState((state)=>{return{newNotifications:0}});
+            this.componentDidMount();
           }}
         >
           {children}
@@ -42,13 +81,7 @@ export default class Notifications extends Component{
             
             <Dropdown.Menu> 
             <Dropdown.Header>Notifications</Dropdown.Header>
-            <Dropdown.Item href="#/mention">You have been recognized by: John Doe!<p>2 days ago</p> </Dropdown.Item>
-            <Dropdown.Divider/>
-            <Dropdown.Item href="#/mention">You have been recognized by: Jane Doe!<p>3 days ago</p> </Dropdown.Item>
-            <Dropdown.Divider/>
-            <Dropdown.Item href="#/mention">Tiffany commented on your recognition<p>5 days ago</p> </Dropdown.Item>
-            <Dropdown.Divider/>
-            <Dropdown.Item href="#/mention">Steve liked your recognition<p>6 days ago</p> </Dropdown.Item>
+              {this.state.elements}
             </Dropdown.Menu>
         </Dropdown>
         );
