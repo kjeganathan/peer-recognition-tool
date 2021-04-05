@@ -48,12 +48,10 @@ export default class ProfilePage extends Component {
               <div class = "fade-in"> 
                 <div className= "profile">       
                   <div className = "userInfo">
-
                       <div className = "profileHeader">   
                         <p id= "name"><strong>{this.state.username}</strong></p>
                       </div>
-
-                      <div className = "details">
+                      <div className = "detailed">
                         <p class = "info" ><strong>Email: </strong><i> {this.state.email}</i> </p>
                         <p class = "info" ><strong>Company: </strong>{this.state.company} </p>
                         <p class = "info"> <strong>Position: </strong>{this.state.position} </p>
