@@ -6,7 +6,7 @@ const router = express.Router()
 // Handle GET request for notification
 router.get('/', async (req, res) => {
     if (!req.isAuthenticated()) {
-        res.status(401).send({ message: 'You are not logged in' })
+        res.status(401).json({ message: 'You are not logged in' })
         return
     }
 
