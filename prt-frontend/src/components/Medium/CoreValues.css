@@ -3,12 +3,12 @@
 .coreValues-panel{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     background-color: whitesmoke;
-    color: rgba(0, 81, 81, 0.7);
+    color: rgba(0, 81, 81);
     height: max-content;
     border-radius: 10px;
  
     margin-top: 20px;
-    top: 60%;
+    top: calc(20% + 270px);
     left: 10px;
     width: 25%;
     z-index: 1;
