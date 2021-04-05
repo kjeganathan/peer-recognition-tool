@@ -44,7 +44,7 @@ export default class CommentButton extends Component {
       return (
         <div>
           <Button onClick={this.handleCommentClick}>
-            <AiOutlineComment size = {24}/>
+            <AiOutlineComment size = {16}/>
           </Button> 
           {this.state.showForm && (
           <>
