@@ -18,7 +18,7 @@ import p4 from "../Other/p4.jpg";
 import marius from "../Other/marius.JPG";
 import gatsby from "../Other/gatsby.jpg";
 import profilePic from "./genericProfilePicture.jpeg";
-import {PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
+import {CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container'
@@ -234,9 +234,19 @@ export default class UserPostLayOut extends Component{
 
                         <div className = "postFooter">
                             <Row >
-                                <AwardsButton/>
+                                
                                 &nbsp;
-                                <CommentButton/>
+                                <Col>
+                                    <CommentButton/>
+                                </Col>
+                                
+                                <Col className="floatright">
+                                <right>
+                                    <AwardsButton/>
+                                </right>
+                                </Col>
+                                
+                                
                             </Row>     
                         </div>                  
                     </Container>
