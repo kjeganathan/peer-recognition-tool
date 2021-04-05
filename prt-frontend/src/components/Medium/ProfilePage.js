@@ -14,6 +14,7 @@ export default class ProfilePage extends Component {
 
 
     this.state = {
+<<<<<<< HEAD
       // username: props.user.fullName, 
       // email: props.user.email,
       // company: props.user.company,
@@ -28,6 +29,14 @@ export default class ProfilePage extends Component {
 
     // console.log(this.props.state)
   }
+=======
+        username: localStorage.getItem('fullName'), 
+        email: localStorage.getItem('email'),
+        company: localStorage.getItem('company'),
+        position: localStorage.getItem('position')
+    }
+  } 
+>>>>>>> origin/frontend-branch
 
 
 
@@ -42,6 +51,7 @@ export default class ProfilePage extends Component {
   }
 
 
+<<<<<<< HEAD
   profile() {
     return <div class="relative">
       <div class="entireProfile">
@@ -52,6 +62,24 @@ export default class ProfilePage extends Component {
               <div className="profileHeader">
                 <p id="name"><strong>{this.state.username}</strong></p>
               </div>
+=======
+  profile(){
+    return <div class = "relative"> 
+            <div class= "entireProfile">
+              <div class = "fade-in"> 
+                <div className= "profile">       
+                  <div className = "profUserInfo">
+
+                      <div className = "profileHeader">   
+                        <p id= "name"><strong>{this.state.username}</strong></p>
+                      </div>
+
+              
+                        <p class = "info" ><strong>Email: </strong><i> {this.state.email}</i> </p>
+                        <p class = "info" ><strong>Company: </strong>{this.state.company} </p>
+                        <p class = "info"> <strong>Position: </strong>{this.state.position} </p>
+         
+>>>>>>> origin/frontend-branch
 
               <div className="details">
                 <p class="info" ><strong>Email: </strong><i> {this.state.email}</i> </p>

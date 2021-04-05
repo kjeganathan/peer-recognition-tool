@@ -60,6 +60,7 @@ export default class Login extends Component{
     render(){
         return (
             <div className="Login">
+                
                 <h1>Login</h1>
                 <p1></p1>
                 <Form id='login'
@@ -85,6 +86,7 @@ export default class Login extends Component{
                     <Button block size="lg" type="submit"  bsClass='custom-button'>
                     Login
                     </Button>
+                   
                 </Form>
             
             </div>

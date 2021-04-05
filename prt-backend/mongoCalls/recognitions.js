@@ -9,6 +9,7 @@ async function getRecognitionsFromCompany(req, res) {
 
 async function postRecognition(req, res){
   const newRecognition = new Recognition(req.body);
+  
   newRecognition.save()
     .then(() => res.send("Recognition posted."))
     .catch(error => res.status(400).send("Error: " + error));

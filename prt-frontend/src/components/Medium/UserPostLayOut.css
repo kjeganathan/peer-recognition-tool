@@ -20,14 +20,6 @@
     color: #2CD5C4;
     cursor: pointer; 
 }
-.todoListMain .header .profilePictures{
-    width: 5px;
-    height: auto;
-}
-.todoListMain .header .profilePictures{
-    width: 5px;
-    height: auto;
-}
 
 .todoListMain .header textarea{
     vertical-align: top;
@@ -43,43 +35,10 @@
     transform: translate(-50%, 0%);
 } 
 
-
-.todoListMain .header textarea{
-    vertical-align: top;
-    height:80px;
-    width: 400px;
-    resize:none;
-    display: inline-block;
-    /* margin-left: 50%; */
-    position: absolute;
-    left: 50%;
-    /* top: 100%; */
-    -ms-transform: translate(-50%, 50%);
-    transform: translate(-50%, 0%);
-} 
-
-
-.todoListMain .header textarea{
-    vertical-align: top;
-    border: thin solid black;
-    border-collapse: initial;
-    height:80px;
-    width: 400px;
-    resize:none;
-    display: inline-block;
-    /* margin-left: 50%; */
-    position: absolute;
-    left: 50%;
-    /* top: 100%; */
-    -ms-transform: translate(-50%, 50%);
-    transform: translate(-50%, 0%);
-} 
-
-
-.todoListMain .thisList li { /* common bar */
+.todoListMain .thisList li { /* common post */
     color: #333; /* color text*/
-    background-color : #fffaf4; 
-    border: thin solid black;
+    /* background-color : #f4fffd;  */
+    background-color :#f2ffff;
     padding: 5px; /*rectangles height */
     margin-bottom: 15px; /*space between each rectangles*/
     border-radius: 10px; /*round edge*/
@@ -87,37 +46,41 @@
     list-style: none; /*hide the bullet points come from the flag <li>*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
-   
+    /* keep all the text in the area */
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+    overflow: hidden;
+
     /*DONT CHANGE ANYTHING BELOW!!!!!!!!!!!!!*/
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 0%);
     position: relative;
-    width: 100%;
-    height: 100%;
-    left: 50%;
+    /* width: 100%; */
+    /* height: 100%; */
+    left: 60%;
 }
 ul.thisList{ /*this is where you change the common window size*/
-    /* background-color : #d87e10;   testing purposse*/
-    
     position: relative;
+    /* width: 750px; */
     width: 750px;
     top: 50px;
-    /* height: 150px; no height, because it has to stretch for comment*/
     left: 50%;
     -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, 0%);
     border-radius: 10px; /*round edge*/
+    display: inline-block;
 }
 ul.thisList{
     padding: 0;
 }
+
 textarea{
     display: block;
     width: 100%;
     height: 100px;
     /* border-color: rgb(255, 245, 210); */
-    background-color : #fffaf4; 
-    border: thin solid black;
+    /* background-color : #fffaf4;  */
+    /* border: thin solid black; */
     border-collapse: initial;
     
     text-indent: 5px;
@@ -147,29 +110,25 @@ input.recognitionFor{
     text-indent: 8px;
 }
 
-.profilePictures{
-    padding: 5px;
-    border-radius: 50%;
-}
-
-p.postHeader{
-    border: 1px solid rgb(255, 245, 210);
-    border-radius: 5px;
+.postHeader{
+    border-radius: 10px;
     color: black;
-    background-color: #fff ;;
+    height:80px;
+    /* width:700px; */
+    font-family: 'Sriracha', arial, sans-serif;
+    /* margin-bottom: 10px; */
 }
 
 .recognition{
     margin-top: 20px;
-    /* background-color: #CEE0D7; */
     background-color: rgb(210, 252, 255);
     border-radius: 10px; /*round edge*/
-    border: thin solid black;
+    /* border: thin solid black; */
     border-collapse: initial;
     height:172px;
     width: 620px;
     resize:none;
-    margin-left: 50%;
+    margin-left: 55%;
     transform: translate(-50%, 5%); 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -187,7 +146,6 @@ p.postHeader{
     margin-top: 10px;
     height:100px;
     width: 600px;
-    /* background-color: #CEE0D7; */
     background-color: rgb(210, 252, 255);
     border-color: rgb(210, 252, 255);
 }
@@ -199,3 +157,52 @@ p.postHeader{
     border-bottom: 1px solid rgb(175, 170, 146);
     position: absolute;
 }
+
+.postLineH{
+    width: 710px;
+    left: 20px;
+    border-bottom: 2px solid  #cfe0e0;
+    position: absolute;
+}
+
+.postFooter{
+    height:100%;
+}
+
+.postFooter .postLineV{
+    border-left: 2px solid  #cfe0e0;
+    height: 80%;
+    position: fixed;
+    left: 50%;
+    /* top: 5%; */
+}
+.commentArea{
+    margin-top: 5px;
+    /* height: 5px; */
+}
+
+.social {
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* width: calc(100% - 40px); */
+    margin: 0 auto;
+}
+
+.profilePictures{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-size:cover;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); */
+}
+
+.floatright{
+    float: right;
+    
+}
+  
