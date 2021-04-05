@@ -4,7 +4,7 @@
     color: rgba(0, 81, 81);
     height: 250px;
     border-radius: 10px;
-   
+    max-width: 400px;
     top: 20%;
     left: 10px;
     width:25%;
@@ -44,6 +44,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     margin-left: 5%;
     width: 5vmax;
+    max-width: 100px;
     top:6%;
     position: absolute;
     border-radius: 50%;

@@ -6,7 +6,7 @@
     color: rgba(0, 81, 81);
     height: max-content;
     border-radius: 10px;
- 
+    max-width: 400px;
     margin-top: 20px;
     top: calc(20% + 270px);
     left: 10px;
