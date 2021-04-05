@@ -179,5 +179,7 @@ app.post("/postRec", (req, res) => {
   }
 });
 
+app.use('/awards', require('./awards'))
+
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
