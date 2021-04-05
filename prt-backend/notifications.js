@@ -13,8 +13,8 @@ const router = express.Router()
  *       '200':
  *         description: A list of unread recognitions for a given employee.
  */
- router.get('/notifications', async (req, res) => {
-    if (!req.isAuthenticated) {
+ router.get('/', async (req, res) => {
+    if (!req.isAuthenticated()) {
         res.status(401).send({ message: 'You are not logged in' })
         return
     }
