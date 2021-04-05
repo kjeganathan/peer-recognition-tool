@@ -9,11 +9,12 @@ const recognitionSchema = new Schema(
         giverID:                Number,
         receiverID:             Number,
         values:                 [String],
-        message:                String
+        message:                String,
+        creationTime:           Date
     }, {
         collection: "Recognitions"
     }
-)
+);
 
 //mongoose.model(ModelName, schema, ModelCollection)
 const Recognition = mongoose.model("Recognition", recognitionSchema, "Recognitions");

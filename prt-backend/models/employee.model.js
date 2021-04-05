@@ -15,11 +15,12 @@ const employeeSchema = new Schema(
         email:                  String,
         startDate:              String,
         recognitionsGiven:      [mongoose.ObjectId],
-        recognitionsReceived:   [mongoose.ObjectId]
+        recognitionsReceived:   [mongoose.ObjectId],
+        activeNotifications:    [mongoose.ObjectId]
     }, {
         collection: "Employees"
     }
-)
+);
 
 //mongoose.model(ModelName, schema, ModelCollection)
 const Employee = mongoose.model("Employee", employeeSchema, "Employees");
