@@ -25,9 +25,6 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
-
-
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +33,7 @@ export default class UserPostLayOut extends Component {
             username: localStorage.getItem('username'), //call username from localstorage
             fullName: localStorage.getItem('fullName'),
             cid: localStorage.getItem('cid'),
+            employeeID: localStorage.getItem('employeeID'),
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
 
@@ -57,7 +55,7 @@ export default class UserPostLayOut extends Component {
         var result;
         axios.post('http://localhost:3001/lookupUser', { id: employeeId }, { withCredentials: true })
             .then((result) => function (result) {
-                return result['1'].data.firstName + " " + result['1'].data.lastName; ////////////////////////////////////////////////////
+                return result['1'].data.firstName + " " + result['1'].data.lastName;
             });
     }
     updateUsers(res, callback) {
@@ -72,9 +70,6 @@ export default class UserPostLayOut extends Component {
 
     updateFeed(res) {
         for (var i = 0; i < Object.keys(res.data).length; i++) {
-            // const receiverName = res.data[i].receiverName;
-            // const messageValue = res.data[i].message;
-            // const giverName = res.data[i].giverName;
             var newItem = {
                 fullName: res.data[i].giverName,
                 recognized: res.data[i].receiverName,
@@ -89,13 +84,13 @@ export default class UserPostLayOut extends Component {
         }
     };
 
-    addItem(e) { //enter value will add them into the items array 
+    addItem(e) { //add recognition to database
         console.log(this._recognized.value);
         if (this._recognition.value !== "") {
             var newItem = {
                 companyID: parseInt(this.state.cid),
-                giverID: -1,
-                receiverID: -1,
+                giverID: this.state.employeeID, //todo: set these to real people
+                receiverID: -1, //todo: set this to real person
                 value: [],
                 message: this._recognition.value,
                 giverName: this.state.fullName,
@@ -121,7 +116,7 @@ export default class UserPostLayOut extends Component {
     //     return  this.state.pic;
     // }
 
-    createTasks(item) {
+    createTasks(item) { // Create element from item
         var profilePics = Math.floor(Math.random() * 7);
         console.log(profilePics);
         this.state.recognizedName = item.recognized;
@@ -143,80 +138,20 @@ export default class UserPostLayOut extends Component {
             this.state.pic = <img class="profilePictures" src={p4} />
 
         return <li key={item.key}>
-            {/* <p className = "postHeader" style = {{color: "black" , backgroundColor: "rgb(210, 252, 255)"}}>
-                        <AwardsButton></AwardsButton>
-
-                        <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/><strong> {item.recognized} </strong>received a recognition from
-
-                        <strong> {item.fullName}</strong>
-                    </p> 
-                     <div className = "postHeader">
-                        <img class = "profilePictures" src={profilePic} alt="profilePic" width ="8%"/>
-                    </div>
-                                 {item.text} 
-                    <CommentButton/>
-                    <AwardsButton/>*/}
-
-
-
-
-
-
-
-            {/* <Container>
-                        <Row className = "postHeader" style ={{fontSize : "25px"}}>
-                            <right>
-                                {this.state.pic}
-
-                                <strong> {this.state.recognizedName} </strong>
-                                    received a recognition! 
-                                     &nbsp;
-                                
-                                <img src="https://img.icons8.com/color/30/000000/dancing-party.png"/>
-                                
-                            </right>                                              
-                        </Row>
-
-                        <div className = 'postLineH'></div>
-
-                        <Card.Body>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                <strong> {item.fullName}</strong>
-                            </Card.Subtitle>
-
-                            <Card.Text className = "commentArea">
-                                {item.text}
-                            </Card.Text>
-                        </Card.Body>
-
-                        <div className = 'postLineH'></div>
-
-                        <div className = "social">
-                            <a><CommentButton/></a>
-                            <a><AwardsButton/></a>
-                        </div>                           
-                    </Container> */}
-
-
-
             <Container>
                 <Row className="postHeader" style={{ fontSize: "20px" }}>
                     <right>
                         {this.state.pic}
-
                         <strong> {this.state.recognizedName} </strong>
                                     received a recognition from
                                 <strong> {item.fullName}</strong>
-
                     </right>
                 </Row>
 
                 <div className='postLineH'></div>
 
                 <Card.Body>
-                    <Card.Subtitle className="mb-2 text-muted">
-
-                    </Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
 
                     <Card.Text className="commentArea">
                         {item.text}
@@ -227,9 +162,8 @@ export default class UserPostLayOut extends Component {
 
                 <div className="postFooter">
                     <Row >
-
                         &nbsp;
-                                <Col>
+                        <Col>
                             <CommentButton />
                         </Col>
 
@@ -238,13 +172,9 @@ export default class UserPostLayOut extends Component {
                                 <AwardsButton />
                             </right>
                         </Col>
-
-
                     </Row>
                 </div>
             </Container>
-
-
         </li>
     }
 
@@ -252,7 +182,7 @@ export default class UserPostLayOut extends Component {
         return this.state.items.map(this.createTasks)
     }
 
-    postArea() {
+    postArea() { // Form for posting a recognition
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
                 <input className="recognitionFor" ref={(a) => this._recognized = a}
