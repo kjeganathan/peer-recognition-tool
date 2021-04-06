@@ -10,19 +10,6 @@ router.get('/', async (req, res) => {
         return
     }
 
-    // res.status(200).json([
-    //     {
-    //         message: 'Test Notification 0',
-    //         arrivalTime: Date.now(),
-    //         recognitionID: 0
-    //     },
-    //     {
-    //         message: 'Test Notification 1',
-    //         arrivalTime: Date.parse('04 Dec 1995 00:12:00 GMT'),
-    //         recognitionID: 1
-    //     },
-    // ])
-
     res.status(200).json(
         {
             notifications: [
