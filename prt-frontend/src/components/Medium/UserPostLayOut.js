@@ -47,10 +47,7 @@ export default class UserPostLayOut extends Component {
         this.createTasks = this.createTasks.bind(this);
     }
 
-    componentDidMount() { //Update the feed after mounting
-        // axios.get('http://localhost:3001/recogs', { withCredentials: true })
-        //     .then((res) => this.updateFeed(res));
-
+    componentDidMount() {
         this.updateFeed();
     }
 
@@ -74,20 +71,6 @@ export default class UserPostLayOut extends Component {
     updateFeed() {
         axios.get("http://localhost:3001/recogs", {withCredentials: true})
             .then(res => this.updateFeedHelper(res));
-
-        // for (var i = 0; i < Object.keys(res.data).length; i++) {
-        //     var newItem = {
-        //         fullName: res.data[i].giverName,
-        //         recognized: res.data[i].receiverName,
-        //         text: res.data[i].message,
-        //     };
-
-        //     this.setState((prevState) => {
-        //         return {
-        //             items: [newItem].concat(prevState.items)
-        //         };
-        //     });
-        // }
     };
 
     updateFeedHelper(res){
@@ -121,7 +104,8 @@ export default class UserPostLayOut extends Component {
             };
 
             axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
-                .then((res) => console.log(res.data));
+                // .then((res) => console.log(res.data));
+                .then(res => this.updateFeed());
         }
 
         this._recognized.value = "";
