@@ -16,9 +16,6 @@ export default class SearchBox extends Component{
                 className={this.inputClassName}
                 ref={this.refExpression}
                 placeholder={this.placeholder}
-                // className={props.inputClassName}
-                // ref={props.refExpression}
-                // placeholder={props.placeholder}
             >
             </input>
         );

@@ -48,8 +48,10 @@ export default class UserPostLayOut extends Component {
     }
 
     componentDidMount() { //Update the feed after mounting
-        axios.get('http://localhost:3001/recogs', { withCredentials: true })
-            .then((res) => this.updateFeed(res));
+        // axios.get('http://localhost:3001/recogs', { withCredentials: true })
+        //     .then((res) => this.updateFeed(res));
+
+        this.updateFeed();
     }
 
     getUserFromID(employeeId) {
@@ -69,7 +71,26 @@ export default class UserPostLayOut extends Component {
         console.log(res.data[1]["giver"])
     }
 
-    updateFeed(res) {
+    updateFeed() {
+        axios.get("http://localhost:3001/recogs", {withCredentials: true})
+            .then(res => this.updateFeedHelper(res));
+
+        // for (var i = 0; i < Object.keys(res.data).length; i++) {
+        //     var newItem = {
+        //         fullName: res.data[i].giverName,
+        //         recognized: res.data[i].receiverName,
+        //         text: res.data[i].message,
+        //     };
+
+        //     this.setState((prevState) => {
+        //         return {
+        //             items: [newItem].concat(prevState.items)
+        //         };
+        //     });
+        // }
+    };
+
+    updateFeedHelper(res){
         for (var i = 0; i < Object.keys(res.data).length; i++) {
             var newItem = {
                 fullName: res.data[i].giverName,
@@ -83,20 +104,22 @@ export default class UserPostLayOut extends Component {
                 };
             });
         }
-    };
+    }
 
     addItem(e) { //add recognition to database
         console.log(this._recognized.value);
+
         if (this._recognition.value !== "") {
             var newItem = {
                 companyID: parseInt(this.state.cid),
-                giverID: this.state.employeeID, //todo: set these to real people
+                giverID: this.state.employeeID,
                 receiverID: -1, //todo: set this to real person
                 value: [],
                 message: this._recognition.value,
                 giverName: this.state.fullName,
                 receiverName: this._recognized.value,
             };
+
             axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
                 .then((res) => console.log(res.data));
         }
@@ -106,20 +129,9 @@ export default class UserPostLayOut extends Component {
         e.preventDefault(); //prevent refreash page
     }
 
-    // profilePicture(){
-    //     if (this.state.profilePics === 0)
-    //         this.state.pic = <img class = "profilePictures" src={profilePic}/>
-    //     else if (this.state.profilePics === 1)
-    //         this.state.pic = <img class = "profilePictures" src={shrek}/>
-    //     else
-    //         this.state.pic = <img class = "profilePictures" src={gatsby}/>
-
-    //     return  this.state.pic;
-    // }
-
     createTasks(item) { // Create element from item
         var profilePics = Math.floor(Math.random() * 7);
-        console.log(profilePics);
+        // console.log(profilePics);
         this.state.recognizedName = item.recognized;
         if (profilePics === 0) {
             this.state.pic = <img class="profilePictures" src={marius} />
@@ -186,10 +198,6 @@ export default class UserPostLayOut extends Component {
     postArea() { // Form for posting a recognition
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
-                {/* <input className="recognitionFor" ref={(a) => this._recognized = a}
-                    placeholder="who are you recognizing">
-                </input> */}
-
                 <SearchBox
                     inputClassName="recognitionFor"
                     refExpression={(a) => this._recognized = a}
@@ -197,6 +205,7 @@ export default class UserPostLayOut extends Component {
                 </SearchBox>
 
                 <div className='line'></div>
+
                 <textarea className="box" ref={(a) => this._recognition = a}
                     placeholder="recognition">
                 </textarea>
