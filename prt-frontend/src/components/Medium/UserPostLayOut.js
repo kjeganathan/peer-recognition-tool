@@ -6,6 +6,7 @@
 //using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
 //createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
+import SearchBox from "../Medium/SearchBox.js"
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import AwardsButton from "./AwardsButton";
@@ -46,7 +47,7 @@ export default class UserPostLayOut extends Component {
         this.createTasks = this.createTasks.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount() { //Update the feed after mounting
         axios.get('http://localhost:3001/recogs', { withCredentials: true })
             .then((res) => this.updateFeed(res));
     }
@@ -185,9 +186,16 @@ export default class UserPostLayOut extends Component {
     postArea() { // Form for posting a recognition
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
-                <input className="recognitionFor" ref={(a) => this._recognized = a}
+                {/* <input className="recognitionFor" ref={(a) => this._recognized = a}
                     placeholder="who are you recognizing">
-                </input>
+                </input> */}
+
+                <SearchBox
+                    inputClassName="recognitionFor"
+                    refExpression={(a) => this._recognized = a}
+                    placeholder="who are you recognizing">
+                </SearchBox>
+
                 <div className='line'></div>
                 <textarea className="box" ref={(a) => this._recognition = a}
                     placeholder="recognition">
