@@ -10,18 +10,12 @@ async function getRecognitionsFromCompany(req, res) {
 
 async function postRecognition(req, res) {
   await fillReceiverValues(req.body);
-  // dummyFunction(req.body);
   const newRecognition = new Recognition(req.body);
 
   newRecognition.save()
     .then(() => res.send("Recognition posted."))
     .catch(error => res.status(400).send("Error: " + error));
 }
-
-// function dummyFunction(newRecognition){
-//   newRecognition.receiverID = 451;
-//   newRecognition.receiverProfilePicURL = "test-profile-pic-10.jpg"
-// }
 
 async function fillReceiverValues(newRecognition) {
   const fullName = newRecognition.receiverName;
@@ -45,19 +39,11 @@ async function fillReceiverValues(newRecognition) {
   const employee = await Employee.findOne(query)
 
   if (employee == null) {
-    // console.log("Setting placeholders.");
     setPlaceholders(newRecognition);
     return;
   }
-  // console.log("Setting non-placeholders")
   newRecognition.receiverID = employee.employeeId; //watch out for capitalization of employeeID
   newRecognition.receiverProfilePicURL = employee.profilePicURL;
-
-  // .then(employee => {
-  // })
-  // .catch(error => console.log(error));
-
-  // setPlaceholders(newRecognition);
 }
 
 function setPlaceholders(newRecognition) {

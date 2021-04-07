@@ -51,34 +51,37 @@ export default class UserPostLayOut extends Component {
         this.updateFeed();
     }
 
-    getUserFromID(employeeId) {
-        var result;
-        axios.post('http://localhost:3001/lookupUser', { id: employeeId }, { withCredentials: true })
-            .then((result) => function (result) {
-                return result['1'].data.firstName + " " + result['1'].data.lastName;
-            });
-    }
-    updateUsers(res, callback) {
-        for (var i = 0; i < Object.keys(res.data).length; i++) {
-            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
-            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
+    // getUserFromID(employeeId) {
+    //     var result;
+    //     axios.post('http://localhost:3001/lookupUser', { id: employeeId }, { withCredentials: true })
+    //         .then((result) => function (result) {
+    //             return result['1'].data.firstName + " " + result['1'].data.lastName;
+    //         });
+    // }
+    // updateUsers(res, callback) {
+    //     for (var i = 0; i < Object.keys(res.data).length; i++) {
+    //         res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
+    //         console.log(this.getUserFromID(res.data[i]["reco"].giverID))
 
-            res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
-        }
-        console.log(res.data[1]["giver"])
-    }
+    //         res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
+    //     }
+    //     console.log(res.data[1]["giver"])
+    // }
 
     updateFeed() {
-        axios.get("http://localhost:3001/recogs", {withCredentials: true})
+        axios.get("http://localhost:3001/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res));
     };
 
-    updateFeedHelper(res){
+    updateFeedHelper(res) {
         for (var i = 0; i < Object.keys(res.data).length; i++) {
+            const recognition = res.data[i];
+
             var newItem = {
-                fullName: res.data[i].giverName,
-                recognized: res.data[i].receiverName,
-                text: res.data[i].message,
+                fullName: recognition.giverName,
+                recognized: recognition.receiverName,
+                text: recognition.message,
+                profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
             };
 
             this.setState((prevState) => {
@@ -114,34 +117,36 @@ export default class UserPostLayOut extends Component {
     }
 
     createTasks(item) { // Create element from item
-        var profilePics = Math.floor(Math.random() * 7);
-        // console.log(profilePics);
-        this.state.recognizedName = item.recognized;
-        if (profilePics === 0) {
-            this.state.pic = <img class="profilePictures" src={marius} />
-            this.state.recognizedName = "Marius";
-        }
-        else if (profilePics === 1) {
-            this.state.pic = <img class="profilePictures" src={shrek} />
-            this.state.recognizedName = "Shrek";
-        }
-        else if (profilePics === 2)
-            this.state.pic = <img class="profilePictures" src={p1} />
-        else if (profilePics === 3)
-            this.state.pic = <img class="profilePictures" src={p2} />
-        else if (profilePics === 4)
-            this.state.pic = <img class="profilePictures" src={p3} />
-        else if (profilePics === 5)
-            this.state.pic = <img class="profilePictures" src={p4} />
+        // var profilePics = Math.floor(Math.random() * 7);
+        // // console.log(profilePics);
+        // this.state.recognizedName = item.recognized;
+        // if (profilePics === 0) {
+        //     this.state.pic = <img class="profilePictures" src={marius} />
+        //     this.state.recognizedName = "Marius";
+        // }
+        // else if (profilePics === 1) {
+        //     this.state.pic = <img class="profilePictures" src={shrek} />
+        //     this.state.recognizedName = "Shrek";
+        // }
+        // else if (profilePics === 2)
+        //     this.state.pic = <img class="profilePictures" src={p1} />
+        // else if (profilePics === 3)
+        //     this.state.pic = <img class="profilePictures" src={p2} />
+        // else if (profilePics === 4)
+        //     this.state.pic = <img class="profilePictures" src={p3} />
+        // else if (profilePics === 5)
+        //     this.state.pic = <img class="profilePictures" src={p4} />
 
+        this.state.pic = <img class="profilePictures" src={item.profilePicURL}></img>
+        this.state.recognizedName = item.recognized;
         return <li key={item.key}>
             <Container>
                 <Row className="postHeader" style={{ fontSize: "20px" }}>
                     <right>
                         {this.state.pic}
                         <strong> {this.state.recognizedName} </strong>
-                                    received a recognition from
-                                <strong> {item.fullName}</strong>
+                        received a recognition from
+                        <strong> {item.fullName}</strong>
                     </right>
                 </Row>
 

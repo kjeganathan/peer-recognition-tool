@@ -16,6 +16,7 @@ const app = express();
 const { response } = require('express');
 const databaseURI = config.DATABASE_URI;
 const testFilesystemURI = config.TEST_FILESYSTEM_URI;
+console.log(testFilesystemURI);
 const sessionLength = config.SESSION_LENGTH;
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
@@ -23,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
-app.use(express.static(testFilesystemURI));
+app.use("/profile-pics", express.static(testFilesystemURI));
 app.options('*', cors());
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -72,54 +73,12 @@ passport.deserializeUser((ID, done) => {
   });
 });
 
-/**
- * @openapi
- * /login:
- *   post:
- *     description: Log in with a given username and password
- *     parameters:
- *       -
- *          name: credentials
- *          in: body
- *          description: Username and password
- *          required: true
- *          schema:
- *              type: object
- *              required:
- *                - username
- *                - password
- *              properties:
- *                username:
- *                  type: string
- *                password:
- *                  type: string
- */
+// Handle POST request from login
 app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
 
-/**
- * @openapi
- * /recogs:
- *   post:
- *     description: get Recogs
- *     parameters:
- *       -
- *          name: credentials
- *          in: body
- *          description: Username and password
- *          required: true
- *          schema:
- *              type: object
- *              required:
- *                - username
- *                - password
- *              properties:
- *                username:
- *                  type: string
- *                password:
- *                  type: string
- */
+// Endpoint to return all recognitions
 app.get("/recogs", (req, res) => {
   if (!req.isAuthenticated()) {
     res.status(401).send({ message: 'You are not logged in' });
