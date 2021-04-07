@@ -1,5 +1,3 @@
-// const minDate = new Date("2019-01-01T00:00:00");
-// const maxDate = new Date();
 const profilePicURLs = [];
 
 for(var i=0; i<10; i++){
@@ -15,15 +13,7 @@ db.Employees.find().forEach(function(document){
             }
         }
     )
-    // print(document.firstName);
 });
-
-// function getRandomDate(minDate, maxDate){
-//     const minDateTime = minDate.getTime();
-//     const maxDateTime = maxDate.getTime();
-//     const randomDateTime = getRandomInteger(minDateTime, maxDateTime);
-//     return new Date(randomDateTime);
-// }
 
 function getRandomProfilePicURL(){
     return profilePicURLs[getRandomInteger(0, 9)];

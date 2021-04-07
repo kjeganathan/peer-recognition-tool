@@ -8,6 +8,20 @@ async function getRecognitionsFromCompany(req, res) {
 }
 
 async function postRecognition(req, res){
+  const receiverName = req.body.receiverName;
+  // console.log(receiverName);
+
+  const receiverNameTokens = receiverName.split(" ");
+  // console.log(receiverNameTokens);
+
+  const firstName = receiverNameTokens[0];
+  // console.log(firstName);
+
+  const lastName = receiverNameTokens[1];
+  // console.log(lastName);
+
+  
+
   const newRecognition = new Recognition(req.body);
   
   newRecognition.save()

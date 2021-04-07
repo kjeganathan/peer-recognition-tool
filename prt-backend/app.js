@@ -23,7 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
-app.use(express.public(testFilesystemURI));
+app.use(express.static(testFilesystemURI));
 app.options('*', cors());
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
