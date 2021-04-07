@@ -12,17 +12,11 @@ export default class CoreValues extends Component {
 
     this.state = {
       companyName: localStorage.getItem('company'),
-      // companyName: "",
       coreValues: []
-      // coreValues: []
     }
   }
-  
+
   componentDidMount() {
-    // this.setState({
-    //   // companyName: localStorage.getItem("company"),
-    //   coreValues: this.getCoreValues()
-    // });
     this.getCoreValues();
   }
 
@@ -36,12 +30,6 @@ export default class CoreValues extends Component {
       .catch(err => console.log(err));
   }
 
-  // getCoreValuesCallback(res) {
-  //   // console.log(res);
-  //   console.log(res.data);
-  //   return res.data;
-  // }
-
   load(values) {
     var strin = { backgroundColor: "rgb(" + [values.charCodeAt(0) * 2, values.charCodeAt(1) * 2, values.charCodeAt(2) / 122 * 255].toString() + ")" };
 
@@ -51,12 +39,6 @@ export default class CoreValues extends Component {
       </div>
     );
   }
-
-  // updateFeed() {
-  //   // axios.get("http://localhost:3001/recogs", { withCredentials: true })
-  //   //   .then(res => this.updateFeedHelper(res));
-  // };
-
 
   render() {
     return (

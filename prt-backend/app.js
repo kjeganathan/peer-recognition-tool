@@ -11,11 +11,11 @@ const MongoClient = require('mongodb').MongoClient;
 const recogs = require('./mongoCalls/recognitions.js');
 const user = require('./mongoCalls/user.js');
 const Employee = require('./models/employee.model.js');
-// const Recognition = require("./models/recognition.model.js");
 
 const app = express();
 const { response } = require('express');
 const databaseURI = config.DATABASE_URI;
+const testFilesystemURI = config.TEST_FILESYSTEM_URI;
 const sessionLength = config.SESSION_LENGTH;
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
@@ -23,7 +23,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
-app.options('*', cors())
+app.use(express.public(testFilesystemURI));
+app.options('*', cors());
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -124,7 +125,6 @@ app.get("/recogs", (req, res) => {
     res.status(401).send({ message: 'You are not logged in' });
   }
   else {
-    // recogs.getRecogs(req, res);
     recogs.getRecognitionsFromCompany(req, res);
   }
 });

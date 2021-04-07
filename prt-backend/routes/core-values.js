@@ -8,10 +8,8 @@ router.get("/", async (req, res) => {
     }
 
     const companyID = req.user.companyId;
-    console.log("companyID: " + companyID + "\n");
     const company = await Company.findOne({ companyId: companyID });
     //Watch out for the differences in capitalization of companyID between server and database
-    console.log(company.values);
     res.status(200).json(
         company.values
     );
