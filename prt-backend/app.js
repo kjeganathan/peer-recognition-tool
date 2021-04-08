@@ -116,7 +116,6 @@ app.post("/postRec", (req, res) => {
   }
 });
 
-// app.use('/awards', require('./routes/awards'));
 app.use('/notifications', require('./routes/notifications'));
 app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));

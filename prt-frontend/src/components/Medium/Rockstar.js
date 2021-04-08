@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Rockstar.css";
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import profilePic from "./genericProfilePicture.jpeg";
 import Carousel from "react-bootstrap/Carousel";
 
@@ -8,19 +9,19 @@ export default class Rockstar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rockstars: [{
-                name: "Jamel Spencer",
-                position: "Software Architect",
-                numRecognitions: "5",
-                coreValues: ["Integrity", "Passion", "Teamwork"]
-            }, {
-                name: "Kathryn Merritt",
-                position: "Engineering Manager",
-                numRecognitions: "5",
-                coreValues: ["Leader", "Innovative", "Helpful"]
-            }],
+            rockstars: [],
         }
         this.rockstar = this.rockstar.bind(this);
+    }
+    componentDidMount() {
+        axios.get('http://localhost:3001/rockstars', { withCredentials: true })
+            .then(res => {
+                this.setState({
+                    rockstars: res.data.rockstars
+                })
+            })
+            .catch(err => console.log(err));
+        console.log(this.state.rockstars)
     }
     coreValueFunc(values) {
 
