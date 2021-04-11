@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const MongoClient = require('mongodb').MongoClient;
 
 const recogs = require('./mongoCalls/recognitions.js');
+const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
 const Employee = require('./models/employee.model.js');
 // const Recognition = require("./models/recognition.model.js");
@@ -17,6 +18,7 @@ const app = express();
 const { response } = require('express');
 const databaseURI = config.DATABASE_URI;
 const sessionLength = config.SESSION_LENGTH;
+
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
 app.use(passport.initialize());
@@ -156,6 +158,17 @@ app.post("/postRec", (req, res) => {
     recogs.postRecognition(req, res);
   }
 });
+
+app.get("/getPeople", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  }
+  else {
+    // recogs.getRecogs(req, res);
+    recogPeople.peopleInCompany(req, res);
+  }
+});
+
 
 app.use('/awards', require('./awards'))
 app.use('/notifications', require('./notifications'))

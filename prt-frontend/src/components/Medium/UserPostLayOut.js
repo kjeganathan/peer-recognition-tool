@@ -6,6 +6,7 @@
 //using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
 //createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import AwardsButton from "./AwardsButton";
@@ -24,6 +25,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Select from 'react-select';
 
 
 
@@ -31,26 +33,30 @@ import Col from 'react-bootstrap/Col'
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             username: localStorage.getItem('username'), //call username from localstorage
             fullName: localStorage.getItem('fullName'),
             cid: localStorage.getItem('cid'),
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
-
+            peopleInCompany: [],
             pic: '',
             recognizedName: '',
+            selectedItems:{}
         };
-        console.log(this.state.cid);
-        console.log(props)
+        console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
     }
 
+    componentWillMount() {
+        axios.get('http://localhost:3001/getPeople', { withCredentials: true })
+        .then((res) => this.setState({peopleInCompany: res.data}));
+    }
+
     componentDidMount() {
         axios.get('http://localhost:3001/recogs', { withCredentials: true })
-            .then((res) => this.updateFeed(res));
+            .then((res) => this.updateFeed(res))
     }
 
     getUserFromID(employeeId) {
@@ -63,12 +69,16 @@ export default class UserPostLayOut extends Component {
     updateUsers(res, callback) {
         for (var i = 0; i < Object.keys(res.data).length; i++) {
             res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
-            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
 
             res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
         }
         console.log(res.data[1]["giver"])
     }
+    peopleInCompany(res){
+            this.state.peopleInCompany = res.data
+            console.log(this.state.peopleInCompany)
+    }
+
 
     updateFeed(res) {
         for (var i = 0; i < Object.keys(res.data).length; i++) {
@@ -123,7 +133,6 @@ export default class UserPostLayOut extends Component {
 
     createTasks(item) {
         var profilePics = Math.floor(Math.random() * 7);
-        console.log(profilePics);
         this.state.recognizedName = item.recognized;
         if (profilePics === 0) {
             this.state.pic = <img class="profilePictures" src={marius} />
@@ -252,12 +261,31 @@ export default class UserPostLayOut extends Component {
         return this.state.items.map(this.createTasks)
     }
 
+
+    handleChange = (e, { value }) => this.setState({ value })
     postArea() {
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
-                <input className="recognitionFor" ref={(a) => this._recognized = a}
-                    placeholder="who are you recognizing">
-                </input>
+                <div className="recognitionFor">
+                <Select
+                    className="basic-single"
+                    classNamePrefix="select"
+                    isSearchable={console.log(this.state.peopleInCompany)}
+                    name="people"
+                    options={this.state.peopleInCompany}
+                    className="basic-single"
+                    classNamePrefix="select"
+                    defaultValue={this.state.peopleInCompany[0]}
+                    isDisabled={false}
+                    isLoading={false}
+                    isClearable={true}
+                    isRtl={false}
+                    onChange={(event) => this._recognized= event}
+                    isSearchable={true}
+                    name="people"
+                    options={this.state.peopleInCompany}
+                />
+                </div>
                 <div className='line'></div>
                 <textarea className="box" ref={(a) => this._recognition = a}
                     placeholder="recognition">
@@ -269,6 +297,8 @@ export default class UserPostLayOut extends Component {
             </form>
         </div>
     }
+
+    
 
 
     render() {
