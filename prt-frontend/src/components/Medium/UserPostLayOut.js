@@ -99,25 +99,45 @@ export default class UserPostLayOut extends Component {
         }
     };
 
+
     addItem(e) { //enter value will add them into the items array 
-        console.log(this._recognized.value);
-        if (this._recognition.value !== "") {
-            var newItem = {
-                companyID: parseInt(this.state.cid),
-                giverID: -1,
-                receiverID: -1,
-                value: [],
-                message: this._recognition.value,
-                giverName: this.state.fullName,
-                receiverName: this._recognized.value,
-            };
-            axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
+        var validPerson = false;
+        var recogId;
+        this.state.peopleInCompany.forEach(person => {
+            if(person.value.name == this._recognized.value.name){
+                console.log(person.value)
+                validPerson = true;
+                recogId = person.value.id;
+            }
+        });
+        console.log(validPerson)
+        if(validPerson){
+            console.log(this._recognized.value);
+            if (this._recognition.value !== "") {
+                var newItem = {
+                    companyID:              parseInt(this.state.cid),
+                    giverName:              this.state.fullName,
+                    receiverName:           this._recognized.value.name,
+                    giverID:                localStorage.getItem('employeeID'),
+                    receiverID:             recogId,
+                    values:                 [],
+                    message:                this._recognition.value,
+                    creationTime:           new Date()
+                };
+                console.log(newItem);
+                axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
                 .then((res) => console.log(res.data));
         }
 
         this._recognized.value = "";
         this._recognition.value = "";
         e.preventDefault(); //prevent refreash page
+        }
+        else{
+            console.log("invalid person")
+            this._recognized.value = "";
+            this._recognition.value = "";
+        }
     }
 
     // profilePicture(){

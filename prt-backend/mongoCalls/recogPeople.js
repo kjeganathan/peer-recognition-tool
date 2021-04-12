@@ -9,7 +9,10 @@ async function peopleInCompany(req, res){
   employeesOfComapny.forEach(employee => {
       peopleToRecog.push({
             label: employee.firstName +" "+employee.lastName,
-            value: employee.firstName +" "+employee.lastName
+            value: {
+                name: employee.firstName +" "+employee.lastName,
+                id: employee.employeeId
+            }
       })
       
   });
