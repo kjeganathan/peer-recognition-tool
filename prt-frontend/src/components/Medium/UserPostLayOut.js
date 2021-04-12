@@ -105,9 +105,11 @@ export default class UserPostLayOut extends Component {
         var recogId;
         this.state.peopleInCompany.forEach(person => {
             if(person.value.name == this._recognized.value.name){
-                console.log(person.value)
-                validPerson = true;
-                recogId = person.value.id;
+                if(person.value.name != this.state.fullName){
+                    console.log(person.value)
+                    validPerson = true;
+                    recogId = person.value.id;
+                }
             }
         });
         console.log(validPerson)
