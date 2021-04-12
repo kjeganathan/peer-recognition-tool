@@ -1,6 +1,8 @@
 import Button from "react-bootstrap/Button"
 import React, {Component} from "react";
 import "./CommentButton.css"
+import { AiOutlineComment } from "react-icons/ai";
+
 
 export default class CommentButton extends Component {
     constructor(props) {
@@ -13,7 +15,11 @@ export default class CommentButton extends Component {
     }
 
     handleCommentClick () {
-      this.setState({...this.state, showForm: true});
+      if(!this.state.showForm) {
+        this.setState({...this.state, showForm: true});
+      } else {
+        this.setState({...this.state, showForm: false});
+      }
     }
   
     handleChange(e) {
@@ -38,13 +44,13 @@ export default class CommentButton extends Component {
     render() {
       return (
         <div>
-          <Button onClick={this.handleCommentClick}>
-            Comment
+          <Button className = "comment" onClick={this.handleCommentClick}>
+            <AiOutlineComment size = {16}/>
           </Button> 
           {this.state.showForm && (
           <>
-              <h6 >Leave your Comments Below</h6>
-              <textarea className = "comment"
+              <h3>Leave your Comments Below</h3>
+              <textarea 
                 id="new-todo"
                 onChange={this.handleChange}
                 value={this.state.text}> 

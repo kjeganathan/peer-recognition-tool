@@ -1,7 +1,7 @@
 @media all and (min-width: 480px) {
     
   .Login {
-    background-color: white;
+    /* background-color: rgb(228, 236, 218); */
     position: fixed;
     width: 350px;
     height: 100;
@@ -11,7 +11,7 @@
     
   }
   h1{
-    background-color: white;
+    /* background-color: white; */
     text-align: center;
     margin: 50px;
   }

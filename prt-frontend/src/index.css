@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: white !important;
-
+  /* background-color: white !important; */
+  background-image: url(https://cdn.govexec.com/media/featured/ukg_cms_background_1.jpg);
+  background-size: 2303.35px 1295px;
 }
 
 code {

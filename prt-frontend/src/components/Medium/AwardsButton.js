@@ -2,79 +2,107 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button"
 import DropdownButton from "react-bootstrap/DropdownButton"
 import "./AwardsButton.css";
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Dropdown from 'react-bootstrap/Dropdown'
+import Tooltip from "react-bootstrap/Tooltip";
+import Overlay from "react-bootstrap/Overlay";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 export default class AwardsButton extends Component{
-
+   
     render(){
         return(
-            <div className = "Awards-Button">
-                <DropdownButton  className = "Dropdown-Menu"
-                menuAlign="left"
-                title= {
-                    <div className="pull-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trophy-fill" viewBox="0 0 16 16">
+            <div class="share-button">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trophy-fill" viewBox="0 0 16 16">
                             <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z"/>
-                        </svg>
-                    </div>
-                } 
-                dropdown-toggle //hide the arrow for drop down button
-                id="dropdown-menu-align-right">
-
-
-                    <Button className="Buttons">
+                </svg> 
+            </span>
+            <>
+                {['top'].map((placement) => (
+                    <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                        <Tooltip id={`tooltip-${placement}`}>
+                       <strong>Carry</strong>
+                        </Tooltip>
+                    }
+                    >
+                    <Button className="buttons">
+                        <badge className="badge1" >2</badge>
                         <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
                         
                     </Button>
-                    
-                    <Button className="Buttons">
+                    </OverlayTrigger>
+                ))}
+            </>
+            
+            
+            <>
+                {['top'].map((placement) => (
+                    <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                        <Tooltip id={`tooltip-${placement}`}>
+                        <strong>Goat</strong>
+                        </Tooltip>
+                    }
+                    >
+                    <Button className="buttons">
+                        <badge className="badge2" >5</badge>
                         <img src="https://img.icons8.com/color/20/000000/pet.png"/>
                         
                     </Button>
-
-                    <Button className="Buttons">
+                    </OverlayTrigger>
+                ))}
+            </>
+            
+            <>
+                {['top'].map((placement) => (
+                    <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                        <Tooltip id={`tooltip-${placement}`}>
+                        <strong>Pog</strong>
+                        </Tooltip>
+                    }
+                    >
+                    <Button className="buttons">
+                        
+                            <badge className="badge3" >6</badge>
+                        
                         <img src="https://img.icons8.com/color/20/000000/pug.png"/>
                         
                     </Button>
+                    </OverlayTrigger>
+                ))}
+            </>
 
-                    <Button className="Buttons">
+            
+            
+
+            <>
+                {['top'].map((placement) => (
+                    <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                        <Tooltip id={`tooltip-${placement}`}>
+                        <strong>Love</strong>
+                        </Tooltip>
+                    }
+                    >
+                    <Button className="buttons">
+                        <badge className="badge4" >4</badge>
                         <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
                         
                     </Button>
-                </DropdownButton >
-
-                {/* <DropdownButton as={ButtonGroup} 
-                    className = "Dropdown-Menu"
-                    menuAlign="left"
-                    title= {
-                        <div className="pull-left">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trophy-fill" viewBox="0 0 16 16">
-                                <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z"/>
-                            </svg>
-                        </div>
-                    } 
-                    dropdown-toggle //hide the arrow for drop down button
-                    id="dropdown-menu-align-right">
-
-                    <Dropdown.Item eventKey="1">
-                        <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
-                            Carry
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="2">
-                        <img src="https://img.icons8.com/color/20/000000/pet.png"/>
-                            Good Boy
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="3">
-                        <img src="https://img.icons8.com/color/20/000000/pug.png"/>
-                            Pugger
-                    </Dropdown.Item>
-                    <Dropdown.Item eventKey="4">
-                        <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
-                            Love
-                    </Dropdown.Item>
-                </DropdownButton> */}
+                    </OverlayTrigger>
+                ))}
+                </>
             </div>
         )
     }
 }
+
