@@ -6,9 +6,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
 
 const recogs = require('./mongoCalls/recognitions.js');
+const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
 const Employee = require('./models/employee.model.js');
 
@@ -18,6 +19,7 @@ const databaseURI = config.DATABASE_URI;
 const testFilesystemURI = config.TEST_FILESYSTEM_URI;
 console.log(testFilesystemURI);
 const sessionLength = config.SESSION_LENGTH;
+
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
 app.use(passport.initialize());
@@ -106,6 +108,15 @@ app.get("/getCurrentUser", (req, res) => {
   }
 });
 
+app.get("/getPeople", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  }
+  else {
+    recogPeople.peopleInCompany(req, res);
+  }
+});
+
 app.options('*', cors())
 app.post("/postRec", (req, res) => {
   if (!req.isAuthenticated()) {
@@ -119,6 +130,7 @@ app.post("/postRec", (req, res) => {
 app.use('/notifications', require('./routes/notifications'));
 app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));
+
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
