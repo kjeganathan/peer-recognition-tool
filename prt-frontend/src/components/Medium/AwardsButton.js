@@ -19,16 +19,17 @@ export default class AwardsButton extends Component{
 
     handleButtonClick(type) {
        if(type == "thumbsUp") {
-           this.setState({thumbsUp: this.thumbsUp + 1});
+           this.setState({thumbsUp: this.state.thumbsUp + 1});
            console.log("thumbs")
        } else if(type == "goat") {
-           this.setState({goat: this.goat + 1});
+           this.setState({goat: this.state.goat + 1});
        } else if(type == "laugh") {
-           this.setState({laugh: this.laugh + 1});
+           this.setState({laugh: this.state.laugh + 1});
        } else if(type == "love"){
-           this.setState({love: this.love + 1});
+           this.setState({love: this.state.love + 1});
        }
    }
+   
     render(){
         return(
             <div class="share-button">
@@ -49,7 +50,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("thumbsUp")} className="buttons">
-                    {(this.thumbsUp > 0) ? <badge className="badge1" >{this.thumbsUp}</badge> : null}
+                    {(this.state.thumbsUp > 0) ? <badge className="badge1" >{this.state.thumbsUp}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
                         
                     </Button>
@@ -70,7 +71,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("goat")} className="buttons">
-                    {(this.goat > 0) ? <badge className="badge2" >{this.goat}</badge> : null}
+                    {(this.state.goat > 0) ? <badge className="badge2" >{this.state.goat}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/pet.png"/>
                         
                     </Button>
@@ -91,7 +92,7 @@ export default class AwardsButton extends Component{
                     >
                     <Button onClick={() => this.handleButtonClick("laugh")} className="buttons">
                         
-                    {(this.laugh > 0) ? <badge className="badge3" >{this.laugh}</badge> : null}
+                    {(this.state.laugh > 0) ? <badge className="badge3" >{this.state.laugh}</badge> : null}
                         
                         <img src="https://img.icons8.com/color/20/000000/pug.png"/>
                         
@@ -115,7 +116,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("love")} className="buttons">
-                        {(this.love > 0) ? <badge className="badge4" >{this.love}</badge> : null}
+                    {(this.state.love > 0) ? <badge className="badge4" >{this.state.love}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
                         
                     </Button>
