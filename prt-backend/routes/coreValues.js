@@ -1,25 +1,7 @@
-const router = require("express").Router();
-const Company = require("../models/company.model.js");
+const express = require('express')
+const mongoose = require('mongoose')
 
-router.get("/", async (req, res) => {
-    if (!req.isAuthenticated()) {
-        res.status(401).json({ message: "You are not logged in" });
-        return
-    }
-
-    const companyID = req.user.companyId;
-    const company = await Company.findOne({ companyId: companyID });
-    //Watch out for the differences in capitalization of companyID between server and database
-    res.status(200).json(
-        company.values
-    );
-});
-
-
-// const express = require('express')
-// const mongoose = require('mongoose')
-
-// const router = express.Router()
+const router = express.Router()
 
 /**
  * @openapi
@@ -41,7 +23,7 @@ router.get('/', async (req, res) => {
         res.status(401).send({ message: 'You are not logged in' })
         return
     }
-    
+
     // TODO: Get company for req.user, return "values" list
     res.status(200).send({ values: ['WIP'] })
 })
@@ -73,25 +55,25 @@ router.post('/', async (req, res) => {
         res.status(401).send({ message: 'You are not logged in' })
         return
     }
-    
+
     const isAdmin = true; // Replace with actual check
     if (!isAdmin) {
         res.status(403).send({ message: 'Only admins can edit core values' })
         return
     }
-    
+
     // Expected format:
     // { "value": "Text" }
-    
+
     if (!('value' in req.body)) {
         res.status(422).send({ message: 'Use format {"value": "Value text"}' })
         return
     }
-    
+
     // TODO: Add newValue to "values" field of current employee (req.user)'s
     // company
     const newValue = req.body.value;
-    
+
     // TODO: Using the same company object as above, get the actual list of
     // updated values
     const updatedValuesList = [newValue];
@@ -99,5 +81,3 @@ router.post('/', async (req, res) => {
 })
 
 module.exports = router;
-
-// module.exports = router;

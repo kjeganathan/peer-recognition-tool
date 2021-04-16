@@ -130,7 +130,7 @@ app.post("/postRec", (req, res) => {
 app.use('/notifications', require('./routes/notifications'));
 app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));
-
+app.use('/values', require('./routes/coreValues'))
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
