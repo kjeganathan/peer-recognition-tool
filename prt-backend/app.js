@@ -11,8 +11,11 @@ const scheduler = require("node-schedule");
 const recogs = require('./mongoCalls/recognitions.js');
 const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
+
 const Employee = require('./models/employee.model.js');
 const Company = require("./models/company.model.js");
+const Recognition = require("./models/recognition.model.js");
+const MonthlyAward = require("./models/monthly-award.model.js");
 
 const app = express();
 const { response } = require('express');
@@ -149,13 +152,64 @@ rockstarRule.minute = [new scheduler.Range(0, 59)];
 // rockstarRule.date = 1;
 rockstarRule.month = [new scheduler.Range(0, 11)];
 
-async function calculateRockstars(){
+async function getAwardWinners() {
   const companies = await Company.find({});
   // console.log(companies);
-  companies.forEach();
+  companies.forEach(getAwardWinnersOfCompany);
 }
 
-const calculateRockstarsJob = scheduler.scheduleJob(testRule, calculateRockstars);
+async function getAwardWinnersOfCompany(company) {
+  var awardWinners = [];
+  const companyID = company.companyId;
+  const coreValues = company.values;
+  const recognitions = await Recognition.find({ companyID: companyID });
+  // const recognitionHistograms = getRecognitionHistograms(recognitions);
+  // const rockstarHistogram = recognitionHistograms.rockstarHistogram;
+  // const valueHistograms = recognitionHistograms.valueHistograms;
+  const rockstarHistogram = new Map();
+  const valueHistograms = new Map();
+  var maxNumRecognitions = 0;
+
+  recognitions.forEach(recognition => {
+    const receiverID = recognition.receiverID;
+    const coreValues = recognition.values;
+
+    if (rockstarHistogram.has(receiverID)) {
+      const curNumRecognitions = rockstarHistogram.get(receiverID);
+      const newNumRecognitions = curNumRecognitions + 1;
+      rockstarHistogram.set(receiverID, newNumRecognitions);
+    } else {
+      rockstarHistogram.set(receiverID, 1);
+    }
+
+    const numRecognitions = rockstarHistogram.get(receiverID);
+
+    // if (numRecognitions == maxNumRecognitions) {
+      // awardWinners.push(receiverID);
+    if (numRecognitions > maxNumRecognitions) {
+      // awardWinners = [];
+      maxNumRecognitions = numRecognitions;
+      // awardWinners.push(receiverID);
+    }
+
+    // coreValues.forEach(coreValue => {
+
+    // });
+  });
+
+  for(const [receiverID, numRecognitions] of rockstarHistogram.entries()){
+    if(numRecognitions == maxNumRecognitions){
+      console.log(receiverID + " has the max number of recogs: " + numRecognitions);
+    }
+  }
+}
+
+
+getAwardWinners();
+// function getRecognitionHistograms(recognitions) {
+// }
+
+// const calculateRockstarsJob = scheduler.scheduleJob(testRule, getAwardWinners);
 
 // The call to app.listen(PORT, ...) is in server.js
 module.exports = app
