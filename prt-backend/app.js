@@ -185,7 +185,7 @@ async function getAwardWinnersOfCompany(company) {
     const numRecognitions = rockstarHistogram.get(receiverID);
 
     // if (numRecognitions == maxNumRecognitions) {
-      // awardWinners.push(receiverID);
+    // awardWinners.push(receiverID);
     if (numRecognitions > maxNumRecognitions) {
       // awardWinners = [];
       maxNumRecognitions = numRecognitions;
@@ -197,9 +197,29 @@ async function getAwardWinnersOfCompany(company) {
     // });
   });
 
-  for(const [receiverID, numRecognitions] of rockstarHistogram.entries()){
-    if(numRecognitions == maxNumRecognitions){
-      console.log(receiverID + " has the max number of recogs: " + numRecognitions);
+  for (const [receiverID, numRecognitions] of rockstarHistogram.entries()) {
+    if (numRecognitions == maxNumRecognitions) {
+      // console.log(receiverID + " has the max number of recogs: " + numRecognitions);
+      const awardWinner = await Employee.findOne({
+        companyId: companyID,
+        employeeId: receiverID
+      });
+
+      const newRockstarAward = new MonthlyAward({
+        awardName: "Rockstar of the Month",
+        companyID: companyID,
+        employeeID: awardWinner.companyId,
+
+        employeeName: awardWinner.firstName +
+          " " +
+          awardWinner.lastName,
+
+        dateGiven: new Date(),
+        numRecognitions: numRecognitions,
+        value: ""
+      });
+
+      newRockstarAward.save();
     }
   }
 }

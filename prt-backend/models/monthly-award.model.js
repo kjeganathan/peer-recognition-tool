@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const monthlyAwardSchema = new Schema(
     {
         awardName:          String,
-        companyId:          Number,
-        employeeId:         Number,
+        companyID:          Number,
+        employeeID:         Number,
+        employeeName:       String,
         dateGiven:          Date,
         numRecognitions:    Number,
         value:              String
