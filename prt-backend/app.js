@@ -6,17 +6,13 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-// const scheduler = require("node-schedule");
 
 const recogs = require('./mongoCalls/recognitions.js');
 const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
 
 const Employee = require('./models/employee.model.js');
-// const Company = require("./models/company.model.js");
-// const Recognition = require("./models/recognition.model.js");
-// const MonthlyAward = require("./models/monthly-award.model.js");
-const monthlyAwardCalculator = require("./monthly-award-calculator.js");
+const scheduleAwards = require("./monthly-award-calculator.js");
 
 const app = express();
 const { response } = require('express');
@@ -136,101 +132,6 @@ app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));
 app.use('/values', require('./routes/coreValues'));
 
-// const testRule = new scheduler.RecurrenceRule();
-// testRule.second = [new scheduler.Range(0, 59)];
-// // // const testJobInterval = "/1 * * * * *";
-// // const testJob = scheduler.scheduleJob(testRule, testJobFunction);
+scheduleAwards();
 
-// // function testJobFunction(){
-// //   console.log("Tick");
-// // }
-
-// const rockstarRule = new scheduler.RecurrenceRule();
-// // rockstarRule.second = 0;
-// // rockstarRule.minute = 0;
-// rockstarRule.minute = [new scheduler.Range(0, 59)];
-// // rockstarRule.hour = 0;
-// // rockstarRule.date = 1;
-// rockstarRule.month = [new scheduler.Range(0, 11)];
-
-// async function getAwardWinners() {
-//   const companies = await Company.find({});
-//   // console.log(companies);
-//   companies.forEach(getAwardWinnersOfCompany);
-// }
-
-// async function getAwardWinnersOfCompany(company) {
-//   var awardWinners = [];
-//   const companyID = company.companyId;
-//   const coreValues = company.values;
-//   const recognitions = await Recognition.find({ companyID: companyID });
-//   // const recognitionHistograms = getRecognitionHistograms(recognitions);
-//   // const rockstarHistogram = recognitionHistograms.rockstarHistogram;
-//   // const valueHistograms = recognitionHistograms.valueHistograms;
-//   const rockstarHistogram = new Map();
-//   const valueHistograms = new Map();
-//   var maxNumRecognitions = 0;
-
-//   recognitions.forEach(recognition => {
-//     const receiverID = recognition.receiverID;
-//     const coreValues = recognition.values;
-
-//     if (rockstarHistogram.has(receiverID)) {
-//       const curNumRecognitions = rockstarHistogram.get(receiverID);
-//       const newNumRecognitions = curNumRecognitions + 1;
-//       rockstarHistogram.set(receiverID, newNumRecognitions);
-//     } else {
-//       rockstarHistogram.set(receiverID, 1);
-//     }
-
-//     const numRecognitions = rockstarHistogram.get(receiverID);
-
-//     // if (numRecognitions == maxNumRecognitions) {
-//     // awardWinners.push(receiverID);
-//     if (numRecognitions > maxNumRecognitions) {
-//       // awardWinners = [];
-//       maxNumRecognitions = numRecognitions;
-//       // awardWinners.push(receiverID);
-//     }
-
-//     // coreValues.forEach(coreValue => {
-
-//     // });
-//   });
-
-//   for (const [receiverID, numRecognitions] of rockstarHistogram.entries()) {
-//     if (numRecognitions == maxNumRecognitions) {
-//       // console.log(receiverID + " has the max number of recogs: " + numRecognitions);
-//       const awardWinner = await Employee.findOne({
-//         companyId: companyID,
-//         employeeId: receiverID
-//       });
-
-//       const newRockstarAward = new MonthlyAward({
-//         awardName: "Rockstar of the Month",
-//         companyID: companyID,
-//         employeeID: awardWinner.companyId,
-
-//         employeeName: awardWinner.firstName +
-//           " " +
-//           awardWinner.lastName,
-
-//         dateGiven: new Date(),
-//         numRecognitions: numRecognitions,
-//         value: ""
-//       });
-
-//       newRockstarAward.save();
-//     }
-//   }
-// }
-monthlyAwardCalculator();
-
-// getAwardWinners();
-// function getRecognitionHistograms(recognitions) {
-// }
-
-// const calculateRockstarsJob = scheduler.scheduleJob(testRule, getAwardWinners);
-
-// The call to app.listen(PORT, ...) is in server.js
 module.exports = app
