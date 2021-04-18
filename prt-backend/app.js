@@ -142,15 +142,17 @@ testRule.second = [new scheduler.Range(0, 59)];
 // }
 
 const rockstarRule = new scheduler.RecurrenceRule();
-rockstarRule.second = 0;
-rockstarRule.minute = 0;
-rockstarRule.hour = 0;
-rockstarRule.date = 1;
+// rockstarRule.second = 0;
+// rockstarRule.minute = 0;
+rockstarRule.minute = [new scheduler.Range(0, 59)];
+// rockstarRule.hour = 0;
+// rockstarRule.date = 1;
 rockstarRule.month = [new scheduler.Range(0, 11)];
 
 async function calculateRockstars(){
   const companies = await Company.find({});
   // console.log(companies);
+  companies.forEach();
 }
 
 const calculateRockstarsJob = scheduler.scheduleJob(testRule, calculateRockstars);
