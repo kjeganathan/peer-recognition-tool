@@ -4,15 +4,6 @@ const Recognition = require("./models/recognition.model.js");
 const MonthlyAward = require("./models/monthly-award.model.js");
 const scheduler = require("node-schedule");
 
-// const testRule = new scheduler.RecurrenceRule();
-// testRule.second = [new scheduler.Range(0, 59)];
-// // const testJobInterval = "/1 * * * * *";
-// const testJob = scheduler.scheduleJob(testRule, testJobFunction);
-
-// function testJobFunction(){
-//   console.log("Tick");
-// }
-
 async function saveAwardWinners() {
     const companies = await Company.find({});
     companies.forEach(saveAwardWinnersOfCompany);
@@ -21,26 +12,36 @@ async function saveAwardWinners() {
 async function saveAwardWinnersOfCompany(company) {
     const coreValues = company.values;
 
-    saveAwardWinnersHelper(company, recognition => true);
+    saveAwardWinnersHelper(company, recognition => true, "Rockstar of the Month", "");
 
     coreValues.forEach(coreValue => {
-        saveAwardWinnersHelper(company, recognition => recognition.values.includes(coreValue));
+        saveAwardWinnersHelper(company, recognition => recognition.values.includes(coreValue), coreValue + " Award", coreValue);
     });
 }
 
-async function saveAwardWinnersHelper(company, test) {
+async function saveAwardWinnersHelper(company, test, message, coreValue) {
     const companyID = company.companyId;
-    const recognitions = await Recognition.find({ companyID: companyID });
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const currentMonthMinDate = new Date(currentYear, currentMonth);
+    console.log(currentMonthMinDate);
+
+    const recognitionsQuery = {
+        companyID: companyID,
+        creationTime: {
+            $gte: currentMonthMinDate
+        }
+    }
+
+    // const recognitions = await Recognition.find({ companyID: companyID });
+    const recognitions = await Recognition.find(recognitionsQuery);
+    // console.log(recognitions);
     const histogramAndMetadata = makeHistogramAndMetadata(recognitions, test);
     const maxNumRecognitions = histogramAndMetadata.maxNumRecognitions;
     const histogram = histogramAndMetadata.histogram;
 
-    console.log(histogram);
-
     for (const [receiverID, numRecognitions] of histogram.entries()) {
-        console.log("hi");
-        console.log(receiverID);
-        console.log(numRecognitions + "\n");
         if (numRecognitions == maxNumRecognitions) {
             const awardWinner = await Employee.findOne({
                 companyId: companyID,
@@ -48,7 +49,7 @@ async function saveAwardWinnersHelper(company, test) {
             });
 
             const newRockstarAward = new MonthlyAward({
-                awardName: "Rockstar of the Month",
+                awardName: message,
                 companyID: companyID,
                 employeeID: awardWinner.companyId,
 
@@ -58,13 +59,12 @@ async function saveAwardWinnersHelper(company, test) {
 
                 dateGiven: new Date(),
                 numRecognitions: numRecognitions,
-                value: ""
+                value: coreValue
             });
 
             newRockstarAward.save();
         }
     }
-    // });
 }
 
 function makeHistogramAndMetadata(recognitions, test) {
@@ -85,8 +85,6 @@ function makeHistogramAndMetadata(recognitions, test) {
         }
     });
 
-    // console.log(histogram);
-
     return {
         histogram: histogram,
         maxNumRecognitions: maxNumRecognitions
@@ -101,42 +99,6 @@ function incrementHistogram(histogram, key) {
     } else {
         histogram.set(key, 1);
     }
-}
-
-async function saveAwardWinner(awardWinner) {
-    // const awardWinner = await Employee.findOne({
-    //     companyId: companyID,
-    //     employeeId: receiverID
-    // });
-
-    const newRockstarAward = new MonthlyAward({
-        awardName: "Rockstar of the Month",
-        companyID: companyID,
-        employeeID: awardWinner.companyId,
-
-        employeeName: awardWinner.firstName +
-            " " +
-            awardWinner.lastName,
-
-        dateGiven: new Date(),
-        numRecognitions: numRecognitions,
-        value: ""
-    });
-
-    newRockstarAward.save();
-}
-
-function rockstarTest(recognition) {
-    return true;
-}
-
-// function coreValueTest(recogn){
-//     return coreValueTestHelper(recognition, coreValue);
-// }
-
-function coreValueTest(recognition, coreValue) {
-    const coreValues = recognition.values;
-    return coreValues.includes(coreValue);
 }
 
 module.exports = saveAwardWinners;
