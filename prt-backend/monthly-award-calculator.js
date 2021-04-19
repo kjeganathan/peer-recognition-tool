@@ -2,7 +2,7 @@ const Employee = require('./models/employee.model.js');
 const Company = require("./models/company.model.js");
 const Recognition = require("./models/recognition.model.js");
 const MonthlyAward = require("./models/monthly-award.model.js");
-const scheduler = require("node-schedule");
+// const scheduler = require("node-schedule");
 
 async function saveAwardWinners() {
     const companies = await Company.find({});

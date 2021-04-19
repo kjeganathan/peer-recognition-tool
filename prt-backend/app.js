@@ -10,9 +10,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const recogs = require('./mongoCalls/recognitions.js');
 const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
-
 const Employee = require('./models/employee.model.js');
-const scheduleAwards = require("./monthly-award-calculator.js");
+
+const scheduler = require("node-schedule");
+const saveAwardWinners = require("./monthly-award-calculator.js");
 
 const app = express();
 const { response } = require('express');
@@ -132,6 +133,23 @@ app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));
 app.use('/values', require('./routes/coreValues'));
 
-scheduleAwards();
+const monthlyAwardsSchedule = new scheduler.RecurrenceRule();
+monthlyAwardsSchedule.second = 0;
+
+monthlyAwardsSchedule.minute = 0;
+// monthlyAwardsSchedule.minute = [new scheduler.Range(0, 59)]; <-- for testing only
+
+monthlyAwardsSchedule.hour = 0;
+// monthlyAwardsSchedule.hour = [new scheduler.Range(0, 59)]; <-- for testing only
+
+monthlyAwardsSchedule.date = 1;
+// monthlyAwardsSchedule.date = [new scheduler.Range(0, 31)]; <-- for testing only
+
+monthlyAwardsSchedule.month = [new scheduler.Range(0, 11)];
+
+const monthlyAwardsJob = scheduler.scheduleJob(monthlyAwardsSchedule, () => {
+  console.log("Saving monthly award winners.");
+  saveAwardWinners();
+});
 
 module.exports = app
