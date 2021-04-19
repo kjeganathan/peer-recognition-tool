@@ -11,14 +11,8 @@ import ReactDOM from 'react-dom';
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import AwardsButton from "./AwardsButton";
+import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
-import shrek from "../Other/shrek.jpeg";
-import p1 from "../Other/p1.jpg";
-import p2 from "../Other/p2.jpg";
-import p3 from "../Other/p3.jpg";
-import p4 from "../Other/p4.jpg";
-import marius from "../Other/marius.JPG";
-import gatsby from "../Other/gatsby.jpg";
 import profilePic from "./genericProfilePicture.jpeg";
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
@@ -27,7 +21,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
-
+import Fade from 'react-reveal/Fade'; //fade animation
+const colorStyle={
+    control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
+}
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
@@ -151,45 +148,55 @@ export default class UserPostLayOut extends Component {
     createTasks(item) { // Create element from item
         this.state.pic = <img class="profilePictures" src={item.profilePicURL}></img>
         this.state.recognizedName = item.recognized;
-        return <li key={item.key}>
-            <Container>
-                <Row className="postHeader" style={{ fontSize: "20px" }}>
-                    <right>
-                        {this.state.pic}
-                        <strong> {this.state.recognizedName} </strong>
-                        received a recognition from
-                        <strong> {item.fullName}</strong>
-                    </right>
-                </Row>
+        return <Fade left>
+                    <li key={item.key}>
+                        <Container>
+                            <Row className="postHeader" style={{ fontSize: "20px" }}>
+                                <right>
+                                    {this.state.pic}
+                                    <strong> {this.state.recognizedName} </strong>
+                                    received a recognition from
+                                    <strong> {item.fullName}</strong>
+                                </right>
+                            </Row>
 
-                <div className='postLineH'></div>
+                            <div className='postLineH'></div>
 
-                <Card.Body>
-                    <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+                            <Card.Body>
+                                <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
 
-                    <Card.Text className="commentArea">
-                        {item.text}
-                    </Card.Text>
-                </Card.Body>
+                                <Card.Text className="commentArea">
+                                    {item.text}
+                                </Card.Text>
+                            </Card.Body>
 
-                <div className='postLineH'></div>
+                            <div className='postLineH'></div>
 
-                <div className="postFooter">
-                    <Row >
-                        &nbsp;
-                        <Col>
-                            <CommentButton />
-                        </Col>
+                            <div className="postFooter">
+                                <Row >
+                                    &nbsp;
+                                    <Col>
+                                        <CommentButton />
+                                    </Col>
 
-                        <Col className="floatright">
-                            <right>
-                                <AwardsButton />
-                            </right>
-                        </Col>
-                    </Row>
-                </div>
-            </Container>
-        </li>
+                                    <Col className="floatright">
+                                        <right>
+                                            <AwardsButton />
+                                        </right>
+                                    </Col>
+                                </Row>
+                            </div>
+                        </Container>
+                    </li>
+                </Fade>
+    }
+
+    showCVB(){
+        this.setState({ showCoreValue: true });
+        
+    }
+    hideCVB(){
+        this.setState({ showCoreValue: false });
     }
 
     postList() {
@@ -200,13 +207,11 @@ export default class UserPostLayOut extends Component {
     postArea() {
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
-                <div className="recognitionFor">
+                <div>
                     <Select
-                        className="basic-single"
-                        classNamePrefix="select"
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                        styles={colorStyle}
                         isSearchable={console.log(this.state.peopleInCompany)}
-                        name="people"
-                        options={this.state.peopleInCompany}
                         className="basic-single"
                         classNamePrefix="select"
                         defaultValue={this.state.peopleInCompany[0]}
@@ -217,18 +222,23 @@ export default class UserPostLayOut extends Component {
                         onChange={(event) => this._recognized = event}
                         isSearchable={true}
                         name="people"
-                        options={this.state.peopleInCompany}
+                        options={this.state.peopleInCompany} 
                     />
                 </div>
                 <div className='line'></div>
 
                 <textarea className="box" ref={(a) => this._recognition = a}
-                    placeholder="recognition">
+                    placeholder="recognition"
+                    onClick={() => this.showCVB("showCoreValue")}>
                 </textarea>
 
-                <button type="submit">
+                <button type="submit" className = "squre" onClick={() => this.hideCVB("showCoreValue")}>
                     <SquirrelIcon size={25} />
                 </button>
+
+                <div className ={this.state.showCoreValue? "visible":"hidden"} >
+                    <CoreValuesButton/>
+                </div>
             </form>
         </div>
     }
