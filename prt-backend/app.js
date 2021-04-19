@@ -20,6 +20,7 @@ const { response } = require('express');
 const databaseURI = config.DATABASE_URI;
 const testFilesystemURI = config.TEST_FILESYSTEM_URI;
 const sessionLength = config.SESSION_LENGTH;
+const Rockstars = require('./routes/rockstars.js')
 
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
@@ -29,6 +30,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
 app.use("/profile-pics", express.static(testFilesystemURI));
 app.options('*', cors());
+
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -80,6 +82,7 @@ passport.deserializeUser((ID, done) => {
 app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ message: 'Logged in successfully', user: req.user });
 });
+
 
 // Endpoint to return all recognitions
 app.get("/recogs", (req, res) => {
