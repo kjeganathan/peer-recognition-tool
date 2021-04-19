@@ -135,6 +135,7 @@ app.use('/notifications', require('./routes/notifications'));
 app.use('/core-values', require('./routes/core-values'));
 app.use('/rockstars', require('./routes/rockstars.js'));
 app.use('/values', require('./routes/coreValues'));
+app.use('/postComment', require('./routes/comments'))
 
 const monthlyAwardsSchedule = new scheduler.RecurrenceRule();
 monthlyAwardsSchedule.second = 0;
