@@ -20,7 +20,7 @@ async function postRecognition(req, res) {
 async function fillReceiverValues(newRecognition) {
   const fullName = newRecognition.receiverName;
   const companyID = newRecognition.companyID;
-  const nameTokens = fullName.split(" ");
+  nameTokens = fullName.split(" ");
 
   if (nameTokens.length != 2) {
     setPlaceholders(newRecognition);

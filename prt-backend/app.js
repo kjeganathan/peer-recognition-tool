@@ -8,6 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const recogs = require('./mongoCalls/recognitions.js');
+const core = require('./mongoCalls/coreVals.js');
 const recogPeople = require('./mongoCalls/recogPeople.js');
 const user = require('./mongoCalls/user.js');
 
@@ -124,6 +125,15 @@ app.post("/postRec", (req, res) => {
   }
   else {
     recogs.postRecognition(req, res);
+  }
+});
+
+app.get("/getCoreValues", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  }
+  else {
+    core.getCoreValues(req, res);
   }
 });
 
