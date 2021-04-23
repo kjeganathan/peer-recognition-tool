@@ -16,7 +16,8 @@ const employeeSchema = new Schema(
         startDate:              String,
         recognitionsGiven:      [mongoose.ObjectId],
         recognitionsReceived:   [mongoose.ObjectId],
-        activeNotifications:    [mongoose.ObjectId]
+        activeNotifications:    [mongoose.ObjectId],
+        profilePicURL:          String
     }, {
         collection: "Employees"
     }

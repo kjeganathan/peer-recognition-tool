@@ -10,7 +10,8 @@ const recognitionSchema = new Schema(
         receiverID:             Number,
         values:                 [String],
         message:                String,
-        creationTime:           Date
+        creationTime:           Date,
+        receiverProfilePicURL:  String
     }, {
         collection: "Recognitions"
     }

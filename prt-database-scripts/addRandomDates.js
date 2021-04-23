@@ -1,4 +1,4 @@
-const minDate = new Date("2019-01-01T00:00:00");
+const minDate = new Date("2020-01-01T00:00:00");
 const maxDate = new Date();
 
 db.Recognitions.find().forEach(function(document){
@@ -15,7 +15,7 @@ db.Recognitions.find().forEach(function(document){
 function getRandomDate(minDate, maxDate){
     const minDateTime = minDate.getTime();
     const maxDateTime = maxDate.getTime();
-    const randomDateTime = getRandomInteger(minDateTime, maxDateTime);
+    const randomDateTime = databaseHelper.getRandomInteger(minDateTime, maxDateTime);
     return new Date(randomDateTime);
 }
 
