@@ -13,11 +13,15 @@ export default class AwardsButton extends Component{
             thumbsUp: 0,
             goat: 0,
             laugh: 0,
-            love: 0
+            love: 0,
+            already: false
        }
    }
 
     handleButtonClick(type) {
+       if(this.state.already) {
+           return;
+       }
        if(type == "thumbsUp") {
            this.setState({thumbsUp: this.state.thumbsUp + 1});
            console.log("thumbs")
@@ -28,6 +32,7 @@ export default class AwardsButton extends Component{
        } else if(type == "love"){
            this.setState({love: this.state.love + 1});
        }
+       this.setState({already: true});
    }
    
     render(){
