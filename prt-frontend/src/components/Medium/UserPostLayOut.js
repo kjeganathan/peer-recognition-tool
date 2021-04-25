@@ -27,7 +27,29 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
-
+const customStyles = {
+    control: (base, state) => ({
+    //   ...base,
+      background: "rgb(210, 252, 255)",
+      height: '30px',
+      width: '93%',
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+    }),
+    menu: base => ({
+      ...base,
+      // override border radius to match the box
+      borderRadius: 0,
+      // kill the gap
+      marginTop: '5px',
+    }),
+    menuList: base => ({
+        ...base,
+        // kill the white space on first and last option
+        padding: 0,
+      })
+  };
+  
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
@@ -47,15 +69,20 @@ export default class UserPostLayOut extends Component {
         console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
-    }
-
-    componentWillMount() {
         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
             .then((res) => this.setState({ peopleInCompany: res.data }));
         
         axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
             .then((res) => this.setState({ corevals: res.data }));
     }
+
+   /* componentWillMount() {
+        axios.get('http://localhost:3001/getPeople', { withCredentials: true })
+            .then((res) => this.setState({ peopleInCompany: res.data }));
+        
+        axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
+            .then((res) => this.setState({ corevals: res.data }));
+    }*/
 
     componentDidMount() {
         this.updateFeed();
@@ -126,12 +153,13 @@ export default class UserPostLayOut extends Component {
                 var newItem = {
                     companyID: parseInt(this.state.cid),
                     giverName: this.state.fullName,
-                    receiverName: this._recognized.value,
-                    giverID: localStorage.getItem('employeeID'),
+                    receiverName: this._recognized.value.name,
+                    giverID: parseInt(localStorage.getItem('employeeID')),
                     receiverID: this._recognized.value.id,
                     values: this._values,
                     message: this._recognition.value,
                     creationTime: new Date()
+
                 };
                 console.log(newItem);
                 axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
@@ -198,6 +226,13 @@ export default class UserPostLayOut extends Component {
         </li>
     }
 
+    addToVal(event){
+        this._values = [];
+        console.log(event)
+        event.forEach(val => [this._values].concat(val.values));
+        console.log(this._values)
+    }
+
     postList() {
         return this.state.items.map(this.createTasks)
     }
@@ -211,32 +246,37 @@ export default class UserPostLayOut extends Component {
                         placeholder= "Person to be recognized..."
                         className="basic-single"
                         classNamePrefix="select"
-                        isSearchable={console.log(this.state.peopleInCompany)}
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                        styles={customStyles}
+                        isSearchable={true}
                         name="people"
-                        options={this.state.peopleInCompany}
-                        className="basic-single"
-                        classNamePrefix="select"
                         defaultValue={this.state.peopleInCompany[0]}
                         isDisabled={false}
                         isLoading={false}
                         isClearable={true}
                         isRtl={false}
                         onChange={(event) => this._recognized = event}
-                        isSearchable={true}
-                        name="people"
                         options={this.state.peopleInCompany}
+                        maxMenuHeight={180}
                     />
                 </div>
-                <div className="recognitionFor">
+
+                <div className='line'></div>
+
+
+                <div className="recognitionFor" style={{ marginTop: "6px" }}>
                 <Select
                     isMulti
                     placeholder= "Core Values"
                     name="Core Values"
-                    isSearchable={console.log(this.state.corevals)}
-                    onChange={(event) => this._values = event}
+                    isSearchable={true}
+                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                    styles={customStyles}
+                    onChange={(event) => this.addToVal(event)}
                     options={this.state.corevals}
                     className="basic-multi-select"
                     classNamePrefix="select"
+                    maxMenuHeight={130}
   />
                 </div>
 
@@ -247,7 +287,7 @@ export default class UserPostLayOut extends Component {
                 </textarea>
 
                 <button type="submit">
-                    <SquirrelIcon size={25} />
+                    <PaperAirplaneIcon size={25} />
                 </button>
             </form>
         </div>
