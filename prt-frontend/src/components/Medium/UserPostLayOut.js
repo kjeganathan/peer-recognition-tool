@@ -25,6 +25,7 @@ import Fade from 'react-reveal/Fade'; //fade animation
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
 }
+
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
@@ -56,7 +57,7 @@ export default class UserPostLayOut extends Component {
 
     updateFeed() {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
-            .then(res => this.updateFeedHelper(res));
+            .then(res => this.updateFeedHelper(res.data));
     }
 
     getUserFromID(employeeId) {
@@ -82,9 +83,10 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
-        for (var i = 0; i < Object.keys(res.data).length; i++) {
-            const recognition = res.data[i];
 
+        for (var i = 0; i<Object.keys(res).length; i++) {
+            const recognition = res[i];
+            console.log(recognition)
             var newItem = {
                 fullName: recognition.giverName,
                 recognized: recognition.receiverName,
@@ -99,7 +101,16 @@ export default class UserPostLayOut extends Component {
             });
         }
     }
+    updateFeedSearch(event) {
+        var rem = [{giverName: "Aaron Garcia", receiverName: "Jamel Spencer", message: "nice job"}]
+        this.setState({items:[]})
+        axios.post('http://localhost:3001/lookupUser', {id: this.search.value.id}, { withCredentials: true })
+            .then(function(res){ return this.updateFeedHelper(res.recognitionsReceived)});
+        
+        this.updateFeedHelper(rem);
+        event.preventDefault();
 
+    }
     addItem(e) { //enter value will add them into the items array 
         var validPerson = false;
         var recogId;
@@ -250,6 +261,25 @@ export default class UserPostLayOut extends Component {
         return (
             <div className='todoListMain'>
                 {this.postArea()}
+                <form onSubmit={this.updateFeedSearch.bind(this)}>
+                    <div>
+                    <Select
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                        placeholder = "Search..."
+                        isSearchable={this.state.peopleInCompany}
+                        className="searchRecognitions"
+                        defaultValue={this.state.peopleInCompany[0]}
+                        isDisabled={false}
+                        isClearable ={true}
+                        isLoading={false}
+                        isRtl={false}
+                        isSearchable={true}
+                        onChange={(event) => this.search = event }
+                        name="people"
+                        options={this.state.peopleInCompany} 
+                    />
+                    </div>
+                </form>
 
                 <ul className="thisList">
                     {this.postList()}
