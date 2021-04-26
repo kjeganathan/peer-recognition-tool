@@ -7,32 +7,24 @@ import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import axios from 'axios';
 
+export const DEFAULT_REACTIONS = {
+  thumbsUp: 0,
+  goat: 0,
+  laugh: 0,
+  love: 0
+}
+
 export default class AwardsButton extends Component{
    constructor(props) {
        super(props)
-       this.state = {
-            thumbsUp: 0,
-            goat: 0,
-            laugh: 0,
-            love: 0
-       }
+       this.state = {...props.reactions};
    }
 
    
 
     handleButtonClick(type) {
-        axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true }).then((res) => console.log(res));;
-        console.log(this.props.recognitionID)
-       if(type == "thumbsUp") {
-           this.setState({thumbsUp: this.state.thumbsUp + 1});
-           console.log("thumbs")
-       } else if(type == "goat") {
-           this.setState({goat: this.state.goat + 1});
-       } else if(type == "laugh") {
-           this.setState({laugh: this.state.laugh + 1});
-       } else if(type == "love"){
-           this.setState({love: this.state.love + 1});
-       }
+      axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true })
+          .then((res) => this.setState(Object.assign(DEFAULT_REACTIONS, res.data.reactions)));
    }
    
     render(){

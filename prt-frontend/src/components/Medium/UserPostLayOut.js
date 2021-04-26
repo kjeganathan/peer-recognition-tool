@@ -10,7 +10,7 @@ import SearchBox from "../Medium/SearchBox.js"
 import ReactDOM from 'react-dom';
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
-import AwardsButton from "./AwardsButton";
+import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
 import profilePic from "./genericProfilePicture.jpeg";
@@ -25,6 +25,7 @@ import Fade from 'react-reveal/Fade'; //fade animation
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
 }
+
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
@@ -90,6 +91,8 @@ export default class UserPostLayOut extends Component {
                 fullName: recognition.giverName,
                 recognized: recognition.receiverName,
                 text: recognition.message,
+                comments: recognition.comments || [],
+                reactions: Object.assign(DEFAULT_REACTIONS, recognition.reactions),
                 profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
             };
 
@@ -177,12 +180,12 @@ export default class UserPostLayOut extends Component {
                                 <Row >
                                     &nbsp;
                                     <Col>
-                                        <CommentButton recognitionID={item._id}/>
+                                        <CommentButton comments={item.comments} recognitionID={item._id}/>
                                     </Col>
 
                                     <Col className="floatright">
                                         <right>
-                                            <AwardsButton recognitionID={item._id} />
+                                            <AwardsButton reactions={item.reactions} recognitionID={item._id} />
                                         </right>
                                     </Col>
                                 </Row>
