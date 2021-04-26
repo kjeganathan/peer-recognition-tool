@@ -83,25 +83,19 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
-        for (var i = 0; i < Object.keys(res.data).length; i++) {
-            const recognition = res.data[i];
+        const newItems = res.data.reverse().map((recognition) => ({
+            _id: recognition._id,
+            fullName: recognition.giverName,
+            recognized: recognition.receiverName,
+            text: recognition.message,
+            comments: recognition.comments || [],
+            reactions: {...DEFAULT_REACTIONS, ...recognition.reactions},
+            profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
+        }));
 
-            var newItem = {
-                _id: recognition._id,
-                fullName: recognition.giverName,
-                recognized: recognition.receiverName,
-                text: recognition.message,
-                comments: recognition.comments || [],
-                reactions: Object.assign(DEFAULT_REACTIONS, recognition.reactions),
-                profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
-            };
-
-            this.setState((prevState) => {
-                return {
-                    items: [newItem].concat(prevState.items)
-                };
-            });
-        }
+        let state = this.state;
+        state.items = newItems;
+        this.setState(state);
     }
 
     addItem(e) { //enter value will add them into the items array 
