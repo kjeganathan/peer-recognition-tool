@@ -27,6 +27,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
+import { Button } from 'semantic-ui-react'
+const buttonText = {0:"^ New to Old", 1:"V Old to New"}
+var curText = "^ New to Old"
+
 const customStyles = {
     control: (base, state) => ({
     //   ...base,
@@ -233,6 +237,41 @@ export default class UserPostLayOut extends Component {
         console.log(this._values)
     }
 
+    reOrder(state){
+        if(curText == buttonText[0]){
+          curText = buttonText[1];
+        }
+        else{
+          curText = buttonText[0];
+        }
+        this.state.items.reverse();
+        this.forceUpdate();
+    }
+
+    filterButton(){
+        return <div style={{marginLeft: "55%", marginTop: "3%"}}>
+                    <Button
+                    onClick={(event) => this.reOrder(event)}
+                    content= {curText} 
+                    /> 
+                    <Select
+                        placeholder= "Person to be recognized..."
+                        className="basic-single"
+                        classNamePrefix="select"
+                        isSearchable={true}
+                        name="people"
+                        defaultValue={this.state.peopleInCompany[0]}
+                        isDisabled={false}
+                        isLoading={false}
+                        isClearable={true}
+                        isRtl={false}
+                        onChange={(event) => this._recognized = event}
+                        options={this.state.peopleInCompany}
+                        maxMenuHeight={180}
+                    />
+                </div>
+    }
+
     postList() {
         return this.state.items.map(this.createTasks)
     }
@@ -300,7 +339,7 @@ export default class UserPostLayOut extends Component {
         return (
             <div className='todoListMain'>
                 {this.postArea()}
-
+                {this.filterButton()}
                 <ul className="thisList">
                     {this.postList()}
                 </ul>
