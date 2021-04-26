@@ -6,10 +6,9 @@
 //using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
 //createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
-import SearchBox from "../Medium/SearchBox.js"
-import ReactDOM from 'react-dom';
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
+import { BiSearch} from "react-icons/bi";
 import AwardsButton from "./AwardsButton";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
@@ -24,6 +23,9 @@ import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
+}
+const searchStyle={
+    control: style => ({height: '35px',backgroundColor:'white', borderRadius:'5px',  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"})
 }
 
 export default class UserPostLayOut extends Component {
@@ -102,10 +104,11 @@ export default class UserPostLayOut extends Component {
         }
     }
     updateFeedSearch(event) {
-        var rem = [{giverName: "Aaron Garcia", receiverName: "Jamel Spencer", message: "nice job"}]
+        var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
         this.setState({items:[]})
+        
         axios.post('http://localhost:3001/lookupUser', {id: this.search.value.id}, { withCredentials: true })
-            .then(function(res){ return this.updateFeedHelper(res.recognitionsReceived)});
+            .then(function(res){ return this.updateFeedHelper(res.recognitionsReceived)}); 
         
         this.updateFeedHelper(rem);
         event.preventDefault();
@@ -219,6 +222,7 @@ export default class UserPostLayOut extends Component {
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
                 <div>
+                    
                     <Select
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                         styles={colorStyle}
@@ -262,7 +266,8 @@ export default class UserPostLayOut extends Component {
             <div className='todoListMain'>
                 {this.postArea()}
                 <form onSubmit={this.updateFeedSearch.bind(this)}>
-                    <div>
+                    <div className = "search">
+                    <BiSearch />
                     <Select
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                         placeholder = "Search..."
@@ -270,6 +275,7 @@ export default class UserPostLayOut extends Component {
                         className="searchRecognitions"
                         defaultValue={this.state.peopleInCompany[0]}
                         isDisabled={false}
+                        styles={searchStyle}
                         isClearable ={true}
                         isLoading={false}
                         isRtl={false}
@@ -278,6 +284,7 @@ export default class UserPostLayOut extends Component {
                         name="people"
                         options={this.state.peopleInCompany} 
                     />
+              
                     </div>
                 </form>
 
