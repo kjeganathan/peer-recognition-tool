@@ -19,7 +19,12 @@ const recognitionSchema = new Schema(
           creationDate: Date,
           employeeId:   Number,
           likes:        [Number] //Array of the employeeIds of people who liked it
-        }]
+        }],
+
+        reactions: {  // Map of reaction types (key) to employeeIds (value)
+          type: Map,
+          of: [Number]
+        },
     }, {
         collection: "Recognitions"
     }
