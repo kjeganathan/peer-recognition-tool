@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import "./CommentButton.css"
 import { AiOutlineComment } from "react-icons/ai";
+import { AiOutlineEnter } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 export default class CommentButton extends Component {
     constructor(props) {
@@ -43,21 +46,43 @@ export default class CommentButton extends Component {
     render() {
       return (
         <div>
-          <Button className = "comment" onClick={this.handleCommentClick}>
-            <AiOutlineComment size = {16}/>
-          </Button> 
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={
+              <Tooltip id="button-tooltip" >
+                Comments
+              </Tooltip>}
+          >
+            <Button className = "comment" onClick={this.handleCommentClick}>
+          
+              <AiOutlineComment size = {16}/>
+            </Button>
+          </OverlayTrigger>
+          
           {this.state.showForm && (
-          <>
-              <h3>Leave your Comments Below</h3>
+          <>  
+              {"\n"}
+              Leave your Comments Below
               <textarea 
                 id="new-todo"
                 onChange={this.handleChange}
                 value={this.state.text}
               />
               <form onSubmit={this.handleSubmit}>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip" >
+                    Post
+                  </Tooltip>}
+              >
                 <button>
-                  Post
+                  <AiOutlineEnter size = {13}/>
                 </button>
+              </OverlayTrigger>
+                
               </form>
               <Comments items={this.state.items} />
             </>
