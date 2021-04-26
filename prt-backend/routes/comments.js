@@ -30,7 +30,7 @@ router.post('/:recogId', async (req, res) => {
   const recog = await Recognition.findOne({ _id: req.params.recogId });
 
   if (!recog) {
-    res.status(404).send(`No comment with ID ${recog}`);
+    res.status(404).send(`No comment with ID ${req.params.recogId}`);
     return;
   }
 
