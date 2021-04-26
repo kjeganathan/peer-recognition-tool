@@ -14,7 +14,7 @@ export const DEFAULT_REACTIONS = {
   love: 0
 }
 
-export default class AwardsButton extends Component{
+export class AwardsButton extends Component{
    constructor(props) {
        super(props)
        this.state = {...props.reactions};
@@ -24,7 +24,15 @@ export default class AwardsButton extends Component{
 
     handleButtonClick(type) {
       axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true })
-          .then((res) => this.setState(Object.assign(DEFAULT_REACTIONS, res.data.reactions)));
+          .then((res) => {
+            let reactions = Object.assign(DEFAULT_REACTIONS, res.data.reactions);
+
+            for (const reaction in reactions) {
+              reactions[reaction] = reactions[reaction].length;
+            }
+            
+            this.setState(reactions);
+      });
    }
    
     render(){
