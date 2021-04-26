@@ -5,6 +5,7 @@ import "./AwardsButton.css";
 import Tooltip from "react-bootstrap/Tooltip";
 import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import axios from 'axios';
 
 export default class AwardsButton extends Component{
    constructor(props) {
@@ -17,7 +18,11 @@ export default class AwardsButton extends Component{
        }
    }
 
+   
+
     handleButtonClick(type) {
+        axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true }).then((res) => console.log(res));;
+        console.log(this.props.recognitionID)
        if(type == "thumbsUp") {
            this.setState({thumbsUp: this.state.thumbsUp + 1});
            console.log("thumbs")

@@ -86,6 +86,7 @@ export default class UserPostLayOut extends Component {
             const recognition = res.data[i];
 
             var newItem = {
+                _id: recognition._id,
                 fullName: recognition.giverName,
                 recognized: recognition.receiverName,
                 text: recognition.message,
@@ -176,12 +177,12 @@ export default class UserPostLayOut extends Component {
                                 <Row >
                                     &nbsp;
                                     <Col>
-                                        <CommentButton />
+                                        <CommentButton recognitionID={item._id}/>
                                     </Col>
 
                                     <Col className="floatright">
                                         <right>
-                                            <AwardsButton />
+                                            <AwardsButton recognitionID={item._id} />
                                         </right>
                                     </Col>
                                 </Row>
