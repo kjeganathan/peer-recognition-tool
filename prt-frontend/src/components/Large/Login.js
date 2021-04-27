@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             username: "",
             password: "",
@@ -87,7 +87,6 @@ export default class Login extends Component {
                     <Button block size="lg" type="submit" bsClass='custom-button'>
                         Login
                     </Button>
-
                 </Form>
 
             </div>
