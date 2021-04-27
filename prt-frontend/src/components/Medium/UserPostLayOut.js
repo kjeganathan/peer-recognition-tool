@@ -36,6 +36,7 @@ export default class UserPostLayOut extends Component {
             recognition: '',
             items: [], //the empty array is for getting the input from the textarea
             peopleInCompany: [],
+            corevals: [],
             pic: '',
             recognizedName: '',
             selectedItems: {}
@@ -48,6 +49,9 @@ export default class UserPostLayOut extends Component {
     componentWillMount() {
         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
             .then((res) => this.setState({ peopleInCompany: res.data }));
+        
+        axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
+            .then((res) => this.setState({ corevals: res.data }));
     }
 
     componentDidMount() {
@@ -106,7 +110,7 @@ export default class UserPostLayOut extends Component {
         this.state.peopleInCompany.forEach(person => {
             if (person.value.name == this._recognized.value.name) {
                 if (person.value.name != this.state.fullName) {
-                    console.log(person.value)
+                    console.log(person)
                     validPerson = true;
                     recogId = person.value.id;
                 }
@@ -119,10 +123,10 @@ export default class UserPostLayOut extends Component {
                 var newItem = {
                     companyID: parseInt(this.state.cid),
                     giverName: this.state.fullName,
-                    receiverName: this._recognized.value.name,
+                    receiverName: this._recognized.value,
                     giverID: localStorage.getItem('employeeID'),
-                    receiverID: recogId,
-                    values: [],
+                    receiverID: this._recognized.value.id,
+                    values: this._values,
                     message: this._recognition.value,
                     creationTime: new Date()
                 };
@@ -136,12 +140,14 @@ export default class UserPostLayOut extends Component {
 
             this._recognized.value = "";
             this._recognition.value = "";
-            e.preventDefault(); //prevent refreash page
+            this._values.value = [];
+           //e.preventDefault(); //prevent refreash page
         }
         else {
             console.log("invalid person")
             this._recognized.value = "";
             this._recognition.value = "";
+            this._values.value = [];
         }
     }
 
@@ -211,6 +217,9 @@ export default class UserPostLayOut extends Component {
                     <Select
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                         styles={colorStyle}
+                        placeholder= "Person to be recognized..."
+                        className="basic-single"
+                        classNamePrefix="select"
                         isSearchable={console.log(this.state.peopleInCompany)}
                         className="basic-single"
                         classNamePrefix="select"
@@ -225,6 +234,19 @@ export default class UserPostLayOut extends Component {
                         options={this.state.peopleInCompany} 
                     />
                 </div>
+                <div className="recognitionFor">
+                <Select
+                    isMulti
+                    placeholder= "Core Values"
+                    name="Core Values"
+                    isSearchable={console.log(this.state.corevals)}
+                    onChange={(event) => this._values = event}
+                    options={this.state.corevals}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+  />
+                </div>
+
                 <div className='line'></div>
 
                 <textarea className="box" ref={(a) => this._recognition = a}
