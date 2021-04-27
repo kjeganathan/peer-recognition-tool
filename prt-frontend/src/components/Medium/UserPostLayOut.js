@@ -1,26 +1,10 @@
-//this file is where the program disply the input common on the screen
-//file include the area text bar and the submit button at the buttom right corner
-//flip move is a animation libary under react
-
-//this file using a empty array take all the input and assign them a unique key
-//using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
-//createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
-// import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch } from "react-icons/bi";
-// import AwardsButton from "./AwardsButton";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
-// import shrek from "../Other/shrek.jpeg";
-// import p1 from "../Other/p1.jpg";
-// import p2 from "../Other/p2.jpg";
-// import p3 from "../Other/p3.jpg";
-// import p4 from "../Other/p4.jpg";
-// import marius from "../Other/marius.JPG";
-// import gatsby from "../Other/gatsby.jpg";
-// import profilePic from "./genericProfilePicture.jpeg";
+import Recognition from "./Recognition"
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -29,6 +13,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
 import { Button } from 'semantic-ui-react'
+
 const buttonText = { 0: "^ New to Old", 1: "V Old to New" }
 var curText = "^ New to Old"
 
@@ -58,6 +43,7 @@ const customStyles = {
 export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             username: localStorage.getItem('username'), //call username from localstorage
             fullName: localStorage.getItem('fullName'),
@@ -71,6 +57,7 @@ export default class UserPostLayOut extends Component {
             recognizedName: '',
             selectedItems: {}
         };
+
         console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
@@ -81,14 +68,6 @@ export default class UserPostLayOut extends Component {
             .then((res) => this.setState({ corevals: res.data }));
     }
 
-    /* componentWillMount() {
-         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
-             .then((res) => this.setState({ peopleInCompany: res.data }));
- 
-         axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
-             .then((res) => this.setState({ corevals: res.data }));
-     }*/
-
     componentDidMount() {
         this.updateFeed();
     }
@@ -96,12 +75,6 @@ export default class UserPostLayOut extends Component {
     updateFeed() {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res.data));
-    }
-    updateUsers(res, callback) {
-        for (var i = 0; i < Object.keys(res.data).length; i++) {
-            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
-            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
-        }
     }
 
     getUserFromID(employeeId) {
@@ -111,16 +84,6 @@ export default class UserPostLayOut extends Component {
                 return result['1'].data.firstName + " " + result['1'].data.lastName; ////////////////////////////////////////////////////
             });
     }
-
-
-    // updateUsers(res, callback) {
-    //     for (var i = 0; i < Object.keys(res.data).length; i++) {
-    //         res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
-
-    //         res.data[i]["receiver"] = this.getUserFromID(res.data[i]["reco"].receiverID);
-    //     }
-    //     console.log(res.data[1]["giver"])
-    // }
 
     peopleInCompany(res) {
         this.state.peopleInCompany = res.data
@@ -146,6 +109,7 @@ export default class UserPostLayOut extends Component {
             });
         }
     }
+
     updateFeedSearch(event) {
         var rem = [{ giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job" }]
         this.setState({ items: [] })
@@ -208,49 +172,56 @@ export default class UserPostLayOut extends Component {
     createTasks(item) { // Create element from item
         this.state.pic = <img class="profilePictures" src={item.profilePicURL}></img>
         this.state.recognizedName = item.recognized;
-        return <div>
-        {/* <Fade left> */}
-            <li key={item.key}>
-                <Container>
-                    <Row className="postHeader" style={{ fontSize: "20px" }}>
-                        <right>
-                            {this.state.pic}
-                            <strong> {this.state.recognizedName} </strong>
-                                    received a recognition from
-                                    <strong> {item.fullName}</strong>
-                        </right>
-                    </Row>
+        return (
+            <Recognition
+                giver={this.state.recognizedName}
+                receiver={item.fullName}
+                receiverProfilePicURL={item.profilePicURL}
+                message={item.text} />
+        );
+        // return <div>
+        //     {/* <Fade left> */}
+        //     <li key={item.key}>
+        //         <Container>
+        //             <Row className="postHeader" style={{ fontSize: "20px" }}>
+        //                 <right>
+        //                     {this.state.pic}
+        //                     <strong> {this.state.recognizedName} </strong>
+        //                             received a recognition from
+        //                             <strong> {item.fullName}</strong>
+        //                 </right>
+        //             </Row>
 
-                    <div className='postLineH'></div>
+        //             <div className='postLineH'></div>
 
-                    <Card.Body>
-                        <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+        //             <Card.Body>
+        //                 <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
 
-                        <Card.Text className="commentArea">
-                            {item.text}
-                        </Card.Text>
-                    </Card.Body>
+        //                 <Card.Text className="commentArea">
+        //                     {item.text}
+        //                 </Card.Text>
+        //             </Card.Body>
 
-                    <div className='postLineH'></div>
+        //             <div className='postLineH'></div>
 
-                    <div className="postFooter">
-                        <Row >
-                            &nbsp;
-                                    <Col>
-                                <CommentButton comments={item.comments} recognitionID={item._id} />
-                            </Col>
+        //             <div className="postFooter">
+        //                 <Row >
+        //                     &nbsp;
+        //                             <Col>
+        //                         <CommentButton comments={item.comments} recognitionID={item._id} />
+        //                     </Col>
 
-                            <Col className="floatright">
-                                <right>
-                                    <AwardsButton reactions={item.reactions} recognitionID={item._id} />
-                                </right>
-                            </Col>
-                        </Row>
-                    </div>
-                </Container>
-            </li>
-        {/* </Fade> */}
-        </div>
+        //                     <Col className="floatright">
+        //                         <right>
+        //                             <AwardsButton reactions={item.reactions} recognitionID={item._id} />
+        //                         </right>
+        //                     </Col>
+        //                 </Row>
+        //             </div>
+        //         </Container>
+        //     </li>
+        //     {/* </Fade> */}
+        // </div>
     }
 
     showCVB() {
@@ -304,10 +275,11 @@ export default class UserPostLayOut extends Component {
     }
 
     postList() {
-        return this.state.items.map(this.createTasks)
+        return this.state.items.map(this.createTasks);
     }
 
-    handleChange = (e, { value }) => this.setState({ value })
+    handleChange = (e, { value }) => this.setState({ value });
+
     postArea() {
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
@@ -370,9 +342,6 @@ export default class UserPostLayOut extends Component {
             </form>
         </div>
     }
-
-
-
 
     render() {
         return (
