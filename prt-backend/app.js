@@ -155,4 +155,6 @@ const monthlyAwardsJob = scheduler.scheduleJob(monthlyAwardsSchedule, () => {
   saveAwardWinners();
 });
 
+// saveAwardWinners();
+
 module.exports = app

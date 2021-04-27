@@ -48,7 +48,7 @@ async function saveAwardWinnersHelper(company, test, message, coreValue) {
                 employeeId: receiverID
             });
 
-            const newRockstarAward = new MonthlyAward({
+            const newAward = new MonthlyAward({
                 awardName: message,
                 companyID: companyID,
                 employeeID: awardWinner.companyId,
@@ -62,7 +62,7 @@ async function saveAwardWinnersHelper(company, test, message, coreValue) {
                 value: coreValue
             });
 
-            newRockstarAward.save();
+            newAward.save();
         }
     }
 }
