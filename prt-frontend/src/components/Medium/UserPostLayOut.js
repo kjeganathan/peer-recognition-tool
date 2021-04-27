@@ -28,13 +28,32 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
-import Fade from 'react-reveal/Fade'; //fade animation
-const colorStyle = {
-    control: style => ({ backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px', margin: '5px' })
-}
-const searchStyle = {
-    control: style => ({ height: '35px', backgroundColor: 'white', borderRadius: '5px', boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" })
-}
+import { Button } from 'semantic-ui-react'
+const buttonText = { 0: "^ New to Old", 1: "V Old to New" }
+var curText = "^ New to Old"
+
+const customStyles = {
+    control: (base, state) => ({
+        //   ...base,
+        background: "rgb(210, 252, 255)",
+        height: '30px',
+        width: '93%',
+        // match with the menu
+        borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+    }),
+    menu: base => ({
+        ...base,
+        // override border radius to match the box
+        borderRadius: 0,
+        // kill the gap
+        marginTop: '5px',
+    }),
+    menuList: base => ({
+        ...base,
+        // kill the white space on first and last option
+        padding: 0,
+    })
+};
 
 export default class UserPostLayOut extends Component {
     constructor(props) {
@@ -55,15 +74,20 @@ export default class UserPostLayOut extends Component {
         console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
-    }
-
-    componentWillMount() {
         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
             .then((res) => this.setState({ peopleInCompany: res.data }));
 
         axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
             .then((res) => this.setState({ corevals: res.data }));
     }
+
+    /* componentWillMount() {
+         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
+             .then((res) => this.setState({ peopleInCompany: res.data }));
+ 
+         axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
+             .then((res) => this.setState({ corevals: res.data }));
+     }*/
 
     componentDidMount() {
         this.updateFeed();
@@ -152,12 +176,13 @@ export default class UserPostLayOut extends Component {
                 var newItem = {
                     companyID: parseInt(this.state.cid),
                     giverName: this.state.fullName,
-                    receiverName: this._recognized.value,
-                    giverID: localStorage.getItem('employeeID'),
+                    receiverName: this._recognized.value.name,
+                    giverID: parseInt(localStorage.getItem('employeeID')),
                     receiverID: this._recognized.value.id,
                     values: this._values,
                     message: this._recognition.value,
                     creationTime: new Date()
+
                 };
                 console.log(newItem);
                 axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
@@ -183,7 +208,8 @@ export default class UserPostLayOut extends Component {
     createTasks(item) { // Create element from item
         this.state.pic = <img class="profilePictures" src={item.profilePicURL}></img>
         this.state.recognizedName = item.recognized;
-        return <Fade left>
+        return <div>
+        {/* <Fade left> */}
             <li key={item.key}>
                 <Container>
                     <Row className="postHeader" style={{ fontSize: "20px" }}>
@@ -223,7 +249,8 @@ export default class UserPostLayOut extends Component {
                     </div>
                 </Container>
             </li>
-        </Fade>
+        {/* </Fade> */}
+        </div>
     }
 
     showCVB() {
@@ -232,6 +259,48 @@ export default class UserPostLayOut extends Component {
     }
     hideCVB() {
         this.setState({ showCoreValue: false });
+    }
+
+    addToVal(event) {
+        this._values = [];
+        console.log(event)
+        event.forEach(val => [this._values].concat(val.values));
+        console.log(this._values)
+    }
+
+    reOrder(state) {
+        if (curText == buttonText[0]) {
+            curText = buttonText[1];
+        }
+        else {
+            curText = buttonText[0];
+        }
+        this.state.items.reverse();
+        this.forceUpdate();
+    }
+
+    filterButton() {
+        return <div style={{ marginLeft: "55%", marginTop: "3%" }}>
+            <Button
+                onClick={(event) => this.reOrder(event)}
+                content={curText}
+            />
+            <Select
+                placeholder="Person to be recognized..."
+                className="basic-single"
+                classNamePrefix="select"
+                isSearchable={true}
+                name="people"
+                defaultValue={this.state.peopleInCompany[0]}
+                isDisabled={false}
+                isLoading={false}
+                isClearable={true}
+                isRtl={false}
+                onChange={(event) => this._recognized = event}
+                options={this.state.peopleInCompany}
+                maxMenuHeight={180}
+            />
+        </div>
     }
 
     postList() {
@@ -246,34 +315,41 @@ export default class UserPostLayOut extends Component {
 
                     <Select
                         components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
-                        styles={colorStyle}
+                        // styles={colorStyle}
                         placeholder="Person to be recognized..."
                         className="basic-single"
                         classNamePrefix="select"
-                        isSearchable={console.log(this.state.peopleInCompany)}
-                        className="basic-single"
-                        classNamePrefix="select"
+                        components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null, ClearIndicator: () => null, select__clearindicator: () => null }}
+                        styles={customStyles}
+                        isSearchable={true}
+                        name="people"
                         defaultValue={this.state.peopleInCompany[0]}
                         isDisabled={false}
                         isLoading={false}
                         isClearable={true}
                         isRtl={false}
                         onChange={(event) => this._recognized = event}
-                        isSearchable={true}
-                        name="people"
                         options={this.state.peopleInCompany}
+                        maxMenuHeight={180}
                     />
                 </div>
-                <div className="recognitionFor">
+
+                <div className='line'></div>
+
+
+                <div className="recognitionFor" style={{ marginTop: "6px" }}>
                     <Select
                         isMulti
                         placeholder="Core Values"
                         name="Core Values"
-                        isSearchable={console.log(this.state.corevals)}
-                        onChange={(event) => this._values = event}
+                        isSearchable={true}
+                        components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null, ClearIndicator: () => null, select__clearindicator: () => null }}
+                        styles={customStyles}
+                        onChange={(event) => this.addToVal(event)}
                         options={this.state.corevals}
                         className="basic-multi-select"
                         classNamePrefix="select"
+                        maxMenuHeight={130}
                     />
                 </div>
 
@@ -284,8 +360,8 @@ export default class UserPostLayOut extends Component {
                     onClick={() => this.showCVB("showCoreValue")}>
                 </textarea>
 
-                <button type="submit" className="squre" onClick={() => this.hideCVB("showCoreValue")}>
-                    <SquirrelIcon size={25} />
+                <button type="submit">
+                    <PaperAirplaneIcon size={25} />
                 </button>
 
                 <div className={this.state.showCoreValue ? "visible" : "hidden"} >
@@ -312,7 +388,7 @@ export default class UserPostLayOut extends Component {
                             className="searchRecognitions"
                             defaultValue={this.state.peopleInCompany[0]}
                             isDisabled={false}
-                            styles={searchStyle}
+                            // styles={searchStyle}
                             isClearable={true}
                             isLoading={false}
                             isRtl={false}
@@ -325,6 +401,7 @@ export default class UserPostLayOut extends Component {
                     </div>
                 </form>
 
+                {this.filterButton()}
                 <ul className="thisList">
                     {this.postList()}
                 </ul>
