@@ -216,7 +216,7 @@ export default class UserPostLayOut extends Component {
                         placeholder= "Person to be recognized..."
                         className="basic-single"
                         classNamePrefix="select"
-                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
                         styles={colorStyle}
                         isSearchable={console.log(this.state.peopleInCompany)}
                         className="basic-single"
@@ -238,7 +238,7 @@ export default class UserPostLayOut extends Component {
                     placeholder= "Core Values"
                     name="Core Values"
                     isSearchable={console.log(this.state.corevals)}
-                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
                     onChange={(event) => this._values = event}
                     options={this.state.corevals}
                     className="basic-multi-select"
