@@ -5,29 +5,24 @@ import "./AwardsButton.css";
 import Tooltip from "react-bootstrap/Tooltip";
 import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import axios from 'axios';
 
-export default class AwardsButton extends Component{
+export const DEFAULT_REACTIONS = {
+  thumbsUp: [],
+  goat: [],
+  laugh: [],
+  love: []
+}
+
+export class AwardsButton extends Component{
    constructor(props) {
        super(props)
-       this.state = {
-            thumbsUp: 0,
-            goat: 0,
-            laugh: 0,
-            love: 0
-       }
+        this.state = {...DEFAULT_REACTIONS, ...props.reactions};
    }
 
     handleButtonClick(type) {
-       if(type == "thumbsUp") {
-           this.setState({thumbsUp: this.state.thumbsUp + 1});
-           console.log("thumbs")
-       } else if(type == "goat") {
-           this.setState({goat: this.state.goat + 1});
-       } else if(type == "laugh") {
-           this.setState({laugh: this.state.laugh + 1});
-       } else if(type == "love"){
-           this.setState({love: this.state.love + 1});
-       }
+      axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true })
+          .then((res) =>  this.setState({...DEFAULT_REACTIONS, ...res.data.reactions}));
    }
    
     render(){
@@ -50,7 +45,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("thumbsUp")} className="buttons">
-                    {(this.state.thumbsUp > 0) ? <badge className="badge1" >{this.state.thumbsUp}</badge> : null}
+                    {(this.state.thumbsUp.length > 0) ? <badge className="badge1" >{this.state.thumbsUp.length}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/flex-biceps.png"/>
                         
                     </Button>
@@ -71,7 +66,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("goat")} className="buttons">
-                    {(this.state.goat > 0) ? <badge className="badge2" >{this.state.goat}</badge> : null}
+                    {(this.state.goat.length > 0) ? <badge className="badge2" >{this.state.goat.length}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/pet.png"/>
                         
                     </Button>
@@ -92,7 +87,7 @@ export default class AwardsButton extends Component{
                     >
                     <Button onClick={() => this.handleButtonClick("laugh")} className="buttons">
                         
-                    {(this.state.laugh > 0) ? <badge className="badge3" >{this.state.laugh}</badge> : null}
+                    {(this.state.laugh.length > 0) ? <badge className="badge3" >{this.state.laugh.length}</badge> : null}
                         
                         <img src="https://img.icons8.com/color/20/000000/pug.png"/>
                         
@@ -116,7 +111,7 @@ export default class AwardsButton extends Component{
                     }
                     >
                     <Button onClick={() => this.handleButtonClick("love")} className="buttons">
-                    {(this.state.love > 0) ? <badge className="badge4" >{this.state.love}</badge> : null}
+                    {(this.state.love.length > 0) ? <badge className="badge4" >{this.state.love.length}</badge> : null}
                         <img src="https://img.icons8.com/color/20/000000/heart-with-arrow--v2.png"/>
                         
                     </Button>

@@ -2,24 +2,7 @@ const Employee = require('./models/employee.model.js');
 const Company = require("./models/company.model.js");
 const Recognition = require("./models/recognition.model.js");
 const MonthlyAward = require("./models/monthly-award.model.js");
-const scheduler = require("node-schedule");
-
-// const testRule = new scheduler.RecurrenceRule();
-// testRule.second = [new scheduler.Range(0, 59)];
-// // const testJobInterval = "/1 * * * * *";
-// const testJob = scheduler.scheduleJob(testRule, testJobFunction);
-
-// function testJobFunction(){
-//   console.log("Tick");
-// }
-
-const rockstarRule = new scheduler.RecurrenceRule();
-// rockstarRule.second = 0;
-// rockstarRule.minute = 0;
-rockstarRule.minute = [new scheduler.Range(0, 59)];
-// rockstarRule.hour = 0;
-// rockstarRule.date = 1;
-rockstarRule.month = [new scheduler.Range(0, 11)];
+// const scheduler = require("node-schedule");
 
 async function saveAwardWinners() {
     const companies = await Company.find({});
@@ -27,114 +10,46 @@ async function saveAwardWinners() {
 }
 
 async function saveAwardWinnersOfCompany(company) {
-    // const companyID = company.companyId;
-    // const coreValues = company.values;
-    // const recognitions = await Recognition.find({ companyID: companyID });
-    // const rockstarHistogram = new Map();
-    // const valueHistograms = new Map();
-    // var maxNumRecognitions = 0;
+    const coreValues = company.values;
 
-    saveRockstarWinnersOfCompany(company);
+    saveAwardWinnersHelper(company, recognition => true, "Rockstar of the Month", "");
 
-    // recognitions.forEach(recognition => {
-    //     const receiverID = recognition.receiverID;
-    //     const coreValues = recognition.values;
-
-    //     if (rockstarHistogram.has(receiverID)) {
-    //         const curNumRecognitions = rockstarHistogram.get(receiverID);
-    //         const newNumRecognitions = curNumRecognitions + 1;
-    //         rockstarHistogram.set(receiverID, newNumRecognitions);
-    //     } else {
-    //         rockstarHistogram.set(receiverID, 1);
-    //     }
-
-    //     const numRecognitions = rockstarHistogram.get(receiverID);
-
-    //     // if (numRecognitions == maxNumRecognitions) {
-    //     // awardWinners.push(receiverID);
-    //     if (numRecognitions > maxNumRecognitions) {
-    //         // awardWinners = [];
-    //         maxNumRecognitions = numRecognitions;
-    //         // awardWinners.push(receiverID);
-    //     }
-
-    //     // coreValues.forEach(coreValue => {
-
-    //     // });
-    // });
-
-    // for (const [receiverID, numRecognitions] of rockstarHistogram.entries()) {
-    //     if (numRecognitions == maxNumRecognitions) {
-    //         // console.log(receiverID + " has the max number of recogs: " + numRecognitions);
-    //         const awardWinner = await Employee.findOne({
-    //             companyId: companyID,
-    //             employeeId: receiverID
-    //         });
-
-    //         const newRockstarAward = new MonthlyAward({
-    //             awardName: "Rockstar of the Month",
-    //             companyID: companyID,
-    //             employeeID: awardWinner.companyId,
-
-    //             employeeName: awardWinner.firstName +
-    //                 " " +
-    //                 awardWinner.lastName,
-
-    //             dateGiven: new Date(),
-    //             numRecognitions: numRecognitions,
-    //             value: ""
-    //         });
-
-    //         newRockstarAward.save();
-    //     }
-    // }
+    coreValues.forEach(coreValue => {
+        saveAwardWinnersHelper(company, recognition => recognition.values.includes(coreValue), coreValue + " Award", coreValue);
+    });
 }
 
-async function saveRockstarWinnersOfCompany(company) {
+async function saveAwardWinnersHelper(company, test, message, coreValue) {
     const companyID = company.companyId;
-    const coreValues = company.values;
-    const recognitions = await Recognition.find({ companyID: companyID });
-    const rockstarHistogram = new Map();
-    const valueHistograms = new Map();
-    var maxNumRecognitions = 0;
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const currentMonthMinDate = new Date(currentYear, currentMonth);
+    console.log(currentMonthMinDate);
 
-    recognitions.forEach(recognition => {
-        const receiverID = recognition.receiverID;
-        const coreValues = recognition.values;
-
-        if (rockstarHistogram.has(receiverID)) {
-            const curNumRecognitions = rockstarHistogram.get(receiverID);
-            const newNumRecognitions = curNumRecognitions + 1;
-            rockstarHistogram.set(receiverID, newNumRecognitions);
-        } else {
-            rockstarHistogram.set(receiverID, 1);
+    const recognitionsQuery = {
+        companyID: companyID,
+        creationTime: {
+            $gte: currentMonthMinDate
         }
+    }
 
-        const numRecognitions = rockstarHistogram.get(receiverID);
+    // const recognitions = await Recognition.find({ companyID: companyID });
+    const recognitions = await Recognition.find(recognitionsQuery);
+    // console.log(recognitions);
+    const histogramAndMetadata = makeHistogramAndMetadata(recognitions, test);
+    const maxNumRecognitions = histogramAndMetadata.maxNumRecognitions;
+    const histogram = histogramAndMetadata.histogram;
 
-        // if (numRecognitions == maxNumRecognitions) {
-        // awardWinners.push(receiverID);
-        if (numRecognitions > maxNumRecognitions) {
-            // awardWinners = [];
-            maxNumRecognitions = numRecognitions;
-            // awardWinners.push(receiverID);
-        }
-
-        // coreValues.forEach(coreValue => {
-
-        // });
-    });
-
-    for (const [receiverID, numRecognitions] of rockstarHistogram.entries()) {
+    for (const [receiverID, numRecognitions] of histogram.entries()) {
         if (numRecognitions == maxNumRecognitions) {
-            // console.log(receiverID + " has the max number of recogs: " + numRecognitions);
             const awardWinner = await Employee.findOne({
                 companyId: companyID,
                 employeeId: receiverID
             });
 
             const newRockstarAward = new MonthlyAward({
-                awardName: "Rockstar of the Month",
+                awardName: message,
                 companyID: companyID,
                 employeeID: awardWinner.companyId,
 
@@ -144,11 +59,45 @@ async function saveRockstarWinnersOfCompany(company) {
 
                 dateGiven: new Date(),
                 numRecognitions: numRecognitions,
-                value: ""
+                value: coreValue
             });
 
             newRockstarAward.save();
         }
+    }
+}
+
+function makeHistogramAndMetadata(recognitions, test) {
+    const histogram = new Map();
+    var maxNumRecognitions = 0;
+
+    recognitions.forEach(recognition => {
+        const receiverID = recognition.receiverID;
+
+        if (test(recognition) == true) {
+            incrementHistogram(histogram, receiverID);
+        }
+
+        const numRecognitions = histogram.get(receiverID);
+
+        if (numRecognitions > maxNumRecognitions) {
+            maxNumRecognitions = numRecognitions;
+        }
+    });
+
+    return {
+        histogram: histogram,
+        maxNumRecognitions: maxNumRecognitions
+    };
+}
+
+function incrementHistogram(histogram, key) {
+    if (histogram.has(key)) {
+        const curValue = histogram.get(key);
+        const newValue = curValue + 1;
+        histogram.set(key, newValue);
+    } else {
+        histogram.set(key, 1);
     }
 }
 
