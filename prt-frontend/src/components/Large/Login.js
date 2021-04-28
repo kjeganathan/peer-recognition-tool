@@ -87,7 +87,6 @@ export default class Login extends Component {
                     <Button block size="lg" type="submit" bsClass='custom-button'>
                         Login
                     </Button>
-
                 </Form>
 
             </div>

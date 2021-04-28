@@ -1,8 +1,7 @@
+import Button from "react-bootstrap/Button"
 import React, {Component} from "react";
 import "./CommentButton.css"
 import { AiOutlineComment } from "react-icons/ai";
-import { AiOutlineEnter } from "react-icons/ai";
-import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
@@ -67,8 +66,8 @@ export default class CommentButton extends Component {
               <textarea 
                 id="new-todo"
                 onChange={this.handleChange}
-                value={this.state.text}
-              />
+                value={this.state.text}> 
+              </textarea>
               <form onSubmit={this.handleSubmit}>
               <OverlayTrigger
                 placement="top"

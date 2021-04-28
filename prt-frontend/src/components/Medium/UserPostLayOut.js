@@ -12,6 +12,13 @@ import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch} from "react-icons/bi";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
+import shrek from "../Other/shrek.jpeg";
+import p1 from "../Other/p1.jpg";
+import p2 from "../Other/p2.jpg";
+import p3 from "../Other/p3.jpg";
+import p4 from "../Other/p4.jpg";
+import marius from "../Other/marius.JPG";
+import gatsby from "../Other/gatsby.jpg";
 import profilePic from "./genericProfilePicture.jpeg";
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
@@ -64,6 +71,12 @@ export default class UserPostLayOut extends Component {
     updateFeed() {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res.data));
+    }
+    updateUsers(res, callback){
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
+            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
+        }
     }
 
     getUserFromID(employeeId) {

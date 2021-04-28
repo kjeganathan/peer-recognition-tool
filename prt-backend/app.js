@@ -86,6 +86,28 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 
 // Endpoint to return all recognitions
+/**
+ * @openapi
+ * /recogs:
+ *   post:
+ *     description: get Recogs
+ *     parameters:
+ *       -
+ *          name: credentials
+ *          in: body
+ *          description: Username and password
+ *          required: true
+ *          schema:
+ *              type: object
+ *              required:
+ *                - username
+ *                - password
+ *              properties:
+ *                username:
+ *                  type: string
+ *                password:
+ *                  type: string
+ */
 app.get("/recogs", (req, res) => {
   if (!req.isAuthenticated()) {
     res.status(401).send({ message: 'You are not logged in' });
