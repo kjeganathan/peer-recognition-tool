@@ -10,7 +10,6 @@ import React, { Component } from "react";
 import "./UserPostLayOut.css";
 import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch} from "react-icons/bi";
-import AwardsButton from "./AwardsButton";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
 import profilePic from "./genericProfilePicture.jpeg";
@@ -90,36 +89,24 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
-        const newItems = res.data.reverse().map((recognition) => ({
-            _id: recognition._id,
-            fullName: recognition.giverName,
-            recognized: recognition.receiverName,
-            text: recognition.message,
-            comments: recognition.comments || [],
-            reactions: {...DEFAULT_REACTIONS, ...recognition.reactions},
-            profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
-        }));
-
-        let state = this.state;
-        state.items = newItems;
-        this.setState(state);
-
+        var itemsList = []
         for (var i = 0; i<Object.keys(res).length; i++) {
             const recognition = res[i];
             console.log(recognition)
             var newItem = {
+                _id: recognition._id,
                 fullName: recognition.giverName,
                 recognized: recognition.receiverName,
                 text: recognition.message,
+                comments: recognition.comments || [],
+                reactions: {...DEFAULT_REACTIONS, ...recognition.reactions},
                 profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
             };
-
-            this.setState((prevState) => {
-                return {
-                    items: [newItem].concat(prevState.items)
-                };
-            });
+            itemsList.push(newItem)
         }
+        console.log(itemsList)
+        this.setState({items:itemsList.reverse()});
+        var itemsList = []
     }
     updateFeedSearch(event) {
         var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
