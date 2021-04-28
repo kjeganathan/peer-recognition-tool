@@ -62,7 +62,7 @@ export default class UserPostLayOut extends Component {
             corevals: [],
             pic: '',
             recognizedName: '',
-            selectedItems: {}
+            selectedItems: {},
         };
 
         console.log(this.state.peopleInCompany)
@@ -98,6 +98,7 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
+        var itemsList = [];
         for (var i = 0; i < Object.keys(res).length; i++) {
             const recognition = res[i];
             var newItem = {
@@ -111,8 +112,7 @@ export default class UserPostLayOut extends Component {
             };
             itemsList.push(newItem)
         }
-        this.setState({items:itemsList.reverse()});
-        var itemsList = []
+        this.setState({items: itemsList.reverse()});
     }
 
     updateFeedSearch(event) {
@@ -199,49 +199,6 @@ export default class UserPostLayOut extends Component {
                 receiverProfilePicURL={item.profilePicURL}
                 message={item.text} />
         );
-        // return <div>
-        //     {/* <Fade left> */}
-        //     <li key={item.key}>
-        //         <Container>
-        //             <Row className="postHeader" style={{ fontSize: "20px" }}>
-        //                 <right>
-        //                     {this.state.pic}
-        //                     <strong> {this.state.recognizedName} </strong>
-        //                             received a recognition from
-        //                             <strong> {item.fullName}</strong>
-        //                 </right>
-        //             </Row>
-
-        //             <div className='postLineH'></div>
-
-        //             <Card.Body>
-        //                 <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
-
-        //                 <Card.Text className="commentArea">
-        //                     {item.text}
-        //                 </Card.Text>
-        //             </Card.Body>
-
-        //             <div className='postLineH'></div>
-
-        //             <div className="postFooter">
-        //                 <Row >
-        //                     &nbsp;
-        //                             <Col>
-        //                         <CommentButton comments={item.comments} recognitionID={item._id} />
-        //                     </Col>
-
-        //                     <Col className="floatright">
-        //                         <right>
-        //                             <AwardsButton reactions={item.reactions} recognitionID={item._id} />
-        //                         </right>
-        //                     </Col>
-        //                 </Row>
-        //             </div>
-        //         </Container>
-        //     </li>
-        //     {/* </Fade> */}
-        // </div>
     }
 
     reOrder(state){
