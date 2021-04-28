@@ -6,11 +6,11 @@
 //using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
 //createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
-import SearchBox from "../Medium/SearchBox.js"
-import ReactDOM from 'react-dom';
 // import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
+import { BiSearch} from "react-icons/bi";
+import AwardsButton from "./AwardsButton";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
 import profilePic from "./genericProfilePicture.jpeg";
@@ -24,6 +24,9 @@ import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
+}
+const searchStyle={
+    control: style => ({height: '35px',backgroundColor:'white', borderRadius:'5px',  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"})
 }
 
 export default class UserPostLayOut extends Component {
@@ -61,7 +64,7 @@ export default class UserPostLayOut extends Component {
 
     updateFeed() {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
-            .then(res => this.updateFeedHelper(res));
+            .then(res => this.updateFeedHelper(res.data));
     }
 
     getUserFromID(employeeId) {
@@ -100,8 +103,35 @@ export default class UserPostLayOut extends Component {
         let state = this.state;
         state.items = newItems;
         this.setState(state);
-    }
 
+        for (var i = 0; i<Object.keys(res).length; i++) {
+            const recognition = res[i];
+            console.log(recognition)
+            var newItem = {
+                fullName: recognition.giverName,
+                recognized: recognition.receiverName,
+                text: recognition.message,
+                profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
+            };
+
+            this.setState((prevState) => {
+                return {
+                    items: [newItem].concat(prevState.items)
+                };
+            });
+        }
+    }
+    updateFeedSearch(event) {
+        var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
+        this.setState({items:[]})
+        
+        axios.post('http://localhost:3001/lookupUser', {id: this.search.value.id}, { withCredentials: true })
+            .then(function(res){ return this.updateFeedHelper(res.recognitionsReceived)}); 
+        
+        this.updateFeedHelper(rem);
+        event.preventDefault();
+
+    }
     addItem(e) { //enter value will add them into the items array 
         var validPerson = false;
         var recogId;
@@ -212,6 +242,7 @@ export default class UserPostLayOut extends Component {
         return <div className="recognition">
             <form className="post" onSubmit={this.addItem}>
                 <div>
+                    
                     <Select
                         placeholder= "Person to be recognized..."
                         className="basic-single"
@@ -272,6 +303,28 @@ export default class UserPostLayOut extends Component {
         return (
             <div className='todoListMain'>
                 {this.postArea()}
+                <form onSubmit={this.updateFeedSearch.bind(this)}>
+                    <div className = "search">
+                    <BiSearch />
+                    <Select
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                        placeholder = "Search..."
+                        isSearchable={this.state.peopleInCompany}
+                        className="searchRecognitions"
+                        defaultValue={this.state.peopleInCompany[0]}
+                        isDisabled={false}
+                        styles={searchStyle}
+                        isClearable ={true}
+                        isLoading={false}
+                        isRtl={false}
+                        isSearchable={true}
+                        onChange={(event) => this.search = event }
+                        name="people"
+                        options={this.state.peopleInCompany} 
+                    />
+              
+                    </div>
+                </form>
 
                 <ul className="thisList">
                     {this.postList()}
