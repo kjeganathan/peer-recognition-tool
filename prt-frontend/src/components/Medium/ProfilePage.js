@@ -49,6 +49,8 @@ export default class ProfilePage extends Component {
               <p class="info" ><strong>Email: </strong><i> {this.state.email}</i> </p>
               <p class="info" ><strong>Company: </strong>{this.state.company} </p>
               <p class="info"> <strong>Position: </strong>{this.state.position} </p>
+
+
             </div>
           </div>
         </div>

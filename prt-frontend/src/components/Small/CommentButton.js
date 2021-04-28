@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import "./CommentButton.css"
 import { AiOutlineComment } from "react-icons/ai";
 import { AiOutlineEnter } from "react-icons/ai";
-// import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 

@@ -12,9 +12,16 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
+import Fade from 'react-reveal/Fade'; //fade animation
 import { Button } from 'semantic-ui-react'
+const colorStyle={
+    control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
+}
+const searchStyle={
+    control: style => ({height: '35px',backgroundColor:'white', borderRadius:'5px',  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"})
+}
 
-const buttonText = { 0: "^ New to Old", 1: "V Old to New" }
+const buttonText = {0:"^ New to Old", 1:"V Old to New"}
 var curText = "^ New to Old"
 
 const customStyles = {
@@ -91,34 +98,47 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
-
         for (var i = 0; i < Object.keys(res).length; i++) {
             const recognition = res[i];
-            console.log(recognition)
             var newItem = {
+                _id: recognition._id,
                 fullName: recognition.giverName,
                 recognized: recognition.receiverName,
                 text: recognition.message,
+                comments: recognition.comments || [],
+                reactions: {...DEFAULT_REACTIONS, ...recognition.reactions},
                 profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
             };
-
-            this.setState((prevState) => {
-                return {
-                    items: [newItem].concat(prevState.items)
-                };
-            });
+            itemsList.push(newItem)
         }
+        this.setState({items:itemsList.reverse()});
+        var itemsList = []
     }
 
     updateFeedSearch(event) {
-        var rem = [{ giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job" }]
-        this.setState({ items: [] })
-
-        axios.post('http://localhost:3001/lookupUser', { id: this.search.value.id }, { withCredentials: true })
-            .then(function (res) { return this.updateFeedHelper(res.recognitionsReceived) });
-
-        this.updateFeedHelper(rem);
         event.preventDefault();
+        var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
+        var curItems = [];
+        var search = this.search.label;
+        console.log(search)
+        var tempItems = []
+        axios.get("http://localhost:3001/recogs", { withCredentials: true })
+            .then(res => this.searchUpdate(res.data));           
+    }
+    
+    searchUpdate(recogs){
+        var curItems = recogs;
+        var search = this.search.label;
+        console.log(search)
+        var tempItems = []
+        console.log(curItems);
+        for (var i = 0; i<curItems.length; i++) {
+            if(curItems[i].giverName == search || curItems[i].recognizedName == search){
+                tempItems.push(curItems[i]);
+            }
+        }
+        console.log(tempItems)
+        this.updateFeedHelper(tempItems);
 
     }
     addItem(e) { //enter value will add them into the items array 
@@ -224,24 +244,9 @@ export default class UserPostLayOut extends Component {
         // </div>
     }
 
-    showCVB() {
-        this.setState({ showCoreValue: true });
-
-    }
-    hideCVB() {
-        this.setState({ showCoreValue: false });
-    }
-
-    addToVal(event) {
-        this._values = [];
-        console.log(event)
-        event.forEach(val => [this._values].concat(val.values));
-        console.log(this._values)
-    }
-
-    reOrder(state) {
-        if (curText == buttonText[0]) {
-            curText = buttonText[1];
+    reOrder(state){
+        if(curText == buttonText[0]){
+          curText = buttonText[1];
         }
         else {
             curText = buttonText[0];
@@ -250,28 +255,14 @@ export default class UserPostLayOut extends Component {
         this.forceUpdate();
     }
 
-    filterButton() {
-        return <div style={{ marginLeft: "55%", marginTop: "3%" }}>
-            <Button
-                onClick={(event) => this.reOrder(event)}
-                content={curText}
-            />
-            <Select
-                placeholder="Person to be recognized..."
-                className="basic-single"
-                classNamePrefix="select"
-                isSearchable={true}
-                name="people"
-                defaultValue={this.state.peopleInCompany[0]}
-                isDisabled={false}
-                isLoading={false}
-                isClearable={true}
-                isRtl={false}
-                onChange={(event) => this._recognized = event}
-                options={this.state.peopleInCompany}
-                maxMenuHeight={180}
-            />
-        </div>
+    filterButton(){
+        return <div style={{marginLeft: "55%", marginTop: "3%"}}>
+                    <Button
+                    onClick={(event) => this.reOrder(event)}
+                    content= {curText} 
+                    /> 
+                    
+                </div>
     }
 
     postList() {
@@ -286,53 +277,51 @@ export default class UserPostLayOut extends Component {
                 <div>
 
                     <Select
-                        components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
-                        // styles={colorStyle}
-                        placeholder="Person to be recognized..."
+                        placeholder= "Person to be recognized..."
                         className="basic-single"
                         classNamePrefix="select"
-                        components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null, ClearIndicator: () => null, select__clearindicator: () => null }}
-                        styles={customStyles}
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                        styles={colorStyle}
                         isSearchable={true}
-                        name="people"
+                        className="basic-single"
+                        classNamePrefix="select"
                         defaultValue={this.state.peopleInCompany[0]}
                         isDisabled={false}
                         isLoading={false}
                         isClearable={true}
                         isRtl={false}
                         onChange={(event) => this._recognized = event}
-                        options={this.state.peopleInCompany}
-                        maxMenuHeight={180}
+                        isSearchable={true}
+                        name="people"
+                        options={this.state.peopleInCompany} 
                     />
                 </div>
 
                 <div className='line'></div>
 
 
-                <div className="recognitionFor" style={{ marginTop: "6px" }}>
-                    <Select
-                        isMulti
-                        placeholder="Core Values"
-                        name="Core Values"
-                        isSearchable={true}
-                        components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null, ClearIndicator: () => null, select__clearindicator: () => null }}
-                        styles={customStyles}
-                        onChange={(event) => this.addToVal(event)}
-                        options={this.state.corevals}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                        maxMenuHeight={130}
-                    />
+                <div className="recognitionFor" style={{ marginTop: "10px" }}>
+                <Select
+                    isMulti
+                    placeholder= "Core Values"
+                    name="Core Values"
+                    isSearchable={console.log(this.state.corevals)}
+                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                    onChange={(event) => this._values = event}
+                    options={this.state.corevals}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    styles={colorStyle}
+  />
                 </div>
 
                 <div className='line'></div>
 
                 <textarea className="box" ref={(a) => this._recognition = a}
-                    placeholder="recognition"
-                    onClick={() => this.showCVB("showCoreValue")}>
+                    placeholder="recognition">
                 </textarea>
 
-                <button type="submit">
+                <button type="submit" className = "squre" onClick={() => this.hideCVB("showCoreValue")}>
                     <PaperAirplaneIcon size={25} />
                 </button>
 
