@@ -28,6 +28,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
+import { Button } from 'semantic-ui-react'
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
 }
@@ -35,7 +36,6 @@ const searchStyle={
     control: style => ({height: '35px',backgroundColor:'white', borderRadius:'5px',  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"})
 }
 
-import { Button } from 'semantic-ui-react'
 const buttonText = {0:"^ New to Old", 1:"V Old to New"}
 var curText = "^ New to Old"
 
@@ -134,10 +134,10 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeedHelper(res) {
+        console.log(res);
         var itemsList = []
         for (var i = 0; i<Object.keys(res).length; i++) {
             const recognition = res[i];
-            console.log(recognition)
             var newItem = {
                 _id: recognition._id,
                 fullName: recognition.giverName,
@@ -149,19 +149,33 @@ export default class UserPostLayOut extends Component {
             };
             itemsList.push(newItem)
         }
-        console.log(itemsList)
         this.setState({items:itemsList.reverse()});
         var itemsList = []
     }
     updateFeedSearch(event) {
-        var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
-        this.setState({items:[]})
-        
-        axios.post('http://localhost:3001/lookupUser', {id: this.search.value.id}, { withCredentials: true })
-            .then(function(res){ return this.updateFeedHelper(res.recognitionsReceived)}); 
-        
-        this.updateFeedHelper(rem);
         event.preventDefault();
+        var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
+        var curItems = [];
+        var search = this.search.label;
+        console.log(search)
+        var tempItems = []
+        axios.get("http://localhost:3001/recogs", { withCredentials: true })
+            .then(res => this.searchUpdate(res.data));           
+    }
+    
+    searchUpdate(recogs){
+        var curItems = recogs;
+        var search = this.search.label;
+        console.log(search)
+        var tempItems = []
+        console.log(curItems);
+        for (var i = 0; i<curItems.length; i++) {
+            if(curItems[i].giverName == search || curItems[i].recognizedName == search){
+                tempItems.push(curItems[i]);
+            }
+        }
+        console.log(tempItems)
+        this.updateFeedHelper(tempItems);
 
     }
     addItem(e) { //enter value will add them into the items array 
@@ -258,21 +272,6 @@ export default class UserPostLayOut extends Component {
                 </Fade>
     }
 
-    showCVB(){
-        this.setState({ showCoreValue: true });
-        
-    }
-    hideCVB(){
-        this.setState({ showCoreValue: false });
-    }
-
-    addToVal(event){
-        this._values = [];
-        console.log(event)
-        event.forEach(val => [this._values].concat(val.values));
-        console.log(this._values)
-    }
-
     reOrder(state){
         if(curText == buttonText[0]){
           curText = buttonText[1];
@@ -290,21 +289,7 @@ export default class UserPostLayOut extends Component {
                     onClick={(event) => this.reOrder(event)}
                     content= {curText} 
                     /> 
-                    <Select
-                        placeholder= "Person to be recognized..."
-                        className="basic-single"
-                        classNamePrefix="select"
-                        isSearchable={true}
-                        name="people"
-                        defaultValue={this.state.peopleInCompany[0]}
-                        isDisabled={false}
-                        isLoading={false}
-                        isClearable={true}
-                        isRtl={false}
-                        onChange={(event) => this._recognized = event}
-                        options={this.state.peopleInCompany}
-                        maxMenuHeight={180}
-                    />
+                    
                 </div>
     }
 
@@ -324,7 +309,7 @@ export default class UserPostLayOut extends Component {
                         classNamePrefix="select"
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
                         styles={colorStyle}
-                        isSearchable={console.log(this.state.peopleInCompany)}
+                        isSearchable={true}
                         className="basic-single"
                         classNamePrefix="select"
                         defaultValue={this.state.peopleInCompany[0]}
@@ -342,7 +327,7 @@ export default class UserPostLayOut extends Component {
                 <div className='line'></div>
 
 
-                <div className="recognitionFor" style={{ marginTop: "6px" }}>
+                <div className="recognitionFor" style={{ marginTop: "10px" }}>
                 <Select
                     isMulti
                     placeholder= "Core Values"
@@ -360,8 +345,7 @@ export default class UserPostLayOut extends Component {
                 <div className='line'></div>
 
                 <textarea className="box" ref={(a) => this._recognition = a}
-                    placeholder="recognition"
-                    onClick={() => this.showCVB("showCoreValue")}>
+                    placeholder="recognition">
                 </textarea>
 
                 <button type="submit" className = "squre" onClick={() => this.hideCVB("showCoreValue")}>
