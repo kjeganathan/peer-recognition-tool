@@ -8,6 +8,9 @@ import Home from "./components/Large/Home"
 import Footer from"./components/Medium/Footer"
 
 
+import HomeManager from "./components/Large/HomeManager"
+// import Footer from"./components/Medium/Footer"
+import Profile from"./components/Medium/ProfilePage"
 
 class App extends Component {
   constructor(props){
@@ -27,6 +30,8 @@ class App extends Component {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/home" component={Home}/>
             
+            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/homemanager" component={HomeManager}/>
           </div>
       </Router>
 

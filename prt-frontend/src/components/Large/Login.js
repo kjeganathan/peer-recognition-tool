@@ -24,14 +24,33 @@ export default class Login extends Component{
         
     }
 
-    successfulLogin(res){
+    successfulLogin(res) {
+        localStorage.setItem('username', this.state.username); //localstorage username
+        localStorage.setItem('fullName', res.data.user.firstName + " " + res.data.user.lastName);  //localstorage fullName
+        localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
+        localStorage.setItem('email', res.data.user.email);  //localstorage email
+        localStorage.setItem('company', res.data.user.companyName);  //localstorage company
+        localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
+        localStorage.setItem('cid', res.data.user.companyId);           //localstorage companyId
+        localStorage.setItem('employeeID', res.data.user.employeeId);   //localstorage employeeId
+        localStorage.setItem('isManager', res.data.user.isManager);     //localstorage isManager
+
+        var pathName = '';
+        console.log(res.data.user.isManager);
+        if (res.data.user.isManager) {
+            pathName = 'homemanager';
+            console.log("HOME MANAGER");
+        } else {
+            pathName = 'home';
+            console.log("HOME");
+        }
         this.props.history.push({
-            pathname: 'home',
+            pathname: pathName,
             state: {
                 username: res.data.user.firstName+" "+res.data.user.lastName
             }
         })
-        this.props.history.push('/home')
+        this.props.history.push('/' + pathName);
     }
 
     failedLogin(err){
@@ -64,16 +83,11 @@ export default class Login extends Component{
                         onChange={(pass) => this.setState({password: pass.target.value})}
                     />
                     </Form.Group>
-                        <Button block size="lg" type="submit"  bsClass='custom-button'>
+                    <Button block size="lg" type="submit" bsClass='custom-button'>
                         Login
-                        </Button>
-                    </Form>
-            
+                    </Button>
+                </Form>
             </div>
-            
-            
-      );
+        );
     }
-
 }
-
