@@ -154,6 +154,7 @@ export default class UserPostLayOut extends Component {
     }
     updateFeedSearch(event) {
         event.preventDefault();
+        
         var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
         var curItems = [];
         var search = this.search.label;
@@ -181,15 +182,26 @@ export default class UserPostLayOut extends Component {
     addItem(e) { //enter value will add them into the items array 
         var validPerson = false;
         var recogId;
+        
+        if(this._recognition.value == "") {
+            window.alert("Please enter your recognition");
+        }
+
+        console.log("ok");
         this.state.peopleInCompany.forEach(person => {
             if (person.value.name == this._recognized.value.name) {
                 if (person.value.name != this.state.fullName) {
-                    console.log(person)
+                    // console.log(person)
                     validPerson = true;
                     recogId = person.value.id;
                 }
+                else {
+                    window.alert("Please don't recognize yourself");
+                    return;
+                }
             }
         });
+       
         console.log(validPerson)
         if (validPerson) {
             console.log(this._recognized.value);
