@@ -5,6 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Large/Login";
 import Header from "./components/Medium/Header"
 import Home from "./components/Large/Home"
+import Footer from"./components/Medium/Footer"
+
+
+import HomeManager from "./components/Large/HomeManager"
 // import Footer from"./components/Medium/Footer"
 import Profile from"./components/Medium/ProfilePage"
 
@@ -26,7 +30,9 @@ class App extends Component {
             {/* <Route exact path="/login" exact component={Login}/> */}
             <Route exact path="/" exact component={Login}/>
             <Route exact path="/home" component={Home}/>
+            
             <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/homemanager" component={HomeManager}/>
           </div>
       </Router>
     );

@@ -144,6 +144,15 @@ app.get("/getPeople", (req, res) => {
   }
 });
 
+app.get("/getEmployees", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  }
+  else {
+    recogPeople.peopleInCompany(req, res);
+  }
+});
+
 app.options('*', cors())
 app.post("/postRec", (req, res) => {
   if (!req.isAuthenticated()) {
