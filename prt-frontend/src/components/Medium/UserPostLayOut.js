@@ -228,6 +228,7 @@ export default class UserPostLayOut extends Component {
                                     received a recognition from
                                     <strong> {item.fullName}</strong>
                                 </right>
+                                
                             </Row>
 
                             <div className='postLineH'></div>
