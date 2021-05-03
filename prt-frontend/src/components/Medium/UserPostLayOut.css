@@ -45,6 +45,7 @@
     /* border: 5px solid rgb(210, 252, 255);  */
     list-style: none; /*hide the bullet points come from the flag <li>*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* z-index: -1; */
 
     /* keep all the text in the area */
     text-overflow: ellipsis; 
@@ -56,7 +57,6 @@
     transform: translate(-50%, 0%); */
     position: relative;
     /* width: 100%; */
-    /* height: 100%; */
     /* left: 60%; */
 }
 
@@ -101,7 +101,7 @@ textarea{
 }
 
 .recognition{
-    margin-top: 20px;
+    margin-top: 5px;
     background-color: rgb(210, 252, 255);
     border-radius: 10px; /*round edge*/
     /* border: thin solid black; */
@@ -109,9 +109,11 @@ textarea{
     height:200px;
     width: 620px;
     resize:none;
-    margin-left: 55%;
-    transform: translate(-50%, 5%); 
+    margin-left: 50%;
+    /* transform: translate(-50%, 5%);  */
+    transform: translate(-50%, 40%); 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
 }
 
 .recognition .post{
@@ -121,6 +123,7 @@ textarea{
     resize:none;
     margin-left: 50%;
     transform: translate(-50%, 50%);  
+
 } 
 
 .recognition .box{
@@ -197,8 +200,11 @@ textarea{
     position: relative;
     z-index: 2;
     margin-left: 65%;
-    transform: translate(-50%, 5%); 
-    top: 30px;
+    /* transform: translate(-270%, -765%);  */
+    /* transform: translate(-120%, -500%);  */
+    /* top: 100%; */
+    /* left: 100%; */
+    transform: translate(-140%, 50%);
     width:390px;
     height: 40px;
     border-radius: 10px;
@@ -213,11 +219,60 @@ textarea{
 }
 
 .searchRecognitions{
+    /* transform: translate(-50%, 5%);  */
     z-index:2;
     left: 20px;
-    top: -25px;
+    top: -25px; 
     width: 260px;
 
+ }
+
+ .filterB{
+     position: fixed;
+     left: 55%;
+     top: 14%;
+     background-color: #4CAF50;
+ }
+
+ .owl{
+    border: none;
+    background: none;
+    padding: 10 px;
+    font-size: 16px;
+    
+    position: absolute;
+    top: 11%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%); /* -ms-transform and transform has the magic that allow you to define the (top left) points to the center or anywhere */
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+ }
+ .owl .owlMessage {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+  }
+  
+  .owl .owlMessage::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+  }
+ .owl:hover .owlMessage{
+    visibility: visible;
  }
 /* input.recognitionFor{
     width: 100%;

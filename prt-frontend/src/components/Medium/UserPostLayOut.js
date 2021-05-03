@@ -6,7 +6,6 @@
 //using the items.map(this.createTasks), map take the element from items one by one and pass into createTasks(item)
 //createTasks(item) this function will retuen one by one base the the unique key
 import React, { Component } from "react";
-// import FlipMove from "react-flip-move";
 import "./UserPostLayOut.css";
 import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch} from "react-icons/bi";
@@ -22,7 +21,7 @@ import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
 import { Button } from 'semantic-ui-react'
 const colorStyle={
-    control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
+    control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px',})
 }
 const searchStyle={
     control: style => ({height: '35px',backgroundColor:'white', borderRadius:'5px',  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"})
@@ -47,9 +46,10 @@ export default class UserPostLayOut extends Component {
             recognizedName: '',
             selectedItems: {},
             v: [],
-            test: localStorage.getItem('test')
+            test: localStorage.getItem('test'),
+            showFilter: false
         };
-        console.log(this.state.peopleInCompany)
+        // console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
         axios.get('http://localhost:3001/getPeople', { withCredentials: true })
@@ -228,7 +228,7 @@ export default class UserPostLayOut extends Component {
                                     received a recognition from
                                     <strong> {item.fullName}</strong>
                                 </right>
-                                
+
                             </Row>
 
                             <div className='postLineH'></div>
@@ -274,13 +274,22 @@ export default class UserPostLayOut extends Component {
     }
 
     filterButton(){
-        return <div style={{marginLeft: "55%", marginTop: "3%"}}>
+        return <div  className = {this.state.showFilter? "visible":"hidden"}>
                     <Button
+                    className = "filterB"
                     onClick={(event) => this.reOrder(event)}
                     content= {curText} 
                     /> 
                     
                 </div>
+        //  return< div >
+        //             <Button
+        //             // className = "filterB"
+        //             onClick={(event) => this.reOrder(event)}
+        //             content= {curText} 
+        //             /> 
+                    
+        //         </div>
     }
 
     postList() {
@@ -295,9 +304,8 @@ export default class UserPostLayOut extends Component {
                     
                     <Select
                         placeholder= "Person to be recognized..."
-                        className="basic-single"
                         classNamePrefix="select"
-                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null}}
                         styles={colorStyle}
                         isSearchable={true}
                         defaultValue={this.state.peopleInCompany[0]}
@@ -320,12 +328,12 @@ export default class UserPostLayOut extends Component {
                         placeholder= "Core Values"
                         name="Core Values"
                         isSearchable={console.log(this.state.corevals)}
-                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null, select__clearindicator:() => null}}
+                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null}}
                         onChange={(event) => {this._values = event;}}
                         options={this.state.corevals}
-                        className="basic-multi-select"
                         classNamePrefix="select"
                         styles={colorStyle}
+                        isRtl={false}
                     />
                 </div>
 
@@ -348,37 +356,57 @@ export default class UserPostLayOut extends Component {
         </div>
     }
 
+    showCVB(){
+        if(this.state.showFilter === false)
+            this.setState({ showFilter: true });
+        else
+            this.setState({ showFilter: false });
+        
+    }
+    // hideCVB(){
+    //     this.setState({ showFilter: false });
+    // }
 
+    filter(){
+        const {showFilter} = this.state;
+        return <div>
+                    <button className = "owl" onClick={() => this.showCVB("showFilter")}>
+                        <img src="https://img.icons8.com/cotton/40/000000/owl--v1.png"/>
+                        <span className="owlMessage">filter?</span>
+                    </button>
+                    <form onSubmit={this.updateFeedSearch.bind(this)} className = {this.state.showFilter? "visible":"hidden"}>
+                        <div className = "search">
+                            <BiSearch />
+                            <Select
+                                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                                placeholder = "Search..."
+                                isSearchable={this.state.peopleInCompany}
+                                className="searchRecognitions"
+                                defaultValue={this.state.peopleInCompany[0]}
+                                isDisabled={false}
+                                styles={searchStyle}
+                                isClearable ={true}
+                                isLoading={false}
+                                isRtl={false}
+                                isSearchable={true}
+                                onChange={(event) => this.search = event }
+                                name="people"
+                                options={this.state.peopleInCompany} 
+                            />
+                        </div>
+                    </form>
 
+                    {this.filterButton()}
+                </div>
+
+    }
 
     render() {
         return (
             <div className='todoListMain'>
+                 {this.filter()}
                 {this.postArea()}
-                <form onSubmit={this.updateFeedSearch.bind(this)}>
-                    <div className = "search">
-                    <BiSearch />
-                    <Select
-                        components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-                        placeholder = "Search..."
-                        isSearchable={this.state.peopleInCompany}
-                        className="searchRecognitions"
-                        defaultValue={this.state.peopleInCompany[0]}
-                        isDisabled={false}
-                        styles={searchStyle}
-                        isClearable ={true}
-                        isLoading={false}
-                        isRtl={false}
-                        isSearchable={true}
-                        onChange={(event) => this.search = event }
-                        name="people"
-                        options={this.state.peopleInCompany} 
-                    />
-              
-                    </div>
-                </form>
-
-                {this.filterButton()}
+                
                 <ul className="thisList">
                     {this.postList()}
                 </ul>
