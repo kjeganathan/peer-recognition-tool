@@ -6,7 +6,7 @@ const Notification = require("../models/notification.model.js");
 
 /**
  * @openapi
- * /notifications/new/{id}:
+ * /notifications/{id}:
  *   post:
  *     description: Add a notification to the employee with the given ID
  *     parameters:
@@ -21,11 +21,11 @@ const Notification = require("../models/notification.model.js");
  *                message:
  *                  type: string
  */
-router.post('/new/:employeeId', async (req, res) => {
-    // if (!req.isAuthenticated()) {
-    //     res.status(401).json({ message: 'You are not logged in' });
-    //     return;
-    // }
+router.post('/:employeeId', async (req, res) => {
+    if (!req.isAuthenticated()) {
+        res.status(401).json({ message: 'You are not logged in' });
+        return;
+    }
 
     const employee = await Employee.findOne({ employeeId: req.params.employeeId });
 
@@ -35,10 +35,10 @@ router.post('/new/:employeeId', async (req, res) => {
     }
 
 
-    // if (!('message' in req.body)) {
-    //     res.status(422).send('Use format {"message": "notification text"}');
-    //     return;
-    // }
+    if (!('message' in req.body)) {
+        res.status(422).send('Use format {"message": "notification text"}');
+        return;
+    }
 
     const newNotification = new Notification({ message: req.body.message, arrivalTime: new Date()});
     await newNotification.save()
@@ -53,7 +53,21 @@ router.post('/new/:employeeId', async (req, res) => {
 
 });
 
-// Handle GET request for notification
+/**
+ * @openapi
+ * /values:
+ *   get:
+ *     description: Get all active notifications for the user
+ *     responses:
+ *       '200':
+ *         description: A list of notification objects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: Notification
+ */
 router.get('/', async (req, res) => {
     if (!req.isAuthenticated()) {
         res.status(401).json({ message: 'You are not logged in' })
@@ -61,25 +75,8 @@ router.get('/', async (req, res) => {
     }
 
 
-    let notifications = await Notification.find({ '_id': { $in: req.user.activeNotifications } });
+    const notifications = await Notification.find({ '_id': { $in: req.user.activeNotifications } });
     res.status(200).send({ notifications : notifications });
-
-    // res.status(200).json(
-    //     {
-    //         notifications: [
-    //             {
-    //                 message: "Test notification message 0",
-    //                 arrivalTime: new Date(),
-    //                 recognitionID: 0
-    //             },
-    //             {
-    //                 message: "Test notification message 1",
-    //                 arrivalTime: new Date("2021-01-01T00:00:00"),
-    //                 recognitionID: 1
-    //             }
-    //         ]
-    //     }
-    // );
 
 })
 
