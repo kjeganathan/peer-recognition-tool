@@ -55,7 +55,7 @@ router.post('/:employeeId', async (req, res) => {
 
 /**
  * @openapi
- * /values:
+ * /notifications:
  *   get:
  *     description: Get all active notifications for the user
  *     responses:
@@ -80,15 +80,26 @@ router.get('/', async (req, res) => {
 
 })
 
+/**
+ * @openapi
+ * /notifications:
+ *   delete:
+ *     description: Delete all active notifications of the user
+ *     responses:
+ *       '204':
+ *         description: Active notifications were successfully deleted
+ */
 router.delete('/', async (req, res) => {
     if (!req.isAuthenticated()) {
         res.status(401).send({ message: 'You are not logged in' })
         return
     }
-
-    // FIXME: Uncomment these lines when line 38 is addressed
-    // req.user.notifications = [];
-    // await req.user.save();
+    await Notification.deleteMany({ '_id': { $in: req.user.activeNotifications } })
+        .catch(error => res.status(400).send("Error: " + error));
+    req.user.activeNotifications = [];
+    await req.user.save()        
+        .then(() => res.send("Active notifications deleted."))
+        .catch(error => res.status(400).send("Error: " + error));
 
     res.status(204);
 })
