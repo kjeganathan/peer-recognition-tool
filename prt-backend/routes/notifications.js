@@ -8,18 +8,27 @@ const Notification = require("../models/notification.model.js");
  * @openapi
  * /notifications/{id}:
  *   post:
- *     description: Add a notification to the employee with the given ID
+ *     summary: Creates a new notification.
+ *     description: Add a notification to the employee with the given ID.
  *     parameters:
+ *       - in: path
+ *         name: employeeId
+ *         required: true
+ *         schema:
+ *               type: string
  *       -
- *          name: value
+ *          name: message
  *          in: body
- *          description: notification message
+ *          description: The notification message to create
  *          required: true
  *          schema:
  *              type: object
  *              properties:
  *                message:
  *                  type: string
+*     responses:
+ *       '201':
+ *         description: Returns the new notification
  */
 router.post('/:employeeId', async (req, res) => {
     if (!req.isAuthenticated()) {
@@ -30,7 +39,7 @@ router.post('/:employeeId', async (req, res) => {
     const employee = await Employee.findOne({ employeeId: req.params.employeeId });
 
     if (!employee){
-        res.status(404).send('No employee with ID ${req.params.employeeId}');
+        res.status(404).send(`No employee with ID ${req.params.employeeId}`);
         return;
     }
 
@@ -69,11 +78,11 @@ router.post('/:employeeId', async (req, res) => {
  *                 type: Notification
  */
 router.get('/', async (req, res) => {
+
     if (!req.isAuthenticated()) {
         res.status(401).json({ message: 'You are not logged in' })
         return
     }
-
 
     const notifications = await Notification.find({ '_id': { $in: req.user.activeNotifications } });
     res.status(200).send({ notifications : notifications });
@@ -85,22 +94,49 @@ router.get('/', async (req, res) => {
  * /notifications:
  *   delete:
  *     description: Delete all active notifications of the user
+ *     parameters:
+ *       -
+ *          name: notifId
+ *          in: body
+ *          description: Id of individual notification to delete (optional alternative to deleting all active notifications.).
+ *          required: false
+ *          schema:
+ *              type: object
+ *              properties:
+ *                notifId:
+ *                  type: string
  *     responses:
  *       '204':
- *         description: Active notifications were successfully deleted
+ *         description: Active notifications (or the one with given Id) were successfully deleted
  */
 router.delete('/', async (req, res) => {
+
     if (!req.isAuthenticated()) {
         res.status(401).send({ message: 'You are not logged in' })
         return
     }
-    await Notification.deleteMany({ '_id': { $in: req.user.activeNotifications } })
-        .catch(error => res.status(400).send("Error: " + error));
-    req.user.activeNotifications = [];
-    await req.user.save()        
-        .then(() => res.send("Active notifications deleted."))
-        .catch(error => res.status(400).send("Error: " + error));
 
+    // In the case that notification Id is not provided we delete all active notificaitons of the current user
+    if (!req.body.notifId) {
+        await Notification.deleteMany({ '_id': { $in: req.user.activeNotifications } })
+            .catch(error => res.status(400).send("Error: " + error));
+        req.user.activeNotifications = [];
+        await req.user.save()        
+            .then(() => res.send("Active notifications deleted."))
+            .catch(error => res.status(400).send("Error: " + error));
+    } else {
+        if(!req.user.activeNotifications.reduce((a,e) => e == req.body.notifId ? true : a, false)) {
+            res.status(403).send({ message: 'Can only delete notifications of current user'})
+            return
+        }
+        await Notification.deleteOne({ '_id': req.body.notifId })
+            .catch(error => res.status(400).send("Error: " + error))   
+            .then(() => res.send(`Notification with id ${req.body.notifId} deleted.`));
+        req.user.activeNotifications = req.user.activeNotifications.filter((e) => e != req.body.notifId);
+        await req.user.save()        
+            .then(() => res.send("Active notifications deleted."))
+            .catch(error => res.status(400).send("Error: " + error));
+    }
     res.status(204);
 })
 
