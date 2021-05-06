@@ -149,7 +149,7 @@ app.get("/getEmployees", (req, res) => {
     res.status(401).send({ message: 'You are not logged in' });
   }
   else {
-    recogPeople.peopleInCompany(req, res);
+    recogPeople.employeesOfManager(req, res);
   }
 });
 

@@ -178,6 +178,7 @@ export default class UserPostLayOut extends Component {
         this.updateFeedHelper(tempItems);
 
     }
+
     addItem(e) { //enter value will add them into the items array 
         var validPerson = false;
         var recogId;
