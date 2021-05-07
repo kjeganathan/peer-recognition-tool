@@ -176,8 +176,9 @@ export default class UserPostLayOut extends Component {
         }
         console.log(tempItems)
         this.updateFeedHelper(tempItems);
-
     }
+
+
     addItem(e) { //enter value will add them into the items array 
         var validPerson = false;
         var recogId;
@@ -219,6 +220,7 @@ export default class UserPostLayOut extends Component {
            //e.preventDefault(); //prevent refreash page
         }
         else {
+            alert("Invalid Person to Recognize")
             console.log("invalid person")
             this._recognized.value = "";
             this._recognition.value = "";

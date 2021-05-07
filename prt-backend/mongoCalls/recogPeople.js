@@ -4,9 +4,10 @@ async function peopleInCompany(req, res){
   const companyID = req.user.companyId;
   console.log(req.user) // Watch out for capitalization of "ID"
   console.log("Finding those in Company:" + companyID + ".");
-  const employeesOfComapny = await Employee.find({companyId: companyID});
+  const employeesOfCompany = await Employee.find({companyId: companyID});
   peopleToRecog = []
-  employeesOfComapny.forEach(employee => {
+  employeesOfCompany.forEach(employee => {
+
       peopleToRecog.push({
             label: employee.firstName +" "+employee.lastName,
             value: {
