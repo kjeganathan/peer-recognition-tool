@@ -14,7 +14,7 @@ export default class Rockstar extends Component {
         this.rockstar = this.rockstar.bind(this);
     }
     componentDidMount() {
-        axios.get('http://localhost:3001/rockstars', { withCredentials: true })
+        axios.get('rockstars', { withCredentials: true })
             .then(res => {
                 this.setState({
                     rockstars: res.data.rockstars

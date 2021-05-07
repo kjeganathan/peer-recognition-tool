@@ -81,10 +81,10 @@ export default class UserPostLayOut extends Component {
         console.log(this.state.peopleInCompany)
         this.addItem = this.addItem.bind(this);
         this.createTasks = this.createTasks.bind(this);
-        axios.get('http://localhost:3001/getPeople', { withCredentials: true })
+        axios.get('/getPeople', { withCredentials: true })
             .then((res) => this.setState({ peopleInCompany: res.data }));
         
-        axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
+        axios.get('getCoreValues', { withCredentials: true })
             .then((res) => this.setState({ corevals: res.data }));
     }
 
@@ -101,7 +101,7 @@ export default class UserPostLayOut extends Component {
     }
 
     updateFeed() {
-        axios.get("http://localhost:3001/recogs", { withCredentials: true })
+        axios.get("/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res.data));
     }
     updateUsers(res, callback){
@@ -113,7 +113,7 @@ export default class UserPostLayOut extends Component {
 
     getUserFromID(employeeId) {
         var result;
-        axios.post('http://localhost:3001/lookupUser', { id: employeeId }, { withCredentials: true })
+        axios.post('/lookupUser', { id: employeeId }, { withCredentials: true })
             .then((result) => function (result) {
                 return result['1'].data.firstName + " " + result['1'].data.lastName; ////////////////////////////////////////////////////
             });
@@ -145,7 +145,7 @@ export default class UserPostLayOut extends Component {
                 text: recognition.message,
                 comments: recognition.comments || [],
                 reactions: {...DEFAULT_REACTIONS, ...recognition.reactions},
-                profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
+                profilePicURL: "/profile-pics/" + recognition.receiverProfilePicURL
             };
             itemsList.push(newItem)
         }
@@ -160,7 +160,7 @@ export default class UserPostLayOut extends Component {
         var search = this.search.label;
         console.log(search)
         var tempItems = []
-        axios.get("http://localhost:3001/recogs", { withCredentials: true })
+        axios.get("/recogs", { withCredentials: true })
             .then(res => this.searchUpdate(res.data));           
     }
     
@@ -218,7 +218,7 @@ export default class UserPostLayOut extends Component {
 
                 };
                 console.log(newItem);
-                axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
+                axios.post('/postRec', newItem, { withCredentials: true })
                     .then((res) => {
                         console.log(res.data);
                         this.updateFeed();

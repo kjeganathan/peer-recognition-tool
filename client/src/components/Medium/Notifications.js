@@ -21,7 +21,7 @@ export default class Notifications extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/notifications', { withCredentials: true })
+    axios.get('/notifications', { withCredentials: true })
       .then((res) => this.updateNotifications(res));
   }
 

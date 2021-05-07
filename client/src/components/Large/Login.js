@@ -17,7 +17,7 @@ export default class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('http://localhost:3001/login', this.state, { withCredentials: true }) //post login request to /login
+        axios.post('/login', this.state, { withCredentials: true }) //post login request to /login
             .then((res) => this.successfulLogin(res))
             .catch((err) => this.failedLogin(err));
 

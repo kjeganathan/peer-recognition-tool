@@ -21,7 +21,7 @@ export default class CoreValues extends Component {
   }
 
   getCoreValues() {
-    axios.get("http://localhost:3001/core-values", { withCredentials: true })
+    axios.get("/core-values", { withCredentials: true })
       .then(res => {
         this.setState({
           coreValues: res.data

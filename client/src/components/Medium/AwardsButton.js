@@ -21,7 +21,7 @@ export class AwardsButton extends Component{
    }
 
     handleButtonClick(type) {
-      axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true })
+      axios.post("/postReaction/" + this.props.recognitionID, {reaction: type}, { withCredentials: true })
           .then((res) =>  this.setState({...DEFAULT_REACTIONS, ...res.data.reactions}));
    }
    
