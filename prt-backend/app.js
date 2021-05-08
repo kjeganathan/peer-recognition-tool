@@ -86,41 +86,19 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 
 // Endpoint to return all recognitions
-app.get("/recogs", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    recogs.getRecognitionsFromCompany(req, res);
-  }
-});
+// app.get("/recogs", (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     res.status(401).send({ message: 'You are not logged in' });
+//   }
+//   else {
+//     recogs.getRecognitionsFromCompany(req, res);
+//   }
+// });
 
-app.post("/lookupUser", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    user.getUser(req, res);
-  }
-});
-
-app.get("/getCurrentUser", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    res.send(req.user);
-  }
-});
-
-app.get("/getPeople", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    recogPeople.peopleInCompany(req, res);
-  }
-});
+// if (!req.isAuthenticated()) {
+//   res.status(401).send({ message: 'You are not logged in' });
+// }
+// });
 
 app.options('*', cors())
 app.post("/postRec", (req, res) => {

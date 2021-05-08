@@ -30,11 +30,21 @@ export default class Login extends Component {
         localStorage.setItem('email', res.data.user.email);  //localstorage email
         localStorage.setItem('company', res.data.user.companyName);  //localstorage company
         localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
-        localStorage.setItem('cid', res.data.user.companyId);
-        localStorage.setItem('employeeID', res.data.user.employeeId);
+        localStorage.setItem('cid', res.data.user.companyId);           //localstorage companyId
+        localStorage.setItem('employeeID', res.data.user.employeeId);   //localstorage employeeId
+        localStorage.setItem('isManager', res.data.user.isManager);     //localstorage isManager
 
+        var pathName = '';
+        console.log(res.data.user.isManager);
+        if (res.data.user.isManager) {
+            pathName = 'homemanager';
+            console.log("HOME MANAGER");
+        } else {
+            pathName = 'home';
+            console.log("HOME");
+        }
         this.props.history.push({
-            pathname: 'home',
+            pathname: pathName,
             state: {
                 // username: res.data.user.firstName+" "+res.data.user.lastName,
                 // position: res.data.user.positionTitle,
@@ -48,8 +58,7 @@ export default class Login extends Component {
                 startData: localStorage.getItem('startData')
             }
         })
-
-        this.props.history.push('/home')
+        this.props.history.push('/' + pathName);
     }
 
     failedLogin(res) {
@@ -83,17 +92,11 @@ export default class Login extends Component {
                             onChange={(pass) => this.setState({ password: pass.target.value })}
                         />
                     </Form.Group>
-
                     <Button block size="lg" type="submit" bsClass='custom-button'>
                         Login
                     </Button>
                 </Form>
-
             </div>
-
-
         );
     }
-
 }
-

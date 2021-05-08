@@ -7,7 +7,6 @@ async function peopleInCompany(req, res){
   const employeesOfCompany = await Employee.find({companyId: companyID});
   peopleToRecog = []
   employeesOfCompany.forEach(employee => {
-
       peopleToRecog.push({
             label: employee.firstName +" "+employee.lastName,
             value: {
