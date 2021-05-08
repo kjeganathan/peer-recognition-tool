@@ -16,5 +16,16 @@ export default class Feed extends Component{
             .then(res => this.updateFeed(res.data));
     }
 
-    updateFeed(){}
+    updateFeed(recognitions){
+        const newRecognitions = [];
+
+        for(const recognition of recognitions){
+            newRecognitions.push(
+                <Recognition
+                    giver={recognition.giverName}
+                    receiver={recognition.receiverName}
+                    receiverProfilePicURL=
+            )
+        }
+    }
 }
