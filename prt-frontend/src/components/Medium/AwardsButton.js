@@ -14,7 +14,7 @@ export const DEFAULT_REACTIONS = {
     love: []
 }
 
-export class AwardsButton extends Component {
+export default class AwardsButton extends Component {
     constructor(props) {
         super(props)
         this.state = { ...DEFAULT_REACTIONS, ...props.reactions };

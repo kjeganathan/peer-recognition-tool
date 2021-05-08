@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import AwardsButton from "../Medium/AwardsButton"
 import CommentButton from "../Small/CommentButton";
 
 export default class Recognition extends Component {
@@ -31,7 +32,7 @@ export default class Recognition extends Component {
                             src={this.state.receiverProfilePicURL}
                         />
                         <strong>{this.state.receiver}</strong>
-                        received a recognition from
+                        received a recognition from &nbsp;
                         <strong>{this.state.giver}</strong>
                     </right>
                 </Row>
@@ -56,7 +57,11 @@ export default class Recognition extends Component {
                             <CommentButton comments={this.state.comments} />
                         </Col>
 
-                        {/* <Col className="floatright"> */}
+                        <Col className="floatright">
+                            <right>
+                                <AwardsButton reactions={this.state.reactions} />
+                            </right>
+                        </Col>
                     </Row>
                 </div>
             </Container>

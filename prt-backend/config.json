@@ -1,5 +1,5 @@
 {
     "DATABASE_URI": "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/Test-Database?retryWrites=true&w=majority",
-    "SESSION_LENGTH": 1800000,
-    "TEST_FILESYSTEM_URI": "../prt-test-filesystem"
+    "TEST_FILESYSTEM_URI": "../prt-test-filesystem",
+    "SESSION_LENGTH": 1800000
 }
