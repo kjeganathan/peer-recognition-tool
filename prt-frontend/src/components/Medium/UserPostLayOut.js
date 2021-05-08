@@ -12,14 +12,6 @@ import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch} from "react-icons/bi";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
-import shrek from "../Other/shrek.jpeg";
-import p1 from "../Other/p1.jpg";
-import p2 from "../Other/p2.jpg";
-import p3 from "../Other/p3.jpg";
-import p4 from "../Other/p4.jpg";
-import marius from "../Other/marius.JPG";
-import gatsby from "../Other/gatsby.jpg";
-import profilePic from "./genericProfilePicture.jpeg";
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -29,6 +21,7 @@ import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
 import { Button } from 'semantic-ui-react'
+import Dropdown from "react-bootstrap/Dropdown";
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
 }
@@ -104,6 +97,30 @@ export default class UserPostLayOut extends Component {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res.data));
     }
+
+    Notifications() {
+        axios.get('http://localhost:3001/notifications', { withCredentials: true })
+          .then((res) => this.updateNotifications(res));
+    }
+    updateNotifications(res) {
+        const newNotifications = res.data.notifications;
+        const newElements = newNotifications.map(notification => {
+          return [
+            <Dropdown.Item href="#/mention">
+              {notification.message}
+              <p>{notification.arrivalTime}</p>
+            </Dropdown.Item>,
+            <Dropdown.Divider></Dropdown.Divider>
+          ];
+        });
+        // console.log("Notifications: " + notifications);
+    
+        this.setState({
+          numNewNotifications: newNotifications.length,
+          elements: newElements
+        });
+    }
+
     updateUsers(res, callback){
         for(var i=0;i<Object.keys(res.data).length;i++){
             res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
@@ -152,6 +169,7 @@ export default class UserPostLayOut extends Component {
         this.setState({items:itemsList.reverse()});
         var itemsList = []
     }
+
     updateFeedSearch(event) {
         event.preventDefault();
         var rem = [{giverName: "Jamel Spencer", receiverName: "Arron Garcia", message: "nice job"}]
@@ -205,11 +223,20 @@ export default class UserPostLayOut extends Component {
                     creationTime: new Date()
 
                 };
-                console.log(newItem);
+                var newNotifications = {
+                    employeeId: this._recognized.value.id,
+                    message: this._recognition.value
+                };
+                var id = String(this._recognized.value.id);
+                var notificationPath = 'http://localhost:3001/notifications/'+id;
+                
                 axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
                     .then((res) => {
-                        console.log(res.data);
                         this.updateFeed();
+                    });
+                axios.post(notificationPath, newNotifications, { withCredentials: true })
+                    .then((res) => {
+                        this.Notifications();
                     });
             }
 
