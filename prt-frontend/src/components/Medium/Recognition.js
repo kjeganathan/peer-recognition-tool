@@ -23,7 +23,7 @@ export default class Recognition extends Component {
 
     render() {
         return (
-            <Container>
+            <Container className="recognition">
                 <Row className="postHeader" style={{ fontSize: "20px" }}>
                     <right>
                         <img

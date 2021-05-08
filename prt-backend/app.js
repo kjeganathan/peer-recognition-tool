@@ -86,14 +86,14 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 
 // Endpoint to return all recognitions
-// app.get("/recogs", (req, res) => {
-//   if (!req.isAuthenticated()) {
-//     res.status(401).send({ message: 'You are not logged in' });
-//   }
-//   else {
-//     recogs.getRecognitionsFromCompany(req, res);
-//   }
-// });
+app.get("/recogs", (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).send({ message: 'You are not logged in' });
+  }
+  else {
+    recogs.getRecognitionsFromCompany(req, res);
+  }
+});
 
 // if (!req.isAuthenticated()) {
 //   res.status(401).send({ message: 'You are not logged in' });
