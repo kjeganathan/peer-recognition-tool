@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import AwardsButton from "../Medium/AwardsButton"
 import CommentButton from "../Small/CommentButton";
+import axios from "axios";
 
 export default class Recognition extends Component {
     constructor(props) {
@@ -22,6 +23,18 @@ export default class Recognition extends Component {
         }
     }
 
+    // GET request test
+    // componentDidMount() {
+    //     axios.get(
+    //         "http://localhost:3001/users",
+    //         {
+    //             params: {
+    //                 companyID: 1
+    //             }
+    //         }, { withCredentials: true }
+    //     );
+    // }
+
     render() {
         return (
             <Container className="recognition">
@@ -32,7 +45,7 @@ export default class Recognition extends Component {
                             src={this.state.receiverProfilePicURL}
                         />
                         <strong>{this.state.receiver}</strong>
-                        received a recognition from &nbsp;
+                        &nbsp;received a recognition from&nbsp;
                         <strong>{this.state.giver}</strong>
                     </right>
                 </Row>

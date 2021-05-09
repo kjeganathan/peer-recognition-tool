@@ -24,8 +24,9 @@ export default class Feed extends Component{
                 <Recognition
                     giver={recognition.giverName}
                     receiver={recognition.receiverName}
-                    receiverProfilePicURL=
-            )
+                    // receiverProfilePicURL=
+                />
+            );
         }
     }
 }

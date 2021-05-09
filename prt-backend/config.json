@@ -1,5 +1,6 @@
 {
     "DATABASE_URI": "mongodb+srv://devapp:wintermute3000@cluster0.val9t.mongodb.net/Test-Database?retryWrites=true&w=majority",
     "TEST_FILESYSTEM_URI": "../prt-test-filesystem",
+    "RECOGNITION_COLLECTION_NAME": "TestRecognitions",
     "SESSION_LENGTH": 1800000
 }

@@ -29,6 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
+app.use(express.json());
 app.use("/profile-pics", express.static(testFilesystemURI));
 app.options('*', cors());
 
@@ -125,6 +126,8 @@ app.use('/rockstars', require('./routes/rockstars.js'));
 app.use('/values', require('./routes/coreValues'));
 app.use('/postComment', require('./routes/comments'));
 app.use('/postReaction', require('./routes/reactions'));
+app.use("/user", require("./routes/user"));
+app.use("/users", require("./routes/users"));
 
 const monthlyAwardsSchedule = new scheduler.RecurrenceRule();
 monthlyAwardsSchedule.second = 0;

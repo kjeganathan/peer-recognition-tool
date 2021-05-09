@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const config = require("../config.json");
+
+const collectionName = config.RECOGNITION_COLLECTION_NAME;
 
 const commentSchema = new Schema(
     {
@@ -44,11 +47,13 @@ const recognitionSchema = new Schema(
         //     of: [Number]
         // },
     }, {
-        collection: "Recognitions"
+        // collection: "Recognitions"
+        collection: collectionName
     }
 );
 
 //mongoose.model(ModelName, schema, ModelCollection)
-const Recognition = mongoose.model("Recognition", recognitionSchema, "Recognitions");
+// const Recognition = mongoose.model("Recognition", recognitionSchema, "Recognitions");
+const Recognition = mongoose.model("Recognition", recognitionSchema, collectionName);
 
 module.exports = Recognition;
