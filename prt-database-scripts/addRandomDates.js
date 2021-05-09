@@ -15,7 +15,7 @@ db.Recognitions.find().forEach(function(document){
 function getRandomDate(minDate, maxDate){
     const minDateTime = minDate.getTime();
     const maxDateTime = maxDate.getTime();
-    const randomDateTime = databaseHelper.getRandomInteger(minDateTime, maxDateTime);
+    const randomDateTime = getRandomInteger(minDateTime, maxDateTime);
     return new Date(randomDateTime);
 }
 
