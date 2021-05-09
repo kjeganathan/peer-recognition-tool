@@ -1,0 +1,2886 @@
+[{
+  "_id": {
+    "$oid": "606115373bec893f2c8b06fe"
+  },
+  "companyID": 3,
+  "giverID": 968,
+  "receiverID": 1335,
+  "values": [],
+  "message": "Just wanted to say thanks for showing up every day, even when times were tough.",
+  "giverName": "Rodolfo Cordova",
+  "receiverName": "Columbus Oconnell",
+  "creationTime": {
+    "$date": "2020-08-11T08:33:52.890Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b06ff"
+  },
+  "companyID": 3,
+  "giverID": 725,
+  "receiverID": 1479,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Melba Joseph",
+  "receiverName": "Domingo Glover",
+  "creationTime": {
+    "$date": "2020-12-20T06:19:41.852Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-06.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0700"
+  },
+  "companyID": 2,
+  "giverID": 465,
+  "receiverID": 206,
+  "values": [],
+  "message": "Good sell with the investors yesterday.",
+  "giverName": "Rudolph Delacruz",
+  "receiverName": "Tommie Wise",
+  "creationTime": {
+    "$date": "2020-09-22T19:09:20.952Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0701"
+  },
+  "companyID": 2,
+  "giverID": 328,
+  "receiverID": 462,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Esperanza Donaldson",
+  "receiverName": "Zack Carrillo",
+  "creationTime": {
+    "$date": "2020-02-13T18:51:34.289Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0702"
+  },
+  "companyID": 2,
+  "giverID": 443,
+  "receiverID": 328,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Jami Larsen",
+  "receiverName": "Esperanza Donaldson",
+  "creationTime": {
+    "$date": "2020-09-06T10:22:45.301Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0703"
+  },
+  "companyID": 1,
+  "giverID": 5,
+  "receiverID": 3,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Client should be set after our work yesterday.",
+  "giverName": "Jeff Benson",
+  "receiverName": "Diane Moyer",
+  "creationTime": {
+    "$date": "2020-09-06T09:27:25.406Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "reactions": {
+    "thumbsUp": [
+      26
+    ],
+    "goat": []
+  },
+  "__v": 2
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0704"
+  },
+  "companyID": 2,
+  "giverID": 383,
+  "receiverID": 422,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Chung Randall",
+  "receiverName": "Kerry Mata",
+  "creationTime": {
+    "$date": "2019-08-23T03:09:55.616Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0705"
+  },
+  "companyID": 3,
+  "giverID": 2396,
+  "receiverID": 448,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Lottie Moyer",
+  "receiverName": "Clay Underwood",
+  "creationTime": {
+    "$date": "2019-08-31T13:03:43.619Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0706"
+  },
+  "companyID": 3,
+  "giverID": 1539,
+  "receiverID": 1870,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Rodolfo Hutchinson",
+  "receiverName": "Ronda Matthews",
+  "creationTime": {
+    "$date": "2020-03-23T08:51:22.801Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0707"
+  },
+  "companyID": 3,
+  "giverID": 1312,
+  "receiverID": 1323,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Samuel Conway",
+  "receiverName": "Cathy Soto",
+  "creationTime": {
+    "$date": "2020-05-03T20:17:49.443Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0708"
+  },
+  "companyID": 1,
+  "giverID": 65,
+  "receiverID": 42,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Ola Carson",
+  "receiverName": "Dollie Page",
+  "creationTime": {
+    "$date": "2020-08-15T22:00:14.022Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg",
+  "reactions": {
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0709"
+  },
+  "companyID": 3,
+  "giverID": 1869,
+  "receiverID": 548,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Leila Parrish",
+  "receiverName": "Phyllis Mckee",
+  "creationTime": {
+    "$date": "2020-10-12T16:19:06.902Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070a"
+  },
+  "companyID": 2,
+  "giverID": 258,
+  "receiverID": 38,
+  "values": [
+    "Selfless",
+    "Nimble"
+  ],
+  "message": "Thanks so much for the help with the pipeline, I know it's not easy during crunch.",
+  "giverName": "Wilburn Livingston",
+  "receiverName": "Salvatore Miller",
+  "creationTime": {
+    "$date": "2019-06-20T14:20:16.154Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070b"
+  },
+  "companyID": 3,
+  "giverID": 2242,
+  "receiverID": 30,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Dixie Baker",
+  "receiverName": "Jay Camacho",
+  "creationTime": {
+    "$date": "2019-08-08T17:05:05.045Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070c"
+  },
+  "companyID": 2,
+  "giverID": 36,
+  "receiverID": 191,
+  "values": [
+    "Nimble"
+  ],
+  "message": "Pulled through with R&D right before deadline.",
+  "giverName": "Mathew Malone",
+  "receiverName": "Billy Gill",
+  "creationTime": {
+    "$date": "2019-09-08T05:42:41Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070d"
+  },
+  "companyID": 1,
+  "giverID": 7,
+  "receiverID": 41,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Nice job setting up the interns.",
+  "giverName": "Madelyn Wilcox",
+  "receiverName": "Allyson Crawford",
+  "creationTime": {
+    "$date": "2019-08-23T03:47:17.911Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070e"
+  },
+  "companyID": 2,
+  "giverID": 149,
+  "receiverID": 447,
+  "values": [],
+  "message": "Good sell with the investors yesterday.",
+  "giverName": "Kelley Sloan",
+  "receiverName": "Hollis Smith",
+  "creationTime": {
+    "$date": "2020-01-20T04:29:03.797Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b070f"
+  },
+  "companyID": 3,
+  "giverID": 1730,
+  "receiverID": 1871,
+  "values": [],
+  "message": "Just wanted to say thanks for showing up every day, even when times were tough.",
+  "giverName": "Levi Harrington",
+  "receiverName": "Celia Mcmahon",
+  "creationTime": {
+    "$date": "2019-12-20T14:36:30.876Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0710"
+  },
+  "companyID": 1,
+  "giverID": 2,
+  "receiverID": 94,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Client should be set after our work yesterday.",
+  "giverName": "Lacy Lambert",
+  "receiverName": "Chance Daugherty",
+  "creationTime": {
+    "$date": "2019-10-07T12:15:03.296Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0711"
+  },
+  "companyID": 1,
+  "giverID": 24,
+  "receiverID": 85,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Thanks for the help with the new dev toolkit.",
+  "giverName": "Gwendolyn Fletcher",
+  "receiverName": "Alta Haney",
+  "creationTime": {
+    "$date": "2020-01-10T21:00:43.890Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0712"
+  },
+  "companyID": 1,
+  "giverID": 41,
+  "receiverID": 67,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Allyson Crawford",
+  "receiverName": "Kristopher Morton",
+  "creationTime": {
+    "$date": "2019-02-20T15:27:34.343Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0713"
+  },
+  "companyID": 3,
+  "giverID": 1309,
+  "receiverID": 1945,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Chuck Mclaughlin",
+  "receiverName": "Vonda Hinton",
+  "creationTime": {
+    "$date": "2020-01-28T15:05:00.470Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0714"
+  },
+  "companyID": 3,
+  "giverID": 1324,
+  "receiverID": 538,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Jackie Bates",
+  "receiverName": "Dina Brandt",
+  "creationTime": {
+    "$date": "2021-04-03T16:39:58.328Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0715"
+  },
+  "companyID": 3,
+  "giverID": 2083,
+  "receiverID": 430,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Marisa Cruz",
+  "receiverName": "Harrison Bond",
+  "creationTime": {
+    "$date": "2020-03-14T11:13:13.903Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0716"
+  },
+  "companyID": 1,
+  "giverID": 16,
+  "receiverID": 40,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Client should be set after our work yesterday.",
+  "giverName": "Angela Mcdowell",
+  "receiverName": "Dorothea Ayers",
+  "creationTime": {
+    "$date": "2020-01-30T23:55:20.055Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0717"
+  },
+  "companyID": 1,
+  "giverID": 31,
+  "receiverID": 78,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Morton Parker",
+  "receiverName": "Tammi Johnson",
+  "creationTime": {
+    "$date": "2020-07-26T09:17:28.353Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0718"
+  },
+  "companyID": 3,
+  "giverID": 2387,
+  "receiverID": 22,
+  "values": [],
+  "message": "Just wanted to say thanks for showing up every day, even when times were tough.",
+  "giverName": "Ilene Miranda",
+  "receiverName": "Tom Burgess",
+  "creationTime": {
+    "$date": "2019-10-15T20:06:59.818Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0719"
+  },
+  "companyID": 3,
+  "giverID": 1573,
+  "receiverID": 1271,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Lula Ho",
+  "receiverName": "Fritz Hubbard",
+  "creationTime": {
+    "$date": "2019-10-12T05:21:40.509Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071a"
+  },
+  "companyID": 3,
+  "giverID": 574,
+  "receiverID": 98,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Dale Stanton",
+  "receiverName": "Fernando Patrick",
+  "creationTime": {
+    "$date": "2019-07-11T17:00:38.641Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-06.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071b"
+  },
+  "companyID": 2,
+  "giverID": 291,
+  "receiverID": 162,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Michelle Roach",
+  "receiverName": "Abe Stuart",
+  "creationTime": {
+    "$date": "2020-11-10T16:22:41.325Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071c"
+  },
+  "companyID": 3,
+  "giverID": 2268,
+  "receiverID": 1156,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Aurora Carroll",
+  "receiverName": "Frank Melendez",
+  "creationTime": {
+    "$date": "2019-01-03T07:36:11.656Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071d"
+  },
+  "companyID": 3,
+  "giverID": 2053,
+  "receiverID": 2351,
+  "values": [],
+  "message": "Just wanted to say thanks for showing up every day, even when times were tough.",
+  "giverName": "Coy Kerr",
+  "receiverName": "Donna Blackburn",
+  "creationTime": {
+    "$date": "2019-10-16T16:17:45.251Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071e"
+  },
+  "companyID": 1,
+  "giverID": 25,
+  "receiverID": 67,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Cristopher Phelps",
+  "receiverName": "Kristopher Morton",
+  "creationTime": {
+    "$date": "2019-06-01T12:21:16.617Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b071f"
+  },
+  "companyID": 1,
+  "giverID": 92,
+  "receiverID": 8,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Nice job setting up the interns.",
+  "giverName": "Houston Carey",
+  "receiverName": "Korey Khan",
+  "creationTime": {
+    "$date": "2019-04-11T21:49:32.671Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0720"
+  },
+  "companyID": 2,
+  "giverID": 288,
+  "receiverID": 254,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Charley Wolf",
+  "receiverName": "Lizzie Freeman",
+  "creationTime": {
+    "$date": "2019-05-20T14:50:07.959Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0721"
+  },
+  "companyID": 3,
+  "giverID": 1410,
+  "receiverID": 2210,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Olen Harding",
+  "receiverName": "Gayle Lawrence",
+  "creationTime": {
+    "$date": "2020-11-23T13:30:45.734Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0722"
+  },
+  "companyID": 3,
+  "giverID": 1089,
+  "receiverID": 1423,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Eugene Bowers",
+  "receiverName": "Heidi Underwood",
+  "creationTime": {
+    "$date": "2019-04-28T17:31:50.508Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0723"
+  },
+  "companyID": 3,
+  "giverID": 531,
+  "receiverID": 1414,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Clement Cisneros",
+  "receiverName": "Toni Galloway",
+  "creationTime": {
+    "$date": "2019-02-07T13:58:15.962Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0724"
+  },
+  "companyID": 1,
+  "giverID": 92,
+  "receiverID": 63,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Houston Carey",
+  "receiverName": "Marcella Suarez",
+  "creationTime": {
+    "$date": "2020-07-14T08:11:37.016Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0725"
+  },
+  "companyID": 2,
+  "giverID": 360,
+  "receiverID": 125,
+  "values": [
+    "Nimble"
+  ],
+  "message": "Pulled through with R&D right before deadline.",
+  "giverName": "Ken Hartman",
+  "receiverName": "Denise Peters",
+  "creationTime": {
+    "$date": "2019-01-02T10:42:45.965Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0726"
+  },
+  "companyID": 3,
+  "giverID": 1484,
+  "receiverID": 96,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Sarah Terrell",
+  "receiverName": "Freddy Reid",
+  "creationTime": {
+    "$date": "2020-09-24T12:39:36.319Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0727"
+  },
+  "companyID": 3,
+  "giverID": 1851,
+  "receiverID": 292,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Josiah Knight",
+  "receiverName": "Phoebe Spence",
+  "creationTime": {
+    "$date": "2019-03-19T09:58:31.412Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0728"
+  },
+  "companyID": 3,
+  "giverID": 1021,
+  "receiverID": 2097,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Jessie Guzman",
+  "receiverName": "Willie Larsen",
+  "creationTime": {
+    "$date": "2020-06-01T21:25:48.738Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0729"
+  },
+  "companyID": 1,
+  "giverID": 100,
+  "receiverID": 69,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Thanks for the help with the new dev toolkit.",
+  "giverName": "Luisa Delacruz",
+  "receiverName": "Elma Riley",
+  "creationTime": {
+    "$date": "2019-01-01T12:52:32.880Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072a"
+  },
+  "companyID": 2,
+  "giverID": 235,
+  "receiverID": 54,
+  "values": [
+    "Selfless",
+    "Nimble"
+  ],
+  "message": "Thanks so much for the help with the pipeline, I know it's not easy during crunch.",
+  "giverName": "Rocco Delacruz",
+  "receiverName": "Andres Holder",
+  "creationTime": {
+    "$date": "2019-04-06T02:01:41.419Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072b"
+  },
+  "companyID": 1,
+  "giverID": 39,
+  "receiverID": 1,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Client should be set after our work yesterday.",
+  "giverName": "Katina Miles",
+  "receiverName": "Arron Garcia",
+  "creationTime": {
+    "$date": "2019-09-27T16:01:36.631Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072c"
+  },
+  "companyID": 2,
+  "giverID": 468,
+  "receiverID": 229,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Sandy Villegas",
+  "receiverName": "Alexander Compton",
+  "creationTime": {
+    "$date": "2019-09-16T18:21:25.060Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072d"
+  },
+  "companyID": 1,
+  "giverID": 84,
+  "receiverID": 8,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Foster Olson",
+  "receiverName": "Korey Khan",
+  "creationTime": {
+    "$date": "2019-07-13T05:25:44.252Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072e"
+  },
+  "companyID": 1,
+  "giverID": 18,
+  "receiverID": 14,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Thanks for the help with the new dev toolkit.",
+  "giverName": "Carmelo Nunez",
+  "receiverName": "Carolyn Peterson",
+  "creationTime": {
+    "$date": "2020-02-26T04:02:33.837Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b072f"
+  },
+  "companyID": 3,
+  "giverID": 117,
+  "receiverID": 1436,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Cheryl Prince",
+  "receiverName": "Kurtis Choi",
+  "creationTime": {
+    "$date": "2019-12-21T11:58:39.709Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0730"
+  },
+  "companyID": 3,
+  "giverID": 250,
+  "receiverID": 1520,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Dominique York",
+  "receiverName": "Jordan Pineda",
+  "creationTime": {
+    "$date": "2021-03-29T15:24:50.182Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-06.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0731"
+  },
+  "companyID": 2,
+  "giverID": 304,
+  "receiverID": 225,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Kara Snyder",
+  "receiverName": "Cassie Espinoza",
+  "creationTime": {
+    "$date": "2019-03-05T22:09:50.327Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0732"
+  },
+  "companyID": 1,
+  "giverID": 10,
+  "receiverID": 90,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Nice job setting up the interns.",
+  "giverName": "Diane Morrow",
+  "receiverName": "Esmeralda Atkins",
+  "creationTime": {
+    "$date": "2020-10-06T18:48:40.257Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0733"
+  },
+  "companyID": 1,
+  "giverID": 86,
+  "receiverID": 94,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Client should be set after our work yesterday.",
+  "giverName": "Levi Keller",
+  "receiverName": "Chance Daugherty",
+  "creationTime": {
+    "$date": "2020-10-22T00:32:37.781Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0734"
+  },
+  "companyID": 2,
+  "giverID": 88,
+  "receiverID": 315,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Jerry Spence",
+  "receiverName": "Selena Kane",
+  "creationTime": {
+    "$date": "2019-03-10T04:29:39.532Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0735"
+  },
+  "companyID": 3,
+  "giverID": 201,
+  "receiverID": 959,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Dwight Hicks",
+  "receiverName": "Emilio Wilson",
+  "creationTime": {
+    "$date": "2019-04-17T11:33:48.641Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0736"
+  },
+  "companyID": 1,
+  "giverID": 97,
+  "receiverID": 99,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Roderick Gill",
+  "receiverName": "Caroline Daniel",
+  "creationTime": {
+    "$date": "2020-07-27T15:15:49.818Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0737"
+  },
+  "companyID": 3,
+  "giverID": 799,
+  "receiverID": 510,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Darlene Shea",
+  "receiverName": "Alvaro Rogers",
+  "creationTime": {
+    "$date": "2019-11-05T22:28:37.369Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0738"
+  },
+  "companyID": 1,
+  "giverID": 23,
+  "receiverID": 39,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Nice job setting up the interns.",
+  "giverName": "Douglas Calhoun",
+  "receiverName": "Katina Miles",
+  "creationTime": {
+    "$date": "2019-11-16T17:02:36.259Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0739"
+  },
+  "companyID": 3,
+  "giverID": 1680,
+  "receiverID": 691,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Melisa Webster",
+  "receiverName": "Kirsten Lucas",
+  "creationTime": {
+    "$date": "2019-05-08T10:05:57.426Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073a"
+  },
+  "companyID": 3,
+  "giverID": 1192,
+  "receiverID": 2316,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Maggie Bender",
+  "receiverName": "Prince Ross",
+  "creationTime": {
+    "$date": "2019-04-15T19:41:49.408Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073b"
+  },
+  "companyID": 2,
+  "giverID": 12,
+  "receiverID": 203,
+  "values": [
+    "Selfless",
+    "Nimble"
+  ],
+  "message": "Thanks so much for the help with the pipeline, I know it's not easy during crunch.",
+  "giverName": "Sonny Coffey",
+  "receiverName": "Darryl Green",
+  "creationTime": {
+    "$date": "2020-07-11T15:56:46.321Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073c"
+  },
+  "companyID": 3,
+  "giverID": 56,
+  "receiverID": 329,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Valentine Parker",
+  "receiverName": "Dane Weeks",
+  "creationTime": {
+    "$date": "2019-05-08T10:33:11.834Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073d"
+  },
+  "companyID": 2,
+  "giverID": 387,
+  "receiverID": 376,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Jae Foster",
+  "receiverName": "Mason Macias",
+  "creationTime": {
+    "$date": "2019-01-12T09:20:36.107Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073e"
+  },
+  "companyID": 2,
+  "giverID": 143,
+  "receiverID": 345,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Abdul Carroll",
+  "receiverName": "Jeffery Joyce",
+  "creationTime": {
+    "$date": "2020-11-09T09:58:28.324Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b073f"
+  },
+  "companyID": 3,
+  "giverID": 1999,
+  "receiverID": 323,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Sylvia Vincent",
+  "receiverName": "Mariana Armstrong",
+  "creationTime": {
+    "$date": "2019-07-24T22:00:42.686Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-06.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0740"
+  },
+  "companyID": 2,
+  "giverID": 200,
+  "receiverID": 58,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Stefanie Chen",
+  "receiverName": "Freda Tucker",
+  "creationTime": {
+    "$date": "2019-09-01T09:27:59.930Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0741"
+  },
+  "companyID": 2,
+  "giverID": 390,
+  "receiverID": 76,
+  "values": [
+    "Nimble"
+  ],
+  "message": "Pulled through with R&D right before deadline.",
+  "giverName": "Celeste Anderson",
+  "receiverName": "Edgar Griffin",
+  "creationTime": {
+    "$date": "2020-07-15T08:14:26.108Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0742"
+  },
+  "companyID": 3,
+  "giverID": 11,
+  "receiverID": 1004,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Yvonne Burnett",
+  "receiverName": "Keenan Ramirez",
+  "creationTime": {
+    "$date": "2020-05-21T16:58:59.634Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0743"
+  },
+  "companyID": 3,
+  "giverID": 2189,
+  "receiverID": 902,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Cristobal Cabrera",
+  "receiverName": "Louella Carpenter",
+  "creationTime": {
+    "$date": "2019-04-10T10:55:48.887Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0744"
+  },
+  "companyID": 1,
+  "giverID": 24,
+  "receiverID": 3,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Gwendolyn Fletcher",
+  "receiverName": "Diane Moyer",
+  "creationTime": {
+    "$date": "2019-09-12T08:42:21.644Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0745"
+  },
+  "companyID": 3,
+  "giverID": 286,
+  "receiverID": 2089,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Bridget Wolf",
+  "receiverName": "David Richards",
+  "creationTime": {
+    "$date": "2019-08-06T03:05:58.950Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0746"
+  },
+  "companyID": 1,
+  "giverID": 58,
+  "receiverID": 33,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Nice job setting up the interns.",
+  "giverName": "Wendell Cantu",
+  "receiverName": "Keneth Thornton",
+  "creationTime": {
+    "$date": "2019-02-03T05:42:51.399Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0747"
+  },
+  "companyID": 3,
+  "giverID": 2155,
+  "receiverID": 722,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Trent Banks",
+  "receiverName": "Sandy Mcdowell",
+  "creationTime": {
+    "$date": "2020-12-14T04:51:02.287Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0748"
+  },
+  "companyID": 3,
+  "giverID": 1330,
+  "receiverID": 2369,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Louis Oconnell",
+  "receiverName": "Ruby Chapman",
+  "creationTime": {
+    "$date": "2021-01-02T08:04:30.172Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0749"
+  },
+  "companyID": 3,
+  "giverID": 556,
+  "receiverID": 935,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Clement Bray",
+  "receiverName": "Jodie Kelly",
+  "creationTime": {
+    "$date": "2020-06-27T23:23:21.412Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074a"
+  },
+  "companyID": 2,
+  "giverID": 13,
+  "receiverID": 146,
+  "values": [],
+  "message": "Good sell with the investors yesterday.",
+  "giverName": "Cathy Fields",
+  "receiverName": "Eugenia Santana",
+  "creationTime": {
+    "$date": "2019-10-22T07:45:38.347Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074b"
+  },
+  "companyID": 2,
+  "giverID": 254,
+  "receiverID": 140,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Lizzie Freeman",
+  "receiverName": "Angel Snow",
+  "creationTime": {
+    "$date": "2020-08-13T09:28:49.531Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074c"
+  },
+  "companyID": 2,
+  "giverID": 497,
+  "receiverID": 188,
+  "values": [
+    "Selfless",
+    "Nimble"
+  ],
+  "message": "Thanks so much for the help with the pipeline, I know it's not easy during crunch.",
+  "giverName": "Hubert Little",
+  "receiverName": "Maynard Hale",
+  "creationTime": {
+    "$date": "2020-12-26T14:15:36.922Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074d"
+  },
+  "companyID": 2,
+  "giverID": 438,
+  "receiverID": 367,
+  "values": [
+    "Selfless",
+    "Nimble"
+  ],
+  "message": "Thanks so much for the help with the pipeline, I know it's not easy during crunch.",
+  "giverName": "Nelson Bradford",
+  "receiverName": "Allie Gentry",
+  "creationTime": {
+    "$date": "2019-02-22T04:20:41.782Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "reactions": {}
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074e"
+  },
+  "companyID": 2,
+  "giverID": 196,
+  "receiverID": 298,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Albert Waters",
+  "receiverName": "Christie Sandoval",
+  "creationTime": {
+    "$date": "2020-07-28T06:03:37.943Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b074f"
+  },
+  "companyID": 3,
+  "giverID": 1106,
+  "receiverID": 1989,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Gena Yang",
+  "receiverName": "Kaye Mccarthy",
+  "creationTime": {
+    "$date": "2020-12-02T03:04:35.648Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-03.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0750"
+  },
+  "companyID": 3,
+  "giverID": 735,
+  "receiverID": 615,
+  "values": [
+    "Selfless"
+  ],
+  "message": "You were a beast last night. Hopefully no more all-nighters for a while after we render this version.",
+  "giverName": "Ilene Sampson",
+  "receiverName": "Porfirio Oconnor",
+  "creationTime": {
+    "$date": "2019-01-21T10:45:41.484Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0751"
+  },
+  "companyID": 3,
+  "giverID": 672,
+  "receiverID": 787,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Alden Soto",
+  "receiverName": "Lesa Harvey",
+  "creationTime": {
+    "$date": "2020-05-01T10:42:37.523Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0752"
+  },
+  "companyID": 3,
+  "giverID": 1856,
+  "receiverID": 1186,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Madge Mercer",
+  "receiverName": "Stacey Lozano",
+  "creationTime": {
+    "$date": "2021-02-18T01:24:38.245Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0753"
+  },
+  "companyID": 1,
+  "giverID": 9,
+  "receiverID": 33,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Russell Hogan",
+  "receiverName": "Keneth Thornton",
+  "creationTime": {
+    "$date": "2020-08-14T08:30:39.173Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0754"
+  },
+  "companyID": 3,
+  "giverID": 257,
+  "receiverID": 822,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Carmine Owen",
+  "receiverName": "Adeline Santiago",
+  "creationTime": {
+    "$date": "2020-10-17T05:37:18.310Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0755"
+  },
+  "companyID": 1,
+  "giverID": 83,
+  "receiverID": 82,
+  "values": [
+    "Collaboration",
+    "Mentoring"
+  ],
+  "message": "Thanks for the help with the new dev toolkit.",
+  "giverName": "Dorothea Olsen",
+  "receiverName": "Alonso Vasquez",
+  "creationTime": {
+    "$date": "2019-12-21T20:07:58.264Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0756"
+  },
+  "companyID": 1,
+  "giverID": 23,
+  "receiverID": 30,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Douglas Calhoun",
+  "receiverName": "Silvia Haas",
+  "creationTime": {
+    "$date": "2020-08-17T14:31:42.009Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0757"
+  },
+  "companyID": 1,
+  "giverID": 51,
+  "receiverID": 74,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Thanks for the debugging help today.",
+  "giverName": "Susie Glenn",
+  "receiverName": "Loretta Bass",
+  "creationTime": {
+    "$date": "2020-11-23T17:57:40.214Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0758"
+  },
+  "companyID": 3,
+  "giverID": 1660,
+  "receiverID": 1293,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Ernesto Gray",
+  "receiverName": "Hershel Conrad",
+  "creationTime": {
+    "$date": "2019-01-08T06:16:03.685Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-00.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0759"
+  },
+  "companyID": 1,
+  "giverID": 25,
+  "receiverID": 55,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Cristopher Phelps",
+  "receiverName": "Boris Guerra",
+  "creationTime": {
+    "$date": "2021-01-17T04:31:15.498Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-01.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075a"
+  },
+  "companyID": 3,
+  "giverID": 650,
+  "receiverID": 687,
+  "values": [
+    "Collaboration"
+  ],
+  "message": "Marketing seemed to like the new concepts; We make a good team.",
+  "giverName": "Frankie Villegas",
+  "receiverName": "Doreen Bean",
+  "creationTime": {
+    "$date": "2019-05-08T02:39:10.315Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-04.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075b"
+  },
+  "companyID": 2,
+  "giverID": 23,
+  "receiverID": 169,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Software working like a charm. Thanks for showing me the ropes.",
+  "giverName": "Leanne Montoya",
+  "receiverName": "Shawn Ramos",
+  "creationTime": {
+    "$date": "2021-03-28T06:03:09.121Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-02.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075c"
+  },
+  "companyID": 2,
+  "giverID": 406,
+  "receiverID": 459,
+  "values": [
+    "Selfless"
+  ],
+  "message": "Thanks for pulling crunch with me, hopefully we won't have to do it again.",
+  "giverName": "Brady Lambert",
+  "receiverName": "Nichole Gutierrez",
+  "creationTime": {
+    "$date": "2020-08-31T20:57:57.616Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-05.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075d"
+  },
+  "companyID": 3,
+  "giverID": 1126,
+  "receiverID": 1478,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Alton Poole",
+  "receiverName": "Bert Gibbs",
+  "creationTime": {
+    "$date": "2020-09-08T03:23:38.232Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-08.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075e"
+  },
+  "companyID": 3,
+  "giverID": 825,
+  "receiverID": 1835,
+  "values": [
+    "Innovation"
+  ],
+  "message": "Boss likes the new testing tool, thinking of adding it to the pipeline. Nice work.",
+  "giverName": "Deon Sanders",
+  "receiverName": "Wendi Rivas",
+  "creationTime": {
+    "$date": "2019-11-19T21:41:37.254Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b075f"
+  },
+  "companyID": 1,
+  "giverID": 60,
+  "receiverID": 34,
+  "values": [],
+  "message": "Good job with the client presentation yesterday.",
+  "giverName": "Earnest House",
+  "receiverName": "Tom Irwin",
+  "creationTime": {
+    "$date": "2019-12-21T15:13:20.703Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-07.jpg"
+},{
+  "_id": {
+    "$oid": "606115373bec893f2c8b0760"
+  },
+  "companyID": 3,
+  "giverID": 798,
+  "receiverID": 19,
+  "values": [
+    "Mentoring"
+  ],
+  "message": "Thanks for showing us the in-house tools! We should be set going forward.",
+  "giverName": "Felecia Potter",
+  "receiverName": "Elisa Potter",
+  "creationTime": {
+    "$date": "2021-02-25T15:55:22.004Z"
+  },
+  "comments": [],
+  "receiverProfilePicURL": "test-profile-pic-09.jpg"
+},{
+  "_id": {
+    "$oid": "606e054cf18bda0b90534ac8"
+  },
+  "values": [],
+  "companyID": 2,
+  "giverID": 1,
+  "receiverID": 459,
+  "message": "Thanks for helping me present posting a recognition.",
+  "giverName": "Rita Trevino",
+  "receiverName": "Nichole Gutierrez",
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078968c40635420f8096b13"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Test recognition.",
+  "creationTime": {
+    "$date": "2021-04-15T19:39:56.533Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078975540635420f8096b14"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Let's try that one more time.",
+  "creationTime": {
+    "$date": "2021-04-15T19:43:17.561Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078976740635420f8096b15"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Tom Irwin",
+  "giverID": 26,
+  "receiverID": 34,
+  "message": "Another recog, this time for Tom.",
+  "creationTime": {
+    "$date": "2021-04-15T19:43:35.908Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-07.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078f322acf86d2c8ca1914e"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Diane Moyer",
+  "giverID": 26,
+  "receiverID": 3,
+  "message": "This one's for you, Diane.",
+  "creationTime": {
+    "$date": "2021-04-16T02:14:58.847Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078f33cacf86d2c8ca1914f"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Boris Guerra",
+  "giverID": 26,
+  "receiverID": 55,
+  "message": "Checking to see whether Boris' PFP matches up.",
+  "creationTime": {
+    "$date": "2021-04-16T02:15:24.279Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-01.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6078f649db2a422028144cbc"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Jamel Spencer",
+  "giverID": 1,
+  "receiverID": 26,
+  "message": "Jamel finally gets a recognition.",
+  "creationTime": {
+    "$date": "2021-04-16T02:28:25.200Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607ca3381c987c0e9080d8a1"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Giving you a recognition to test whether the rockstar calculation is correct.",
+  "creationTime": {
+    "$date": "2021-04-18T21:23:04.171Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607caeecb6dddf36bc890fc9"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "I'm giving you lots of recognitions in order to make sure you show up properly as the employee of the month.",
+  "creationTime": {
+    "$date": "2021-04-18T22:13:00.203Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cbb5bb6dddf36bc890fca"
+  },
+  "values": [],
+  "companyID": 2,
+  "giverName": "Kathryn Merritt",
+  "receiverName": "Nichole Gutierrez",
+  "giverID": 6,
+  "receiverID": 459,
+  "message": "Here's another recognition, to see whether you show up as rockstar.",
+  "creationTime": {
+    "$date": "2021-04-18T23:06:03.075Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cbbc4b6dddf36bc890fcb"
+  },
+  "values": [],
+  "companyID": 2,
+  "giverName": "Kathryn Merritt",
+  "receiverName": "Nichole Gutierrez",
+  "giverID": 6,
+  "receiverID": 459,
+  "message": "Here's one more recognition.",
+  "creationTime": {
+    "$date": "2021-04-18T23:07:48.427Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "__v": 19,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [],
+    "goat": []
+  }
+},{
+  "_id": {
+    "$oid": "607cd04bff0309ad28d9004e"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Rachael Johnston",
+  "giverID": 26,
+  "receiverID": 36,
+  "message": "i love u rachael",
+  "creationTime": {
+    "$date": "2021-04-19T00:35:23.125Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cd280a0c1b4ad91c19c80"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Rachael Johnston",
+  "giverID": 26,
+  "receiverID": 36,
+  "message": "cfsdafsd",
+  "creationTime": {
+    "$date": "2021-04-19T00:44:48.235Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cd2aea0c1b4ad91c19c81"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Rachael Johnston",
+  "giverID": 26,
+  "receiverID": 36,
+  "message": "test 1st entry",
+  "creationTime": {
+    "$date": "2021-04-19T00:45:34.685Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cd2bea0c1b4ad91c19c82"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Rachael Johnston",
+  "giverID": 26,
+  "receiverID": 36,
+  "message": "test second entry",
+  "creationTime": {
+    "$date": "2021-04-19T00:45:50.779Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cdd6264211020c07366bb"
+  },
+  "values": [],
+  "companyID": 3,
+  "giverName": "Lonny Waters",
+  "receiverName": "Freddy Reid",
+  "giverID": 5,
+  "receiverID": 96,
+  "message": "Here's a recognition mate",
+  "creationTime": {
+    "$date": "2021-04-19T01:31:14.738Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607cddb164211020c07366bc"
+  },
+  "values": [],
+  "companyID": 3,
+  "giverName": "Lonny Waters",
+  "receiverName": "Freddy Reid",
+  "giverID": 5,
+  "receiverID": 96,
+  "message": "One more for the road.",
+  "creationTime": {
+    "$date": "2021-04-19T01:32:32.820Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607d000d1a20a41680a07dc8"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Kurtis Mata",
+  "giverID": 26,
+  "receiverID": 29,
+  "message": "Testing to see whether this works with the new animations.",
+  "creationTime": {
+    "$date": "2021-04-19T03:59:09.563Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-01.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607d008bd0cfc0433cd87fda"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Rachael Johnston",
+  "giverID": 1,
+  "receiverID": 36,
+  "message": "sdcsd",
+  "creationTime": {
+    "$date": "2021-04-19T04:01:15.330Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607d9fd65b83f1bac1f61eee"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "test mentoring",
+  "creationTime": {
+    "$date": "2021-04-19T15:20:54.196Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607d9fff5b83f1bac1f61eef"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "test mentoring",
+  "creationTime": {
+    "$date": "2021-04-19T15:21:34.956Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607daf196d345c0fbcfbf7bd"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Kurtis Mata",
+  "giverID": 26,
+  "receiverID": 29,
+  "message": "Thank you Kurtis very cool",
+  "creationTime": {
+    "$date": "2021-04-19T16:26:01.491Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-01.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607db8a13126825338eada24"
+  },
+  "values": [],
+  "receiverName": "Lacy Lambert",
+  "companyID": 1,
+  "message": "Core Value Test 1",
+  "receiverID": 2,
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607db9a93126825338eada25"
+  },
+  "values": [
+    "Collaboration"
+  ],
+  "receiverName": "Lacy Lambert",
+  "companyID": 1,
+  "message": "Core Value Test 2",
+  "receiverID": 2,
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607db9f80a7f11350cf24524"
+  },
+  "values": [],
+  "receiverName": "Lacy Lambert",
+  "companyID": 1,
+  "message": "Core Value Test 3",
+  "receiverID": 2,
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607dca190e0829057c69a921"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Briana Wilkinson",
+  "giverID": 1,
+  "receiverID": 4,
+  "message": "I need to type something",
+  "creationTime": {
+    "$date": "2021-04-19T18:21:13.777Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607dcdd9099c711ec4c42fe5"
+  },
+  "values": [],
+  "receiverName": "Lacy Lambert",
+  "companyID": 1,
+  "message": "Core Value Test 3",
+  "receiverID": 2,
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607f157143f3b9d18ae02fbe"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Diane Moyer",
+  "giverID": 26,
+  "receiverID": 3,
+  "message": "test dianne",
+  "creationTime": {
+    "$date": "2021-04-20T17:54:57.652Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 1,
+  "comments": [],
+  "reactions": {
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "607f159d43f3b9d18ae02fbf"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Erasmo Snow",
+  "giverID": 26,
+  "receiverID": 87,
+  "message": "test erasmo",
+  "creationTime": {
+    "$date": "2021-04-20T17:55:40.937Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 1,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "607f1be66b5bdcd2fb7ffa48"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "test lacy + core",
+  "creationTime": {
+    "$date": "2021-04-20T18:22:30.048Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607f1c326b5bdcd2fb7ffa49"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "lacy + collab",
+  "creationTime": {
+    "$date": "2021-04-20T18:23:46.345Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607f1f8bb3802dd658ccef23"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "test arron",
+  "creationTime": {
+    "$date": "2021-04-20T18:38:03.093Z"
+  },
+  "receiverProfilePicURL": "placeholder.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607f288157dd26d7d9f6dcb7"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Diane Moyer",
+  "giverID": 26,
+  "receiverID": 3,
+  "message": "test core",
+  "creationTime": {
+    "$date": "2021-04-20T19:16:17.252Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607f28cb57dd26d7d9f6dcb8"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "fred",
+  "creationTime": {
+    "$date": "2021-04-20T19:17:31.334Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 1,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "607f298c57dd26d7d9f6dcb9"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "core",
+  "creationTime": {
+    "$date": "2021-04-20T19:20:44.567Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 3,
+  "comments": [],
+  "reactions": {
+    "goat": [
+      26
+    ],
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "607f29e257dd26d7d9f6dcba"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "dqwa",
+  "creationTime": {
+    "$date": "2021-04-20T19:22:10.690Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 4,
+  "comments": [],
+  "reactions": {
+    "goat": [],
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "60802d4c57dd26d7d9f6dcbb"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Erasmo Snow",
+  "giverID": 26,
+  "receiverID": 87,
+  "message": "test profile pic",
+  "creationTime": {
+    "$date": "2021-04-21T13:49:00.605Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 6,
+  "comments": [],
+  "reactions": {
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "60802d8957dd26d7d9f6dcbc"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "test lacy",
+  "creationTime": {
+    "$date": "2021-04-21T13:50:01.380Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 1,
+  "comments": [],
+  "reactions": {
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "608035ee57dd26d7d9f6dcbe"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Nice Job Arron!",
+  "creationTime": {
+    "$date": "2021-04-21T14:25:50.503Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 4,
+  "comments": [],
+  "reactions": {
+    "goat": []
+  }
+},{
+  "_id": {
+    "$oid": "60803ed857dd26d7d9f6dcbf"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Clinton Peterson",
+  "giverID": 26,
+  "receiverID": 45,
+  "message": "Clinton!",
+  "creationTime": {
+    "$date": "2021-04-21T15:03:51.919Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "__v": 5,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [
+      26
+    ],
+    "goat": []
+  }
+},{
+  "_id": {
+    "$oid": "60803f5757dd26d7d9f6dcc0"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Erasmo Snow",
+  "giverID": 26,
+  "receiverID": 87,
+  "message": "nice job!",
+  "creationTime": {
+    "$date": "2021-04-21T15:05:59.777Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 4,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [
+      26
+    ],
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "608082a657dd26d7d9f6dcc1"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "nice job arron!",
+  "creationTime": {
+    "$date": "2021-04-21T19:53:10.343Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 6,
+  "comments": [],
+  "reactions": {
+    "goat": [],
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "6080831f57dd26d7d9f6dcc2"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Erasmo Snow",
+  "giverID": 26,
+  "receiverID": 87,
+  "message": "test entry",
+  "creationTime": {
+    "$date": "2021-04-21T19:55:11.310Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-09.jpg",
+  "__v": 12,
+  "comments": [
+    {
+      "likes": [],
+      "_id": {
+        "$oid": "608426cbd385a70294dea301"
+      },
+      "message": "Looking good",
+      "giverName": "Jamel Spencer",
+      "creationDate": {
+        "$date": "2021-04-24T14:10:19.860Z"
+      },
+      "employeeId": 26
+    }
+  ],
+  "reactions": {
+    "thumbsUp": []
+  }
+},{
+  "_id": {
+    "$oid": "6086ca9f227d7ba611483bfc"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Lacy Lambert",
+  "giverID": 26,
+  "receiverID": 2,
+  "message": "p",
+  "creationTime": {
+    "$date": "2021-04-26T14:13:51.590Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 48,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [],
+    "goat": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "608707b5cde56b5816706c69"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Diane Moyer",
+  "giverID": 26,
+  "receiverID": 3,
+  "message": "test",
+  "creationTime": {
+    "$date": "2021-04-26T18:34:28.795Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 3,
+  "reactions": {
+    "goat": [
+      26
+    ],
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "60870c4ccde56b5816706c6a"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "test",
+  "creationTime": {
+    "$date": "2021-04-26T18:54:03.332Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608877f55f144b37e03831e1"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Extra test recognition for Arron Garcia.",
+  "creationTime": {
+    "$date": "2021-04-27T20:45:41.634Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "__v": 9,
+  "comments": [],
+  "reactions": {
+    "thumbsUp": [
+      26
+    ],
+    "goat": []
+  }
+},{
+  "_id": {
+    "$oid": "60887ffcebbc721910c71aed"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "Test after getting core-styles.",
+  "creationTime": {
+    "$date": "2021-04-27T21:19:56.382Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 14,
+  "reactions": {
+    "thumbsUp": [],
+    "goat": []
+  }
+},{
+  "_id": {
+    "$oid": "6088c8393aa8e70e54d659b4"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "test",
+  "creationTime": {
+    "$date": "2021-04-28T02:28:09.029Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 1,
+  "reactions": {}
+},{
+  "_id": {
+    "$oid": "60899d5fb38b4e0679e04697"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Briana Wilkinson",
+  "giverID": 26,
+  "receiverID": 4,
+  "message": "test again\n",
+  "creationTime": {
+    "$date": "2021-04-28T17:37:34.871Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-08.jpg",
+  "comments": [],
+  "__v": 3,
+  "reactions": {
+    "goat": [
+      26
+    ],
+    "thumbsUp": [
+      26
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "608c2dd672beb91affb16ef3"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "b",
+  "creationTime": {
+    "$date": "2021-04-30T16:18:29.057Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608c2fea72beb91affb16ef4"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "test",
+  "creationTime": {
+    "$date": "2021-04-30T16:27:21.686Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608c34eb72beb91affb16ef5"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "v",
+  "creationTime": {
+    "$date": "2021-04-30T16:48:42.852Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "608c3b2b72beb91affb16ef6"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "f",
+  "creationTime": {
+    "$date": "2021-04-30T17:15:22.124Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 2,
+  "reactions": {}
+},{
+  "_id": {
+    "$oid": "609583acdae1bd72e0ce738a"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "hi",
+  "creationTime": {
+    "$date": "2021-05-07T18:15:08.661Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096ebd7521ddb777c9e26c0"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Jamel Spencer",
+  "giverID": 1,
+  "receiverID": 26,
+  "message": "nice",
+  "creationTime": {
+    "$date": "2021-05-08T19:51:51.804Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096ec87521ddb777c9e26c1"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Jamel Spencer",
+  "giverID": 1,
+  "receiverID": 26,
+  "message": "hi",
+  "creationTime": {
+    "$date": "2021-05-08T19:54:46.951Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096ee26521ddb777c9e26c2"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Jamel Spencer",
+  "giverID": 1,
+  "receiverID": 26,
+  "message": "test",
+  "creationTime": {
+    "$date": "2021-05-08T19:57:28.168Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096eff8521ddb777c9e26c4"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "re",
+  "creationTime": {
+    "$date": "2021-05-08T20:09:21.551Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096f0c2521ddb777c9e26c6"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Jamel Spencer",
+  "receiverName": "Arron Garcia",
+  "giverID": 26,
+  "receiverID": 1,
+  "message": "hi",
+  "creationTime": {
+    "$date": "2021-05-08T20:12:07.288Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-00.jpg",
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6096f107521ddb777c9e26c8"
+  },
+  "values": [],
+  "companyID": 1,
+  "giverName": "Arron Garcia",
+  "receiverName": "Jamel Spencer",
+  "giverID": 1,
+  "receiverID": 26,
+  "message": "you good",
+  "creationTime": {
+    "$date": "2021-05-08T20:13:58.434Z"
+  },
+  "receiverProfilePicURL": "test-profile-pic-05.jpg",
+  "comments": [],
+  "__v": 0
+}]
