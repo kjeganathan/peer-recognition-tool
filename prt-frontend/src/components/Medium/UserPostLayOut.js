@@ -14,6 +14,7 @@ import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
 import Fade from 'react-reveal/Fade'; //fade animation
 import { Button } from 'semantic-ui-react'
+import Dropdown from "react-bootstrap/Dropdown";
 const colorStyle={
     control: style => ({backgroundColor: 'rgb(210, 252, 255)', width: '93%', height: '30px',margin: '5px'})
 }
@@ -83,6 +84,39 @@ export default class UserPostLayOut extends Component {
         axios.get("http://localhost:3001/recogs", { withCredentials: true })
             .then(res => this.updateFeedHelper(res.data));
     }
+<<<<<<< HEAD
+=======
+
+    Notifications() {
+        axios.get('http://localhost:3001/notifications', { withCredentials: true })
+          .then((res) => this.updateNotifications(res));
+    }
+    updateNotifications(res) {
+        const newNotifications = res.data.notifications;
+        const newElements = newNotifications.map(notification => {
+          return [
+            <Dropdown.Item href="#/mention">
+              {notification.message}
+              <p>{notification.arrivalTime}</p>
+            </Dropdown.Item>,
+            <Dropdown.Divider></Dropdown.Divider>
+          ];
+        });
+        // console.log("Notifications: " + notifications);
+    
+        this.setState({
+          numNewNotifications: newNotifications.length,
+          elements: newElements
+        });
+    }
+
+    updateUsers(res, callback){
+        for(var i=0;i<Object.keys(res.data).length;i++){
+            res.data[i]["giver"] = this.getUserFromID(res.data[i]["reco"].giverID);
+            console.log(this.getUserFromID(res.data[i]["reco"].giverID))
+        }
+    }
+>>>>>>> origin/notifications-endpoints
 
     getUserFromID(employeeId) {
         var result;
@@ -181,11 +215,20 @@ export default class UserPostLayOut extends Component {
                     creationTime: new Date()
 
                 };
-                console.log(newItem);
+                var newNotifications = {
+                    employeeId: this._recognized.value.id,
+                    message: this._recognition.value
+                };
+                var id = String(this._recognized.value.id);
+                var notificationPath = 'http://localhost:3001/notifications/'+id;
+                
                 axios.post('http://localhost:3001/postRec', newItem, { withCredentials: true })
                     .then((res) => {
-                        console.log(res.data);
                         this.updateFeed();
+                    });
+                axios.post(notificationPath, newNotifications, { withCredentials: true })
+                    .then((res) => {
+                        this.Notifications();
                     });
             }
 
