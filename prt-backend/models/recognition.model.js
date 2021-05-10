@@ -6,11 +6,11 @@ const collectionName = config.RECOGNITION_COLLECTION_NAME;
 
 const commentSchema = new Schema(
     {
-        // commenterID: Number,
         commenter: {
             type: Schema.Types.ObjectId,
             ref: "Employee"
         },
+
         message: String,
         creationDate: Date,
         likeGiverIDs: [
@@ -25,7 +25,6 @@ const commentSchema = new Schema(
 const reactionSchema = new Schema(
     {
         reactionID: Number,
-        // reactionGiverIDs: [Number]
         reactionGivers: [
             {
                 type: Schema.Types.ObjectId,
@@ -37,22 +36,26 @@ const reactionSchema = new Schema(
 
 const recognitionSchema = new Schema(
     {
-        // companyID: Number,
         company: {
             type: Schema.Types.ObjectId,
             ref: "Company"
         },
-        // giverID: Number,
+
         giver: {
             type: Schema.Types.ObjectId,
             ref: "Employee"
         },
-        // receiverID: Number,
-        values: [String],
+
+        receiver: {
+            type: Schema.Types.ObjectId,
+            ref: "Employee"
+        },
+
+        coreValues: [String],
         message: String,
         creationDate: Date,
-        comments: [commentSchema],
-        reactions: [reactionSchema]
+        reactions: [reactionSchema],
+        comments: [commentSchema]
     }, {
         collection: collectionName
     }
