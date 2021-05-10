@@ -6,54 +6,58 @@ const collectionName = config.RECOGNITION_COLLECTION_NAME;
 
 const commentSchema = new Schema(
     {
-        commenterID: Number,
+        // commenterID: Number,
+        commenter: {
+            type: Schema.Types.ObjectId,
+            ref: "Employee"
+        },
         message: String,
         creationDate: Date,
-        likeGiverIDs: [Number]
+        likeGiverIDs: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Employee"
+            }
+        ]
     }
 );
 
 const reactionSchema = new Schema(
     {
         reactionID: Number,
-        reactionGiverIDs: [Number]
+        // reactionGiverIDs: [Number]
+        reactionGivers: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Employee"
+            }
+        ]
     }
 );
 
 const recognitionSchema = new Schema(
     {
-        companyID: Number,
-        // giverName: String,
-        // receiverName: String,
-        giverID: Number,
-        receiverID: Number,
+        // companyID: Number,
+        company: {
+            type: Schema.Types.ObjectId,
+            ref: "Company"
+        },
+        // giverID: Number,
+        giver: {
+            type: Schema.Types.ObjectId,
+            ref: "Employee"
+        },
+        // receiverID: Number,
         values: [String],
         message: String,
         creationDate: Date,
-        // receiverProfilePicURL: String,
         comments: [commentSchema],
         reactions: [reactionSchema]
-
-        // comments: [{
-        //     message: String,
-        //     giverName: String,
-        //     creationDate: Date,
-        //     employeeId: Number,
-        //     likes: [Number] //Array of the employeeIds of people who liked it
-        // }],
-
-        // reactions: {  // Map of reaction types (key) to employeeIds (value)
-        //     type: Map,
-        //     of: [Number]
-        // },
     }, {
-        // collection: "Recognitions"
         collection: collectionName
     }
 );
 
-//mongoose.model(ModelName, schema, ModelCollection)
-// const Recognition = mongoose.model("Recognition", recognitionSchema, "Recognitions");
 const Recognition = mongoose.model("Recognition", recognitionSchema, collectionName);
 
 module.exports = Recognition;

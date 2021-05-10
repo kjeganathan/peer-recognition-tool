@@ -1,19 +1,28 @@
 const minDate = new Date("2021-01-01T00:00");
 const maxDate = new Date();
 
-const minNumComments = 0;
-const maxNumComments = 5;
+const minReactionID = 0;
+const maxReactionID = 3;
 
 const minNumReactions = 0;
 const maxNumReactions = 10;
 
+const minNumComments = 0;
+const maxNumComments = 5;
+
 const minNumLikes = 0;
 const maxNumLikes = 10;
 
-const minReactionID = 0;
-const maxReactionID = 3;
+const numRecognitionsPerCompany = 20;
 
-const numRecognitionsPerCompany = 100;
+const commentMessages = [
+    "You guys rock!",
+    "Great work.",
+    "Wish I could've seen it!",
+    "Exemplary!",
+    "Another job well done.",
+    "Keep up the good work."
+];
 
 const recognitionTemplate_GC1 = {
     values: ["Collaboration"],
@@ -114,35 +123,46 @@ const recognitionTemplates_OT = [
     recognitionTemplate_OT5
 ];
 
-const commentMessages = [
-    "You guys rock!",
-    "Great work.",
-    "Wish I could've seen it!",
-    "Exemplary!",
-    "Another job well done.",
-    "Keep up the good work."
-]
+const employees_GC = db.Employees.find({ companyId: 1 });
+const employees_SE = db.Employees.find({ companyId: 2 });
+const employees_OT = db.Employees.find({ companyId: 3 });
 
-const company_GC = {
-    companyID: 1,
-    minEmployeeID: 1,
-    maxEmployeeID: 100,
-    recognitionTemplates: recognitionTemplates_GC
-}
+const company_GC = db.Companies.find({ companyId: 1 });
+const company_SE = db.Companies.find({ companyId: 2 });
+const company_OT = db.Companies.find({ companyId: 3 });
 
-const company_SE = {
-    companyID: 2,
-    minEmployeeID: 1,
-    maxEmployeeID: 500,
-    recognitionTemplates: recognitionTemplates_SE
-}
+company_GC.recognitionTemplates = recognitionTemplates_GC;
+company_GC.employees = employees_GC;
 
-const company_OT = {
-    companyID: 3,
-    minEmployeeID: 1,
-    maxEmployeeID: 2500,
-    recognitionTemplates: recognitionTemplates_OT
-}
+company_SE.recognitionTemplates = recognitionTemplates_SE;
+company_SE.employees = employees_SE;
+
+company_OT.recognitionTemplates = recognitionTemplates_OT;
+company_OT.employees = employees_OT;
+
+// const company_GC = {
+//     companyID: 1,
+//     minEmployeeID: 1,
+//     maxEmployeeID: 100,
+//     employees: employees_GC,
+//     recognitionTemplates: recognitionTemplates_GC
+// }
+
+// const company_SE = {
+//     companyID: 2,
+//     minEmployeeID: 1,
+//     maxEmployeeID: 500,
+//     employees: employees_SE,
+//     recognitionTemplates: recognitionTemplates_SE
+// }
+
+// const company_OT = {
+//     companyID: 3,
+//     minEmployeeID: 1,
+//     maxEmployeeID: 2500,
+//     employees: employees_OT,
+//     recognitionTemplates: recognitionTemplates_OT
+// }
 
 var allRecognitions = [];
 
@@ -153,7 +173,7 @@ allRecognitions = allRecognitions.concat(getRecognitions(company_OT, numRecognit
 db.TestRecognitions.remove({});
 db.TestRecognitions.insertMany(allRecognitions);
 
-//---
+// Helper functions below
 
 function getRecognitions(company, numRecognitions) {
     const recognitions = [];
@@ -184,28 +204,32 @@ function getRecognition(
     company,
     minDate,
     maxDate,
-    minNumComments,
-    maxNumComments,
-    minNumReactions,
-    maxNumReactions,
     minReactionID,
     maxReactionID,
+    minNumReactions,
+    maxNumReactions,
+    minNumComments,
+    maxNumComments,
     minNumLikes,
     maxNumLikes,
     commentMessages
 ) {
-    const giverID = getRandomEmployeeID(company);
-    var receiverID = getRandomEmployeeID(company);
+    // const giverID = getRandomEmployeeID(company);
+    // var receiverID = getRandomEmployeeID(company);
 
-    while (receiverID == giverID) {
-        receiverID = getRandomEmployeeID(company);
-    }
+    // while (receiverID == giverID) {
+    //     receiverID = getRandomEmployeeID(company);
+    // }
+
+    const giverIDReceiverIDPair = getRandomEmployeeIDs(company.employees, 2);
+    const giverID = giverIDReceiverIDPair[0];
+    const receiverID = giverIDReceiverIDPair[1];
 
     const recognitionTemplate = getRandomElement(company.recognitionTemplates);
     const creationDate = getRandomDate(minDate, maxDate);
 
     return {
-        companyID: company.companyID,
+        company: company._id,
         giverID: giverID,
         receiverID: receiverID,
         values: recognitionTemplate.values,
@@ -233,72 +257,68 @@ function getRecognition(
     }
 }
 
-function getComment(company, commentMessages, minDate, maxDate, minNumLikes, maxNumLikes) {
-    return {
-        commenterID: getRandomEmployeeID(company),
-        message: getRandomElement(commentMessages),
-        creationDate: getRandomDate(minDate, maxDate),
-        likeGiverIDs: getRandomEmployeeIDs(company, minNumLikes, maxNumLikes)
-    };
-}
+// function getComment(company, commentMessages, minDate, maxDate, minNumLikes, maxNumLikes) {
+//     return {
+//         commenterID: getRandomEmployeeID(company),
+//         message: getRandomElement(commentMessages),
+//         creationDate: getRandomDate(minDate, maxDate),
+//         likeGiverIDs: getRandomEmployeeIDs(company, minNumLikes, maxNumLikes)
+//     };
+// }
 
-function getComments(
-    company,
-    minNumComments,
-    maxNumComments,
-    minDate,
-    maxDate,
-    minNumLikes,
-    maxNumLikes,
-    commentMessages
-) {
-    const numComments = getRandomInteger(minNumComments, maxNumComments);
-    const comments = [];
+// function getComments(
+//     company,
+//     minNumComments,
+//     maxNumComments,
+//     minDate,
+//     maxDate,
+//     minNumLikes,
+//     maxNumLikes,
+//     commentMessages
+// ) {
+//     const numComments = getRandomInteger(minNumComments, maxNumComments);
+//     const comments = [];
 
-    for (var i = 0; i < numComments; i++) {
-        comments.push(getComment(company, commentMessages, minDate, maxDate, minNumLikes, maxNumLikes));
-    }
+//     for (var i = 0; i < numComments; i++) {
+//         comments.push(getComment(company, commentMessages, minDate, maxDate, minNumLikes, maxNumLikes));
+//     }
 
-    return comments;
-}
+//     return comments;
+// }
 
-function getReaction(company, reactionID, minNumReactions, maxNumReactions) {
-    return {
-        reactionID: reactionID,
-        reactionGiverIDs: getRandomEmployeeIDs(company, minNumReactions, maxNumReactions)
-    }
-}
 
-function getReactions(
-    company,
-    minNumReactions,
-    maxNumReactions,
-    minReactionID,
-    maxReactionID
-) {
-    const reactions = [];
+// function getReactions(
+//     company,
+//     minNumReactions,
+//     maxNumReactions,
+//     minReactionID,
+//     maxReactionID
+// ) {
+//     const reactions = [];
 
-    for (var reactionID = minReactionID; reactionID <= maxReactionID; reactionID++) {
-        reactions.push(getReaction(company, reactionID, minNumReactions, maxNumReactions));
-    }
+//     for (var reactionID = minReactionID; reactionID <= maxReactionID; reactionID++) {
+//         reactions.push(getReaction(company, reactionID, minNumReactions, maxNumReactions));
+//     }
 
-    return reactions;
-}
+//     return reactions;
+// }
 
-function getRandomElement(array) {
-    return array[0, getRandomInteger(0, array.length - 1)];
-}
+// function getReaction(company, reactionID, numReactionGivers) {
+//     // const numReactionGivers = getRandomInteger(minNumReactions, maxNumReactions);
 
-function getRandomEmployeeID(company) {
-    return getRandomInteger(company.minEmployeeID, company.maxEmployeeID);
-}
+//     return {
+//         reactionID: reactionID,
+//         reactionGivers: getRandomEmployeeIDs(company, numReactionGivers)
+//     }
+// }
 
-function getRandomEmployeeIDs(company, minNumEmployeeIDs, maxNumEmployeeIDs) {
-    const numEmployeeIDs = getRandomInteger(minNumEmployeeIDs, maxNumEmployeeIDs);
+
+function getRandomEmployeeIDs(employees, numEmployeeIDs) {
+    // const numEmployeeIDs = getRandomInteger(minNumEmployeeIDs, maxNumEmployeeIDs);
     const employeeIDs = [];
 
     while (employeeIDs.length < numEmployeeIDs) {
-        const employeeID = getRandomEmployeeID(company);
+        const employeeID = getRandomElement(employees)._id;
 
         if (!employeeIDs.includes(employeeID)) {
             employeeIDs.push(employeeID);
@@ -306,6 +326,14 @@ function getRandomEmployeeIDs(company, minNumEmployeeIDs, maxNumEmployeeIDs) {
     }
 
     return employeeIDs;
+}
+
+// // function getRandomEmployeeID(company) {
+// //     return getRandomInteger(company.minEmployeeID, company.maxEmployeeID);
+// // }
+
+function getRandomElement(array) {
+    return array[getRandomInteger(0, array.length - 1)];
 }
 
 function getRandomDate(minDate, maxDate) {
