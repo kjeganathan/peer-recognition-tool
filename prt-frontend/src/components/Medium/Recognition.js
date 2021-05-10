@@ -13,8 +13,8 @@ export default class Recognition extends Component {
         super(props);
 
         this.state = {
-            giver: props.giver,
-            receiver: props.receiver,
+            giverName: props.giver,
+            receiverName: props.receiver,
             receiverProfilePicURL: props.receiverProfilePicURL,
             message: props.message,
             coreValues: props.coreValues,
@@ -44,9 +44,9 @@ export default class Recognition extends Component {
                             class="profilePictures"
                             src={this.state.receiverProfilePicURL}
                         />
-                        <strong>{this.state.receiver}</strong>
+                        <strong>{this.state.receiverName}</strong>
                         &nbsp;received a recognition from&nbsp;
-                        <strong>{this.state.giver}</strong>
+                        <strong>{this.state.giverName}</strong>
                     </right>
                 </Row>
 

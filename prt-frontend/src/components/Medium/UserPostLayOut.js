@@ -4,7 +4,8 @@ import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch } from "react-icons/bi";
 import CoreValuesButton from "./CoreValuesButton";
 import CommentButton from "../Small/CommentButton";
-import Recognition from "./Recognition"
+import Recognition from "../Medium/Recognition"
+import Feed from "../Medium/Feed"
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
@@ -371,10 +372,12 @@ export default class UserPostLayOut extends Component {
                 </form>
 
                 {this.filterButton()}
-                <ul className="thisList">
+                {/* <ul className="thisList">
                     {this.postList()}
-                </ul>
-
+                </ul> */}
+                <Feed
+                    companyID={this.state.cid}
+                />
             </div>
 
         )
