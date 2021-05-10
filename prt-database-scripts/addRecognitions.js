@@ -141,24 +141,17 @@ company_SE.employees = employees_SE;
 company_OT.recognitionTemplates = recognitionTemplates_OT;
 company_OT.employees = employees_OT;
 
-printjson("company_GC: " + JSON.stringify(company_GC, null, 4).substring(0, 1000));
-
 var allRecognitions = [];
 
-// allRecognitions = allRecognitions.concat(getRecognitions(company_GC, numRecognitionsPerCompany));
-// allRecognitions = allRecognitions.concat(getRecognitions(company_SE, numRecognitionsPerCompany));
-// allRecognitions = allRecognitions.concat(getRecognitions(company_OT, numRecognitionsPerCompany));
-
 db.TestRecognitions.remove({});
-// db.TestRecognitions.insertMany(allRecognitions);
-insertRecognition(company_GC);
 
-// Helper functions below
+for(var i=0; i<numRecognitionsPerCompany; i++){
+    insertRecognition(company_GC);
+    insertRecognition(company_SE);
+    insertRecognition(company_OT);
+}
 
 function insertRecognition(company) {
-    // const recognitions = [];
-
-    // for (var i = 0; i < numRecognitions; i++) {
     const giverReceiverPair = getRandomEmployees(company.employees, 2);
     const recognitionTemplate = getRandomElement(company.recognitionTemplates);
     const recognitionCreationDate = getRandomDate(minDate, maxDate);
@@ -210,11 +203,6 @@ function insertRecognition(company) {
             comments: comments
         }
     );
-    //     recognitions.push(
-    //     );
-    // }
-
-    // return recognitions;
 }
 
 function getRandomEmployees(employees, numEmployees) {
