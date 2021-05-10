@@ -131,6 +131,7 @@ const company_GC = db.Companies.findOne({ companyId: 1 });
 const company_SE = db.Companies.findOne({ companyId: 2 });
 const company_OT = db.Companies.findOne({ companyId: 3 });
 
+
 company_GC.recognitionTemplates = recognitionTemplates_GC;
 company_GC.employees = employees_GC;
 
@@ -140,75 +141,80 @@ company_SE.employees = employees_SE;
 company_OT.recognitionTemplates = recognitionTemplates_OT;
 company_OT.employees = employees_OT;
 
+printjson("company_GC: " + JSON.stringify(company_GC, null, 4).substring(0, 1000));
+
 var allRecognitions = [];
 
-allRecognitions = allRecognitions.concat(getRecognitions(company_GC, numRecognitionsPerCompany));
-allRecognitions = allRecognitions.concat(getRecognitions(company_SE, numRecognitionsPerCompany));
-allRecognitions = allRecognitions.concat(getRecognitions(company_OT, numRecognitionsPerCompany));
+// allRecognitions = allRecognitions.concat(getRecognitions(company_GC, numRecognitionsPerCompany));
+// allRecognitions = allRecognitions.concat(getRecognitions(company_SE, numRecognitionsPerCompany));
+// allRecognitions = allRecognitions.concat(getRecognitions(company_OT, numRecognitionsPerCompany));
 
 db.TestRecognitions.remove({});
-db.TestRecognitions.insertMany(allRecognitions);
+// db.TestRecognitions.insertMany(allRecognitions);
+insertRecognition(company_GC);
 
 // Helper functions below
 
-function getRecognitions(company, numRecognitions) {
-    const recognitions = [];
+function insertRecognition(company) {
+    // const recognitions = [];
 
-    for (var i = 0; i < numRecognitions; i++) {
-        const giverReceiverPair = getRandomEmployees(company.employees, 2);
-        const recognitionTemplate = getRandomElement(company.recognitionTemplates);
-        const recognitionCreationDate = getRandomDate(minDate, maxDate);
-        const reactions = [];
+    // for (var i = 0; i < numRecognitions; i++) {
+    const giverReceiverPair = getRandomEmployees(company.employees, 2);
+    const recognitionTemplate = getRandomElement(company.recognitionTemplates);
+    const recognitionCreationDate = getRandomDate(minDate, maxDate);
+    const reactions = [];
 
-        for (var i = minReactionID; i <= maxReactionID; i++) {
-            const numReactionGivers = getRandomInteger(minNumReactionGivers, maxNumReactionGivers);
+    for (var i = minReactionID; i <= maxReactionID; i++) {
+        const numReactionGivers = getRandomInteger(minNumReactionGivers, maxNumReactionGivers);
 
-            reactions.push(
-                {
-                    reactionID: i,
-                    reactionGivers: getRandomEmployees(company.employees, numReactionGivers)
-                }
-            );
-        }
-
-        const comments = [];
-        const numComments = getRandomInteger(minNumComments, maxNumComments);
-
-        for (var i = 0; i < numComments; i++) {
-            const numLikes = getRandomInteger(minNumLikes, maxNumLikes);
-            var commentCreationDate;
-
-            if (comments.length == 0) {
-                commentCreationDate = getRandomDate(recognitionCreationDate, maxDate);
-            } else {
-                commentCreationDate = getRandomDate(comments[i - 1].creationDate, maxDate);
-            }
-
-            comments.push(
-                {
-                    commenter: getRandomEmployee(company.employees),
-                    message: getRandomElement(commentMessages),
-                    creationDate: commentCreationDate,
-                    likeGiverIDs: getRandomEmployees(company.employees, numLikes)
-                }
-            )
-        }
-
-        recognitions.push(
+        reactions.push(
             {
-                company: company._id,
-                giver: giverReceiverPair[0],
-                receiver: giverReceiverPair[1],
-                coreValues: recognitionTemplate.values,
-                message: recognitionTemplate.message,
-                creationDate: recognitionCreationDate,
-                reactions: reactions,
-                comments: comments
+                reactionID: i,
+                reactionGivers: getRandomEmployees(company.employees, numReactionGivers)
             }
         );
     }
 
-    return recognitions;
+    const comments = [];
+    const numComments = getRandomInteger(minNumComments, maxNumComments);
+
+    for (var i = 0; i < numComments; i++) {
+        const numLikes = getRandomInteger(minNumLikes, maxNumLikes);
+        var commentCreationDate;
+
+        if (comments.length == 0) {
+            commentCreationDate = getRandomDate(recognitionCreationDate, maxDate);
+        } else {
+            commentCreationDate = getRandomDate(comments[i - 1].creationDate, maxDate);
+        }
+
+        comments.push(
+            {
+                commenter: getRandomEmployee(company.employees),
+                message: getRandomElement(commentMessages),
+                creationDate: commentCreationDate,
+                likeGiverIDs: getRandomEmployees(company.employees, numLikes)
+            }
+        )
+    }
+
+    db.TestRecognitions.insert(
+        {
+            company: company._id,
+            giver: giverReceiverPair[0],
+            receiver: giverReceiverPair[1],
+            coreValues: recognitionTemplate.values,
+            message: recognitionTemplate.message,
+            creationDate: recognitionCreationDate,
+            reactions: reactions,
+            comments: comments
+        }
+    );
+    //     recognitions.push(
+    //     );
+    // }
+
+    // return recognitions;
 }
 
 function getRandomEmployees(employees, numEmployees) {

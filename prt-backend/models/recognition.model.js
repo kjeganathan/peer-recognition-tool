@@ -13,7 +13,7 @@ const commentSchema = new Schema(
 
         message: String,
         creationDate: Date,
-        likeGiverIDs: [
+        likeGivers: [
             {
                 type: Schema.Types.ObjectId,
                 ref: "Employee"
