@@ -376,7 +376,7 @@ export default class UserPostLayOut extends Component {
                     {this.postList()}
                 </ul> */}
                 <Feed
-                    companyID={this.state.cid}
+                    company={this.state.cid}
                 />
             </div>
 

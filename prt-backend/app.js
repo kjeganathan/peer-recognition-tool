@@ -129,6 +129,7 @@ app.use('/postReaction', require('./routes/reactions'));
 app.use("/user", require("./routes/user"));
 app.use("/users", require("./routes/users"));
 app.use("/recognitions", require("./routes/recognitions"));
+app.use("/company", require("./routes/company"));
 
 const monthlyAwardsSchedule = new scheduler.RecurrenceRule();
 monthlyAwardsSchedule.second = 0;
