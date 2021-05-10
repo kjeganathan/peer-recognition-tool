@@ -29,7 +29,8 @@ export default class Notifications extends Component {
     console.log(typeof(notifID));
     axios.delete('http://localhost:3001/notifications/', notifID, { withCredentials: true }) //error cost
       .then((res) => {
-          this.componentDidMount();
+          // this.componentDidMount();
+          this.updateNotifications(res);
       });
   }
 
@@ -40,7 +41,8 @@ export default class Notifications extends Component {
         numberId = numberId + 1;
         console.log(numberId)
       return [
-        <Dropdown.Item href="#/mention" onClick = {(event) => this.delete(event,notification._id)}>
+        // <Dropdown.Item href="#/mention" onClick = {(event) => this.delete(event,notification._id)}>
+        <Dropdown.Item href="#/mention">
           {notification.message}
           <p>{notification.arrivalTime}</p>
         </Dropdown.Item>,
