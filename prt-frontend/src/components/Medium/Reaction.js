@@ -37,8 +37,13 @@ export default class Reaction extends Component {
             emoji: this.state.emoji
         };
 
+        // console.log("POST!");
         axios.post("http://localhost:3001/reactions", body, {withCredentials: true})
-            .then(res => this.updateGivers());
+            .then(res => {
+                console.log("updateGivers()");
+                this.updateGivers();
+            })
+            .catch(error => console.log(error));
     }
 
     async componentDidMount(){
@@ -75,7 +80,7 @@ export default class Reaction extends Component {
 
     render() {
         return (
-            <Button className={this.renderColor()}>
+            <Button className={this.renderColor()} onClick={this.onClick}>
                 {this.state.emoji} {this.state.givers.length}
             </Button>
         );

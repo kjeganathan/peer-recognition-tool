@@ -10,77 +10,52 @@ router.get("/", async (req, res) => {
     const emoji = req.query.emoji;
     console.log("emoji: " + emoji);
 
-    const reactions = await Reaction.find({recognition: recognition, emoji: emoji});
+    const reactions = await Reaction.find({ recognition: recognition, emoji: emoji });
     console.log("reactions: " + JSON.stringify(reactions, null, 4).substring(0, 256));
 
     res.json(reactions);
     console.log("");
 });
 
-// /**
-//  * @openapi
-//  * /postReaction/{id}:
-//  *   post:
-//  *     description: Add/remove a reaction to the recognition with the given ID
-//  *     parameters:
-//  *       -
-//  *          name: value
-//  *          in: body
-//  *          description: Reaction
-//  *          required: true
-//  *          schema:
-//  *              type: object
-//  *              properties:
-//  *                reaction:
-//  *                  type: string
-//  *     responses:
-//  *       '201':
-//  *         description: Returns the updated recognition including reactions
-//  */
-// router.post('/:recogId', async (req, res) => {
-//   if (!req.isAuthenticated()) {
-//     res.status(401).json({ message: "You are not logged in" });
-//     return
-//   }
+router.post("/", async (req, res) => {
+    console.log("POST reactions/");
 
-//   const recog = await Recognition.findOne({ _id: req.params.recogId });
+    const recognition = req.body.recognition;
+    console.log("recognition: " + recognition);
 
-//   if (!recog) {
-//     res.status(404).send(`No recognition with ID ${req.params.recogId}`);
-//     return;
-//   }
+    const giver = req.body.giver;
+    console.log("giver: " + giver);
 
-//   if (!('reaction' in req.body)) {
-//     res.status(422).send('Use format {"reaction": "type of reaction"}');
-//     return;
-//   }
+    const emoji = req.body.emoji;
+    console.log("emoji: " + emoji);
 
-//   if (recog.reactions === undefined) {
-//     recog.reactions = {};
-//   }
+    var reaction = await Reaction.findOneAndDelete(
+        {
+            recognition: recognition,
+            giver: giver,
+            emoji: emoji
+        }
+    );
 
-//   const reactions = recog.reactions;
-//   const employeeId = req.user.employeeId;
+    console.log("reaction: " + JSON.stringify(reaction, null, 4).substring(0, 256));
 
-//   // Reactions are stored in a mongoose.Map, which can only be updated using
-//   // get/set functions.
-//   // https://mongoosejs.com/docs/schematypes.html#maps
-//   if (reactions.get(req.body.reaction) === undefined) {
-//     reactions.set(req.body.reaction, []);
-//   }
+    if (reaction != null) {
+        res.sendStatus(200);
+        console.log("");
+        return;
+    }
 
-//   const reactionType = reactions.get(req.body.reaction);
+    reaction = new Reaction(
+        {
+            recognition: recognition,
+            giver: giver,
+            emoji: emoji
+        }
+    );
 
-//   // Using the same endpoint for adding/removing probably isn't the most robust
-//   // idea, but it gets the job done for our purposes.
-//   if (reactionType.includes(employeeId)) {
-//     reactionType.remove(employeeId);
-//   } else {
-//     reactionType.push(employeeId);
-//   }
-
-//   await recog.save();
-//   res.status(201).send(recog);
-// });
+    await reaction.save();
+    res.sendStatus(200);
+    console.log("");
+});
 
 module.exports = router;
