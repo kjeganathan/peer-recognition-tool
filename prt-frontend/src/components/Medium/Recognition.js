@@ -120,21 +120,25 @@ export default class Recognition extends Component {
                     <Col className="floatright">
                         {/* <right> */}
                         <Reaction
+                            user={this.state.user}
                             recognitionID={this.state._id}
                             reactionName="Thumbs Up"
                             emoji="👍"
                         />
                         <Reaction
+                            user={this.state.user}
                             recognitionID={this.state._id}
                             reactionName="GOAT"
                             emoji="🐐"
                         />
                         <Reaction
+                            user={this.state.user}
                             recognitionID={this.state._id}
                             reactionName="Laugh"
                             emoji="😄"
                         />
                         <Reaction
+                            user={this.state.user}
                             recognitionID={this.state._id}
                             reactionName="Heart"
                             emoji="❤️"

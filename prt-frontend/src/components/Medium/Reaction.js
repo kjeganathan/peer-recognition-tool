@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 import Button from "react-bootstrap/Button"
 import "../Medium/Reaction.css";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -11,54 +12,55 @@ export default class Reaction extends Component {
         super(props)
 
         this.state = {
-            recognition: props.recognition,
+            user: props.user,
+            recognitionID: props.recognitionID,
             reactionName: props.reactionName,
             emoji: props.emoji,
-            givers: []
+            giverIDs: []
         }
 
-        this.updateGivers = this.updateGivers.bind(this);
+        this.updateGiverIDs = this.updateGiverIDs.bind(this);
         this.renderColor = this.renderColor.bind(this);
         this.onClick = this.onClick.bind(this);
     }
 
     onClick() {
         const body = {
-            recognition: this.state.recognition,
-            giver: localStorage.getItem("user"),
+            recognitionID: this.state.recognitionID,
+            giverID: this.state.user._id,
             emoji: this.state.emoji
         };
 
-        axios.post("http://localhost:3001/reactions", body, { withCredentials: true })
-            .then(res => this.updateGivers());
+        axios.post(routeNames.reactions, body, { withCredentials: true })
+            .then(res => this.updateGiverIDs());
     }
 
     async componentDidMount() {
-        this.updateGivers();
+        this.updateGiverIDs();
     }
 
-    async updateGivers() {
-        var givers;
+    async updateGiverIDs() {
+        var giverIDs;
 
-        givers = await Helpers.getWithParameters(
-            "http://localhost:3001/reactions",
-            { recognition: this.state.recognition, emoji: this.state.emoji },
+        giverIDs = await Helpers.getWithParameters(
+            routeNames.reactions,
+            { recognitionID: this.state.recognitionID, emoji: this.state.emoji },
             true
         );
 
-        givers = givers.map(giver => giver.giver);
-        console.log("givers: " + JSON.stringify(givers, null, 4));
+        giverIDs = giverIDs.map(giver => giver.giverID);
+        console.log("giverIDs: " + JSON.stringify(giverIDs, null, 4));
 
         this.setState(
             {
-                givers: givers
+                giverIDs: giverIDs
             }
         );
 
     }
 
     renderColor() {
-        if (this.state.givers.includes(localStorage.getItem("user"))) {
+        if (this.state.giverIDs.includes(this.state.user._id)) {
             return "buttons given";
         }
 
@@ -80,7 +82,7 @@ export default class Reaction extends Component {
                     className={this.renderColor()}
                     onClick={this.onClick}
                 >
-                    {this.state.emoji} {this.state.givers.length}
+                    {this.state.emoji} {this.state.giverIDs.length}
                 </Button>
             </OverlayTrigger>
         );
