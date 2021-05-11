@@ -19,8 +19,11 @@ export default class Recognition extends Component {
             receiver: props.receiver,
             message: props.message,
             coreValues: props.coreValues,
-            isShowingComments: true
+            isShowingComments: false
         }
+
+        this.toggleComments = this.toggleComments.bind(this);
+        this.renderComments = this.renderComments.bind(this);
     }
 
     async componentDidMount() {
@@ -44,11 +47,40 @@ export default class Recognition extends Component {
         );
     }
 
+    fullName(employee) {
+        return employee.firstName + " " + employee.lastName;
+    }
+
+    toggleComments(){
+        this.setState(
+            {
+                isShowingComments: !this.state.isShowingComments
+            }
+        );
+    }
+
+    renderComments(){
+        if(this.state.isShowingComments){
+            return(
+                <Row>
+                    <Col>
+                        <Comment
+                            commenter="foo"
+                            message="bar"
+                        />
+                    </Col>
+                </Row>
+            );
+        }
+
+        return null;
+    }
+
     render() {
         return (
             <Container className="recognition">
                 {/* <Row className="postHeader" style={{ fontSize: "20px" }}> */}
-                <Row style={{fontSize: "20px"}}>
+                <Row style={{ fontSize: "20px" }}>
                     {/* <right> */}
                     <Col md="auto">
                         <img
@@ -84,7 +116,7 @@ export default class Recognition extends Component {
                     &nbsp;
 
                         <Col>
-                        <CommentButton comments={this.state.comments} />
+                        <CommentButton onClick={this.toggleComments} />
                     </Col>
 
                     <Col className="floatright">
@@ -114,19 +146,9 @@ export default class Recognition extends Component {
                 </Row>
                 {/* </div> */}
 
-                <Row>
-                    <Col>
-                        <Comment
-                            commenter="foo"
-                            message="bar"
-                        />
-                    </Col>
-                </Row>
+                {this.renderComments()}
             </Container>
         );
     }
 
-    fullName(employee) {
-        return employee.firstName + " " + employee.lastName;
-    }
 }

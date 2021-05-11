@@ -9,6 +9,10 @@ import Tooltip from "react-bootstrap/Tooltip";
 export default class CommentButton extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            onClick: props.onClick
+        }
         // this.state = { items: [], text: '', showForm: false };
         // this.handleChange = this.handleChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,7 +60,7 @@ export default class CommentButton extends Component {
                     }
                 >
                     {/* <Button className="comment" onClick={this.handleCommentClick}> */}
-                    <Button>
+                    <Button onClick={this.state.onClick}>
                         <AiOutlineComment size={16} />
                     </Button>
                 </OverlayTrigger>
