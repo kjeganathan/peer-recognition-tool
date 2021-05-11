@@ -106,7 +106,7 @@ textarea{
     border-radius: 10px; /*round edge*/
     /* border: thin solid black; */
     border-collapse: initial;
-    height:200px;
+    /* height:200px; */
     width: 620px;
     resize:none;
     margin-left: 55%;
@@ -115,7 +115,7 @@ textarea{
 }
 
 .recognition .post{
-    height:30px;
+    /* height:30px; */
     width: 600px;
     
     resize:none;
@@ -141,7 +141,7 @@ textarea{
 }
 
 .postLineH{
-    width: 710px;
+    /* width: 710px; */
     left: 20px;
     border-bottom: 2px solid  #cfe0e0;
     position: absolute;
