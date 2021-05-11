@@ -16,10 +16,11 @@ export default class UserPostLayOut extends Component {
         super(props);
 
         this.state = {
-            company: props.company
+            company: props.company,
+            user: props.user
         };
 
-        console.log("this.state.company: " + this.state.company);
+        console.log("UserPostLayOut\nthis.state: " + JSON.stringify(this.state, null, 4).substring(0, 256));
     }
 
     Notifications() {
@@ -53,6 +54,7 @@ export default class UserPostLayOut extends Component {
                 />
                 <Feed
                     company={this.state.company}
+                    user={this.state.user}
                 />
             </>
         );

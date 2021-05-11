@@ -15,6 +15,7 @@ export default class Recognition extends Component {
         super(props);
 
         this.state = {
+            user: props.user,
             _id: props._id,
             giverID: props.giverID,
             receiverID: props.receiverID,
@@ -48,10 +49,6 @@ export default class Recognition extends Component {
         );
     }
 
-    // fullName(employee) {
-    //     return employee.firstName + " " + employee.lastName;
-    // }
-
     toggleComments() {
         this.setState(
             {
@@ -65,7 +62,10 @@ export default class Recognition extends Component {
             return (
                 <Row>
                     <Col>
-                        <Comments recognition={this.state._id} />
+                        <Comments
+                            user={this.state.user}
+                            recognitionID={this.state._id}
+                        />
                     </Col>
                 </Row>
             );
@@ -120,22 +120,22 @@ export default class Recognition extends Component {
                     <Col className="floatright">
                         {/* <right> */}
                         <Reaction
-                            recognition={this.state._id}
+                            recognitionID={this.state._id}
                             reactionName="Thumbs Up"
                             emoji="👍"
                         />
                         <Reaction
-                            recognition={this.state._id}
+                            recognitionID={this.state._id}
                             reactionName="GOAT"
                             emoji="🐐"
                         />
                         <Reaction
-                            recognition={this.state._id}
+                            recognitionID={this.state._id}
                             reactionName="Laugh"
                             emoji="😄"
                         />
                         <Reaction
-                            recognition={this.state._id}
+                            recognitionID={this.state._id}
                             reactionName="Heart"
                             emoji="❤️"
                         />

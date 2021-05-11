@@ -3,13 +3,15 @@ import Comment from "../Medium/Comment";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 
 export default class Comments extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            recognition: props.recognition,
+            user: props.user,
+            recognitionID: props.recognitionID,
             comments: [],
             comment: ""
         }
@@ -24,8 +26,8 @@ export default class Comments extends Component {
 
     async updateComments() {
         const comments = await Helpers.getWithParameters(
-            "http://localhost:3001/comments",
-            { recognition: this.state.recognition },
+            routeNames.comments,
+            { recognitionID: this.state.recognitionID },
             true
         );
 
@@ -45,13 +47,13 @@ export default class Comments extends Component {
 
         if (comment != "") {
             const body = {
-                recognition: this.state.recognition,
-                commenter: localStorage.getItem("user"),
+                recognitionID: this.state.recognitionID,
+                commenterID: this.state.user._id,
                 message: this.state.comment,
                 creationDate: new Date().toJSON()
             };
 
-            axios.post("http://localhost:3001/comments", body, { withCredentials: true })
+            axios.post(routeNames.comments, body, { withCredentials: true })
                 .then(res => this.updateComments());
         }
 
@@ -70,7 +72,7 @@ export default class Comments extends Component {
                         <li key={comment._id}>
                             <Comment
                                 date={new Date(comment.creationDate)}
-                                commenter={comment.commenter}
+                                commenterID={comment.commenterID}
                                 message={comment.message}
                             />
                         </li>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Card from "react-bootstrap/Card";
 import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 
 export default class Comment extends Component{
     constructor(props){
@@ -8,7 +9,7 @@ export default class Comment extends Component{
 
         this.state = {
             date: props.date,
-            commenter: props.commenter,
+            commenterID: props.commenterID,
             commenterName: "",
             message: props.message
         }
@@ -16,8 +17,8 @@ export default class Comment extends Component{
 
     async componentDidMount(){
         const commenter = await Helpers.getWithParameters(
-            "http://localhost:3001/users",
-            {user: this.state.commenter},
+            routeNames.employees,
+            {employeeID: this.state.commenterID},
             true
         );
 

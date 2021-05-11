@@ -9,6 +9,7 @@ export default class Feed extends Component {
 
         this.state = {
             company: props.company,
+            user: props.user,
             recognitions: []
         }
 
@@ -44,6 +45,7 @@ export default class Feed extends Component {
         return (
             <li key={recognition._id}>
                 <Recognition
+                    user={this.state.user}
                     _id={recognition._id}
                     giverID={recognition.giverID}
                     receiverID={recognition.receiverID}
