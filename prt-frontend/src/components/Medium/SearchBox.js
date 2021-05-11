@@ -6,8 +6,20 @@ export default class SearchBox extends Component{
         super(props);
 
         this.state = {
-            placeholder: props.placeholder
+            placeholder: props.placeholder,
+            text: ""
+            
         }
+
+        this.onTextChange = this.onTextChange.bind(this);
+    }
+
+    onTextChange(event){
+        this.setState(
+            {
+                text: event.target.value
+            }
+        );
     }
 
     render(){
@@ -15,6 +27,8 @@ export default class SearchBox extends Component{
             <textarea
                 rows={"1"}
                 placeholder={this.state.placeholder}
+                onChange={this.onTextChange}
+                value={this.state.text}
             >
             </textarea>
         );

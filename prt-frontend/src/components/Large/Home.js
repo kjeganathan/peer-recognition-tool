@@ -8,26 +8,28 @@ import Rockstar from "../Medium/Rockstar"
 import CoreValues from "../Medium/CoreValues"
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-  }
+    constructor(props) {
+        super(props);
+        // console.log(this.props);
 
-  render() {
-    return (
 
-      <Router>
+    }
 
-        <div>
+    render() {
+        return (
 
-          <Route render={() => <Profile user={this.props.location.state} />} />
-          <div class="left">
-            <Route render={() => <Rockstar user={this.props.location.state} />} />
-            <Route render={() => <CoreValues user={this.props.location.state} />} />
-          </div>
-          <Route render={() => <UserPostLayOut user={this.props.location.state} />} />
-        </div>
-      </Router>
-    );
-  }
+            <Router>
+
+                <div>
+
+                    <Route render={() => <Profile user={this.props.location.state} />} />
+                    <div class="left">
+                        <Route render={() => <Rockstar user={this.props.location.state} />} />
+                        <Route render={() => <CoreValues user={this.props.location.state} />} />
+                    </div>
+                    <Route render={() => <UserPostLayOut company={this.props.location.company._id} />} />
+                </div>
+            </Router>
+        );
+    }
 }

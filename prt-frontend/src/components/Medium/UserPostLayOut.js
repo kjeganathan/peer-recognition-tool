@@ -15,31 +15,11 @@ export default class UserPostLayOut extends Component {
     constructor(props) {
         super(props);
 
-
         this.state = {
-            company: localStorage.getItem("company")
+            company: props.company
         };
 
         console.log("this.state.company: " + this.state.company);
-
-        // console.log(this.state.peopleInCompany)
-        // axios.get('http://localhost:3001/getPeople', { withCredentials: true })
-        // .then((res) => this.setState({ peopleInCompany: res.data }));
-
-        // axios.get('http://localhost:3001/getCoreValues', { withCredentials: true })
-        // .then((res) => this.setState({ corevals: res.data }));
-    }
-
-    async componentDidMount() {
-        // console.log("cid: " + localStorage.getItem("cid"));
-
-        // const company = await Helpers.getWithParameters(
-        //     "http://localhost:3001/companies",
-        //     {companyID: localStorage.getItem("cid")},
-        //     true
-        // );
-
-        // this.setState({company: company._id});
     }
 
     Notifications() {
@@ -68,7 +48,9 @@ export default class UserPostLayOut extends Component {
     render() {
         return (
             <>
-                <RecognitionForm />
+                <RecognitionForm
+                    company={this.state.company}
+                />
                 <Feed
                     company={this.state.company}
                 />

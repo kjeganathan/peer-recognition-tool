@@ -25,18 +25,21 @@ export default class Login extends Component {
     }
 
     async successfulLogin(res) {
-        localStorage.setItem("user", res.data.user._id);
-        localStorage.setItem('username', this.state.username); //localstorage username
-        localStorage.setItem('fullName', res.data.user.firstName + " " + res.data.user.lastName);  //localstorage fullName
-        localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
-        localStorage.setItem('email', res.data.user.email);  //localstorage email
-        localStorage.setItem('company', res.data.user.companyName);  //localstorage company
-        localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
-        localStorage.setItem('cid', res.data.user.companyId);           //localstorage companyId
-        localStorage.setItem('employeeID', res.data.user.employeeId);   //localstorage employeeId
-        localStorage.setItem('isManager', res.data.user.isManager);     //localstorage isManager
+        console.log("successfulLogin()");
 
-        console.log("cid: " + localStorage.getItem("cid"));
+        const user = res.data.user;
+        // localStorage.setItem("user", res.data.user._id);
+        // localStorage.setItem('username', this.state.username); //localstorage username
+        // localStorage.setItem('fullName', res.data.user.firstName + " " + res.data.user.lastName);  //localstorage fullName
+        // localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position
+        // localStorage.setItem('email', res.data.user.email);  //localstorage email
+        // localStorage.setItem('company', res.data.user.companyName);  //localstorage company
+        // localStorage.setItem('startData', res.data.user.startDate);  //localstorage startDate
+        // localStorage.setItem('cid', res.data.user.companyId);           //localstorage companyId
+        // localStorage.setItem('employeeID', res.data.user.employeeId);   //localstorage employeeId
+        // localStorage.setItem('isManager', res.data.user.isManager);     //localstorage isManager
+
+        // console.log("cid: " + localStorage.getItem("cid"));
 
         const company = await Helpers.getWithParameters(
             "http://localhost:3001/companies",
@@ -44,34 +47,42 @@ export default class Login extends Component {
             true
         );
 
-        localStorage.setItem("company", company._id);
-        console.log('localStorage.getItem("company"): ' + localStorage.getItem("company"));
+        // localStorage.setItem("company", company._id);
+        // console.log('localStorage.getItem("company"): ' + localStorage.getItem("company"));
+
+        const props=
+            {
+                user: user,
+                company: company
+            }
+        
 
         var pathName = '';
-        console.log(res.data.user.isManager);
-        if (res.data.user.isManager) {
-            pathName = 'homemanager';
-            console.log("HOME MANAGER");
-        } else {
-            pathName = 'home';
-            console.log("HOME");
-        }
-        this.props.history.push({
-            pathname: pathName,
-            state: {
-                // username: res.data.user.firstName+" "+res.data.user.lastName,
-                // position: res.data.user.positionTitle,
-                // email: res.data.user.email,
-                // company: res.data.user.companyName,
-                // startData: res.data.user.startDate            
-                fullName: localStorage.getItem('fullName'),
-                position: localStorage.getItem('position'),
-                email: localStorage.getItem('email'),
-                company: localStorage.getItem('company'),
-                startData: localStorage.getItem('startData')
+        // console.log(res.data.user.isManager);
+        // if (res.data.user.isManager) {
+        //     pathName = 'homemanager';
+        //     console.log("HOME MANAGER");
+        // } else {
+        pathName = 'home';
+        // console.log("HOME");
+        // }
+        // this.props.history.push({
+        // pathname: pathName,
+        // state: {
+        //     fullName: localStorage.getItem('fullName'),
+        //     position: localStorage.getItem('position'),
+        //     email: localStorage.getItem('email'),
+        //     company: localStorage.getItem('company'),
+        //     startData: localStorage.getItem('startData')
+        // }
+        // })
+        this.props.history.push(
+            {
+                pathname: pathName,
+                state: props
             }
-        })
-        this.props.history.push('/' + pathName);
+        )
+        // this.props.history.push('/' + pathName);
     }
 
     failedLogin(res) {
@@ -83,7 +94,6 @@ export default class Login extends Component {
     render() {
         return (
             <div className="Login">
-
                 <h1>Login</h1>
                 <p1></p1>
                 <Form id='login'
