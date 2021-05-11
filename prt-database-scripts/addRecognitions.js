@@ -186,7 +186,7 @@ function insertRecognition(company) {
                 commenter: getRandomEmployee(company.employees),
                 message: getRandomElement(commentMessages),
                 creationDate: commentCreationDate,
-                likeGiverIDs: getRandomEmployees(company.employees, numLikes)
+                likeGivers: getRandomEmployees(company.employees, numLikes)
             }
         )
     }
