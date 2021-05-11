@@ -41,59 +41,64 @@ mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true 
 // See http://www.passportjs.org/docs/configure/
 
 passport.use(new LocalStrategy(
-  {
-    usernameField: 'username',
-    passwordField: 'password'
-  },
-  verify
+    {
+        usernameField: 'username',
+        passwordField: 'password'
+    },
+    verify
 ));
 
 function verify(username, password, done) {
-  Employee.findOne({ email: username }, (error, employee) => {
-    return verifyHelper(error, employee, password, done);
-  });
+    console.log("verify()");
+    console.log("username: " + JSON.stringify(username, null, 4));
+    console.log("password: " + JSON.stringify(password, null, 4));
+
+    Employee.findOne({ email: username }, (error, employee) => {
+        console.log("employee: " + JSON.stringify(employee));
+        return verifyHelper(error, employee, password, done);
+    });
 }
 
 function verifyHelper(error, user, password, done) {
-  if (error != null) {
-    return done(error);
-  }
+    if (error != null) {
+        return done(error);
+    }
 
-  if (user == null) {
-    return done(null, false, { message: "Employee not found." });
-  }
+    if (user == null) {
+        return done(null, false, { message: "Employee not found." });
+    }
 
-  if (user.password != password) {
-    return done(null, false, { message: "Incorrect password." });
-  }
+    if (user.password != password) {
+        return done(null, false, { message: "Incorrect password." });
+    }
 
-  return done(null, user);
+    return done(null, user);
 }
 
 passport.serializeUser((user, done) => {
-  done(null, user._id);
+    done(null, user._id);
 });
 
 passport.deserializeUser((ID, done) => {
-  Employee.findById(ID, (error, user) => {
-    done(error, user);
-  });
+    Employee.findById(ID, (error, user) => {
+        done(error, user);
+    });
 });
 
 // Handle POST request from login
 app.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send({ message: 'Logged in successfully', user: req.user });
+    res.send({ message: 'Logged in successfully', user: req.user });
 });
 
 
 // Endpoint to return all recognitions
 app.get("/recogs", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    recogs.getRecognitionsFromCompany(req, res);
-  }
+    if (!req.isAuthenticated()) {
+        res.status(401).send({ message: 'You are not logged in' });
+    }
+    else {
+        recogs.getRecognitionsFromCompany(req, res);
+    }
 });
 
 // if (!req.isAuthenticated()) {
@@ -103,21 +108,21 @@ app.get("/recogs", (req, res) => {
 
 app.options('*', cors())
 app.post("/postRec", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    recogs.postRecognition(req, res);
-  }
+    if (!req.isAuthenticated()) {
+        res.status(401).send({ message: 'You are not logged in' });
+    }
+    else {
+        recogs.postRecognition(req, res);
+    }
 });
 
 app.get("/getCoreValues", (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).send({ message: 'You are not logged in' });
-  }
-  else {
-    core.getCoreValues(req, res);
-  }
+    if (!req.isAuthenticated()) {
+        res.status(401).send({ message: 'You are not logged in' });
+    }
+    else {
+        core.getCoreValues(req, res);
+    }
 });
 
 app.use('/notifications', require('./routes/notifications'));
@@ -146,8 +151,8 @@ monthlyAwardsSchedule.date = 1;
 monthlyAwardsSchedule.month = [new scheduler.Range(0, 11)];
 
 const monthlyAwardsJob = scheduler.scheduleJob(monthlyAwardsSchedule, () => {
-  console.log("Saving monthly award winners.");
-  saveAwardWinners();
+    console.log("Saving monthly award winners.");
+    saveAwardWinners();
 });
 
 // saveAwardWinners();

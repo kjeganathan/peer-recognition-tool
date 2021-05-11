@@ -16,7 +16,7 @@ const employeeSchema = new Schema(
         startDate:              String,
         profilePicURL:          String
     }, {
-        collection: "Employees"
+        collection: "employees"
     }
 );
 

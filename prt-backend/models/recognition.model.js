@@ -5,17 +5,17 @@ const recognitionSchema = new Schema(
     {
         company: {
             type: Schema.Types.ObjectId,
-            ref: "Company"
+            ref: "company"
         },
 
         giver: {
             type: Schema.Types.ObjectId,
-            ref: "Employee"
+            ref: "employee"
         },
 
         receiver: {
             type: Schema.Types.ObjectId,
-            ref: "Employee"
+            ref: "employee"
         },
 
         coreValues: [String],
