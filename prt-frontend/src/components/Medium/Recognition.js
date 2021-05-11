@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-// import AwardsButton from "../Medium/AwardsButton"
 import Reaction from "../Medium/Reaction";
 import CommentButton from "../Small/CommentButton";
-import Comment from "../Medium/Comment"
+// import Comment from "../Medium/Comment"
+import Comments from "../Medium/Comments";
 import Helpers from "../../helpers.js";
 
 export default class Recognition extends Component {
@@ -41,15 +41,15 @@ export default class Recognition extends Component {
 
         this.setState(
             {
-                giverName: this.fullName(giver),
-                receiverName: this.fullName(receiver)
+                giverName: Helpers.fullName(giver),
+                receiverName: Helpers.fullName(receiver)
             }
         );
     }
 
-    fullName(employee) {
-        return employee.firstName + " " + employee.lastName;
-    }
+    // fullName(employee) {
+    //     return employee.firstName + " " + employee.lastName;
+    // }
 
     toggleComments(){
         this.setState(
@@ -64,10 +64,7 @@ export default class Recognition extends Component {
             return(
                 <Row>
                     <Col>
-                        <Comment
-                            commenter="foo"
-                            message="bar"
-                        />
+                        <Comments recognition={this.state._id}/>
                     </Col>
                 </Row>
             );

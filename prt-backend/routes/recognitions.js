@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const company = req.query.company;
     console.log("company: " + company);
 
-    const recognitions = await Recognition.find({ company: company })
+    const recognitions = await Recognition.find({ company: company });
     console.log("recognitions: " + JSON.stringify(recognitions, null, 4).substring(0, 256));
 
     res.json(recognitions);

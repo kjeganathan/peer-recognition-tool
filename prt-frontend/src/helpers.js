@@ -15,4 +15,8 @@ async function getWithParameters(route, parameters, isWithCredentials) {
     return data;
 }
 
-export default {getWithParameters};
+function fullName(employee) {
+    return employee.firstName + " " + employee.lastName;
+}
+
+export default {getWithParameters, fullName};
