@@ -25,43 +25,33 @@ export default class Reaction extends Component {
         this.onClick = this.onClick.bind(this);
     }
 
-    // handleButtonClick(type) {
-    //     axios.post("http://localhost:3001/postReaction/" + this.props.recognitionID, { reaction: type }, { withCredentials: true })
-    //         .then((res) => this.setState({ ...DEFAULT_REACTIONS, ...res.data.reactions }));
-    // }
-
-    onClick(){
+    onClick() {
         const body = {
             recognition: this.state.recognition,
             giver: localStorage.getItem("user"),
             emoji: this.state.emoji
         };
 
-        // console.log("POST!");
-        axios.post("http://localhost:3001/reactions", body, {withCredentials: true})
-            .then(res => {
-                console.log("updateGivers()");
-                this.updateGivers();
-            })
-            .catch(error => console.log(error));
+        axios.post("http://localhost:3001/reactions", body, { withCredentials: true })
+            .then(res => this.updateGivers())
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         this.updateGivers();
     }
-    
-    async updateGivers(){
+
+    async updateGivers() {
         var givers;
-    
+
         givers = await Helpers.getWithParameters(
             "http://localhost:3001/reactions",
-            {recognition: this.state.recognition, emoji: this.state.emoji},
+            { recognition: this.state.recognition, emoji: this.state.emoji },
             true
         );
-    
+
         givers = givers.map(giver => giver.giver);
         console.log("givers: " + JSON.stringify(givers, null, 4));
-    
+
         this.setState(
             {
                 givers: givers
@@ -70,19 +60,32 @@ export default class Reaction extends Component {
 
     }
 
-    renderColor(){
-        if(this.state.givers.includes(localStorage.getItem("user"))){
+    renderColor() {
+        if (this.state.givers.includes(localStorage.getItem("user"))) {
             return "buttons given";
         }
-        
+
         return "buttons not-given";
     }
 
     render() {
         return (
-            <Button className={this.renderColor()} onClick={this.onClick}>
-                {this.state.emoji} {this.state.givers.length}
-            </Button>
+            <OverlayTrigger
+                key="top"
+                placement="top"
+                overlay={
+                    <Tooltip>
+                        {this.state.reactionName}
+                    </Tooltip>
+                }
+            >
+                <Button
+                    className={this.renderColor()}
+                    onClick={this.onClick}
+                >
+                    {this.state.emoji} {this.state.givers.length}
+                </Button>
+            </OverlayTrigger>
         );
         // return (
         //     <div class="share-button">
