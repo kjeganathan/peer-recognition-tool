@@ -60,6 +60,7 @@ export default class Feed extends Component {
         return (
             <li key={recognition._id}>
                 <Recognition
+                    _id={recognition._id}
                     giver={recognition.giver}
                     receiver={recognition.receiver}
                     message={recognition.message}

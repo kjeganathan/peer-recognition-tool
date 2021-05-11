@@ -13,6 +13,7 @@ export default class Recognition extends Component {
         super(props);
 
         this.state = {
+            _id: props._id,
             giver: props.giver,
             receiver: props.receiver,
             message: props.message,
@@ -79,18 +80,22 @@ export default class Recognition extends Component {
                         <Col className="floatright">
                             <right>
                                 <Reaction
+                                    recognition={this.state._id}
                                     reactionName="Thumbs Up"
                                     emoji="👍"
                                 />
                                 <Reaction
+                                    recognition={this.state._id}
                                     reactionName="GOAT"
                                     emoji="🐐"
                                 />
                                 <Reaction
+                                    recognition={this.state._id}
                                     reactionName="Laugh"
                                     emoji="😄"
                                 />
                                 <Reaction
+                                    recognition={this.state._id}
                                     reactionName="Heart"
                                     emoji="❤️"
                                 />

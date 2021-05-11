@@ -1,5 +1,21 @@
-// const router = require('express').Router()
-// const Recognition = require('../models/recognition.model');
+const router = require('express').Router()
+const Reaction = require('../models/reaction.model');
+
+router.get("/", async (req, res) => {
+    console.log("GET reactions/");
+
+    const recognition = req.query.recognition;
+    console.log("recognition: " + recognition);
+
+    const emoji = req.query.emoji;
+    console.log("emoji: " + emoji);
+
+    const reactions = await Reaction.find({recognition: recognition, emoji: emoji});
+    console.log("reactions: " + JSON.stringify(reactions, null, 4).substring(0, 256));
+
+    res.json(reactions);
+    console.log("");
+});
 
 // /**
 //  * @openapi
@@ -67,4 +83,4 @@
 //   res.status(201).send(recog);
 // });
 
-// module.exports = router;
+module.exports = router;

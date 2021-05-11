@@ -1,7 +1,7 @@
-.Awards-Button {
+/* .Awards-Button {
   size: 50%;
-  background-color: #59D7C8;
-}
+  /* background-color: #59D7C8; */
+/* }
 
 .share-button {
   width: 200px;
@@ -27,9 +27,9 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #29C2DE;
-  color: #f1f1f1;
-  text-align: center;
+  /* background: #29C2DE; */
+  /* color: #f1f1f1; */
+  /* text-align: center;
   line-height: 35px;
   z-index: 999;
   transition: .2s linear;
@@ -65,15 +65,22 @@
 }
 .share-button a:nth-of-type(4){
   transition-delay: .1s;
-}
-.buttons {
+} */
+/* .buttons {
     margin-bottom: 0px;
     margin-top: 0px;
-    /* height: 40px; */
-    /* width: 40px; */
     font-size: 16px;
+} */
+
+.given{
+  background-color: #80ecff !important;
+  /* color: black; */
 }
-.badge1 {
+
+.not-given{
+  background-color: #116f80 !important;
+}
+/* .badge1 {
     
     position:absolute;
     top:0px;
@@ -85,8 +92,8 @@
     height: 12px;
     font-size: x-small;
     
-}
-.badge2 {
+} */
+/* .badge2 {
     
   position:absolute;
   top:0px;
@@ -125,4 +132,4 @@
   font-size: x-small;
   
 }
- 
+  */

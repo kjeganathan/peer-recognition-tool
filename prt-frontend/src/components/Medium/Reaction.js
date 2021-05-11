@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helpers from "../../helpers.js";
 import Button from "react-bootstrap/Button"
 import DropdownButton from "react-bootstrap/DropdownButton"
 // import "./AwardsButton.css";
@@ -8,22 +9,20 @@ import Overlay from "react-bootstrap/Overlay";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import axios from 'axios';
 
-// export const DEFAULT_REACTIONS = {
-//     thumbsUp: [],
-//     goat: [],
-//     laugh: [],
-//     love: []
-// }
-
 export default class Reaction extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            recognition: props.recognition,
             reactionName: props.reactionName,
             emoji: props.emoji,
+            givers: []
         }
-        // this.state = { ...DEFAULT_REACTIONS, ...props.reactions };
+
+        this.updateGivers = this.updateGivers.bind(this);
+        this.renderColor = this.renderColor.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     // handleButtonClick(type) {
@@ -31,12 +30,53 @@ export default class Reaction extends Component {
     //         .then((res) => this.setState({ ...DEFAULT_REACTIONS, ...res.data.reactions }));
     // }
 
+    onClick(){
+        const body = {
+            recognition: this.state.recognition,
+            giver: localStorage.getItem("user"),
+            emoji: this.state.emoji
+        };
+
+        axios.post("http://localhost:3001/reactions", body, {withCredentials: true})
+            .then(res => this.updateGivers());
+    }
+
+    async componentDidMount(){
+        this.updateGivers();
+    }
+    
+    async updateGivers(){
+        var givers;
+    
+        givers = await Helpers.getWithParameters(
+            "http://localhost:3001/reactions",
+            {recognition: this.state.recognition, emoji: this.state.emoji},
+            true
+        );
+    
+        givers = givers.map(giver => giver.giver);
+        console.log("givers: " + JSON.stringify(givers, null, 4));
+    
+        this.setState(
+            {
+                givers: givers
+            }
+        );
+
+    }
+
+    renderColor(){
+        if(this.state.givers.includes(localStorage.getItem("user"))){
+            return "buttons given";
+        }
+        
+        return "buttons not-given";
+    }
+
     render() {
         return (
-            <Button
-                className="buttons"
-            >
-                {this.state.emoji}
+            <Button className={this.renderColor()}>
+                {this.state.emoji} {this.state.givers.length}
             </Button>
         );
         // return (

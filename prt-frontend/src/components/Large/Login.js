@@ -24,6 +24,7 @@ export default class Login extends Component {
     }
 
     successfulLogin(res) {
+        localStorage.setItem("user", res.data.user._id);
         localStorage.setItem('username', this.state.username); //localstorage username
         localStorage.setItem('fullName', res.data.user.firstName + " " + res.data.user.lastName);  //localstorage fullName
         localStorage.setItem('position', res.data.user.positionTitle);  //localstorage position

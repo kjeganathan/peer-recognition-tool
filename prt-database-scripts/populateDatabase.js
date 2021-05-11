@@ -169,47 +169,24 @@ async function insertRecognition(company) {
             message: recognitionTemplate.message,
             creationDate: getRandomDate(minDate, maxDate),
         },
-        // insertReactions(company.employees)
-        // function(error, recognition){
-        //     print(recognition);
-        // }
     );
 
-    insertReactions(company.employees, recognition, "👍");
-    // db.reactions.insert(
-    //     {
-    //         recognition: 
-    //     }
-    // );
+    insertReactions(company, recognition, "👍");
+    insertReactions(company, recognition, "🐐");
+    insertReactions(company, recognition, "😄");
+    insertReactions(company, recognition, "❤️");
 }
 
-// function insertReactions(employees){
-//     // db.reactions.insert(
-//     //     {
-//     //         recognition: recognition._id,
-//     //         giver: getRandomEmployees
-//     //     }
-//     // )
-//     return function(error, recognition){
-//         print(recognition);
-//         insertReactionsHelper(employees, recognition, "👍");
-//         insertReactionsHelper(employees, recognition, "🐐");
-//         insertReactionsHelper(employees, recognition, "😄");
-//         insertReactionsHelper(employees, recognition, "❤️")
-//     };
-// }
-
-function insertReactions(employees, recognition, reaction){
-    print("insertReactionsHelper()");
+function insertReactions(company, recognition, reaction){
     const numReactionGivers = getRandomInteger(minNumReactionGivers, maxNumReactionGivers);
-    const reactionGivers = getRandomEmployees(employees, numReactionGivers);
+    const reactionGivers = getRandomEmployees(company.employees, numReactionGivers);
 
     for(const reactionGiver of reactionGivers){
-        db.reactions.insert(
+        db.reactions.insertOne(
             {
-                recognition: recognition._id,
+                recognition: recognition.insertedId,
                 giver: reactionGiver,
-                reaction: reaction
+                emoji: reaction
             }
         )
     }
