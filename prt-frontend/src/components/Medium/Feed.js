@@ -14,6 +14,7 @@ export default class Feed extends Component {
         }
 
         this.updateRecognitions = this.updateRecognitions.bind(this);
+        this.renderRecognition = this.renderRecognition.bind(this);
         this.getCompany = this.getCompany.bind(this);
     }
 
@@ -66,14 +67,6 @@ export default class Feed extends Component {
         console.log("this.state.company: " + this.state.company);
     }
 
-    render() {
-        return (
-            <ol>
-                {this.state.recognitions.map(this.renderRecognition)}
-            </ol>
-        );
-    }
-
     renderRecognition(recognition) {
         return (
             <li key={recognition._id}>
@@ -91,4 +84,13 @@ export default class Feed extends Component {
     fullName(employee) {
         return employee.firstName + " " + employee.lastName;
     }
+
+    render() {
+        return (
+            <ol>
+                {this.state.recognitions.map(this.renderRecognition)}
+            </ol>
+        );
+    }
+
 }

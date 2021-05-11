@@ -54,7 +54,8 @@ function verify(username, password, done) {
     console.log("password: " + JSON.stringify(password, null, 4));
 
     Employee.findOne({ email: username }, (error, employee) => {
-        console.log("employee: " + JSON.stringify(employee));
+        console.log("employee: " + JSON.stringify(employee, null, 4));
+        console.log("");
         return verifyHelper(error, employee, password, done);
     });
 }
@@ -100,11 +101,6 @@ app.get("/recogs", (req, res) => {
         recogs.getRecognitionsFromCompany(req, res);
     }
 });
-
-// if (!req.isAuthenticated()) {
-//   res.status(401).send({ message: 'You are not logged in' });
-// }
-// });
 
 app.options('*', cors())
 app.post("/postRec", (req, res) => {

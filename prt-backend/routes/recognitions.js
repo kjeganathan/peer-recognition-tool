@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
         .populate("receiver");
 
     console.log("recognitions[0]: " + JSON.stringify(recognitions[0], null, 4));
+    console.log("");
     res.json(recognitions);
 });
 
