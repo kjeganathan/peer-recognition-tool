@@ -9,19 +9,15 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const recogs = require('./mongoCalls/recognitions.js');
 const core = require('./mongoCalls/coreVals.js');
-const recogPeople = require('./mongoCalls/recogPeople.js');
-const user = require('./mongoCalls/user.js');
 const Employee = require('./models/employee.model.js');
 
 const scheduler = require("node-schedule");
 const saveAwardWinners = require("./monthly-award-calculator.js");
 
 const app = express();
-const { response } = require('express');
 const databaseURI = config.DATABASE_URI;
 const testFilesystemURI = config.TEST_FILESYSTEM_URI;
 const sessionLength = config.SESSION_LENGTH;
-const Rockstars = require('./routes/rockstars.js')
 
 
 app.use(session({ secret: 'compsci320', maxAge: sessionLength }));
@@ -35,10 +31,6 @@ app.options('*', cors());
 
 
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Calling passport.use tells Passport to run this code to match a username and
-// password to a user.
-// See http://www.passportjs.org/docs/configure/
 
 passport.use(new LocalStrategy(
     {
@@ -54,7 +46,7 @@ function verify(username, password, done) {
     console.log("password: " + JSON.stringify(password, null, 4));
 
     Employee.findOne({ email: username }, (error, employee) => {
-        console.log("employee: " + JSON.stringify(employee, null, 4));
+        console.log("employee: " + JSON.stringify(employee, null, 4).substring(0, 256));
         console.log("");
         return verifyHelper(error, employee, password, done);
     });
@@ -86,21 +78,18 @@ passport.deserializeUser((ID, done) => {
     });
 });
 
-// Handle POST request from login
 app.post('/login', passport.authenticate('local'), (req, res) => {
     res.send({ message: 'Logged in successfully', user: req.user });
 });
 
-
-// Endpoint to return all recognitions
-app.get("/recogs", (req, res) => {
-    if (!req.isAuthenticated()) {
-        res.status(401).send({ message: 'You are not logged in' });
-    }
-    else {
-        recogs.getRecognitionsFromCompany(req, res);
-    }
-});
+// app.get("/recogs", (req, res) => {
+//     if (!req.isAuthenticated()) {
+//         res.status(401).send({ message: 'You are not logged in' });
+//     }
+//     else {
+//         recogs.getRecognitionsFromCompany(req, res);
+//     }
+// });
 
 app.options('*', cors())
 app.post("/postRec", (req, res) => {

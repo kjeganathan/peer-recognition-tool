@@ -15,55 +15,33 @@ router.get("/", async (req, res) => {
     console.log("");
 });
 
-// /**
-//  * @openapi
-//  * /postComment/{id}:
-//  *   post:
-//  *     description: Add a comment to the recognition with the given ID
-//  *     parameters:
-//  *       -
-//  *          name: value
-//  *          in: body
-//  *          description: Comment to add
-//  *          required: true
-//  *          schema:
-//  *              type: object
-//  *              properties:
-//  *                message:
-//  *                  type: string
-//  *     responses:
-//  *       '201':
-//  *         description: Returns the updated recognition including comments
-//  */
-// router.post('/:recogId', async (req, res) => {
-//   if (!req.isAuthenticated()) {
-//     res.status(401).json({ message: "You are not logged in" });
-//     return
-//   }
+router.post("/", async (req, res) => {
+    console.log("POST comments/");
 
-//   const recog = await Recognition.findOne({ _id: req.params.recogId });
+    const recognition = req.body.recognition;
+    console.log("recognition: " + recognition);
 
-//   if (!recog) {
-//     res.status(404).send(`No comment with ID ${req.params.recogId}`);
-//     return;
-//   }
+    const commenter = req.body.commenter;
+    console.log("giver: " + commenter);
 
-//   if (!('message' in req.body)) {
-//     res.status(422).send('Use format {"message": "comment text"}');
-//     return;
-//   }
+    const message = req.body.message;
+    console.log("comment: " + message);
 
-//   // TODO: Proper validation would probably be a good idea
-//   await recog.comments.push({
-//     message: req.body.message,
-//     giverName: `${req.user.firstName} ${req.user.lastName}`,
-//     creationDate: new Date(),
-//     employeeId: req.user.employeeId,
-//     likes: []
-//   });
+    const creationDate = new Date(req.body.creationDate);
+    console.log("creationDate: " + JSON.stringify(creationDate).substring(0, 256));
 
-//   await recog.save();
-//   res.status(201).send(recog);
-// });
+    const comment = new Comment(
+        {
+            recognition: recognition,
+            commenter: commenter,
+            message: message,
+            creationDate: creationDate
+        }
+    );
+
+    await comment.save();
+    res.sendStatus(200);
+    console.log("");
+});
 
 module.exports = router;

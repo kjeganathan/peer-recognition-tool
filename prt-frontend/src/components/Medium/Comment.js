@@ -7,6 +7,7 @@ export default class Comment extends Component{
         super(props);
 
         this.state = {
+            date: props.date,
             commenter: props.commenter,
             commenterName: "",
             message: props.message
@@ -30,7 +31,8 @@ export default class Comment extends Component{
     render(){
         return(
             <Card>
-                {this.state.commenterName}<br/>
+                <strong>{this.state.commenterName}</strong>
+                <i>{this.state.date.toDateString()}</i>
                 {this.state.message}
             </Card>
         );

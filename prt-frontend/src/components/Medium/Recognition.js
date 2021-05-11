@@ -51,7 +51,7 @@ export default class Recognition extends Component {
     //     return employee.firstName + " " + employee.lastName;
     // }
 
-    toggleComments(){
+    toggleComments() {
         this.setState(
             {
                 isShowingComments: !this.state.isShowingComments
@@ -59,12 +59,12 @@ export default class Recognition extends Component {
         );
     }
 
-    renderComments(){
-        if(this.state.isShowingComments){
-            return(
+    renderComments() {
+        if (this.state.isShowingComments) {
+            return (
                 <Row>
                     <Col>
-                        <Comments recognition={this.state._id}/>
+                        <Comments recognition={this.state._id} />
                     </Col>
                 </Row>
             );
@@ -100,9 +100,9 @@ export default class Recognition extends Component {
                     <Card.Subtitle className="mb-2 text-muted" />
 
                     <Card.Text className="commentArea"> */}
-                <Row>
-                    {this.state.message}
-                </Row>
+                {/* <Row> */}
+                {this.state.message}
+                {/* </Row> */}
                 {/* </Card.Text>
                 </Card.Body> */}
 
@@ -110,14 +110,14 @@ export default class Recognition extends Component {
 
                 {/* <div className="postFooter"> */}
                 <Row>
-                    &nbsp;
+                    {/* &nbsp; */}
 
-                        <Col>
+                    <Col>
                         <CommentButton onClick={this.toggleComments} />
                     </Col>
 
                     <Col className="floatright">
-                        <right>
+                        {/* <right> */}
                             <Reaction
                                 recognition={this.state._id}
                                 reactionName="Thumbs Up"
@@ -138,7 +138,7 @@ export default class Recognition extends Component {
                                 reactionName="Heart"
                                 emoji="❤️"
                             />
-                        </right>
+                        {/* </right> */}
                     </Col>
                 </Row>
                 {/* </div> */}

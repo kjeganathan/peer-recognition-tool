@@ -16,17 +16,15 @@ export default class Feed extends Component {
 
         this.updateRecognitions = this.updateRecognitions.bind(this);
         this.renderRecognition = this.renderRecognition.bind(this);
-        this.getCompany = this.getCompany.bind(this);
+        // this.getCompany = this.getCompany.bind(this);
     }
 
     async componentDidMount() {
-        await this.getCompany();
+        // await this.getCompany();
         this.updateRecognitions();
     }
 
     async updateRecognitions() {
-        console.log("updateRecognitions()");
-
         const recognitions = await Helpers.getWithParameters(
             "http://localhost:3001/recognitions",
             { company: this.state.company },
@@ -36,24 +34,6 @@ export default class Feed extends Component {
         this.setState({
             recognitions: recognitions
         });
-        console.log("this.state.recognitions: " + JSON.stringify(this.state.recognitions, null, 4).substring(0, 256));
-    }
-
-
-    async getCompany() {
-        console.log("getCompany()");
-
-        const company = await Helpers.getWithParameters(
-            "http://localhost:3001/companies",
-            { companyID: this.state.company },
-            true
-        );
-
-        this.setState({
-            company: company._id
-        });
-        console.log("this.state.company: " + this.state.company);
-        console.log("");
     }
 
     renderRecognition(recognition) {

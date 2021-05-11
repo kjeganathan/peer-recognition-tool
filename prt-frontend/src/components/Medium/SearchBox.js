@@ -5,19 +5,18 @@ export default class SearchBox extends Component{
     constructor(props){
         super(props);
 
-        this.inputClassName = props.inputClassName;
-        this.refExpression = props.refExpression;
-        this.placeholder = props.placeholder;
+        this.state = {
+            placeholder: props.placeholder
+        }
     }
 
     render(){
         return(
-            <input
-                className={this.inputClassName}
-                ref={this.refExpression}
-                placeholder={this.placeholder}
+            <textarea
+                rows={"1"}
+                placeholder={this.state.placeholder}
             >
-            </input>
+            </textarea>
         );
     }
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 
 async function getWithParameters(route, parameters, isWithCredentials) {
     var debug = "GET " + route;
+    debug += "\n\nParameters: " + JSON.stringify(parameters, null, 4);
 
     const response = await axios.get(
         route,
@@ -10,7 +11,7 @@ async function getWithParameters(route, parameters, isWithCredentials) {
     );
 
     const data = response.data;
-    debug += "\nResponse data: " + JSON.stringify(data, null, 4).substring(0, 256);
+    debug += "\n\nResponse data: " + JSON.stringify(data, null, 4).substring(0, 256);
     console.log(debug);
     return data;
 }

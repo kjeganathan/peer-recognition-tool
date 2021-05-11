@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
 
     if (req.query.user != null) {
         const user = await Employee.findById(req.query.user);
-        console.log("user: " + JSON.stringify(user, null, 4));
+        console.log("user: " + JSON.stringify(user, null, 4).substring(0, 256));
 
         res.json(user);
         console.log("");
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     console.log("company: " + company);
 
     const users = await Employee.find({ company: company });
-    console.log("users: " + JSON.stringify(users[0], null, 4).substring(0, 256));
+    console.log("users: " + JSON.stringify(users, null, 4).substring(0, 256));
 
     res.json(users);
     console.log("");

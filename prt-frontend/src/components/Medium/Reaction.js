@@ -30,7 +30,7 @@ export default class Reaction extends Component {
         };
 
         axios.post("http://localhost:3001/reactions", body, { withCredentials: true })
-            .then(res => this.updateGivers())
+            .then(res => this.updateGivers());
     }
 
     async componentDidMount() {

@@ -64,8 +64,8 @@ export default class Login extends Component {
 
     failedLogin(res) {
         var text = document.getElementsByTagName("p1");
-        text[0].innerHTML = "Incorrect username or password";
-        ReactDOM.findDOMNode(this.loginForm).reset();
+        // text[0].innerHTML = "Incorrect username or password";
+        // ReactDOM.findDOMNode(this.loginForm).reset();
     }
 
     render() {
