@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Recognition from "../Medium/Recognition";
 import Helpers from "../../helpers.js";
-import axios from "axios";
+// import axios from "axios";
 
 export default class Feed extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ export default class Feed extends Component {
 
         const company = await Helpers.getWithParameters(
             "http://localhost:3001/company",
-            {companyID: this.state.company},
+            { companyID: this.state.company },
             true
         );
 
@@ -60,30 +60,14 @@ export default class Feed extends Component {
         return (
             <li key={recognition._id}>
                 <Recognition
-                    giverName={recognition.giverName}
-                    receiverName={recognition.receiverName}
-                    receiverProfilePicURL={recognition.receiverProfilePicURL}
+                    giver={recognition.giver}
+                    receiver={recognition.receiver}
                     message={recognition.message}
                     coreValues={recognition.coreValues}
                 />
             </li>
         );
     }
-
-    // async getWithParameters(route, parameters, isWithCredentials) {
-    //     var debug = "GET " + route;
-
-    //     const response = await axios.get(
-    //         route,
-    //         { params: parameters },
-    //         { withCredentials: isWithCredentials }
-    //     );
-
-    //     const data = response.data;
-    //     debug += "\nResponse data: " + JSON.stringify(data, null, 4).substring(0, 256);
-    //     console.log(debug);
-    //     return data;
-    // }
 
     render() {
         return (

@@ -5,20 +5,39 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import AwardsButton from "../Medium/AwardsButton"
 import CommentButton from "../Small/CommentButton";
+import Helpers from "../../helpers.js";
 
 export default class Recognition extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            giverName: props.giverName,
-            receiverName: props.receiverName,
-            receiverProfilePicURL: props.receiverProfilePicURL,
+            giver: props.giver,
+            receiver: props.receiver,
             message: props.message,
             coreValues: props.coreValues,
-            // comments: props.comments,
-            // reactions: null
         }
+    }
+
+    async componentDidMount() {
+        const giver = await Helpers.getWithParameters(
+            "http://localhost:3001/users",
+            { user: this.state.giver },
+            true
+        );
+
+        const receiver = await Helpers.getWithParameters(
+            "http://localhost:3001/users",
+            { user: this.state.receiver },
+            true
+        );
+
+        this.setState(
+            {
+                giverName: this.fullName(giver),
+                receiverName: this.fullName(receiver)
+            }
+        );
     }
 
     render() {
@@ -65,5 +84,9 @@ export default class Recognition extends Component {
                 </div>
             </Container>
         );
+    }
+
+    fullName(employee) {
+        return employee.firstName + " " + employee.lastName;
     }
 }
