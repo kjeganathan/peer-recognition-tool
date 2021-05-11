@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 // import AwardsButton from "../Medium/AwardsButton"
 import Reaction from "../Medium/Reaction";
 import CommentButton from "../Small/CommentButton";
+import Comment from "../Medium/Comment"
 import Helpers from "../../helpers.js";
 
 export default class Recognition extends Component {
@@ -18,6 +19,7 @@ export default class Recognition extends Component {
             receiver: props.receiver,
             message: props.message,
             coreValues: props.coreValues,
+            isShowingComments: true
         }
     }
 
@@ -45,64 +47,81 @@ export default class Recognition extends Component {
     render() {
         return (
             <Container className="recognition">
-                <Row className="postHeader" style={{ fontSize: "20px" }}>
-                    <right>
+                {/* <Row className="postHeader" style={{ fontSize: "20px" }}> */}
+                <Row style={{fontSize: "20px"}}>
+                    {/* <right> */}
+                    <Col md="auto">
                         <img
                             class="profilePictures"
                             src={this.state.receiverProfilePicURL}
                         />
+                    </Col>
+
+                    <Col>
                         <strong>{this.state.receiverName}</strong>
                         &nbsp;received a recognition from&nbsp;
                         <strong>{this.state.giverName}</strong>
-                    </right>
+                        {/* </right> */}
+                    </Col>
                 </Row>
 
                 <div className="postLineH" />
 
-                <Card.Body>
+                {/* <Card.Body>
                     <Card.Subtitle className="mb-2 text-muted" />
 
-                    <Card.Text className="commentArea">
-                        {this.state.message}
-                    </Card.Text>
-                </Card.Body>
+                    <Card.Text className="commentArea"> */}
+                <Row>
+                    {this.state.message}
+                </Row>
+                {/* </Card.Text>
+                </Card.Body> */}
 
                 <div className="postLineH" />
 
-                <div className="postFooter">
-                    <Row>
-                        &nbsp;
+                {/* <div className="postFooter"> */}
+                <Row>
+                    &nbsp;
 
                         <Col>
-                            <CommentButton comments={this.state.comments} />
-                        </Col>
+                        <CommentButton comments={this.state.comments} />
+                    </Col>
 
-                        <Col className="floatright">
-                            <right>
-                                <Reaction
-                                    recognition={this.state._id}
-                                    reactionName="Thumbs Up"
-                                    emoji="👍"
-                                />
-                                <Reaction
-                                    recognition={this.state._id}
-                                    reactionName="GOAT"
-                                    emoji="🐐"
-                                />
-                                <Reaction
-                                    recognition={this.state._id}
-                                    reactionName="Laugh"
-                                    emoji="😄"
-                                />
-                                <Reaction
-                                    recognition={this.state._id}
-                                    reactionName="Heart"
-                                    emoji="❤️"
-                                />
-                            </right>
-                        </Col>
-                    </Row>
-                </div>
+                    <Col className="floatright">
+                        <right>
+                            <Reaction
+                                recognition={this.state._id}
+                                reactionName="Thumbs Up"
+                                emoji="👍"
+                            />
+                            <Reaction
+                                recognition={this.state._id}
+                                reactionName="GOAT"
+                                emoji="🐐"
+                            />
+                            <Reaction
+                                recognition={this.state._id}
+                                reactionName="Laugh"
+                                emoji="😄"
+                            />
+                            <Reaction
+                                recognition={this.state._id}
+                                reactionName="Heart"
+                                emoji="❤️"
+                            />
+                        </right>
+                    </Col>
+                </Row>
+                {/* </div> */}
+
+                <Row>
+                    <Col>
+                        <Comment
+                            commenter="foo"
+                            message="bar"
+                        />
+                    </Col>
+                </Row>
             </Container>
         );
     }
