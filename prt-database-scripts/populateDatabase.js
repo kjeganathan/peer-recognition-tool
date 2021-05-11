@@ -144,6 +144,7 @@ company_OT.employees = employees_OT;
 var allRecognitions = [];
 
 db.recognitions.remove({});
+db.reactions.remove({});
 insertRecognitions(company_GC, numRecognitionsPerCompany);
 insertRecognitions(company_SE, numRecognitionsPerCompany);
 insertRecognitions(company_OT, numRecognitionsPerCompany);
@@ -154,21 +155,64 @@ function insertRecognitions(company, numRecognitions){
     }
 }
 
-function insertRecognition(company) {
+async function insertRecognition(company) {
     const giverReceiverPair = getRandomEmployees(company.employees, 2);
     const recognitionTemplate = getRandomElement(company.recognitionTemplates);
-    const recognitionCreationDate = getRandomDate(minDate, maxDate);
+    // const recognitionCreationDate = getRandomDate(minDate, maxDate);
 
-    db.recognitions.insert(
+    const recognition = await db.recognitions.insertOne(
         {
             company: company._id,
             giver: giverReceiverPair[0],
             receiver: giverReceiverPair[1],
             coreValues: recognitionTemplate.values,
             message: recognitionTemplate.message,
-            creationDate: recognitionCreationDate,
-        }
+            creationDate: getRandomDate(minDate, maxDate),
+        },
+        // insertReactions(company.employees)
+        // function(error, recognition){
+        //     print(recognition);
+        // }
     );
+
+    insertReactions(company.employees, recognition, "👍");
+    // db.reactions.insert(
+    //     {
+    //         recognition: 
+    //     }
+    // );
+}
+
+// function insertReactions(employees){
+//     // db.reactions.insert(
+//     //     {
+//     //         recognition: recognition._id,
+//     //         giver: getRandomEmployees
+//     //     }
+//     // )
+//     return function(error, recognition){
+//         print(recognition);
+//         insertReactionsHelper(employees, recognition, "👍");
+//         insertReactionsHelper(employees, recognition, "🐐");
+//         insertReactionsHelper(employees, recognition, "😄");
+//         insertReactionsHelper(employees, recognition, "❤️")
+//     };
+// }
+
+function insertReactions(employees, recognition, reaction){
+    print("insertReactionsHelper()");
+    const numReactionGivers = getRandomInteger(minNumReactionGivers, maxNumReactionGivers);
+    const reactionGivers = getRandomEmployees(employees, numReactionGivers);
+
+    for(const reactionGiver of reactionGivers){
+        db.reactions.insert(
+            {
+                recognition: recognition._id,
+                giver: reactionGiver,
+                reaction: reaction
+            }
+        )
+    }
 }
 
 function getRandomEmployees(employees, numEmployees) {

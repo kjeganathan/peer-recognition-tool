@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import "./UserPostLayOut.css";
-import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
+// import { DEFAULT_REACTIONS, AwardsButton } from "./AwardsButton";
 import { BiSearch } from "react-icons/bi";
 import CoreValuesButton from "./CoreValuesButton";
-import CommentButton from "../Small/CommentButton";
+// import CommentButton from "../Small/CommentButton";
 import Recognition from "../Medium/Recognition"
 import Feed from "../Medium/Feed"
 import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// import Card from 'react-bootstrap/Card';
+// import Container from 'react-bootstrap/Container'
+// import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
 import Select from 'react-select';
-import Fade from 'react-reveal/Fade'; //fade animation
+// import Fade from 'react-reveal/Fade'; //fade animation
 import { Button } from 'semantic-ui-react'
 import Dropdown from "react-bootstrap/Dropdown";
 const colorStyle = {
@@ -139,7 +139,7 @@ export default class UserPostLayOut extends Component {
                 recognized: recognition.receiverName,
                 text: recognition.message,
                 comments: recognition.comments || [],
-                reactions: { ...DEFAULT_REACTIONS, ...recognition.reactions },
+                // reactions: { ...DEFAULT_REACTIONS, ...recognition.reactions },
                 profilePicURL: "http://localhost:3001/profile-pics/" + recognition.receiverProfilePicURL
             };
             itemsList.push(newItem)

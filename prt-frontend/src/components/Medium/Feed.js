@@ -44,7 +44,7 @@ export default class Feed extends Component {
         console.log("getCompany()");
 
         const company = await Helpers.getWithParameters(
-            "http://localhost:3001/company",
+            "http://localhost:3001/companies",
             { companyID: this.state.company },
             true
         );

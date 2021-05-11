@@ -3,7 +3,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import AwardsButton from "../Medium/AwardsButton"
+// import AwardsButton from "../Medium/AwardsButton"
+import Reaction from "../Medium/Reaction";
 import CommentButton from "../Small/CommentButton";
 import Helpers from "../../helpers.js";
 
@@ -77,7 +78,22 @@ export default class Recognition extends Component {
 
                         <Col className="floatright">
                             <right>
-                                <AwardsButton reactions={this.state.reactions} />
+                                <Reaction
+                                    reactionName="Thumbs Up"
+                                    emoji="👍"
+                                />
+                                <Reaction
+                                    reactionName="GOAT"
+                                    emoji="🐐"
+                                />
+                                <Reaction
+                                    reactionName="Laugh"
+                                    emoji="😄"
+                                />
+                                <Reaction
+                                    reactionName="Heart"
+                                    emoji="❤️"
+                                />
                             </right>
                         </Col>
                     </Row>

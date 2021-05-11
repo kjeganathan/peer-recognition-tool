@@ -1,70 +1,70 @@
-const router = require('express').Router()
-const Recognition = require('../models/recognition.model');
+// const router = require('express').Router()
+// const Recognition = require('../models/recognition.model');
 
-/**
- * @openapi
- * /postReaction/{id}:
- *   post:
- *     description: Add/remove a reaction to the recognition with the given ID
- *     parameters:
- *       -
- *          name: value
- *          in: body
- *          description: Reaction
- *          required: true
- *          schema:
- *              type: object
- *              properties:
- *                reaction:
- *                  type: string
- *     responses:
- *       '201':
- *         description: Returns the updated recognition including reactions
- */
-router.post('/:recogId', async (req, res) => {
-  if (!req.isAuthenticated()) {
-    res.status(401).json({ message: "You are not logged in" });
-    return
-  }
+// /**
+//  * @openapi
+//  * /postReaction/{id}:
+//  *   post:
+//  *     description: Add/remove a reaction to the recognition with the given ID
+//  *     parameters:
+//  *       -
+//  *          name: value
+//  *          in: body
+//  *          description: Reaction
+//  *          required: true
+//  *          schema:
+//  *              type: object
+//  *              properties:
+//  *                reaction:
+//  *                  type: string
+//  *     responses:
+//  *       '201':
+//  *         description: Returns the updated recognition including reactions
+//  */
+// router.post('/:recogId', async (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     res.status(401).json({ message: "You are not logged in" });
+//     return
+//   }
 
-  const recog = await Recognition.findOne({ _id: req.params.recogId });
+//   const recog = await Recognition.findOne({ _id: req.params.recogId });
 
-  if (!recog) {
-    res.status(404).send(`No recognition with ID ${req.params.recogId}`);
-    return;
-  }
+//   if (!recog) {
+//     res.status(404).send(`No recognition with ID ${req.params.recogId}`);
+//     return;
+//   }
 
-  if (!('reaction' in req.body)) {
-    res.status(422).send('Use format {"reaction": "type of reaction"}');
-    return;
-  }
+//   if (!('reaction' in req.body)) {
+//     res.status(422).send('Use format {"reaction": "type of reaction"}');
+//     return;
+//   }
 
-  if (recog.reactions === undefined) {
-    recog.reactions = {};
-  }
+//   if (recog.reactions === undefined) {
+//     recog.reactions = {};
+//   }
 
-  const reactions = recog.reactions;
-  const employeeId = req.user.employeeId;
+//   const reactions = recog.reactions;
+//   const employeeId = req.user.employeeId;
 
-  // Reactions are stored in a mongoose.Map, which can only be updated using
-  // get/set functions.
-  // https://mongoosejs.com/docs/schematypes.html#maps
-  if (reactions.get(req.body.reaction) === undefined) {
-    reactions.set(req.body.reaction, []);
-  }
+//   // Reactions are stored in a mongoose.Map, which can only be updated using
+//   // get/set functions.
+//   // https://mongoosejs.com/docs/schematypes.html#maps
+//   if (reactions.get(req.body.reaction) === undefined) {
+//     reactions.set(req.body.reaction, []);
+//   }
 
-  const reactionType = reactions.get(req.body.reaction);
+//   const reactionType = reactions.get(req.body.reaction);
 
-  // Using the same endpoint for adding/removing probably isn't the most robust
-  // idea, but it gets the job done for our purposes.
-  if (reactionType.includes(employeeId)) {
-    reactionType.remove(employeeId);
-  } else {
-    reactionType.push(employeeId);
-  }
+//   // Using the same endpoint for adding/removing probably isn't the most robust
+//   // idea, but it gets the job done for our purposes.
+//   if (reactionType.includes(employeeId)) {
+//     reactionType.remove(employeeId);
+//   } else {
+//     reactionType.push(employeeId);
+//   }
 
-  await recog.save();
-  res.status(201).send(recog);
-});
+//   await recog.save();
+//   res.status(201).send(recog);
+// });
 
-module.exports = router;
+// module.exports = router;
