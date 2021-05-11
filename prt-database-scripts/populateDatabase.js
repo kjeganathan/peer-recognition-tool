@@ -5,13 +5,13 @@ const minReactionID = 0;
 const maxReactionID = 3;
 
 const minNumReactionGivers = 0;
-const maxNumReactionGivers = 10;
+const maxNumReactionGivers = 5;
 
 const minNumComments = 0;
 const maxNumComments = 5;
 
 const minNumLikes = 0;
-const maxNumLikes = 10;
+const maxNumLikes = 5;
 
 const numRecognitionsPerCompany = 20;
 
@@ -141,10 +141,10 @@ company_SE.employees = employees_SE;
 company_OT.recognitionTemplates = recognitionTemplates_OT;
 company_OT.employees = employees_OT;
 
-var allRecognitions = [];
-
 db.recognitions.remove({});
 db.reactions.remove({});
+db.comments.remove({});
+
 insertRecognitions(company_GC, numRecognitionsPerCompany);
 insertRecognitions(company_SE, numRecognitionsPerCompany);
 insertRecognitions(company_OT, numRecognitionsPerCompany);
@@ -158,7 +158,7 @@ function insertRecognitions(company, numRecognitions){
 async function insertRecognition(company) {
     const giverReceiverPair = getRandomEmployees(company.employees, 2);
     const recognitionTemplate = getRandomElement(company.recognitionTemplates);
-    // const recognitionCreationDate = getRandomDate(minDate, maxDate);
+    const recognitionCreationDate = getRandomDate(minDate, maxDate);
 
     const recognition = await db.recognitions.insertOne(
         {
@@ -167,14 +167,21 @@ async function insertRecognition(company) {
             receiver: giverReceiverPair[1],
             coreValues: recognitionTemplate.values,
             message: recognitionTemplate.message,
-            creationDate: getRandomDate(minDate, maxDate),
+            creationDate: recognitionCreationDate,
         },
     );
 
-    insertReactions(company, recognition, "👍");
-    insertReactions(company, recognition, "🐐");
-    insertReactions(company, recognition, "😄");
-    insertReactions(company, recognition, "❤️");
+    insertReactions(company, recognition.insertedId, "👍");
+    insertReactions(company, recognition.insertedId, "🐐");
+    insertReactions(company, recognition.insertedId, "😄");
+    insertReactions(company, recognition.insertedId, "❤️");
+
+    insertComments(
+        company,
+        recognition.insertedId,
+        commentMessages,
+        recognitionCreationDate
+    );
 }
 
 function insertReactions(company, recognition, reaction){
@@ -184,11 +191,27 @@ function insertReactions(company, recognition, reaction){
     for(const reactionGiver of reactionGivers){
         db.reactions.insertOne(
             {
-                recognition: recognition.insertedId,
+                recognition: recognition,
                 giver: reactionGiver,
                 emoji: reaction
             }
         )
+    }
+}
+
+function insertComments(company, recognition, commentMessages, minDate){
+    const numComments = getRandomInteger(minNumComments, maxNumComments);
+    const commenters = getRandomEmployees(company.employees, numComments);
+
+    for(const commenter of commenters){
+        db.comments.insertOne(
+            {
+                recognition: recognition,
+                commenter: commenter,
+                message: getRandomElement(commentMessages),
+                creationDate: getRandomDate(minDate, maxDate)
+            }
+        );
     }
 }
 
