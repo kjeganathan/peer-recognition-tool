@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Login.css";
+import Helpers from "../../helpers.js";
 import ReactDOM from 'react-dom';
 
 export default class Login extends Component {
@@ -23,7 +24,7 @@ export default class Login extends Component {
 
     }
 
-    successfulLogin(res) {
+    async successfulLogin(res) {
         localStorage.setItem("user", res.data.user._id);
         localStorage.setItem('username', this.state.username); //localstorage username
         localStorage.setItem('fullName', res.data.user.firstName + " " + res.data.user.lastName);  //localstorage fullName
@@ -34,6 +35,17 @@ export default class Login extends Component {
         localStorage.setItem('cid', res.data.user.companyId);           //localstorage companyId
         localStorage.setItem('employeeID', res.data.user.employeeId);   //localstorage employeeId
         localStorage.setItem('isManager', res.data.user.isManager);     //localstorage isManager
+
+        console.log("cid: " + localStorage.getItem("cid"));
+
+        const company = await Helpers.getWithParameters(
+            "http://localhost:3001/companies",
+            { companyID: localStorage.getItem("cid") },
+            true
+        );
+
+        localStorage.setItem("company", company._id);
+        console.log('localStorage.getItem("company"): ' + localStorage.getItem("company"));
 
         var pathName = '';
         console.log(res.data.user.isManager);

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Recognition from "../Medium/Recognition";
 import Helpers from "../../helpers.js";
-// import axios from "axios";
 
 export default class Feed extends Component {
     constructor(props) {
@@ -9,18 +8,14 @@ export default class Feed extends Component {
 
         this.state = {
             company: props.company,
-            // filter: props.filter,
-            // sort: props.sort,
             recognitions: []
         }
 
         this.updateRecognitions = this.updateRecognitions.bind(this);
         this.renderRecognition = this.renderRecognition.bind(this);
-        // this.getCompany = this.getCompany.bind(this);
     }
 
     async componentDidMount() {
-        // await this.getCompany();
         this.updateRecognitions();
     }
 
@@ -36,6 +31,14 @@ export default class Feed extends Component {
         });
     }
 
+    render() {
+        return (
+            <ol>
+                {this.state.recognitions.map(this.renderRecognition)}
+            </ol>
+        );
+    }
+
     renderRecognition(recognition) {
         return (
             <li key={recognition._id}>
@@ -49,13 +52,4 @@ export default class Feed extends Component {
             </li>
         );
     }
-
-    render() {
-        return (
-            <ol>
-                {this.state.recognitions.map(this.renderRecognition)}
-            </ol>
-        );
-    }
-
 }
