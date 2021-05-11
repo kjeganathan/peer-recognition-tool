@@ -2,20 +2,28 @@ const express = require("express");
 const router = express.Router();
 const Employee = require("../models/employee.model.js");
 
-router.get("/", async(req, res) => {
+router.get("/", async (req, res) => {
     console.log("GET users/");
-    // console.log("req.query: " + JSON.stringify(req.query, null, 4));
 
-    const companyID = req.query.companyID;
-    console.log("companyID: " + companyID);
+    const user = req.body.user;
+    console.log("employee: " + user);
 
-    // const employeeID = req.body.employeeId;
-    // console.log("employeeID: " + employeeID);
+    if (user != null) {
+        const user = await Employee.findById(user);
+        console.log("user: " + JSON.stringify(user, null, 4));
 
-    const users = await Employee.find({companyId: companyID});
-    console.log("users: " + JSON.stringify(users, null, 4));
+        res.json(user);
+        console.log("");
+        return;
+    }
+    const company = req.query.company;
+    console.log("company: " + company);
+
+    const users = await Employee.find({ company: company });
+    console.log("users[0]: " + JSON.stringify(users[0], null, 4));
 
     res.json(users);
+    console.log("");
 });
 
 module.exports = router;

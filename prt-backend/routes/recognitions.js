@@ -9,12 +9,10 @@ router.get("/", async (req, res) => {
     console.log("company: " + company);
 
     const recognitions = await Recognition.find({ company: company })
-        .populate("giver")
-        .populate("receiver");
-
     console.log("recognitions[0]: " + JSON.stringify(recognitions[0], null, 4));
-    console.log("");
+    
     res.json(recognitions);
+    console.log("");
 });
 
 module.exports = router;

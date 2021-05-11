@@ -30,19 +30,44 @@ export default class Feed extends Component {
             company: this.state.company
         }
 
-        const response = await axios.get(
-            "http://localhost:3001/recognitions",
-            { params: recognitionsParameters },
-            { withCredentials: true }
-        );
+        // const response = await axios.get(
+        //     "http://localhost:3001/recognitions",
+        //     { params: recognitionsParameters },
+        //     { withCredentials: true }
+        // );
 
-        const recognitions = response.data;
-        console.log("recognitions[0]: " + JSON.stringify(recognitions[0], null, 4));
+        const recognitions = this.getWithParameters(
+            "http://localhost:3001/recognitions",
+            recognitionsParameters,
+            true
+        );
+        // console.log("recognitions[0]: " + JSON.stringify(recognitions[0], null, 4));
 
         this.setState({
             recognitions: recognitions
         });
         console.log("this.state.recognitions: " + JSON.stringify(this.state.recognitions[0], null, 4));
+    }
+
+    async updateRecognition(recognition){
+        console.log("updateRecognition()");
+
+        const giverParameters = {
+            user: recognition.giver
+        }
+
+        var response = await axios.get(
+            "http://localhost:3001/users",
+            {params: giverParameters},
+            {withCredentials: true}
+        );
+
+        const giver = response.data;
+        console.log("giver: " + JSON.stringify(giver, null, 4));
+
+        const receiverParameters = {
+
+        }
     }
 
     async getCompany() {
@@ -83,6 +108,21 @@ export default class Feed extends Component {
 
     fullName(employee) {
         return employee.firstName + " " + employee.lastName;
+    }
+
+    async getWithParameters(route, parameters, isWithCredentials){
+        var debug = "GET " + route;
+
+        const response = await axios.get(
+            route,
+            {params: parameters},
+            {withCredentials: isWithCredentials}
+        );
+
+        const data = response.data;
+        debug += "\nresponse.data: " + JSON.stringify(data, null, 4).substring(0, 256) + "\n";
+        console.log(debug);
+        return data;
     }
 
     render() {
