@@ -1,39 +1,25 @@
 import React, { Component } from "react";
-// import "./Recognition.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import AwardsButton from "../Medium/AwardsButton"
 import CommentButton from "../Small/CommentButton";
-import axios from "axios";
 
 export default class Recognition extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            giverName: props.giver,
-            receiverName: props.receiver,
+            giverName: props.giverName,
+            receiverName: props.receiverName,
             receiverProfilePicURL: props.receiverProfilePicURL,
             message: props.message,
             coreValues: props.coreValues,
-            comments: props.comments,
-            reactions: null
+            // comments: props.comments,
+            // reactions: null
         }
     }
-
-    // GET request test
-    // componentDidMount() {
-    //     axios.get(
-    //         "http://localhost:3001/users",
-    //         {
-    //             params: {
-    //                 companyID: 1
-    //             }
-    //         }, { withCredentials: true }
-    //     );
-    // }
 
     render() {
         return (

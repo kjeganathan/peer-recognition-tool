@@ -14,16 +14,12 @@ const employeeSchema = new Schema(
         managerId:              Number,
         email:                  String,
         startDate:              String,
-        recognitionsGiven:      [mongoose.ObjectId],
-        recognitionsReceived:   [mongoose.ObjectId],
-        activeNotifications:    [mongoose.ObjectId],
         profilePicURL:          String
     }, {
         collection: "Employees"
     }
 );
 
-//mongoose.model(ModelName, schema, ModelCollection)
-const Employee = mongoose.model("Employee", employeeSchema, "Employees");
+const Employee = mongoose.model("employee", employeeSchema, "employees");
 
 module.exports = Employee;

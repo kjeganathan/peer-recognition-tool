@@ -7,10 +7,10 @@ const companySchema = new Schema(
         companyName:    String,
         values:         [String]
     },{
-        collection: "Companies"
+        collection: "companies"
     }
 );
 
-const Company = mongoose.model("Company", companySchema, "Companies");
+const Company = mongoose.model("company", companySchema, "companies");
 
 module.exports = Company;
