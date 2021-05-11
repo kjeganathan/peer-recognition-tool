@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const recognitionSchema = new Schema(
     {
-        company: Schema.Types.ObjectId,
-        giver: Schema.Types.ObjectId,
-        receiver: Schema.Types.ObjectId,
+        companyID: Schema.Types.ObjectId,
+        giverID: Schema.Types.ObjectId,
+        receiverID: Schema.Types.ObjectId,
         coreValues: [String],
         message: String,
         creationDate: Date,

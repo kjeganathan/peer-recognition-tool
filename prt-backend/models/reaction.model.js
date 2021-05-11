@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const reactionSchema = new Schema(
     {
-        recognition: Schema.Types.ObjectId,
-        giver: Schema.Types.ObjectId,
+        recognitionID: Schema.Types.ObjectId,
+        giverID: Schema.Types.ObjectId,
         emoji: String
     }, {
         collection: "reactions"

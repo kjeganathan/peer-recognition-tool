@@ -4,13 +4,13 @@ const Reaction = require('../models/reaction.model');
 router.get("/", async (req, res) => {
     console.log("GET reactions/");
 
-    const recognition = req.query.recognition;
-    console.log("recognition: " + recognition);
+    const recognitionID = req.query.recognitionID;
+    console.log("recognition: " + recognitionID);
 
     const emoji = req.query.emoji;
     console.log("emoji: " + emoji);
 
-    const reactions = await Reaction.find({ recognition: recognition, emoji: emoji });
+    const reactions = await Reaction.find({ recognitionID: recognitionID, emoji: emoji });
     console.log("reactions: " + JSON.stringify(reactions, null, 4).substring(0, 256));
 
     res.json(reactions);
@@ -20,19 +20,19 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     console.log("POST reactions/");
 
-    const recognition = req.body.recognition;
-    console.log("recognition: " + recognition);
+    const recognitionID = req.body.recognitionID;
+    console.log("recognition: " + recognitionID);
 
-    const giver = req.body.giver;
-    console.log("giver: " + giver);
+    const giverID = req.body.giverID;
+    console.log("giver: " + giverID);
 
     const emoji = req.body.emoji;
     console.log("emoji: " + emoji);
 
     var reaction = await Reaction.findOneAndDelete(
         {
-            recognition: recognition,
-            giver: giver,
+            recognitionID: recognitionID,
+            giverID: giverID,
             emoji: emoji
         }
     );
@@ -47,8 +47,8 @@ router.post("/", async (req, res) => {
 
     reaction = new Reaction(
         {
-            recognition: recognition,
-            giver: giver,
+            recognitionID: recognitionID,
+            giverID: giverID,
             emoji: emoji
         }
     );

@@ -10,9 +10,13 @@ import CoreValues from "../Medium/CoreValues"
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        // console.log(this.props);
 
+        this.state = {
+            user: this.props.location.state.user,
+            company: this.props.location.state.company
+        }
 
+        console.log("Home\nthis.state: " + JSON.stringify(this.state, null, 4).substring(0, 256));
     }
 
     render() {
@@ -27,7 +31,7 @@ export default class Home extends Component {
                         <Route render={() => <Rockstar user={this.props.location.state} />} />
                         <Route render={() => <CoreValues user={this.props.location.state} />} />
                     </div>
-                    <Route render={() => <UserPostLayOut company={this.props.location.company._id} />} />
+                    <Route render={() => <UserPostLayOut user={this.state.user} company={this.state.company} />} />
                 </div>
             </Router>
         );

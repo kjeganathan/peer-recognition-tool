@@ -162,9 +162,9 @@ async function insertRecognition(company) {
 
     const recognition = await db.recognitions.insertOne(
         {
-            company: company._id,
-            giver: giverReceiverPair[0],
-            receiver: giverReceiverPair[1],
+            companyID: company._id,
+            giverID: giverReceiverPair[0],
+            receiverID: giverReceiverPair[1],
             coreValues: recognitionTemplate.values,
             message: recognitionTemplate.message,
             creationDate: recognitionCreationDate,
@@ -191,8 +191,8 @@ function insertReactions(company, recognition, reaction){
     for(const reactionGiver of reactionGivers){
         db.reactions.insertOne(
             {
-                recognition: recognition,
-                giver: reactionGiver,
+                recognitionID: recognition,
+                giverID: reactionGiver,
                 emoji: reaction
             }
         )
@@ -206,8 +206,8 @@ function insertComments(company, recognition, commentMessages, minDate){
     for(const commenter of commenters){
         db.comments.insertOne(
             {
-                recognition: recognition,
-                commenter: commenter,
+                recognitionID: recognition,
+                commenterID: commenter,
                 message: getRandomElement(commentMessages),
                 creationDate: getRandomDate(minDate, maxDate)
             }

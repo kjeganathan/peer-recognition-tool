@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./UserPostLayOut.css";
-import { BiSearch } from "react-icons/bi";
-import CoreValuesButton from "./CoreValuesButton";
+// import { BiSearch } from "react-icons/bi";
+// import CoreValuesButton from "./CoreValuesButton";
 import Feed from "../Medium/Feed";
 import RecognitionForm from "../Medium/RecognitionForm";
-import { CpuIcon, PaperAirplaneIcon, SquirrelIcon } from '@primer/octicons-react'
+import { PaperAirplaneIcon } from '@primer/octicons-react'
 import axios from 'axios';
-import Select from 'react-select';
-import { Button } from 'semantic-ui-react'
+// import Select from 'react-select';
+// import { Button } from 'semantic-ui-react'
 import Dropdown from "react-bootstrap/Dropdown";
 import Helpers from "../../helpers.js"
 

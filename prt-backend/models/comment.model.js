@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema(
     {
-        recognition: Schema.Types.ObjectId,
-        commenter: Schema.Types.ObjectId,
+        recognitionID: Schema.Types.ObjectId,
+        commenterID: Schema.Types.ObjectId,
         message: String,
         creationDate: Date
     }, {

@@ -5,10 +5,10 @@ const Comment = require("../models/comment.model");
 router.get("/", async (req, res) => {
     console.log("GET comments/");
 
-    const recognition = req.query.recognition;
-    console.log("recognition: " + recognition);
+    const recognitionID = req.query.recognitionID;
+    console.log("recognition: " + recognitionID);
 
-    const comments = await Comment.find({recognition: recognition});
+    const comments = await Comment.find({recognitionID: recognitionID});
     console.log("comments: " + JSON.stringify(comments, null, 4).substring(0, 256));
 
     res.json(comments);
@@ -18,11 +18,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     console.log("POST comments/");
 
-    const recognition = req.body.recognition;
-    console.log("recognition: " + recognition);
+    const recognitionID = req.body.recognitionID;
+    console.log("recognition: " + recognitionID);
 
-    const commenter = req.body.commenter;
-    console.log("giver: " + commenter);
+    const commenterID = req.body.commenterID;
+    console.log("giver: " + commenterID);
 
     const message = req.body.message;
     console.log("comment: " + message);
@@ -32,8 +32,8 @@ router.post("/", async (req, res) => {
 
     const comment = new Comment(
         {
-            recognition: recognition,
-            commenter: commenter,
+            recognitionID: recognitionID,
+            commenterID: commenterID,
             message: message,
             creationDate: creationDate
         }

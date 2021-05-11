@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Recognition from "../Medium/Recognition";
 import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 
 export default class Feed extends Component {
     constructor(props) {
@@ -21,8 +22,8 @@ export default class Feed extends Component {
 
     async updateRecognitions() {
         const recognitions = await Helpers.getWithParameters(
-            "http://localhost:3001/recognitions",
-            { company: this.state.company },
+            routeNames.recognitions,
+            { companyID: this.state.company._id },
             true
         );
 
@@ -44,8 +45,8 @@ export default class Feed extends Component {
             <li key={recognition._id}>
                 <Recognition
                     _id={recognition._id}
-                    giver={recognition.giver}
-                    receiver={recognition.receiver}
+                    giverID={recognition.giverID}
+                    receiverID={recognition.receiverID}
                     message={recognition.message}
                     coreValues={recognition.coreValues}
                 />

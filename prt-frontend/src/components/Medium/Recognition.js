@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
+// import Card from "react-bootstrap/Card";
 import Reaction from "../Medium/Reaction";
 import CommentButton from "../Small/CommentButton";
 // import Comment from "../Medium/Comment"
 import Comments from "../Medium/Comments";
 import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 
 export default class Recognition extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ export default class Recognition extends Component {
 
         this.state = {
             _id: props._id,
-            giver: props.giver,
-            receiver: props.receiver,
+            giverID: props.giverID,
+            receiverID: props.receiverID,
             message: props.message,
             coreValues: props.coreValues,
             isShowingComments: false
@@ -28,14 +29,14 @@ export default class Recognition extends Component {
 
     async componentDidMount() {
         const giver = await Helpers.getWithParameters(
-            "http://localhost:3001/users",
-            { user: this.state.giver },
+            routeNames.employees,
+            { employeeID: this.state.giverID },
             true
         );
 
         const receiver = await Helpers.getWithParameters(
-            "http://localhost:3001/users",
-            { user: this.state.receiver },
+            routeNames.employees,
+            { employeeID: this.state.receiverID },
             true
         );
 
@@ -118,26 +119,26 @@ export default class Recognition extends Component {
 
                     <Col className="floatright">
                         {/* <right> */}
-                            <Reaction
-                                recognition={this.state._id}
-                                reactionName="Thumbs Up"
-                                emoji="👍"
-                            />
-                            <Reaction
-                                recognition={this.state._id}
-                                reactionName="GOAT"
-                                emoji="🐐"
-                            />
-                            <Reaction
-                                recognition={this.state._id}
-                                reactionName="Laugh"
-                                emoji="😄"
-                            />
-                            <Reaction
-                                recognition={this.state._id}
-                                reactionName="Heart"
-                                emoji="❤️"
-                            />
+                        <Reaction
+                            recognition={this.state._id}
+                            reactionName="Thumbs Up"
+                            emoji="👍"
+                        />
+                        <Reaction
+                            recognition={this.state._id}
+                            reactionName="GOAT"
+                            emoji="🐐"
+                        />
+                        <Reaction
+                            recognition={this.state._id}
+                            reactionName="Laugh"
+                            emoji="😄"
+                        />
+                        <Reaction
+                            recognition={this.state._id}
+                            reactionName="Heart"
+                            emoji="❤️"
+                        />
                         {/* </right> */}
                     </Col>
                 </Row>
