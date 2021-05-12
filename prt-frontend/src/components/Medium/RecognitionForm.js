@@ -11,20 +11,12 @@ export default class RecognitionForm extends Component {
 
         this.state = {
             company: props.company,
-            // employees: [
-            //     {
-            //         value: "blue",
-            //         label: "Blue"
-            //     }, {
-            //         value: "green",
-            //         label: "Green"
-            //     }, {
-            //         value: "red",
-            //         label: "Red"
-            //     }
-            // ]
             user: props.user,
-            employees: []
+            employees: [],
+            coreValues: props.company.values.map(coreValue => ({
+                value: coreValue,
+                label: coreValue
+            }))
         }
     }
 
@@ -36,7 +28,7 @@ export default class RecognitionForm extends Component {
         );
 
         employees = employees.map(employee => {
-            return(
+            return (
                 {
                     value: employee,
                     label: Helpers.fullName(employee)
@@ -69,6 +61,15 @@ export default class RecognitionForm extends Component {
                     isRtl={false}
                     options={this.state.employees}
                 />
+
+                <Select
+                    isMulti
+                    placeholder="Core Values"
+                    name="Core Values"
+                    isSearchable={true}
+                    options={this.state.coreValues}
+                />
+
                 <textarea
                     rows="4"
                 />

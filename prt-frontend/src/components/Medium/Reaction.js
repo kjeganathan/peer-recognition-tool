@@ -49,7 +49,6 @@ export default class Reaction extends Component {
         );
 
         giverIDs = giverIDs.map(giver => giver.giverID);
-        console.log("giverIDs: " + JSON.stringify(giverIDs, null, 4));
 
         this.setState(
             {

@@ -12,7 +12,7 @@ async function getWithParameters(route, parameters, isWithCredentials) {
 
     const data = response.data;
     debug += "\n\nResponse data: " + JSON.stringify(data, null, 4).substring(0, 256);
-    console.log(debug);
+    // console.log(debug);
     return data;
 }
 
