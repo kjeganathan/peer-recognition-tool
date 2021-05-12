@@ -12,6 +12,7 @@ async function getRecognitionsFromCompany(req, res) {
 async function postRecognition(req, res) {
   await fillReceiverValues(req.user, req.body);
   const newRecognition = new Recognition(req.body);
+  console.log(newRecognition)
 
   newRecognition.save()
     .then(() => res.send("Recognition posted."))

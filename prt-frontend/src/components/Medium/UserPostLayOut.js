@@ -234,7 +234,6 @@ export default class UserPostLayOut extends Component {
             }
             console.log(":(");
             console.log(localStorage.getItem('test'));
-            window.alert(newItem);
 
             // this._recognized.value = "";
             // this._recognition.value = "";
@@ -365,7 +364,7 @@ export default class UserPostLayOut extends Component {
                         name="Core Values"
                         isSearchable={console.log(this.state.corevals)}
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null}}
-                        onChange={(event) => {this._values = event;}}
+                        onChange={(event) => {this._values = event.map(a => a.label); console.log(this._values); }}
                         options={this.state.corevals}
                         classNamePrefix="select"
                         styles={colorStyle}
@@ -407,14 +406,14 @@ export default class UserPostLayOut extends Component {
         const {showFilter} = this.state;
         return <div>
                     <button className = "owl" onClick={() => this.showCVB("showFilter")}>
-                        <img src="https://img.icons8.com/cotton/40/000000/owl--v1.png"/>
+                    <img style ={{paddingTop: "10px"}} src="https://img.icons8.com/ios/50/000000/filter--v1.png"/>
                         <span className="owlMessage">filter?</span>
                     </button>
                     <form onSubmit={this.updateFeedSearch.bind(this)} className = {this.state.showFilter? "visible":"hidden"}>
                         <div className = "search">
                             <BiSearch />
                             <Select
-                                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null}}
                                 placeholder = "Search..."
                                 isSearchable={this.state.peopleInCompany}
                                 className="searchRecognitions"
