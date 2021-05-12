@@ -5,7 +5,8 @@ import "./Header.css";
 import Notifications from '../Medium/Notifications'
 import { BiLogOut } from 'react-icons/bi';
 import { BiHomeAlt } from 'react-icons/bi';
-import {SignOutIcon  } from '@primer/octicons-react'
+import { BiSearch} from "react-icons/bi";
+
 class Header extends Component{
     constructor(props){
         super(props);
@@ -39,7 +40,6 @@ class Header extends Component{
                     {notificationsButton}      
                     {/* <img src={logo} className= "App-logo" alt = "logo" style={{margin: '10px 10px', width:'180px',height:'60px'}}></img> */}
                     <img className= "App-logo" style={{margin: '10px 10px', width:'160px',height:'60px'}} src="https://images.squarespace-cdn.com/content/v1/5f69a9ce43305d499a7b27d6/1600891945550-JKC721BM2OM5JHS76QX7/ke17ZwdGBToddI8pDm48kP5cuDb6rlHGYNPMD_blOPsUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dqcZMND0BvAkTfFXymHonNnYV6rJmtizd1UFWgnEZwICCjLISwBs8eEdxAxTptZAUg/ukg+white.png?format=300w"/>
-    
                 </div>
             </header>
         );
