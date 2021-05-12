@@ -2,19 +2,19 @@ const router = require('express').Router()
 const Reaction = require('../models/reaction.model');
 
 router.get("/", async (req, res) => {
-    console.log("GET reactions/");
+    // console.log("GET reactions/");
 
     const recognitionID = req.query.recognitionID;
-    console.log("recognition: " + recognitionID);
+    // console.log("recognition: " + recognitionID);
 
     const emoji = req.query.emoji;
-    console.log("emoji: " + emoji);
+    // console.log("emoji: " + emoji);
 
     const reactions = await Reaction.find({ recognitionID: recognitionID, emoji: emoji });
-    console.log("reactions: " + JSON.stringify(reactions, null, 4).substring(0, 256));
+    // console.log("reactions: " + JSON.stringify(reactions, null, 4).substring(0, 256));
 
     res.json(reactions);
-    console.log("");
+    // console.log("");
 });
 
 router.post("/", async (req, res) => {

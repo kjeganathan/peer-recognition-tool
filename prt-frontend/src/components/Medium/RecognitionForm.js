@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Helpers from "../../helpers.js";
+import routeNames from "../../routeNames.js";
 import Container from "react-bootstrap/Container";
 import Select from "react-select";
 import SearchBox from "../Medium/SearchBox"
@@ -21,8 +23,32 @@ export default class RecognitionForm extends Component {
             //         label: "Red"
             //     }
             // ]
+            user: props.user,
             employees: []
         }
+    }
+
+    async componentDidMount() {
+        var employees = await Helpers.getWithParameters(
+            routeNames.employees,
+            { companyID: this.state.company._id },
+            true
+        );
+
+        employees = employees.map(employee => {
+            return(
+                {
+                    value: employee,
+                    label: Helpers.fullName(employee)
+                }
+            );
+        });
+
+        this.setState(
+            {
+                employees: employees
+            }
+        );
     }
 
     render() {

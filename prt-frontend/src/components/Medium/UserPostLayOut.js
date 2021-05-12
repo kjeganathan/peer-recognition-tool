@@ -51,6 +51,7 @@ export default class UserPostLayOut extends Component {
             <>
                 <RecognitionForm
                     company={this.state.company}
+                    user={this.state.user}
                 />
                 <Feed
                     company={this.state.company}
