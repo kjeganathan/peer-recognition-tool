@@ -233,7 +233,6 @@ export default class UserPostLayOut extends Component {
             }
             console.log(":(");
             console.log(localStorage.getItem('test'));
-            window.alert(newItem);
 
             // this._recognized.value = "";
             // this._recognition.value = "";
@@ -364,7 +363,9 @@ export default class UserPostLayOut extends Component {
                         name="Core Values"
                         isSearchable={console.log(this.state.corevals)}
                         components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null, ClearIndicator:() => null}}
-                        onChange={(event) => {this._values = event;}}
+                        onChange={(event) => {this._values = event.map(function (obj) {
+                            return obj.label;
+                          });}}
                         options={this.state.corevals}
                         classNamePrefix="select"
                         styles={colorStyle}
